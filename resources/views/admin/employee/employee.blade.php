@@ -81,28 +81,19 @@
                </tr>
               </thead>
               <tbody class="tbodymain">
-                <tr class="tbody">
-                  <td class="action">
-                    <a href="{{url('/admin/edit-employee')}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                    <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                  </td>
-                  <td>1</td>
-                   <td>Jose de la cruz Acopa Martinez</td>
-                   <td>9932065554</td>
-                   <td>prueba</td>
-                   <td>1234</td>
-                </tr>
-                <tr class="tbody">
-                  <td class="action">
-                    <a href="edit-employee.html"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                    <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                  </td>
-                  <td>2</td>
-                   <td>Nirandelli Patricio Mayo</td>
-                   <td>9932065554</td>
-                   <td>prueba</td>
-                   <td>1234</td>
-                </tr>
+                @foreach ($employee as $employees)
+                  <tr class="tbody">
+                    <td class="action">
+                      <a href="{{url('/admin/edit-employee')}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                    </td>
+                    <td>{{ $employees->num_Empleado }}</td>
+                     <td>{{ $employees->nombre_Empleado }}</td>
+                     <td>{{ $employees->telefono }}</td>
+                     <td>{{ $employees->usuario }}</td>
+                     <td>{{ $employees->contrasena }}</td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

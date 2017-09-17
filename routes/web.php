@@ -32,7 +32,10 @@ Route::get('/admin/edit-client', function () {
 });
 
 Route::get('/admin/employee', function () {
-    return view('admin/employee/employee');
+
+    $employee = DB::table('employee')->get();
+
+    return view('admin/employee/employee', compact('employee'));
 });
 
 Route::get('/admin/add-employee', function () {
