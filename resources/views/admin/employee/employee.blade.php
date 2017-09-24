@@ -81,17 +81,17 @@
                </tr>
               </thead>
               <tbody class="tbodymain">
-                @foreach ($employee as $employees)
+                @foreach ($employees as $employee)
                   <tr class="tbody">
                     <td class="action">
-                      <a href="{{url('/admin/edit-employee')}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      <a href="/admin/edit-employee/{{$employee->id}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                       <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
                     </td>
-                    <td>{{ $employees->num_Empleado }}</td>
-                     <td>{{ $employees->nombre_Empleado }}</td>
-                     <td>{{ $employees->telefono }}</td>
-                     <td>{{ $employees->usuario }}</td>
-                     <td>{{ $employees->contrasena }}</td>
+                    <td>{{ $employee->num_Empleado }}</td>
+                    <td>{{ $employee->nombre_Empleado }}</td>
+                    <td>{{ $employee->telefono }}</td>
+                    <td>{{ $employee->usuario }}</td>
+                    <td>{{ $employee->contrasena }}</td>
                   </tr>
                 @endforeach
               </tbody>

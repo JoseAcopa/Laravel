@@ -17,7 +17,7 @@ class CreateEmployeeTable extends Migration
             $table->increments('id');
             $table->integer('num_Empleado');
             $table->string('nombre_Empleado');
-            $table->integer('telefono');
+            $table->string('telefono');
             $table->string('usuario');
             $table->string('contrasena');
             $table->timestamps();

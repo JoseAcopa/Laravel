@@ -16,22 +16,40 @@
       </nav>
     </header>
     <main class="wrapper">
-      <form class="login">
+      <form class="login" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+
         <img src="{{ url('img/LogoRX.png')}}" alt="">
         <h1>Login</h1>
-        <label for="users">Usuario</label>
-        <div class="icon">
-          <input type="text" id="users" value="" placeholder="usuario">
-          <i class="fa fa-user" aria-hidden="true"></i>
+
+        <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
+          <label for="users">Usuario</label>
+          <div class="icon">
+            <input type="text" id="users" value="" placeholder="usuario" value="{{ old('email') }}" required autofocus>
+            <i class="fa fa-user" aria-hidden="true"></i>
+          </div>
+          @if ($errors->has('email'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('email') }}</strong>
+              </span>
+          @endif
         </div>
-        <label for="pass">Contraseña</label>
-        <div class="icon">
-          <input type="password" id="pass" value="" placeholder="contraseña">
-          <i class="fa fa-key" aria-hidden="true"></i>
+
+        <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
+          <label for="pass">Contraseña</label>
+          <div class="icon">
+            <input type="password" id="pass" value="" placeholder="contraseña" required>
+            <i class="fa fa-key" aria-hidden="true"></i>
+          </div>
+          @if ($errors->has('password'))
+              <span class="help-block">
+                  <strong>{{ $errors->first('password') }}</strong>
+              </span>
+          @endif
         </div>
         <div class="button-client">
-          <a href="{{ url('/admin/admin-welcome') }}" class="btn-success"><i class="fa fa-sign-in" aria-hidden="true"></i>Iniciar Sesion</a>
-          <a href="" class="lost"><p>Olvidaste tu contraseña?</p></a>
+          <button type="submit" class="btn-success">Login</button>
+          <a href="{{ route('password.request') }}" class="lost"><p>Olvidaste tu contraseña?</p></a>
         </div>
       </form>
     </main>

@@ -31,20 +31,23 @@ Route::get('/admin/edit-client', function () {
     return view('admin/client/edit-client');
 });
 
+// ------------------Employee----------------
 Route::get('/admin/employee', function () {
+    $employees = DB::table('employee')->get();
 
-    $employee = DB::table('employee')->get();
-
-    return view('admin/employee/employee', compact('employee'));
+    return view('admin.employee.employee', compact('employees'));
 });
 
 Route::get('/admin/add-employee', function () {
     return view('admin/employee/add-employee');
 });
 
-Route:: get('/admin/edit-employee', function(){
-  return view('admin/employee/edit-employee');
+Route:: get('/admin/edit-employee/{employee}', function($id){
+  $employee = DB::table('employee')->find($id);
+
+  return view('admin.employee.edit-employee', compact('employee'));
 });
+// ------------------End Employee----------------
 
 Route:: get('/admin/quotation', function(){
   return view('admin/quotation/quotation');
@@ -150,3 +153,7 @@ Route::get('/users/edit-out', function(){
 Route::get('/admin/add-entrada', function(){
   return view ('admin/inventary/add-entrada');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

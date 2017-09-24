@@ -65,10 +65,21 @@ div.dataTables_paginate ul.pagination {
 
 .pagination .active a{
 	text-decoration: none;
+	color: #e4ece0;
+	font-family: sans-serif;
+	font-weight: bold;
+	margin: 0px 2px 0px 2px;
+	padding: 5px 10px 5px 10px;
+	border-radius: 5px;
+	background: #336E7B;
+}
+
+.pagination a{
+	text-decoration: none;
 	color: #727274;
 	font-family: sans-serif;
 	font-weight: bold;
-	margin: 0px 10px 0px 10px;
+	margin: 0px 2px 0px 2px;
 	padding: 5px 10px 5px 10px;
 	border-radius: 5px;
 	background: rgb(232, 236, 222);

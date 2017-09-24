@@ -65,28 +65,30 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-edit"></i> Editar Empleado</h2>
+
           <form class="container-add-clients">
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" value="">
+              <input type="text" name="name" value='{{ $employee->nombre_Empleado }}'>
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value="">
+              <input type="text" name="telephone" value='{{ $employee->telefono }}'>
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="user" value="">
+              <input type="text" name="user" value='{{ $employee->usuario }}'>
               <label for="password">Contraseña:</label>
-              <input type="text" name="password" value="">
+              <input type="password" name="password" value='{{ $employee->contrasena }}'>
             </div>
             <div class="button-client">
               <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
               <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
           </form>
+
         </div>
       </div>
     </main>
-    <footer id="footer">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
