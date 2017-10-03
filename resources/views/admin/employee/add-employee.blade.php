@@ -69,25 +69,20 @@
             {{ csrf_field() }}
             <div class="date-client">
               <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo">
+              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
               <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono">
+              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
             </div>
             <div class="date-client">
               <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
               <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
+              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
             </div>
             <div class="button-client">
               <button type="submit" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <a href="{{ url('/admin/employee') }}" class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
-            @if (count($errors))
-              @foreach ($errors->all() as $error)
-                {{$error}}
-              @endforeach
-            @endif
           </form>
         </div>
       </div>

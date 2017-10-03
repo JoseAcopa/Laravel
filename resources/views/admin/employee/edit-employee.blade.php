@@ -66,22 +66,22 @@
         <div class="for-container">
           <h2><i class="fa fa-edit"></i> Editar Empleado</h2>
 
-          <form class="container-add-clients" method="post" action="/edit-employee">
+          <form class="container-add-clients" method="POST" action="/admin/employee/{employee}">
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" value='{{ $employee->nombre_Empleado }}'>
+              <input type="text" name="nombre_Empleado" value='{{ $employee->nombre_Empleado }}'>
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value='{{ $employee->telefono }}'>
+              <input type="text" name="telefono" value='{{ $employee->telefono }}'>
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="user" value='{{ $employee->usuario }}'>
+              <input type="text" name="usuario" value='{{ $employee->usuario }}'>
               <label for="password">Contraseña:</label>
-              <input type="password" name="password" value='{{ $employee->contrasena }}'>
+              <input type="password" name="contrasena" value='{{ $employee->contrasena }}'>
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
+              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
               <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
           </form>

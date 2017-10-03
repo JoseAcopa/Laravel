@@ -85,7 +85,7 @@
                   <tr class="tbody">
                     <td class="action">
                       <a href="/admin/edit-employee/{{$employee->id}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      <a href="" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      <a href="/admin/employee/{{$employee->id}}"" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
                     </td>
                     <td>{{ $employee->id }}</td>
                     <td>{{ $employee->nombre_Empleado }}</td>

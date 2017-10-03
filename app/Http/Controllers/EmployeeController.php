@@ -76,9 +76,22 @@ class EmployeeController extends Controller
     * @param  int  $id
     * @return Response
     */
-   public function update($id)
+   public function update(Request $request, $id)
    {
-       //
+     $newName = $request->input('nombre_Empleado');
+     $newPhon = $request->input('telefono');
+     $newUsua = $request->input('usuario');
+     $newPass = $request->input('contrasena');
+
+     $employee = Employee::find($id);
+
+     $employee->nombre_Empleado = $newName;
+     $employee->telefono = $newPhon;
+     $employee->usuario = $newUsua;
+     $employee->contrasena = $newPass;
+     $employee->save();
+
+     return redirect('admin/employee');
    }
 
    /**
@@ -89,10 +102,9 @@ class EmployeeController extends Controller
     */
    public function destroy($id)
    {
-     $employee = Employee::find($id);
-     $employee->delete();
+     Employee::destroy($id);
 
     //  Session::flash('message', 'Successfully deleted the nerd!');
-     return Redirect::to('admin.employee.employee');
+     return redirect('admin/employee');
    }
 }
