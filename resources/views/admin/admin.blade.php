@@ -66,8 +66,8 @@
           <h1>RX EL EQUIPO QUE SE MUEVE A DONDE TU LO NECESITES!</h1>
         </div>
         <div class="businessComplet">
-          <img src="{{ url('img/3.jpg')}}" alt="">
-          <!-- <div class="businessBody">
+          {{-- <img src="{{ url('img/3.jpg')}}" alt=""> --}}
+          <div class="businessBody">
             <div class="business">
               <h2>Misión</h2>
               <p>Generar servicios, transformar y comercializar  en forma eficiente el Servicio de Inspección No Destructiva,
@@ -86,7 +86,7 @@
           </div>
           <div class="businessImg">
             <img src="{{ url('img/MV1.jpg')}}" alt="">
-          </div> -->
+          </div>
 
         </div>
 

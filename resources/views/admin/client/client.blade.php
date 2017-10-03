@@ -81,32 +81,32 @@
                </tr>
               </thead>
               <tbody class="tbodymain">
-                <tr class="tbody">
-                  <td>
-                    <div class="action">
-                      <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                    </div>
-                  </td>
-                  <td>PACR720402U71</td>
-                  <td>Servicios Electricos Automotriz Patricio</td>
-                  <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
-                  <td>9932065554</td>
-                  <td>delli.patricio.mayo@gmail.com</td>
-                </tr>
-                <tr class="tbody">
-                  <td>
-                    <div class="action">
-                      <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                    </div>
-                  </td>
-                  <td>PACR720402U71</td>
-                  <td>Servicios Electricos Automotriz Patricio</td>
-                  <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
-                  <td>9934298955</td>
-                  <td>jose.acopa.martinez@gmail.com</td>
-                </tr>
+                  <tr class="tbody">
+                    <td>
+                      <div class="action">
+                        <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      </div>
+                    </td>
+                    <td>PACR720402U71</td>
+                    <td>Servicios Electricos Automotriz Patricio</td>
+                    <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
+                    <td>9932065554</td>
+                    <td>delli.patricio.mayo@gmail.com</td>
+                  </tr>
+                  <tr class="tbody">
+                    <td>
+                      <div class="action">
+                        <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      </div>
+                    </td>
+                    <td>PACR720402U71</td>
+                    <td>Servicios Electricos Automotriz Patricio</td>
+                    <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
+                    <td>9934298955</td>
+                    <td>jose.acopa.martinez@gmail.com</td>
+                  </tr>
               </tbody>
             </table>
           </div>

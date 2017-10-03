@@ -48,7 +48,7 @@
           <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Productos</small></a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Inventario</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -60,15 +60,15 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-                <li class="small-active"><i class="fa fa-pencil-square"></i>Inventario</li>
+                <li class="ol-active"><i class="fa fa-pencil-square"></i>Inventario</li>
             </ol>
           </div>
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Productos</a>
-            <a href="{{url('admin/add-entrada')}}" class="btn-green" ><i class="fa fa-user-plus"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-user-plus"></i> Salidas</a>
+            <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Productos</a>
+            <a href="{{url('admin/add-entrada')}}" class="btn-green" ><i class="fa fa-sign-in"></i> Entradas</a>
+            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
 
           </div>
           <div class="table">

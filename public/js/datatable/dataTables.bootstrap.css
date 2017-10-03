@@ -69,9 +69,10 @@ div.dataTables_paginate ul.pagination {
 	font-family: sans-serif;
 	font-weight: bold;
 	margin: 0px 2px 0px 2px;
-	padding: 5px 10px 5px 10px;
+	padding: 2px 7px 2px 7px;
 	border-radius: 5px;
 	background: #336E7B;
+	outline: 0;
 }
 
 .pagination a{
@@ -80,9 +81,10 @@ div.dataTables_paginate ul.pagination {
 	font-family: sans-serif;
 	font-weight: bold;
 	margin: 0px 2px 0px 2px;
-	padding: 5px 10px 5px 10px;
+	padding: 2px 7px 2px 7px;
 	border-radius: 5px;
 	background: rgb(232, 236, 222);
+	outline: 0;
 }
 
 .num-disabled{

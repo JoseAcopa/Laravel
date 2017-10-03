@@ -60,7 +60,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-                <li class="small-active"><i class="fa fa-pencil-square"></i>Inventario</li>
+                <li class="ol-active"><i class="fa fa-pencil-square"></i>Inventario</li>
             </ol>
           </div>
         </div>
@@ -71,7 +71,7 @@
           </div> -->
           <div class="inventary">
             <div class="inventaryTitle">
-              <h2><i class="fa fa-book"></i> Inventario</h2>
+              <h2><i class="fa fa-pencil-square"></i> Inventario</h2>
             </div>
             <div class="inventaryMenu">
               <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Inventario</label></a>

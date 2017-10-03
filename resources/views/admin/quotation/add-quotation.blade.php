@@ -49,7 +49,7 @@
           <li class="li-menu-nav">INVENTARIO</li>
           <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
           <li class="li-menu-nav">COTIZACION</li>
-          <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización <small class="bg-indicator">Registrar</small></a></li>
+          <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización <small class="bg-indicator">Cotizar</small></a></li>
         </ul>
       </aside>
       <div class="container" id="container">
@@ -59,7 +59,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="small-active"><i class="fa fa-book"></i>Realizar Cotización</li>
+              <li class="ol-active"><i class="fa fa-book"></i>Realizar Cotización</li>
             </ol>
           </div>
         </div>
@@ -98,10 +98,10 @@
               <label for="observation">Observaciones:</label>
               <textarea type="text" rows="6" name="observation"  placeholder="Observaciones"></textarea>
             </div>
-            <div class="button-client">
+            <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
-            <div class="table">
+            <div class="">
               <table id="Jtabla">
                 <thead>
                   <tr class="theader">
@@ -129,10 +129,10 @@
                 </tbody>
               </table>
             </div>
-            <div class="button-client">
+            <div class="button-inventary">
               <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
-              <a href="{{ url('/admin/client') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
               <a href="#" class="pdf"><i class="fa fa-file-pdf-o"></i>  Imprimir PDF</a>
+              <a href="{{ url('/admin/quotation') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">

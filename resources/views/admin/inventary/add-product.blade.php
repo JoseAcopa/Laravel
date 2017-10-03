@@ -47,7 +47,7 @@
           <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventary')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Productos</small></a></li>
+          <li class="active"><a href="{{url('admin/inventary')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Registrar</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -59,12 +59,12 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="small-active"><i class="fa fa-pencil-square"></i>Registrar Productos</li>
+              <li class="ol-active"><i class="fa fa-pencil"></i>Registrar Productos</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-pencil-square"></i> Registrar Producto</h2>
+          <h2><i class="fa fa-pencil"></i> Registrar Producto</h2>
           <form class="container-add-clients">
             <div class="date-clients">
               <label for="nFactura">N° de Factura:</label>
@@ -104,7 +104,7 @@
             </div>
             <div class="button-client">
               <a href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</a>
-              <a href="#"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">

@@ -59,7 +59,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="small-active"><i class="fa fa-pencil-square"></i>Editar Salidas</li>
+              <li class="ol-active"><i class="fa fa-pencil-square-o"></i>Editar Salidas</li>
             </ol>
           </div>
         </div>
@@ -112,7 +112,7 @@
             </div>
             <div class="button-client">
               <a href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</a>
-              <a href="#"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">

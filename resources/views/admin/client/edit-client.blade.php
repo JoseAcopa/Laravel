@@ -90,7 +90,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

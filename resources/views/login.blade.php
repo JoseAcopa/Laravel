@@ -47,8 +47,8 @@
               </span>
           @endif
         </div>
-        <div class="button-client">
-          <button type="submit" class="btn-success">Login</button>
+        <div class="login-button-lost">
+          <button type="submit" class="btn-login">Login</button>
           <a href="{{ route('password.request') }}" class="lost"><p>Olvidaste tu contraseña?</p></a>
         </div>
       </form>

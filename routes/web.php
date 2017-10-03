@@ -31,23 +31,15 @@ Route::get('/admin/edit-client', function () {
     return view('admin/client/edit-client');
 });
 
-// ------------------Employee----------------
-Route::get('/admin/employee', function () {
-    $employees = DB::table('employee')->get();
+// ------------------Employee--------------------------------------
+Route::get('/admin/employee', 'EmployeeController@index');
 
-    return view('admin.employee.employee', compact('employees'));
-});
+Route::get('/admin/add-employee', 'EmployeeController@create');
 
-Route::get('/admin/add-employee', function () {
-    return view('admin/employee/add-employee');
-});
+Route::post('/admin/employee', 'EmployeeController@store');
 
-Route:: get('/admin/edit-employee/{employee}', function($id){
-  $employee = DB::table('employee')->find($id);
-
-  return view('admin.employee.edit-employee', compact('employee'));
-});
-// ------------------End Employee----------------
+Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
+// ------------------End Employee---------------------------------
 
 Route:: get('/admin/quotation', function(){
   return view('admin/quotation/quotation');
@@ -154,6 +146,9 @@ Route::get('/admin/add-entrada', function(){
   return view ('admin/inventary/add-entrada');
 });
 
+// -------------------login--------------------------------------
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// -------------------End login--------------------------------------

@@ -66,7 +66,8 @@
         <div class="for-container">
           <h2><i class="fa fa-edit"></i> Editar Empleado</h2>
 
-          <form class="container-add-clients">
+          <form class="container-add-clients" method="post" action="/edit-employee">
+            {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
               <input type="text" name="name" value='{{ $employee->nombre_Empleado }}'>

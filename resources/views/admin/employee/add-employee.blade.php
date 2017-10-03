@@ -65,23 +65,29 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-user-plus"></i> Registrar Empleados</h2>
-          <form class="container-add-clients">
+          <form class="container-add-clients" method="POST" action="/admin/employee">
+            {{ csrf_field() }}
             <div class="date-client">
-              <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" value=""  placeholder="Nombre Completo">
-              <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value="" placeholder="Teléfono">
+              <label for="nombre_Empleado">Nombre Completo:</label>
+              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo">
+              <label for="telefono">Teléfono:</label>
+              <input type="text" name="telefono" id="telefono" placeholder="Teléfono">
             </div>
             <div class="date-client">
-              <label for="user">Usuario:</label>
-              <input type="text" name="user" value="" placeholder="Usuario">
-              <label for="password">Contraseña:</label>
-              <input type="text" name="password" value="" placeholder="Contraseña">
+              <label for="usuario">Usuario:</label>
+              <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+              <label for="contrasena">Contraseña:</label>
+              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña">
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
+              <button type="submit" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
               <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
+            @if (count($errors))
+              @foreach ($errors->all() as $error)
+                {{$error}}
+              @endforeach
+            @endif
           </form>
         </div>
       </div>

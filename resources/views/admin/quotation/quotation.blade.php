@@ -60,7 +60,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="small-active"><i class="fa fa-book"></i>Cotización</li>
+              <li class="ol-active"><i class="fa fa-book"></i>Cotización</li>
             </ol>
           </div>
         </div>
