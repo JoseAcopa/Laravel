@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Rayos X y Servicios Induxtriales</title>
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
@@ -66,8 +67,14 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{ url('/admin/add-employee') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
+            <a href="{{ url('admin/add-employee') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
           </div>
+
+          @if ($message = Session::get('success'))
+            <div class="message-danger">
+              <p>{{ $message }}</p>
+            </div>
+          @endif
           <div class="">
             <table id="Jtabla">
               <thead>
@@ -84,10 +91,12 @@
                 @foreach ($employees as $employee)
                   <tr class="tbody">
                     <td class="action">
-                      <a href="/admin/edit-employee/{{$employee->id}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      <a href="/admin/employee/{{$employee->id}}"" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      <a class="btn-edit" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                      {!! Form::close() !!}
                     </td>
-                    <td>{{ $employee->id }}</td>
+                    <td>RX-{{ $employee->id }}</td>
                     <td>{{ $employee->nombre_Empleado }}</td>
                     <td>{{ $employee->telefono }}</td>
                     <td>{{ $employee->usuario }}</td>

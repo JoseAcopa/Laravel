@@ -34,8 +34,14 @@ class EmployeeController extends Controller
     *
     * @return Response
     */
-   public function store()
+   public function store(Request $request)
    {
+
+    //  request()->validate([
+    //         'title' => 'required',
+    //         'body' => 'required',
+    //     ]);
+
      $employee = new Employee;
      $employee->nombre_Empleado = request('nombre_Empleado');
      $employee->telefono = request('telefono');
@@ -43,8 +49,7 @@ class EmployeeController extends Controller
      $employee->contrasena = request('contrasena');
 
      $employee->save();
-
-     return redirect('admin/add-employee');
+     return redirect('admin/employee')->with('success','Empleado '. $employee->nombre_Empleado .' Guardado correctamente');
    }
 
    /**
@@ -91,7 +96,7 @@ class EmployeeController extends Controller
      $employee->contrasena = $newPass;
      $employee->save();
 
-     return redirect('admin/employee');
+     return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
    }
 
    /**
@@ -102,9 +107,7 @@ class EmployeeController extends Controller
     */
    public function destroy($id)
    {
-     Employee::destroy($id);
-
-    //  Session::flash('message', 'Successfully deleted the nerd!');
-     return redirect('admin/employee');
+     Employee::find($id)->delete();
+     return redirect('admin/employee')->with('success','Empleado RX-'. $id .' eliminado correctamente');
    }
 }

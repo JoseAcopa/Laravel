@@ -65,8 +65,7 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-edit"></i> Editar Empleado</h2>
-
-          <form class="container-add-clients" method="POST" action="/admin/employee/{employee}">
+          {!! Form::model($employee, ['method' => 'PATCH','route' => ['employee.update', $employee->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
@@ -84,8 +83,7 @@
               <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
               <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
-          </form>
-
+          {!! Form::close() !!}
         </div>
       </div>
     </main>

@@ -32,17 +32,9 @@ Route::get('/admin/edit-client', function () {
 });
 
 // ------------------Employee--------------------------------------
-Route::get('/admin/employee', 'EmployeeController@index');
-
 Route::get('/admin/add-employee', 'EmployeeController@create');
-
-Route::post('/admin/employee', 'EmployeeController@store');
-
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
-
-Route::post('/admin/employee/{employee}', 'EmployeeController@update');
-
-Route::get('/admin/employee/{employee}', 'EmployeeController@destroy');
+Route::resource('admin/employee','EmployeeController');
 // ------------------End Employee---------------------------------
 
 Route:: get('/admin/quotation', function(){
