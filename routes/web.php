@@ -41,23 +41,26 @@ Route:: get('/admin/add-quotation', function(){
 Route:: get('/admin/edit-quotation', function(){
   return view ('admin/quotation/edit-quotation');
 });
-
+// ------------------inventary----------------------------------------
 Route::get('/admin/inventaryMenu', function(){
   return view ('admin/inventary/inventaryMenu');
 });
 
-Route::get('/admin/inventary', function(){
-  return view ('admin/inventary/inventary');
-});
-
-Route::get('/admin/add-product', function(){
-  return view ('admin/inventary/add-product');
-});
-
-Route::get('/admin/edit-product', function(){
-  return view ('admin/inventary/edit-product');
-});
-
+// Route::get('/admin/inventary', function(){
+//   return view ('admin/inventary/inventary');
+// });
+//
+// Route::get('/admin/add-product', function(){
+//   return view ('admin/inventary/add-product');
+// });
+//
+// Route::get('/admin/edit-product', function(){
+//   return view ('admin/inventary/edit-product');
+// });
+Route::get('/admin/add-product', 'ProductsControllers@create');
+Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
+Route::resource('admin/inventary','ProductsControllers');
+// ------------------End inventary----------------------------------------
 Route::get('/admin/inventary-out', function(){
   return view ('admin/inventary/inventary-out');
 });
