@@ -45,7 +45,7 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Proveedores</a></li>
+          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
           <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
@@ -60,14 +60,19 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-users"></i>Proveedores</li>
+              <li class="ol-active"><i class="fa fa-users"></i>Clientes</li>
             </ol>
           </div>
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{ url('/admin/add-client') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Proveedor</a>
+            <a href="{{ url('/admin/add-client') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
           </div>
+          @if ($message = Session::get('success'))
+            <div class="message-danger">
+              <p>{{ $message }}</p>
+            </div>
+          @endif
           <div class="">
             <table id="Jtabla">
               <thead>
@@ -81,32 +86,21 @@
                </tr>
               </thead>
               <tbody class="tbodymain">
-                  <tr class="tbody">
-                    <td>
-                      <div class="action">
-                        <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                        <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                      </div>
-                    </td>
-                    <td>PACR720402U71</td>
-                    <td>Servicios Electricos Automotriz Patricio</td>
-                    <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
-                    <td>9932065554</td>
-                    <td>delli.patricio.mayo@gmail.com</td>
-                  </tr>
-                  <tr class="tbody">
-                    <td>
-                      <div class="action">
-                        <a href="{{ url('/admin/edit-client') }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                        <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
-                      </div>
-                    </td>
-                    <td>PACR720402U71</td>
-                    <td>Servicios Electricos Automotriz Patricio</td>
-                    <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
-                    <td>9934298955</td>
-                    <td>jose.acopa.martinez@gmail.com</td>
-                  </tr>
+                  @foreach ($clients as $client)
+                    <tr class="tbody">
+                      <td class="action">
+                        <a class="btn-edit" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
+                          <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                        {!! Form::close() !!}
+                      </td>
+                      <td>{{ $client->RFC }}</td>
+                      <td>{{ $client->business }}</td>
+                      <td>{{ $client->address }}</td>
+                      <td>{{ $client->phone }}</td>
+                      <td>{{ $client->email }}</td>
+                    </tr>
+                  @endforeach
               </tbody>
             </table>
           </div>

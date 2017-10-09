@@ -44,7 +44,7 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Proveedores <small class="bg-indicator">Editar</small></a></li>
+          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes <small class="bg-indicator">Editar</small></a></li>
           <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
@@ -59,34 +59,35 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-edit"></i>Editar Proveedores</li>
+              <li class="ol-active"><i class="fa fa-edit"></i>Editar Cliente</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-edit"></i> Editar Proveedores</h2>
-          <form class="container-add-clients">
+          <h2><i class="fa fa-edit"></i> Editar Cliente</h2>
+          {!! Form::model($client, ['method' => 'PATCH','route' => ['client.update', $client->id], 'class' => 'container-add-clients']) !!}
+            {{ csrf_field() }}
             <div class="date-clients">
-              <label for="namBbusiness">Nombre de la Empresa:</label>
-              <input type="text" name="nameBusiness" value="">
-              <label for="rfc">RFC:</label>
-              <input type="text" name="rfc" value="">
+              <label for="business">Nombre de la Empresa:</label>
+              <input type="text" name="business" value='{{ $client->business }}' required>
+              <label for="RFC">RFC:</label>
+              <input type="text" name="RFC" value='{{ $client->RFC }}' required>
             </div>
             <div class="date-clients">
-              <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value="">
-              <label for="correo">E-mail:</label>
-              <input type="text" name="correo" value="">
+              <label for="phone">Teléfono:</label>
+              <input type="text" name="phone" value='{{ $client->phone }}' required>
+              <label for="email">E-mail:</label>
+              <input type="text" name="email" value='{{ $client->email }}' required>
             </div>
             <div class="date-clients">
-              <label for="adress">Dirección:</label>
-              <textarea type="text" rows="6" name="adress"></textarea>
+              <label for="address">Dirección:</label>
+              <textarea type="text" rows="6" name="address">{{ $client->address }}</textarea>
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
+              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
               <a href="{{ url('/admin/client') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
-          </form>
+          {!! Form::close() !!}
         </div>
       </div>
     </main>

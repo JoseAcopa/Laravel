@@ -44,7 +44,7 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Proveedores <small class="bg-indicator">Registrar</small></a></li>
+          <li class="active"><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes <small class="bg-indicator">Registrar</small></a></li>
           <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
@@ -59,32 +59,33 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-user-plus"></i>Registrar Proveedores</li>
+              <li class="ol-active"><i class="fa fa-user-plus"></i>Registrar Clientes</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-user-plus"></i> Registrar Proveedores</h2>
-          <form class="container-add-clients">
+          <h2><i class="fa fa-user-plus"></i> Registrar Clientes</h2>
+          <form class="container-add-clients" method="POST" action="/admin/client">
+            {{ csrf_field() }}
             <div class="date-clients">
-              <label for="namBbusiness">Nombre de la Empresa:</label>
-              <input type="text" name="nameBusiness" value=""  placeholder="Nombre de la empresa">
-              <label for="rfc">RFC:</label>
-              <input type="text" name="rfc" value=""  placeholder="RFC">
+              <label for="business">Nombre de la Empresa:</label>
+              <input type="text" name="business" placeholder="Nombre de la empresa" required>
+              <label for="RFC">RFC:</label>
+              <input type="text" name="RFC" placeholder="RFC" required>
             </div>
             <div class="date-clients">
-              <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value=""  placeholder="Teléfono">
-              <label for="correo">E-mail:</label>
-              <input type="text" name="correo" value=""  placeholder="E-mail">
+              <label for="phone">Teléfono:</label>
+              <input type="text" name="phone" placeholder="Teléfono" required>
+              <label for="email">E-mail:</label>
+              <input type="text" name="email" placeholder="E-mail" required>
             </div>
             <div class="date-clients">
-              <label for="adress">Dirección:</label>
-              <textarea type="text" rows="6" name="adress"  placeholder="Dirección"></textarea>
+              <label for="address">Dirección:</label>
+              <textarea type="text" rows="6" name="address" placeholder="Dirección"></textarea>
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
-              <a href="{{ url('/admin/client') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <button type="submit" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
+              <a href="{{ url('/admin/client') }}" class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
           </form>
         </div>

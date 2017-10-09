@@ -18,24 +18,17 @@ Route::get('/', function () {
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');
 });
+// ------------------Clients-----------------------------------------
+Route::get('/admin/add-client', 'ClientsController@create');
+Route::get('/admin/edit-client/{clients}', 'ClientsController@edit');
+Route::resource('admin/client','ClientsController');
+// ------------------End Clients-----------------------------------
 
-Route::get('/admin/client', function () {
-    return view('admin/client/client');
-});
-
-Route::get('/admin/add-client', function () {
-    return view('admin/client/add-client');
-});
-
-Route::get('/admin/edit-client', function () {
-    return view('admin/client/edit-client');
-});
-
-// ------------------Employee--------------------------------------
+// ------------------Employee-----------------------------------------
 Route::get('/admin/add-employee', 'EmployeeController@create');
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
 Route::resource('admin/employee','EmployeeController');
-// ------------------End Employee---------------------------------
+// ------------------End Employee------------------------------------
 
 Route:: get('/admin/quotation', function(){
   return view('admin/quotation/quotation');
