@@ -14,10 +14,12 @@
 Route::get('/', function () {
     return view('login');
 });
-
+// ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');
 });
+// ------------------End Admin-----------------------------------------
+
 // ------------------Clients-----------------------------------------
 Route::get('/admin/add-client', 'ClientsController@create');
 Route::get('/admin/edit-client/{clients}', 'ClientsController@edit');

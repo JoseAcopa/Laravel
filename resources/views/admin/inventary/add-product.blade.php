@@ -87,12 +87,12 @@
               <input type="text" name="stock" value=""  placeholder="Existencia">
               <label for="unit">Unidad de Medida:</label>
               <label for="unit">unit:</label>
-              <input type="text" name="unit" value=""  placeholder="Existencia">
-              {{-- <select class="" name="unit">
-                <option value="sxcdv"></option>
-                <option value="piezas">Piezas</option>
-                <option value="metros">Metros</option>
-              </select> --}}
+              {{-- <input type="text" name="unit" value=""  placeholder="Existencia"> --}}
+              <select class="" name="unit">
+                <option value=""></option>
+                <option value="Piezas">Piezas</option>
+                <option value="Metros">Metros</option>
+              </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo">
             </div>
