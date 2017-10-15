@@ -64,55 +64,67 @@
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-pencil-square-o"></i> Editar Productos</h2>
-          {{-- <form class="container-add-clients"> --}}
-          {!! Form::model($product, ['method' => 'PATCH','route' => ['inventary.update', $product->id], 'class' => 'container-add-clients']) !!}
-            {{ csrf_field() }}
-            <div class="date-clients">
-              <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" value="{{ $product->nInvoice }}" required>
-              <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value="{{ $product->nProducts }}" required>
-              <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="{{ $product->provider }}" required>
-              <label for="description">Dirección:</label>
-              <textarea type="text" rows="6" name="description" >{{ $product->description }}</textarea>
+          <h2><i class="fa fa-eye"></i> Mostrar Producto</h2>
+          <div class="line"></div>
+          <div class="date-clients">
+            <div class="show-product">
+              <label for="">Numero del Producto:</label>
+              <p>{{ $product->id }}</p>
             </div>
-            <div class="date-clients">
-              <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="{{ $product->checkin }}" required>
-              <label for="quantity">Cantidad de Entrada:</label>
-              <input type="text" name="quantity" value="{{ $product->quantity }}" required>
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="{{ $product->stock }}" required>
-              <label for="unit">Unidad de Medida:</label>
-              <select class="" name="unit">
-                <option value="">Selecciona Unidad de Medida</option>
-                <option value="Piezas">Piezas</option>
-                <option value="Metros">Metros</option>
-              </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="{{ $product->cost }}" required>
+            <div class="show-product">
+              <label for="">N° de Factura:</label>
+              <p>{{ $product->nInvoice }}</p>
             </div>
-            <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value="{{ $product->price1 }}" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value="{{ $product->price2 }}" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value="{{ $product->price3 }}" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value="{{ $product->price4 }}" required>
+            <div class="show-product">
+              <label for="">N° de Producto:</label>
+              <p>{{ $product->nProducts }}</p>
             </div>
-            <div class="button-client">
-              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+            <div class="show-product">
+              <label for="">Proveedor:</label>
+              <p>{{ $product->provider }}</p>
             </div>
-          {!! Form::close() !!}
-          {{-- </form> --}}
-          <div class="button-pdf">
-
+            <div class="show-product">
+              <label for="">Descripción:</label>
+              <p>{{ $product->description }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Fecha de Entrada:</label>
+              <p>{{ $product->checkin }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Cantidad de Entrada:</label>
+              <p>{{ $product->quantity }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Existencia:</label>
+              <p>{{ $product->stock }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Unidad de Medida:</label>
+              <p>{{ $product->unit }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Costo:</label>
+              <p>{{ $product->cost }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Precio de Venta 1:</label>
+              <p>{{ $product->price1 }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Precio de Venta 2:</label>
+              <p>{{ $product->price2 }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Precio de Venta 3:</label>
+              <p>{{ $product->price3 }}</p>
+            </div>
+            <div class="show-product">
+              <label for="">Precio de Venta 4:</label>
+              <p>{{ $product->price4 }}</p>
+            </div>
           </div>
+          <a href="{{url('admin/inventary')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
         </div>
       </div>
     </main>

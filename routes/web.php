@@ -61,6 +61,7 @@ Route::get('/admin/inventaryMenu', function(){
 // });
 Route::get('/admin/add-product', 'ProductsControllers@create');
 Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
+Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
 Route::get('/admin/inventary-out', function(){

@@ -86,35 +86,23 @@
                   <th>Proveedores</th>
                   <th>Descripción</th>
                   <th>Fecha de Entrada</th>
-                  {{-- <th>Cantidad de Entrada</th>
-                  <th>Unidad de Medida</th>
-                  <th>Costo</th>
-                  <th>Precio de Venta 1</th>
-                  <th>Precio de Venta 2</th>
-                  <th>Precio de Venta 3</th>
-                  <th>Precio de Venta 4</th> --}}
                </tr>
               </thead>
               <tbody class="tbodymain">
                 @foreach ($products as $product)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="btn-info" href="#" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="btn-green" href="{{url('/admin/edit-product')}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      <a class="btn-dangerInventary" href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a class="btn-edit" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                      {!! Form::close() !!}
                     </td>
                     <td>{{ $product->nInvoice }}</td>
                     <td>{{ $product->nProducts }}</td>
                     <td>{{ $product->provider }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->checkin }}</td>
-                    {{-- <td>50</td>
-                    <td>metros</td>
-                    <td>$500.00</td>
-                    <td>$500.00</td>
-                    <td>$500.00</td>
-                    <td>$500.00</td>
-                    <td>$500.00</td> --}}
                   </tr>
                 @endforeach
               </tbody>

@@ -70,41 +70,43 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" value=""  placeholder="Número Factura">
+              <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
               <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value=""  placeholder="Número Productos">
+              <input type="text" name="nProducts" value=""  placeholder="Número Productos" required>
               <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value=""  placeholder="Proveedor">
+              <select class="" name="provider">
+                <option value="null">Seleccione Proveedor</option>
+                <option value="Proveedor1">Proveedor1</option>
+                <option value="Proveedor2">Proveedor2</option>
+              </select>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description"  placeholder="Dirección"></textarea>
+              <textarea type="text" rows="6" name="description" placeholder="Dirección"></textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="">
+              <input type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
-              <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada">
+              <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada" required>
               <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value=""  placeholder="Existencia">
+              <input type="text" name="stock" value=""  placeholder="Existencia" required>
               <label for="unit">Unidad de Medida:</label>
-              <label for="unit">unit:</label>
-              {{-- <input type="text" name="unit" value=""  placeholder="Existencia"> --}}
               <select class="" name="unit">
-                <option value=""></option>
+                <option value="null">Seleccione Unidad de Medida</option>
                 <option value="Piezas">Piezas</option>
                 <option value="Metros">Metros</option>
               </select>
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo">
+              <input type="text" name="cost" value=""  placeholder="Costo" required>
             </div>
             <div class="date-clients">
               <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1">
+              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1" required>
               <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2">
+              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2" required>
               <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3">
+              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3" required>
               <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4">
+              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4" required>
             </div>
             <div class="button-client">
               <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>

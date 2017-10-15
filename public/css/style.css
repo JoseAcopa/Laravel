@@ -280,7 +280,7 @@ background-image: {{ url('m.jpg')}};
   color: #e4ece0;
   font-family:Montserrat;
   font-weight: bold;
-  padding: 8px;
+  padding: 5px 5px 0px 5px;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -967,5 +967,26 @@ select{
   width: 340px;
   margin-bottom: 15px;
   text-align: center;
+  font-weight: 400;
+}
+
+/*--------------------------show-product----------------------------*/
+
+.line{
+  margin: 20px 0px 20px 0px;
+  border-top: 2px solid #999;
+}
+
+.show-product{
+  display: flex;
+  flex-direction: row;
+  color: #1a2226;
+  margin-bottom: 10px;
+}
+
+.show-product p{
+  color: #444;
+  margin-left: 5px;
+  font-family: Montserrat;
   font-weight: 400;
 }
