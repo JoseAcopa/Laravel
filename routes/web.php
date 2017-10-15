@@ -26,6 +26,12 @@ Route::get('/admin/edit-client/{clients}', 'ClientsController@edit');
 Route::resource('admin/client','ClientsController');
 // ------------------End Clients-----------------------------------
 
+// ------------------Suppliers-----------------------------------------
+Route::get('/admin/add-suppliers', 'SuppliersController@create');
+Route::get('/admin/edit-suppliers/{suppliers}', 'SuppliersController@edit');
+Route::resource('admin/suppliers','SuppliersController');
+// ------------------End Suppliers-----------------------------------
+
 // ------------------Employee-----------------------------------------
 Route::get('/admin/add-employee', 'EmployeeController@create');
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
