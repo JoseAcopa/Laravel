@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\Suppliers;
+use App\Units;
 
 class ProductsControllers extends Controller
 {
@@ -25,7 +27,9 @@ class ProductsControllers extends Controller
      */
     public function create()
     {
-      return view('admin.inventary.add-product');
+      $suppliers = Suppliers::all();
+      $units = Units::all();
+      return view('admin.inventary.add-product', compact('suppliers'), compact('units'));
     }
 
     /**

@@ -76,8 +76,9 @@
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
-                <option value="Proveedor1">Proveedor1</option>
-                <option value="Proveedor2">Proveedor2</option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                @endforeach
               </select>
               <label for="description">Descripción:</label>
               <textarea type="text" rows="6" name="description" placeholder="Dirección"></textarea>
@@ -92,8 +93,9 @@
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="null">Seleccione Unidad de Medida</option>
-                <option value="Piezas">Piezas</option>
-                <option value="Metros">Metros</option>
+                @foreach ($units as $unit)
+                  <option value="{{$unit->type}}">{{$unit->type}}</option>
+                @endforeach
               </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo" required>
