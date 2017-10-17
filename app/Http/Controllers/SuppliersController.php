@@ -15,7 +15,7 @@ class SuppliersController extends Controller
     public function index()
     {
       $suppliers = Suppliers::all();
-      return view('admin.client.client', compact('suppliers'));
+      return view('admin.suppliers.suppliers', compact('suppliers'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-      return view('admin.client.add-client');
+      return view('admin.suppliers.add-suppliers');
     }
 
     /**
@@ -44,7 +44,7 @@ class SuppliersController extends Controller
       $suppliers->email = request('email');
 
       $suppliers->save();
-      return redirect('admin/client')->with('success','Proveedor '. $suppliers->business .' guardado correctamente');
+      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente');
     }
 
     /**
@@ -66,7 +66,8 @@ class SuppliersController extends Controller
      */
     public function edit($id)
     {
-        //
+      $supplier = Suppliers::find($id);
+      return view('admin.suppliers.edit-suppliers', compact('supplier'));
     }
 
     /**
@@ -78,7 +79,22 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $newRFC = $request->input('RFC');
+      $newBusiness = $request->input('business');
+      $newAddress = $request->input('address');
+      $newPhone = $request->input('phone');
+      $newEmail = $request->input('email');
+
+      $supplier = Suppliers::find($id);
+
+      $supplier->RFC = $newRFC;
+      $supplier->business = $newBusiness;
+      $supplier->address = $newAddress;
+      $supplier->phone = $newPhone;
+      $supplier->email = $newEmail;
+      $supplier->save();
+
+      return redirect('admin/suppliers')->with('success','Proveedor '. $supplier->business .' actualizado correctamente');
     }
 
     /**
@@ -90,6 +106,6 @@ class SuppliersController extends Controller
     public function destroy($id)
     {
       Suppliers::find($id)->delete();
-      return redirect('admin/client')->with('success','Empleado RX-'. $id .' eliminado correctamente');
+      return redirect('admin/suppliers')->with('success','Proveedor RX-'. $id .' eliminado correctamente');
     }
 }

@@ -44,9 +44,9 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
+          <li><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes </a></li>
+          <li  class="active"><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores <small class="bg-indicator">Editar</small></a></li>
+          <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
           <li class="li-menu-nav">COTIZACION</li>
@@ -60,31 +60,35 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-user-plus"></i>Registar Empleados</li>
+              <li class="ol-active"><i class="fa fa-edit"></i>Editar Proveedores</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-user-plus"></i> Registrar Empleados</h2>
-          <form class="container-add-clients" method="POST" action="/admin/employee">
+          <h2><i class="fa fa-edit"></i> Editar Proveedores</h2>
+          {!! Form::model($supplier, ['method' => 'PATCH','route' => ['suppliers.update', $supplier->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
-            <div class="date-client">
-              <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
-              <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+            <div class="date-clients">
+              <label for="business">Nombre de la Empresa:</label>
+              <input type="text" name="business" value='{{ $supplier->business }}' required>
+              <label for="RFC">RFC:</label>
+              <input type="text" name="RFC" value='{{ $supplier->RFC }}' required>
             </div>
-            <div class="date-client">
-              <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+            <div class="date-clients">
+              <label for="phone">Teléfono:</label>
+              <input type="text" name="phone" value='{{ $supplier->phone }}' required>
+              <label for="email">E-mail:</label>
+              <input type="text" name="email" value='{{ $supplier->email }}' required>
+            </div>
+            <div class="date-clients">
+              <label for="address">Dirección:</label>
+              <textarea type="text" rows="6" name="address">{{ $supplier->address }}</textarea>
             </div>
             <div class="button-client">
-              <button type="submit" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{ url('/admin/employee') }}" class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
+              <a href="{{ url('/admin/suppliers') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
-          </form>
+          {!! Form::close() !!}
         </div>
       </div>
     </main>

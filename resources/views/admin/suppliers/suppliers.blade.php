@@ -45,11 +45,11 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
+          <li><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          <li class="active" ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
+          <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Salidas</small></a></li>
+          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -61,63 +61,47 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-                <li class="ol-active"><i class="fa fa-pencil-square"></i>Salidas</li>
+              <li class="ol-active"><i class="fa fa-address-card-o"></i>Proveedores</li>
             </ol>
           </div>
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square"></i> Registrar Salidas</a>
-            <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+            <a href="{{ url('/admin/add-suppliers') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
           </div>
-          <div class="table">
+          @if ($message = Session::get('success'))
+            <div class="message-danger">
+              <p>{{ $message }}</p>
+            </div>
+          @endif
+          <div class="">
             <table id="Jtabla">
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
-                  <th>N° de Factura</th>
-                  <th>N° de Producto</th>
-                  <th>Fabricante</th>
-                  <th>Descripción</th>
-                  <th>Fecha de Entrada</th>
-                  <th>Cantidad de Entrada</th>
-                  <th>Unidad de Medida</th>
-                  <th>Costo</th>
-                  <th>Precio de Venta 1</th>
-                  <th>Precio de Venta 2</th>
-                  <th>Precio de Venta 3</th>
-                  <th>Precio de Venta 4</th>
-                  <th>Fecha de Salida</th>
-                  <th>Cantidad de Salida</th>
-                  <th>Merma</th>
-                  <th>Existencia</th>
-                  <th>Precio Total</th>
+                  <th>RFC</th>
+                  <th>Nombre de la Empresa</th>
+                  <th>Dirección</th>
+                  <th>Teléfono</th>
+                  <th>E-mail</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
-                <tr class="tbody">
-                  <td class="action">
-                    <a href="{{url('/admin/edit-out')}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a href="#" alt="Eliminar"><i class="fa fa-trash-o"></i></a>
-                  </td>
-                  <td>73472345</td>
-                  <td>73472524</td>
-                  <td>Gates</td>
-                  <td>Servicios Electricos Automotriz Patricio</td>
-                  <td>12/03/17</td>
-                  <td>50</td>
-                  <td>metros</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                </tr>
+                  @foreach ($suppliers as $supplier)
+                    <tr class="tbody">
+                      <td class="action">
+                        <a class="btn-edit" href="{{ url('admin/edit-suppliers',$supplier->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        {!! Form::open(['method' => 'DELETE','route' => ['suppliers.destroy', $supplier->id]]) !!}
+                          <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                        {!! Form::close() !!}
+                      </td>
+                      <td>{{ $supplier->RFC }}</td>
+                      <td>{{ $supplier->business }}</td>
+                      <td>{{ $supplier->address }}</td>
+                      <td>{{ $supplier->phone }}</td>
+                      <td>{{ $supplier->email }}</td>
+                    </tr>
+                  @endforeach
               </tbody>
             </table>
           </div>
