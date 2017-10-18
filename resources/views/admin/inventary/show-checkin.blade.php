@@ -60,72 +60,72 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Productos</li>
+              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Producto de Entrada</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-eye"></i> Mostrar Producto</h2>
+          <h2><i class="fa fa-eye"></i> Mostrar Producto de Entrada</h2>
           <div class="line"></div>
           <div class="date-clients">
             <div class="show-product">
-              <label for="">Numero del Producto:</label>
-              <p>{{ $product->id }}</p>
+              <label for="">Numero del Producto de entrada:</label>
+              <p>{{ $checkin->id }}</p>
             </div>
             <div class="show-product">
               <label for="">N° de Factura:</label>
-              <p>{{ $product->nInvoice }}</p>
+              <p>{{ $checkin->nInvoice }}</p>
             </div>
             <div class="show-product">
               <label for="">N° de Producto:</label>
-              <p>{{ $product->nProducts }}</p>
+              <p>{{ $checkin->nProducts }}</p>
             </div>
             <div class="show-product">
               <label for="">Proveedor:</label>
-              <p>{{ $product->provider }}</p>
+              <p>{{ $checkin->provider }}</p>
             </div>
             <div class="show-product">
               <label for="">Descripción:</label>
-              <p>{{ $product->description }}</p>
+              <p>{{ $checkin->description }}</p>
             </div>
             <div class="show-product">
               <label for="">Fecha de Entrada:</label>
-              <p>{{ $product->checkin }}</p>
+              <p>{{ $checkin->checkin }}</p>
             </div>
             <div class="show-product">
               <label for="">Cantidad de Entrada:</label>
-              <p>{{ $product->quantity }}</p>
+              <p>{{ $checkin->quantity }}</p>
             </div>
             <div class="show-product">
               <label for="">Existencia:</label>
-              <p>{{ $product->stock }}</p>
+              <p>{{ $checkin->stock }}</p>
             </div>
             <div class="show-product">
               <label for="">Unidad de Medida:</label>
-              <p>{{ $product->unit }}</p>
+              <p>{{ $checkin->unit }}</p>
             </div>
             <div class="show-product">
               <label for="">Costo:</label>
-              <p>{{ $product->cost }}</p>
+              <p>{{ $checkin->cost }}</p>
             </div>
             <div class="show-product">
               <label for="">Precio de Venta 1:</label>
-              <p>{{ $product->price1 }}</p>
+              <p>{{ $checkin->price1 }}</p>
             </div>
             <div class="show-product">
               <label for="">Precio de Venta 2:</label>
-              <p>{{ $product->price2 }}</p>
+              <p>{{ $checkin->price2 }}</p>
             </div>
             <div class="show-product">
               <label for="">Precio de Venta 3:</label>
-              <p>{{ $product->price3 }}</p>
+              <p>{{ $checkin->price3 }}</p>
             </div>
             <div class="show-product">
               <label for="">Precio de Venta 4:</label>
-              <p>{{ $product->price4 }}</p>
+              <p>{{ $checkin->price4 }}</p>
             </div>
           </div>
-          <a href="{{url('admin/inventary')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+          <a href="{{url('admin/checkin')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
         </div>
       </div>
     </main>

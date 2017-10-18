@@ -81,7 +81,7 @@
                 @endforeach
               </select>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Dirección"></textarea>
+              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>

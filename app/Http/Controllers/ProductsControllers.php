@@ -79,8 +79,10 @@ class ProductsControllers extends Controller
      */
     public function edit($id)
     {
+      $suppliers = Suppliers::all();
+      $units = Units::all();
       $product = Products::find($id);
-      return view('admin.inventary.edit-product', compact('product'));
+      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units'));
     }
 
     /**
@@ -135,6 +137,6 @@ class ProductsControllers extends Controller
     public function destroy($id)
     {
       Products::find($id)->delete();
-      return redirect('admin/inventary')->with('success','Producto'. $id .' eliminado correctamente');
+      return redirect('admin/inventary')->with('success','Producto '. $id .' eliminado correctamente');
     }
 }

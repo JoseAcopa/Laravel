@@ -53,23 +53,18 @@ Route:: get('/admin/edit-quotation', function(){
 Route::get('/admin/inventaryMenu', function(){
   return view ('admin/inventary/inventaryMenu');
 });
-
-// Route::get('/admin/inventary', function(){
-//   return view ('admin/inventary/inventary');
-// });
-//
-// Route::get('/admin/add-product', function(){
-//   return view ('admin/inventary/add-product');
-// });
-//
-// Route::get('/admin/edit-product', function(){
-//   return view ('admin/inventary/edit-product');
-// });
 Route::get('/admin/add-product', 'ProductsControllers@create');
 Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
 Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
+
+// ------------------checkin----------------------------------------
+Route::get('/admin/add-entrada', 'CheckinsController@create');
+Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
+Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
+Route::resource('admin/checkin','CheckinsController');
+// ------------------End checkin----------------------------------------
 Route::get('/admin/inventary-out', function(){
   return view ('admin/inventary/inventary-out');
 });

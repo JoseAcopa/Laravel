@@ -49,7 +49,7 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Inventario</small></a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Entradas</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -61,15 +61,14 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-                <li class="ol-active"><i class="fa fa-pencil-square"></i>Inventario</li>
+                <li class="ol-active"><i class="fa fa-sign-in"></i>Entradas</li>
             </ol>
           </div>
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Productos</a>
-            <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
+            <a href="{{url('admin/add-entrada')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Producto de entrada</a>
+            <a href="{{url('admin/inventary')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -89,20 +88,20 @@
                </tr>
               </thead>
               <tbody class="tbodymain">
-                @foreach ($products as $product)
+                @foreach ($checkins as $checkin)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="btn-edit" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
+                      <a class="btn-info" href="{{url('/admin/show-checkin',$checkin->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a class="btn-edit" href="{{url('/admin/edit-checkin',$checkin->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['checkin.destroy', $checkin->id]]) !!}
                         <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
-                    <td>{{ $product->nInvoice }}</td>
-                    <td>{{ $product->nProducts }}</td>
-                    <td>{{ $product->provider }}</td>
-                    <td>{{ $product->description }}</td>
-                    <td>{{ $product->checkin }}</td>
+                    <td>{{ $checkin->nInvoice }}</td>
+                    <td>{{ $checkin->nProducts }}</td>
+                    <td>{{ $checkin->provider }}</td>
+                    <td>{{ $checkin->description }}</td>
+                    <td>{{ $checkin->checkin }}</td>
                   </tr>
                 @endforeach
               </tbody>

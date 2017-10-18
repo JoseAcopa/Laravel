@@ -75,7 +75,12 @@
               <label for="nProducts">N° de Producto:</label>
               <input type="text" name="nProducts" value="{{ $product->nProducts }}" required>
               <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="{{ $product->provider }}" required>
+              <select class="" name="provider">
+                <option value="{{ $product->provider }}">{{ $product->provider }}</option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
+                @endforeach
+              </select>
               <label for="description">Dirección:</label>
               <textarea type="text" rows="6" name="description" >{{ $product->description }}</textarea>
             </div>
@@ -88,9 +93,10 @@
               <input type="text" name="stock" value="{{ $product->stock }}" required>
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
-                <option value="">Selecciona Unidad de Medida</option>
-                <option value="Piezas">Piezas</option>
-                <option value="Metros">Metros</option>
+                <option value="{{ $product->unit }}">{{ $product->unit }}</option>
+                @foreach ($units as $unit)
+                  <option value="{{ $unit->type }}">{{ $unit->type }}</option>
+                @endforeach
               </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="{{ $product->cost }}" required>
