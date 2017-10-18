@@ -82,9 +82,9 @@
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
-                {{-- @foreach ($suppliers as $supplier)
+                @foreach ($suppliers as $supplier)
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
-                @endforeach --}}
+                @endforeach
               </select>
               <label for="description">Descripción:</label>
               <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
@@ -99,9 +99,9 @@
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="null">Seleccione Unidad de Medida</option>
-                {{-- @foreach ($units as $unit)
+                @foreach ($units as $unit)
                   <option value="{{$unit->type}}">{{$unit->type}}</option>
-                @endforeach --}}
+                @endforeach
               </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo" required>

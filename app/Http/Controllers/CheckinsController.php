@@ -28,11 +28,10 @@ class CheckinsController extends Controller
      */
     public function create()
     {
-      // $suppliers = Suppliers::all();
-      // $units = Units::all();
+      $suppliers = Suppliers::all();
+      $units = Units::all();
       $products = Products::all();
-      $checkin = Checkins::all();
-      return view('admin.inventary.add-entrada', compact('checkin'));
+      return view('admin.inventary.add-entrada', compact('suppliers'), compact('units', 'products'));
     }
 
     /**

@@ -60,7 +60,7 @@ Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
 
 // ------------------checkin----------------------------------------
-Route::get('/admin/add-entrada', 'CheckinsController@create');
+Route::get('/admin/add-checkin', 'CheckinsController@create');
 Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
 Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
 Route::resource('admin/checkin','CheckinsController');
