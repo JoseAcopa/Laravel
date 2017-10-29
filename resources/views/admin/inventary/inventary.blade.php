@@ -65,17 +65,17 @@
             </ol>
           </div>
         </div>
+        @if ($message = Session::get('success'))
+          <div class="message-danger">
+            <p>{{ $message }}</p>
+          </div>
+        @endif
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Productos</a>
             <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in"></i> Entradas</a>
             <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
           </div>
-          @if ($message = Session::get('success'))
-            <div class="message-danger">
-              <p>{{ $message }}</p>
-            </div>
-          @endif
           <div class="">
             <table id="Jtabla">
               <thead>
@@ -83,6 +83,7 @@
                   <th>Acciones</th>
                   <th>N° de Factura</th>
                   <th>N° de Producto</th>
+                  <th>Tipo de Producto</th>
                   <th>Proveedores</th>
                   <th>Descripción</th>
                   <th>Fecha de Entrada</th>
@@ -92,14 +93,15 @@
                 @foreach ($products as $product)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="btn-edit" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      <a class="action-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a class="action-success" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                       {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button type="submit" class="action-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $product->nInvoice }}</td>
-                    <td>{{ $product->nProducts }}</td>
+                    <td>{{ $product->initials }}-{{ $product->id }}</td>
+                    <td>{{ $product->TProducts }}</td>
                     <td>{{ $product->provider }}</td>
                     <td>{{ $product->description }}</td>
                     <td>{{ $product->checkin }}</td>

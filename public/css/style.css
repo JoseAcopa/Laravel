@@ -486,6 +486,44 @@ thead{
   padding: 0px 9px 0px 9px;
 }
 
+.action-danger{
+  color: #c0392b;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 6px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid #c0392b;
+  cursor: pointer;
+}
+
+.action-success{
+  color: #16a085;
+  font-family:Montserrat;
+  font-weight: bold;
+  padding: 4px 3px 3px 3px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid #16a085;
+}
+
+.action-info{
+  color: #29627e;
+  font-family:Montserrat;
+  font-weight: bold;
+  padding: 3px 3px 0px 3px;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  text-decoration: none;
+  border: 2px solid #3f87a6;
+  cursor: pointer;
+}
+
 /******************Add-client*******************/
 .for-container{
   padding: 10px;
@@ -959,15 +997,15 @@ select{
 /*-------------------------alertas---------------------------------*/
 .message-danger{
   padding: 10px;
-  background: #dff0d8;
-  color: #3c763d;
-  border-radius: 5px;
+  background: #bae1e0;
+  color: #00978e;
+  border-radius: 3px;
   font-family: Montserrat;
-  border: 1px solid #d6e9c6;
-  width: 340px;
+  border-left: 4px solid #00978e;
+  width: 360px;
   margin-bottom: 15px;
   text-align: center;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 /*--------------------------show-product----------------------------*/
@@ -980,7 +1018,7 @@ select{
 .show-product{
   display: flex;
   flex-direction: row;
-  color: #1a2226;
+  color: #387894;
   margin-bottom: 10px;
 }
 

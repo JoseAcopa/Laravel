@@ -78,7 +78,6 @@
                   <option value="{{ $product->nProducts }}">{{ $product->nProducts }}</option>
                 @endforeach
               </select>
-              <input type="text" name="nProducts" value=""  placeholder="Número Productos" required>
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
@@ -86,8 +85,6 @@
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
@@ -96,6 +93,8 @@
               <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada" required>
               <label for="stock">Existencia:</label>
               <input type="text" name="stock" value=""  placeholder="Existencia" required>
+            </div>
+            <div class="date-clients">
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="null">Seleccione Unidad de Medida</option>
@@ -105,16 +104,8 @@
               </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo" required>
-            </div>
-            <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4" required>
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="button-client">
               <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>

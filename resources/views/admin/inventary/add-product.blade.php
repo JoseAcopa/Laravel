@@ -71,8 +71,15 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value=""  placeholder="Número Productos" required>
+              <label for="TProducts">Tipo de Producto:</label>
+              <select class="" name="TProducts" onchange="myTest();" id='test'>
+                <option value="null">Seleccione Tipo de Producto</option>
+                @foreach ($typeProducts as $typeProduct)
+                  <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
+                @endforeach
+              </select>
+              <label for="VM">Iniciales:</label>
+              <input type="text" id="VM" value="" name="initials" readonly="readonly">
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
@@ -80,16 +87,12 @@
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada" required>
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value=""  placeholder="Existencia" required>
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="null">Seleccione Unidad de Medida</option>
@@ -97,18 +100,12 @@
                   <option value="{{$unit->type}}">{{$unit->type}}</option>
                 @endforeach
               </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo" required>
             </div>
             <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4" required>
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value=""  placeholder="Costo" required>
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="button-client">
               <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>
@@ -121,9 +118,27 @@
         </div>
       </div>
     </main>
-    <footer id="footerQuotation">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myTest(){
+        var val = document.getElementById('test').value
+        var newVal = '';
+
+        if (val === 'Manguera Hidraulica') {
+          newVal = 'MH'
+          valorManguera = newVal
+        }else if(val === 'Manguera Petrolera') {
+          newVal = 'MP'
+          valorManguera = newVal
+        }else if(val === 'Manguera Industrial') {
+          newVal = 'MI'
+          valorManguera = newVal
+        }
+        var valorManguera = document.getElementById('VM').value=newVal;
+      }
+    </script>
   </body>
 </html>

@@ -71,37 +71,34 @@
               <label for="nFactura">N° de Factura:</label>
               <input type="text" name="nFactura" value="" readonly="readonly">
               <label for="nProduct">N° de Producto:</label>
-              <input type="text" name="nProduct" value="" readonly="readonly">
-              <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="" readonly="readonly">
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description"  readonly="readonly"></textarea>
-              <label for="dateEntry">Fecha de Entrada:</label>
-              <input type="date" name="dateEntry" value=""  readonly="readonly">
-            </div>
-            <div class="date-clients">
-              <label for="quantityEntry">Cantidad de Entrada:</label>
-              <input type="text" name="quantityEntry" value="" readonly="readonly">
-              <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value=""></option>
                 <option value="">Piezas</option>
                 <option value="">Metros</option>
               </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  readonly="readonly">
-              <label for="salePrice1">Precio de Venta 1:</label>
-              <input type="text" name="salePrice1" value=""  readonly="readonly">
-              <label for="salePrice2">Precio de Venta 2:</label>
-              <input type="text" name="salePrice2" value=""  readonly="readonly">
-              <label for="salePrice3">Precio de Venta 3:</label>
-              <input type="text" name="salePrice3" value=""  readonly="readonly">
+              <label for="provider">Proveedor:</label>
+              <input type="text" name="provider" value="" readonly="readonly">
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="4" name="description"  readonly="readonly"></textarea>
+
             </div>
             <div class="date-clients">
-              <label for="salePrice4">Precio de Venta 4:</label>
+
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value=""  readonly="readonly">
+              {{-- <select class="" name="unit">
+                <option value=""></option>
+                <option value="">Piezas</option>
+                <option value="">Metros</option>
+              </select> --}}
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value=""  readonly="readonly">
+              <label for="salePrice4">Precio de Venta:</label>
               <input type="text" name="salePrice4" value="" readonly="readonly">
               <label for="dateOut">Fecha de Salida:</label>
               <input type="date" name="dateOUT" value="">
+            </div>
+            <div class="date-clients">
               <label for="quantityOut">Cantidad de Salida:</label>
               <input type="text" name="quantityOut" value=""  placeholder="Cantidad de Salida" >
               <label for="waste">Merma:</label>
