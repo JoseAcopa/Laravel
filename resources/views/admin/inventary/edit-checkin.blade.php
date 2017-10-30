@@ -81,8 +81,6 @@
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
                 @endforeach
               </select>
-              <label for="description">Dirección:</label>
-              <textarea type="text" rows="6" name="description" >{{ $checkin->description }}</textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
@@ -91,6 +89,8 @@
               <input type="text" name="quantity" value="{{ $checkin->quantity }}" required>
               <label for="stock">Existencia:</label>
               <input type="text" name="stock" value="{{ $checkin->stock }}" required>
+            </div>
+            <div class="date-clients">
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="{{ $checkin->unit }}">{{ $checkin->unit }}</option>
@@ -100,20 +100,12 @@
               </select>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="{{ $checkin->cost }}" required>
-            </div>
-            <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value="{{ $checkin->price1 }}" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value="{{ $checkin->price2 }}" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value="{{ $checkin->price3 }}" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value="{{ $checkin->price4 }}" required>
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" >{{ $checkin->description }}</textarea>
             </div>
             <div class="button-client">
-              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
+              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           {!! Form::close() !!}
           {{-- </form> --}}

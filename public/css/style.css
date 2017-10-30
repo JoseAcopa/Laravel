@@ -728,13 +728,14 @@ thead{
 
 }
 select{
-  width: 95%;
+  width: 100%;
   padding: 8px;
   border-radius: 6px;
   margin-top: 5px;
   margin-bottom: 20px;
   border: 1px solid #006064;
   font-family: sans-serif;
+  outline: 0px;
 }
 
 .observation-clients{
@@ -840,6 +841,31 @@ select{
   margin-bottom: 10px;
 }
 /*************************************/
+.clasification{
+  width: 330px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.clasification .select{
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+}
+.clasification .iniciales{
+  width: 70px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 18px;
+}
+.tproductSelect{
+  width: 250px !important;
+
+}
+.inicialesInput{
+    width: 40px !important;
+    height: 20px;
+}
 .img{
   width: 50%;
   height: auto;

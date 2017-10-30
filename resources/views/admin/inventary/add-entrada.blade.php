@@ -108,8 +108,8 @@
               <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="button-client">
-              <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>
-              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
         </div>
