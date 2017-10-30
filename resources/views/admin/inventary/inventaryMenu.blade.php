@@ -65,7 +65,7 @@
             </ol>
           </div>
         </div>
-        <div class="table-container">
+        <div class="table-container-i">
           <!-- <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-success" ><i class="fa fa-user-plus"></i> Registrar Productos</a>
             <a href="{{url('admin/add-out')}}" class="btn-success" ><i class="fa fa-user-plus"></i> Salidas</a>
@@ -80,7 +80,7 @@
               <a href="#" class="reports"> <i class="fa fa-book fa-3x"></i><label for="">Reportes</label></a>
             </div>
             <div class="img">
-              <img src="{{ url('img/MV1.jpg')}}" alt="">
+              <img src="{{ url('img/productos2.jpg')}}" alt="">
 
             </div>
 

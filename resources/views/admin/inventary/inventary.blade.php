@@ -93,10 +93,10 @@
                 @foreach ($products as $product)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="action-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="action-success" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a class="btn-success" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                       {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
-                        <button type="submit" class="action-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $product->nInvoice }}</td>
