@@ -98,7 +98,7 @@
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $checkin->nInvoice }}</td>
-                    <td>{{ $checkin->nProducts }}</td>
+                    <td>{{ $checkin->TProducts }}</td>
                     <td>{{ $checkin->provider }}</td>
                     <td>{{ $checkin->description }}</td>
                     <td>{{ $checkin->checkin }}</td>
