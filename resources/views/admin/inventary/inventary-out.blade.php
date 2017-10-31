@@ -70,7 +70,7 @@
             <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square"></i> Registrar Salidas</a>
             <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
           </div>
-          <div class="table">
+          <div >
             <table id="Jtabla">
               <thead>
                 <tr class="theader">
@@ -81,12 +81,6 @@
                   <th>Descripción</th>
                   <th>Unidad de Medida</th>
                   <th>Costo</th>
-                  <th>Precio de Venta </th>
-                  <th>Fecha de Salida</th>
-                  <th>Cantidad de Salida</th>
-                  <th>Merma</th>
-                  <th>Existencia</th>
-                  <th>Precio Total</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
@@ -102,12 +96,6 @@
                   <td>Servicios Electricos Automotriz Patricio</td>
                   <td>12/03/17</td>
                   <td>50</td>
-                  <td>metros</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
                 </tr>
               </tbody>
             </table>

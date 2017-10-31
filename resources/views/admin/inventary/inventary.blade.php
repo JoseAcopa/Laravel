@@ -71,12 +71,11 @@
           </div>
         @endif
         <div class="table-container">
-          
           <div class="container-search">
-            <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Productos</a>
-            <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-pencil"></i> Tipos de Productos</a>
-            <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
+            <a href="{{url('admin/add-product')}}" class="btnProduct" ><i class="fa fa-pencil "></i> Registrar Productos</a>
+            <a href="{{url('admin/clasificationProduct')}}" class="btnProduct" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
+            <a href="{{url('admin/checkin')}}" class="btnProduct" ><i class="fa fa-sign-in fa-lg"></i> Entradas</a>
+            <a href="{{url('admin/inventary-out')}}" class="btnProduct" ><i class="fa fa-sign-out"></i> Salidas</a>
           </div>
           <div class="">
             <table id="Jtabla">

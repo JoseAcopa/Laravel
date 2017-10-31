@@ -802,7 +802,7 @@ thead{
 }
 .businessImg img{
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 9px;
 }
 
@@ -825,6 +825,7 @@ select{
   border: 1px solid #006064;
   font-family: sans-serif;
   outline: 0px;
+  height: auto;
 }
 
 .observation-clients{
@@ -852,6 +853,40 @@ select{
   justify-content: space-between;
 }
 /**************Botones Products**********/
+.btn-inventaryProduct{
+  box-shadow: 2px 2px 1px #cdcdcd;
+  padding: 0px 0px 0px 20px;
+  background: #0d7561;
+  text-align: center;
+  border:3px solid #0d7561;
+  border-radius: 6px;
+  text-decoration: none;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+.btn-inventaryProduct  i{
+  margin: 10px 20px 0px 0px;
+  color: #fff;
+}
+.btn-inventaryProduct label{
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  color: #000;
+  padding: 10px 10px 10px 15px;
+  background: #DADFE1;
+}
+
+.btn-inventaryProduct:hover  {
+    box-shadow: 2px 2px 5px #013243;
+    cursor:pointer;
+}
+
+.btn-inventaryProduct label:hover{
+    cursor:pointer;
+}
+
 .inventaryMenu .product  {
   box-shadow: 2px 2px 1px #cdcdcd;
   padding: 0px 0px 0px 20px;
@@ -940,6 +975,7 @@ select{
   width: 100%;
   display: flex;
   flex-direction: column;
+  height: auto;
 }
 .clasification .iniciales{
   width: 70px;
@@ -949,7 +985,7 @@ select{
 }
 .tproductSelect{
   width: 100% !important;
-
+  height: auto;
 }
 .inicialesInput{
     width: 50% !important;
@@ -974,11 +1010,22 @@ select{
   color: #e4ece0;
   font-family: sans-serif;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   border-radius: 6px;
   text-decoration: none;
 }
 
+.btnProduct{
+  /*background: rgba(130, 148, 18, 0.7);*/
+  background:  #676312;
+  /*background: #16a085;*/
+  color: #e4ece0;
+  font-family: sans-serif;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 6px;
+  text-decoration: none;
+}
 
 .sesion{
   display: flex;
