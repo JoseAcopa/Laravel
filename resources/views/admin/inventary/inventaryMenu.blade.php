@@ -75,8 +75,8 @@
               <h2><i class="fa fa-pencil-square"></i> Inventario</h2>
             </div>
             <div class="inventaryMenu">
-              <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Inventario</label></a>
-              <!-- <a href="{{url('admin/inventary-out')}}" class="out"> <i class="fa fa-sign-out fa-3x"></i><label for="">Salidas</label></a> -->
+              <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Productos</label></a>
+              {{-- <a href="#" class="out"> <i class="fa fa-leanpub fa-3x"></i><label for="">Precios de Ventas</label></a> --}}
               <a href="#" class="reports"> <i class="fa fa-book fa-3x"></i><label for="">Reportes</label></a>
             </div>
             <div class="img">

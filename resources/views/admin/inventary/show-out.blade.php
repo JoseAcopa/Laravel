@@ -60,62 +60,66 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Productos</li>
+              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Producto de Entrada</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-eye"></i> Mostrar Producto</h2>
+          <h2><i class="fa fa-eye"></i> Mostrar Producto de Salida</h2>
           <div class="line"></div>
           <div class="show">
             <div class="view">
               <div class="show-product">
-                <label for="">Numero del Producto:</label>
-                <p>{{ $product->initials }}-{{ $product->id }}</p>
+                <label for="">Numero del Producto de entrada:</label>
+                {{-- <p>{{ $checkin->id }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">N° de Factura:</label>
-                <p>{{ $product->nInvoice }}</p>
+                {{-- <p>{{ $checkin->nInvoice }}</p> --}}
               </div>
               <div class="show-product">
-                <label for="">Tipo de Producto:</label>
-                <p>{{ $product->TProducts }}</p>
+                <label for="">N° de Producto:</label>
+                {{-- <p>{{ $checkin->TProducts }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">Proveedor:</label>
-                <p>{{ $product->provider }}</p>
+                {{-- <p>{{ $checkin->provider }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">Descripción:</label>
-                <p>{{ $product->description }}</p>
+                {{-- <p>{{ $checkin->description }}</p> --}}
               </div>
             </div>
             <div class="view">
               <div class="show-product">
                 <label for="">Fecha de Entrada:</label>
-                <p>{{ $product->checkin }}</p>
+                {{-- <p>{{ $checkin->checkin }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">Cantidad de Entrada:</label>
-                <p>{{ $product->quantity }}</p>
+                {{-- <p>{{ $checkin->quantity }}</p> --}}
+              </div>
+              <div class="show-product">
+                <label for="">Existencia:</label>
+                {{-- <p>{{ $checkin->stock }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">Unidad de Medida:</label>
-                <p>{{ $product->unit }}</p>
+                {{-- <p>{{ $checkin->unit }}</p> --}}
               </div>
               <div class="show-product">
                 <label for="">Costo:</label>
-                <p>{{ $product->cost }}</p>
+                {{-- <p>{{ $checkin->cost }}</p> --}}
               </div>
             </div>
           </div>
-            <div class="btn-show">
-              <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
-            </div>
+          <div class="btn-show">
+            <a href="{{url('admin/inventary-out')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+          </div>
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

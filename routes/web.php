@@ -77,8 +77,13 @@ Route::get('/admin/edit-out', function(){
   return view ('admin/inventary/edit-out');
 });
 
+Route::get('/admin/clasificationProduct', function(){
+  return view ('admin/inventary/clasificationProduct');
+});
 
-
+Route::get('/admin/show-out', function(){
+  return view ('admin/inventary/show-out');
+});
 
 
 /**************Users***************************/

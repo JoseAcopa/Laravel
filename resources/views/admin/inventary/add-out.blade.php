@@ -70,12 +70,23 @@
             <div class="date-clients">
               <label for="nFactura">N° de Factura:</label>
               <input type="text" name="nFactura" value="" readonly="readonly">
-              <label for="nProduct">N° de Producto:</label>
-              <select class="" name="unit">
-                <option value=""></option>
-                <option value="">Piezas</option>
-                <option value="">Metros</option>
-              </select>
+              <div class="clasification">
+                <div class="select">
+                  <label for="nProduct">Tipo de Producto:</label>
+                  <select class="" name="unit">
+                    <option value=""></option>
+                    <option value="">Piezas</option>
+                    <option value="">Metros</option>
+                  </select>
+                  </div>
+                  {{-- <label for="TProducts">Nombre de Producto:</label>
+                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
+
+                  <div class="iniciales">
+                    {{-- <label for="VM">Iniciales:</label> --}}
+                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
+                  </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <input type="text" name="provider" value="" readonly="readonly">
               <label for="description">Descripción:</label>
@@ -83,9 +94,10 @@
 
             </div>
             <div class="date-clients">
-
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value=""  readonly="readonly">
+              <label for="dateOut">Fecha de Salida:</label>
+              <input type="date" name="dateOUT" value="">
               {{-- <select class="" name="unit">
                 <option value=""></option>
                 <option value="">Piezas</option>
@@ -95,8 +107,6 @@
               <input type="text" name="cost" value=""  readonly="readonly">
               <label for="salePrice4">Precio de Venta:</label>
               <input type="text" name="salePrice4" value="" readonly="readonly">
-              <label for="dateOut">Fecha de Salida:</label>
-              <input type="date" name="dateOUT" value="">
             </div>
             <div class="date-clients">
               <label for="quantityOut">Cantidad de Salida:</label>
@@ -109,8 +119,8 @@
               <input type="text" name="price" value=""  placeholder="Precio Total" >
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</a>
-              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <a href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</a>
+              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">

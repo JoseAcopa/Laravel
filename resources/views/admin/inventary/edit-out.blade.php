@@ -70,38 +70,43 @@
             <div class="date-clients">
               <label for="nFactura">N° de Factura:</label>
               <input type="text" name="nFactura" value="" readonly="readonly">
-              <label for="nProduct">N° de Producto:</label>
-              <input type="text" name="nProduct" value="" readonly="readonly">
+              <div class="clasification">
+                <div class="select">
+                  <label for="nProduct">Tipo de Producto:</label>
+                  <select class="" name="unit">
+                    <option value=""></option>
+                    <option value="">Piezas</option>
+                    <option value="">Metros</option>
+                  </select>
+                  </div>
+                  {{-- <label for="TProducts">Nombre de Producto:</label>
+                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
+
+                  <div class="iniciales">
+                    {{-- <label for="VM">Iniciales:</label> --}}
+                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
+                  </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <input type="text" name="provider" value="" readonly="readonly">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description"  readonly="readonly"></textarea>
-              <label for="dateEntry">Fecha de Entrada:</label>
-              <input type="date" name="dateEntry" value=""  readonly="readonly">
+              <textarea type="text" rows="4" name="description"  readonly="readonly"></textarea>
             </div>
             <div class="date-clients">
-              <label for="quantityEntry">Cantidad de Entrada:</label>
-              <input type="text" name="quantityEntry" value="" readonly="readonly">
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value=""></option>
                 <option value="">Piezas</option>
                 <option value="">Metros</option>
               </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  readonly="readonly">
-              <label for="salePrice1">Precio de Venta 1:</label>
-              <input type="text" name="salePrice1" value=""  readonly="readonly">
-              <label for="salePrice2">Precio de Venta 2:</label>
-              <input type="text" name="salePrice2" value=""  readonly="readonly">
-              <label for="salePrice3">Precio de Venta 3:</label>
-              <input type="text" name="salePrice3" value=""  readonly="readonly">
-            </div>
-            <div class="date-clients">
-              <label for="salePrice4">Precio de Venta 4:</label>
-              <input type="text" name="salePrice4" value="" readonly="readonly">
               <label for="dateOut">Fecha de Salida:</label>
               <input type="date" name="dateOUT" value="">
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value=""  readonly="readonly">
+              <label for="salePrice4">Precio de Venta :</label>
+              <input type="text" name="salePrice4" value="" readonly="readonly">
+            </div>
+            <div class="date-clients">
               <label for="quantityOut">Cantidad de Salida:</label>
               <input type="text" name="quantityOut" value="" >
               <label for="waste">Merma:</label>

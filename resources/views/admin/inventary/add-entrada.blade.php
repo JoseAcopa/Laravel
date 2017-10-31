@@ -71,15 +71,24 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="TProducts">N° de Producto:</label>
-              <select class="" name="" onchange="myProduct(this)">
-                <option value="null">Seleccione Producto</option>
-                @foreach ($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->initials }}-{{ $product->id }}</option>
-                @endforeach
-              </select>
-              <label for="TProducts">Nombre de Producto:</label>
-              <input type="text" name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly">
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <select class="" name="" onchange="myProduct(this)">
+                    <option value="null">Seleccione Producto</option>
+                    @foreach ($products as $product)
+                      <option value="{{ $product->id }}">{{ $product->initials }}-{{ $product->id }}</option>
+                    @endforeach
+                  </select>
+                  </div>
+                  {{-- <label for="TProducts">Nombre de Producto:</label>
+                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
+
+                  <div class="iniciales">
+                    {{-- <label for="VM">Iniciales:</label> --}}
+                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
+                  </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
             </div>
@@ -90,17 +99,22 @@
               <input type="number" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="stock">Existencia:</label>
               <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
-            </div>
+          </div>
             <div class="date-clients">
-              <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
-              <label for="price">Precio:</label>
-              <input type="text" name="price" placeholder="Costo">
+              {{-- <label for="price">Precio:</label>
+              <input type="text" name="price" placeholder="Costo"> --}}
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
               <label for="description">Descripción:</label>
               <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+
             </div>
+            {{-- <div class="date-clientstextA">
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+            </div> --}}
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
               <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>

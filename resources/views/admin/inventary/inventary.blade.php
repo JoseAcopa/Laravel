@@ -71,8 +71,10 @@
           </div>
         @endif
         <div class="table-container">
+          
           <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Productos</a>
+            <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-pencil"></i> Tipos de Productos</a>
             <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in"></i> Entradas</a>
             <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
           </div>
@@ -94,7 +96,7 @@
                   <tr class="tbody">
                     <td class="action">
                       <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="btn-success" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      <a class="btn-green" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                       {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
                         <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}

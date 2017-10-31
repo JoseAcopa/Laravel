@@ -72,8 +72,22 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value="{{ $checkin->nInvoice }}" required>
-              <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value="{{ $checkin->nProducts }}" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">N° de Producto:</label>
+                  <select class="" name="" onchange="myProduct(this)">
+
+                  </select>
+                  </div>
+                  {{-- <label for="TProducts">Nombre de Producto:</label>
+                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
+
+                  <div class="iniciales">
+                    {{-- <label for="VM">Iniciales:</label> --}}
+                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
+                  </div>
+              </div>
+
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="{{ $checkin->provider }}">{{ $checkin->provider }}</option>
@@ -101,7 +115,7 @@
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="{{ $checkin->cost }}" required>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" >{{ $checkin->description }}</textarea>
+              <textarea type="text" rows="4" name="description" >{{ $checkin->description }}</textarea>
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

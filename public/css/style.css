@@ -586,10 +586,92 @@ thead{
   width: 100%;
   margin-top: 20px;
 }
+.container-add-clientsClasific{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: 40%;
+  margin-top: 20px;
+  padding-bottom:20px;
+  background: #fff;
+  height: 100%;
+  box-shadow: 5px 5px 7px #204a37;
+  border-radius: 8px;
+}
+.container-add-clientsClasificTable{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: 40%;
+  margin-top: 20px;
+  height: 90%;
+}
+.clasific{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:space-around;
+  width: 98%;
+  margin: auto;
+  margin-top: 20px;
+  /*border: 3px solid green;*/
+  height: auto;
+  padding: 5px;
+  padding-bottom: 30px;
+  /*background: #bfbdbf;*/
+}
+.date-clientsClasific{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  margin: auto;
+  padding: 20px;
+}
+
+.button-clientClasific{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 70%;
+  margin: auto;
+}
+.container-add-clientsClasific input{
+  width: 95%;
+  padding: 8px;
+  border-radius: 6px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
+}
+
 .date-clients{
   display: flex;
   flex-direction: column;
   width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+}
+.date-clientstextA{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  margin-left: 12px;
+}
+.date-clientstextA textarea{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   font-family: sans-serif;
   font-weight: bold;
   color: #727274;
@@ -1086,11 +1168,36 @@ select{
   border-top: 2px solid #999;
 }
 
-.show-product{
+.show{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
   display: flex;
   flex-direction: row;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 3px 3px  5px #133a53;
+  background: #fff;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+.view{
+  width: 45%;
+}
+
+.show-product{
+  display: flex;
+  flex-direction: column;
   color: #387894;
   margin-bottom: 10px;
+  width: 90%;
+  margin: 15px;
+  font-weight: bold;
+  text-align: justify;
 }
 
 .show-product p{
@@ -1098,4 +1205,13 @@ select{
   margin-left: 5px;
   font-family: Montserrat;
   font-weight: 400;
+  font-weight: bold;
+}
+
+.btn-show{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
 }
