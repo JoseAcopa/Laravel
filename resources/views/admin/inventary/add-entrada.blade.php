@@ -44,7 +44,7 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <<li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
@@ -97,7 +97,7 @@
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
               <label for="price">Precio:</label>
-              <input type="text" name="price" value="100" placeholder="Costo" readonly="readonly">
+              <input type="text" name="price" placeholder="Costo">
               <label for="description">Descripción:</label>
               <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
             </div>
