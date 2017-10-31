@@ -2,10 +2,9 @@
   padding: 0;
   margin: 0;
 }
-/*.fondo{
-background-image: {{ url('m.jpg')}};
-
-}*/
+.fondo{
+background-image: url('../img/3.jpg');
+}
 .nav{
   height: 55px;
   width: 100%;
@@ -197,7 +196,7 @@ background-image: {{ url('m.jpg')}};
 }
 
 .btn-login{
-  background: #16a085;
+  background: #0d7561;
   color: #e4ece0;
   font-family:Montserrat;
   font-weight: bold;
@@ -212,10 +211,11 @@ background-image: {{ url('m.jpg')}};
 }
 
 .login-button-lost .lost {
-  color: #03A678;
+  color: #0d7561;
   font-size: 12px;
   margin-top: 5px;
   font-family: Montserrat;
+  font-weight: bold;
 }
 
 .login-button-lost .fa-sign-in{
@@ -703,11 +703,17 @@ thead{
   width: 90%;
   height: auto;
   border-radius: 6px;
-  border: 3px solid #378898;
+  border: 3px solid #013243;
+  box-shadow: 3px 3px 7px #013243;
   padding: 10px;
   font-family: sans-serif;
   /*background-color: #378898;*/
   text-align: justify;
+}
+
+.business:hover{
+  border: 3px solid #013243;
+  box-shadow: 4px 4px 8px #013243;
 }
 .businessImg{
   width: 50%;
@@ -715,6 +721,7 @@ thead{
 .businessImg img{
   width: 100%;
   height: 100%;
+  border-radius: 9px;
 }
 
 .pdf{
