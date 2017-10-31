@@ -78,7 +78,7 @@
             </div>
             <div class="show-product">
               <label for="">N° de Producto:</label>
-              <p>{{ $checkin->nProducts }}</p>
+              <p>{{ $checkin->TProducts }}</p>
             </div>
             <div class="show-product">
               <label for="">Proveedor:</label>
@@ -108,22 +108,7 @@
               <label for="">Costo:</label>
               <p>{{ $checkin->cost }}</p>
             </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 1:</label>
-              <p>{{ $checkin->price1 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 2:</label>
-              <p>{{ $checkin->price2 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 3:</label>
-              <p>{{ $checkin->price3 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 4:</label>
-              <p>{{ $checkin->price4 }}</p>
-            </div>
+          
           </div>
           <a href="{{url('admin/checkin')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
         </div>

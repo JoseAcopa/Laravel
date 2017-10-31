@@ -72,15 +72,21 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value="{{ $product->nInvoice }}" required>
-              <label for="TProducts">Tipo de Producto:</label>
-              <select class="" name="TProducts" onchange="myTProduct();" id='test'>
-                <option value="{{ $product->TProducts }}">{{ $product->TProducts }}</option>
-                @foreach ($typeProducts as $typeProduct)
-                  <option value="{{ $typeProduct->type }}">{{ $typeProduct->type }}</option>
-                @endforeach
-              </select>
-              <label for="VM">Iniciales:</label>
-              <input type="text" name="initials" id="VM" value="{{ $product->initials }}" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <select class="tproductSelect" name="TProducts" onchange="myTProduct();" id='test'>
+                    <option value="{{ $product->TProducts }}">{{ $product->TProducts }}</option>
+                    @foreach ($typeProducts as $typeProduct)
+                      <option value="{{ $typeProduct->type }}">{{ $typeProduct->type }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="iniciales">
+                  {{-- <label for="VM">Iniciales:</label> --}}
+                  <input type="text" class="inicialesInput" id="VM" value="{{ $product->initials }}" name="initials" readonly="readonly">
+                </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="{{ $product->provider }}">{{ $product->provider }}</option>

@@ -29,9 +29,8 @@ class CheckinsController extends Controller
     public function create()
     {
       $suppliers = Suppliers::all();
-      $units = Units::all();
       $products = Products::all();
-      return view('admin.inventary.add-entrada', compact('suppliers'), compact('units', 'products'));
+      return view('admin.inventary.add-entrada', compact('suppliers'), compact('products'));
     }
 
     /**
@@ -44,7 +43,7 @@ class CheckinsController extends Controller
     {
       $checkin = new Checkins;
       $checkin->nInvoice = request('nInvoice');
-      $checkin->nProducts = request('nProducts');
+      $checkin->TProducts = request('TProducts');
       $checkin->provider = request('provider');
       $checkin->description = request('description');
       $checkin->checkin = request('checkin');
@@ -52,12 +51,9 @@ class CheckinsController extends Controller
       $checkin->stock = request('stock');
       $checkin->unit = request('unit');
       $checkin->cost = request('cost');
-      $checkin->price1 = request('price1');
-      $checkin->price2 = request('price2');
-      $checkin->price3 = request('price3');
-      $checkin->price4 = request('price4');
+      $checkin->price = request('price');
       $checkin->save();
-      return redirect('admin/checkin')->with('success','Producto '. $checkin->nProducts .' Guardado correctamente');
+      return redirect('admin/checkin')->with('success','Producto '. $checkin->TProducts .' Guardado correctamente');
 
     }
 

@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('cost');
             $table->string('description');
             $table->string('initials');
+            $table->string('stock');
             $table->timestamps();
         });
     }
