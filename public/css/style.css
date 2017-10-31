@@ -266,7 +266,7 @@ background-image: {{ url('m.jpg')}};
   color: #e4ece0;
   font-family:Montserrat;
   font-weight: bold;
-  padding: 8px;
+  padding: 5px;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
@@ -276,7 +276,7 @@ background-image: {{ url('m.jpg')}};
 }
 
 .btn-info{
-  background: #16599f;
+  background: #29627e;
   color: #e4ece0;
   font-family:Montserrat;
   font-weight: bold;
@@ -842,13 +842,13 @@ select{
 }
 /*************************************/
 .clasification{
-  width: 330px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 .clasification .select{
-  width: 250px;
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -859,12 +859,13 @@ select{
   padding-top: 18px;
 }
 .tproductSelect{
-  width: 250px !important;
+  width: 100% !important;
 
 }
 .inicialesInput{
-    width: 40px !important;
-    height: 20px;
+    width: 50% !important;
+    height: 16px;
+    margin-left: 10px;
 }
 .img{
   width: 50%;

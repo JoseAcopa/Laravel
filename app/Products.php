@@ -13,6 +13,6 @@ class Products extends Model
 
   protected $fillable = [
       'nInvoice', 'TProducts', 'provider', 'checkin', 'quantity',
-      'unit', 'cost','description', 'initials',
+      'unit', 'cost','description', 'initials', 'stock',
   ];
 }

@@ -71,13 +71,15 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="TProducts">Nonbre de Producto:</label>
-              <select class="" name="TProducts" onchange="myProduct(this)">
+              <label for="TProducts">N° de Producto:</label>
+              <select class="" name="" onchange="myProduct(this)">
                 <option value="null">Seleccione Producto</option>
                 @foreach ($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
+                  <option value="{{ $product->id }}">{{ $product->initials }}-{{ $product->id }}</option>
                 @endforeach
               </select>
+              <label for="TProducts">Nombre de Producto:</label>
+              <input type="text" name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly">
               <label for="provider">Proveedor:</label>
               <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
             </div>
@@ -113,21 +115,27 @@
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript">
       function myProduct(e) {
-        var val = <?php echo$products;?>
+        var val = <?php echo$products;?>;
+        var newVal = {};
 
-        var product = val[e.value - 1]
+        val.map((item)=>{
+          newVal[item.id] = item
+        })
+
+        var product = newVal[e.value]
+        var newProduct = product.TProducts
         var newStock = parseInt(product.quantity)
         var newProvider = product.provider
         var newCost = product.cost
         var newDescription = product.description
         var newUnit = product.unit
 
+        document.getElementById('TProducts').value=newProduct
         document.getElementById('stock').value=newStock
         document.getElementById('provider').value=newProvider
         document.getElementById('cost').value=newCost
         document.getElementById('description').value=newDescription
         document.getElementById('unit').value=newUnit
-
       }
     </script>
     <script type="text/javascript">

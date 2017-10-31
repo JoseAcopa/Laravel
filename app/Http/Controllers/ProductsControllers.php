@@ -52,6 +52,7 @@ class ProductsControllers extends Controller
       $product->cost = request('cost');
       $product->description = request('description');
       $product->initials = request('initials');
+      $product->stock = request('quantity');
       $product->save();
       return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente');
 
@@ -114,6 +115,7 @@ class ProductsControllers extends Controller
       $product->cost = $newCost;
       $product->description = $newDescription;
       $product->initials = $newInitials;
+      $product->stock = $newQuantity;
       $product->save();
 
       return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
