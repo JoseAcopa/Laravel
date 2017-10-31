@@ -71,15 +71,21 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="TProducts">Tipo de Producto:</label>
-              <select class="" name="TProducts" onchange="myTest();" id='test'>
-                <option value="null">Seleccione Tipo de Producto</option>
-                @foreach ($typeProducts as $typeProduct)
-                  <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
-                @endforeach
-              </select>
-              <label for="VM">Iniciales:</label>
-              <input type="text" id="VM" value="" name="initials" readonly="readonly">
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <select class="tproductSelect" name="TProducts" onchange="myTest();" id='test'>
+                    <option value="null">Seleccione Tipo de Producto</option>
+                    @foreach ($typeProducts as $typeProduct)
+                      <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="iniciales">
+                  {{-- <label for="VM">Iniciales:</label> --}}
+                  <input type="text" class="inicialesInput" id="VM" value="" name="initials" readonly="readonly">
+                </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
@@ -108,8 +114,8 @@
               <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="button-client">
-              <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>
-              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">
