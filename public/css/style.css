@@ -1021,7 +1021,7 @@ select{
   /*background: #16a085;*/
   color: #e4ece0;
   font-family: sans-serif;
-  font-weight: bold;
+  font-weight: bold;och
   padding: 5px;
   border-radius: 6px;
   text-decoration: none;
@@ -1033,9 +1033,9 @@ select{
   align-items: center;
   /*justify-content: space-around;*/
   font-size: 14px;
-  width: 60px;
+  width: 20px;
   /*width: 310px;*/
-  margin-right: 80px;
+  margin-right: 100px;
   margin-top: -8px;
   /*border: 3px solid rgb(207, 219, 48);*/
 }
@@ -1062,8 +1062,8 @@ select{
 .sesion li:hover > ul {
   background: #fff;
   display: block;
-  width: 350px;
-  margin-left: -300px;
+  width: 300px;
+  margin-left: -250px;
   height: auto;
   display: flex;
   flex-direction: row;
@@ -1095,9 +1095,10 @@ select{
 .footerSingout a{
   text-decoration: none;
   background: #e74c3c;
-  padding: 12px 7px 6px 7px;
+  padding: 10px 7px 7px 7px;
   color: #fff;
   border-radius: 6px;
+  margin-left: 150px;
 }
 
 .footerSingout a:hover{
@@ -1109,7 +1110,7 @@ select{
   height: 40px;
   width: 100%;
   display: flex;
-  padding: 10px;
+  padding: 8px;
 }
 /******************************Toggle********************************************/
 
