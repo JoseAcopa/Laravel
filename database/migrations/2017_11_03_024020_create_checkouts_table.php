@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCheckinsTable extends Migration
+class CreateCheckoutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,22 @@ class CreateCheckinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('checkins', function (Blueprint $table) {
+        Schema::create('checkouts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nInvoice');
             $table->string('TProducts');
             $table->string('letters');
             $table->string('provider');
-            $table->string('checkin');
-            $table->string('quantity');
-            $table->string('stock');
+            $table->string('description');
             $table->string('unit');
+            $table->string('checkout');
             $table->string('cost');
             $table->string('price');
-            $table->string('description');
+            $table->string('quantityCO');
+            $table->string('merma');
+            $table->string('stock');
+            $table->string('totalAmount');
+            $table->string('totalMult');
             $table->timestamps();
         });
     }
@@ -37,6 +40,6 @@ class CreateCheckinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkins');
+        Schema::dropIfExists('checkouts');
     }
 }

@@ -74,15 +74,15 @@
               <div class="clasification">
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
-                  <select class="tproductSelect" name="TProducts" onchange="myTest();" id='test'>
+                  <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden="">
+                  <select class="tproductSelect" name="" onchange="myTest(this);" id='test'>
                     <option value="null">Seleccione Tipo de Producto</option>
                     @foreach ($typeProducts as $typeProduct)
-                      <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
+                      <option value="{{$typeProduct->id_Producto}}">{{$typeProduct->type}}</option>
                     @endforeach
                   </select>
                 </div>
                 <div class="iniciales">
-                  {{-- <label for="VM">Iniciales:</label> --}}
                   <input type="text" class="inicialesInput" id="VM" value="" name="initials" readonly="readonly">
                 </div>
               </div>
@@ -129,21 +129,15 @@
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript">
-      function myTest(){
-        var val = document.getElementById('test').value
-        var newVal = '';
-
-        if (val === 'Manguera Hidraulica') {
-          newVal = 'MH'
-          valorManguera = newVal
-        }else if(val === 'Manguera Petrolera') {
-          newVal = 'MP'
-          valorManguera = newVal
-        }else if(val === 'Manguera Industrial') {
-          newVal = 'MI'
-          valorManguera = newVal
-        }
-        var valorManguera = document.getElementById('VM').value=newVal;
+      function myTest(e){
+        var val = <?php echo$typeProducts;?>;
+        var newVal = {};
+        val.map((item)=>{
+          newVal[item.id_Producto] = item
+        })
+        var typeProduct = newVal[e.value]
+        var lettersManguera = document.getElementById('VM').value=typeProduct.letters;
+        var typeManguera = document.getElementById('TProducts').value=typeProduct.type;
       }
     </script>
   </body>
