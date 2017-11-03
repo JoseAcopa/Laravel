@@ -66,7 +66,6 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square-o"></i> Editar Productos de entrada</h2>
-          {{-- <form class="container-add-clients"> --}}
           {!! Form::model($checkin, ['method' => 'PATCH','route' => ['checkin.update', $checkin->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
@@ -74,20 +73,18 @@
               <input type="text" name="nInvoice" value="{{ $checkin->nInvoice }}" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="TProducts">N° de Producto:</label>
+                  <label for="TProducts">Tipo de Producto:</label>
                   <select class="" name="" onchange="myProduct(this)">
-
+                    <option value="{{ $checkin->TProducts }}">{{ $checkin->TProducts }}</option>
+                    @foreach ($products as $product)
+                      <option value="{{$product->id}}">{{$product->id}}</option>
+                    @endforeach
                   </select>
                   </div>
-                  {{-- <label for="TProducts">Nombre de Producto:</label>
-                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
-
                   <div class="iniciales">
-                    {{-- <label for="VM">Iniciales:</label> --}}
-                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
+                    <input type="text" class="inicialesInput" name="letters" value="{{ $checkin->letters }}" id='letters'  readonly="readonly">
                   </div>
               </div>
-
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="{{ $checkin->provider }}">{{ $checkin->provider }}</option>
@@ -100,9 +97,9 @@
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="{{ $checkin->checkin }}" required>
               <label for="quantity">Cantidad de Entrada:</label>
-              <input type="text" name="quantity" value="{{ $checkin->quantity }}" required>
+              <input type="number" name="quantity" value="{{ $checkin->quantity }}" required>
               <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="{{ $checkin->stock }}" required>
+              <input type="text" name="stock" value="{{ $checkin->stock }}" readonly="">
             </div>
             <div class="date-clients">
               <label for="unit">Unidad de Medida:</label>
@@ -122,8 +119,7 @@
               <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           {!! Form::close() !!}
-          {{-- </form> --}}
-          <div class="button-pdf">n
+          <div class="button-pdf">
 
           </div>
         </div>
@@ -133,5 +129,11 @@
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myProduct(e) {
+        var val = <?php echo$products;?>;
+        console.log(val);
+      }
+    </script>
   </body>
 </html>

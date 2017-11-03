@@ -82,7 +82,7 @@
               </div>
             </form>
             <div class="container-add-clientsClasificTable">
-              <div >
+              <div>
                   <table id="Jtabla">
                     <thead>
                       <tr class="theader">

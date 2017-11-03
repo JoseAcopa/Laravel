@@ -82,6 +82,7 @@
                   <th>Acciones</th>
                   <th>N° de Factura</th>
                   <th>N° de Producto</th>
+                  <th>Tipo de Producto</th>
                   <th>Proveedores</th>
                   <th>Descripción</th>
                   <th>Fecha de Entrada</th>
@@ -98,6 +99,7 @@
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $checkin->nInvoice }}</td>
+                    <td>{{ $checkin->letters }}</td>
                     <td>{{ $checkin->TProducts }}</td>
                     <td>{{ $checkin->provider }}</td>
                     <td>{{ $checkin->description }}</td>

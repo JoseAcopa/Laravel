@@ -44,6 +44,7 @@ class CheckinsController extends Controller
       $checkin = new Checkins;
       $checkin->nInvoice = request('nInvoice');
       $checkin->TProducts = request('TProducts');
+      $checkin->letters = request('letters');
       $checkin->provider = request('provider');
       $checkin->description = request('description');
       $checkin->checkin = request('checkin');
@@ -79,8 +80,9 @@ class CheckinsController extends Controller
     {
       $suppliers = Suppliers::all();
       $units = Units::all();
+      $products = Products::all();
       $checkin = Checkins::find($id);
-      return view('admin.inventary.edit-checkin', compact('checkin'), compact('suppliers', 'units'));
+      return view('admin.inventary.edit-checkin', compact('checkin'), compact('suppliers', 'units', 'products'));
     }
 
     /**
@@ -93,7 +95,8 @@ class CheckinsController extends Controller
     public function update(Request $request, $id)
     {
       $newNInvoice = $request->input('nInvoice');
-      $newNProducts = $request->input('nProducts');
+      $newTProducts = $request->input('TProducts');
+      $newLetters = $request->input('letters');
       $newProvider = $request->input('provider');
       $newDescription = $request->input('description');
       $newCheckin = $request->input('checkin');
@@ -101,15 +104,13 @@ class CheckinsController extends Controller
       $newStock = $request->input('stock');
       $newUnit = $request->input('unit');
       $newCost = $request->input('cost');
-      $newPrice1 = $request->input('price1');
-      $newPrice2 = $request->input('price2');
-      $newPrice3 = $request->input('price3');
-      $newPrice4 = $request->input('price4');
+      $newPrice = $request->input('price');
 
       $checkin = Checkins::find($id);
 
       $checkin->nInvoice = $newNInvoice;
-      $checkin->nProducts = $newNProducts;
+      $checkin->TProducts = $newNProducts;
+      $checkin->letters = $newLetters;
       $checkin->provider = $newProvider;
       $checkin->description = $newDescription;
       $checkin->checkin = $newCheckin;
@@ -117,10 +118,7 @@ class CheckinsController extends Controller
       $checkin->stock = $newStock;
       $checkin->unit = $newUnit;
       $checkin->cost = $newCost;
-      $checkin->price1 = $newPrice1;
-      $checkin->price2 = $newPrice2;
-      $checkin->price3 = $newPrice3;
-      $checkin->price4 = $newPrice4;
+      $checkin->price = $newPrice;
       $checkin->save();
 
       return redirect('admin/checkin')->with('success','Producto actualizado correctamente');

@@ -71,7 +71,7 @@
             <div class="view">
               <div class="show-product">
                 <label for="">Numero del Producto de entrada:</label>
-                <p>{{ $checkin->id }}</p>
+                <p>{{ $checkin->letters }}</p>
               </div>
               <div class="show-product">
                 <label for="">N° de Factura:</label>
