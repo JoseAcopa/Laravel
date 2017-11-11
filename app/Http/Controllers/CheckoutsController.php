@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Checkouts;
 use App\Suppliers;
+use App\Units;
 use App\Products;
 
 class CheckoutsController extends Controller
@@ -81,8 +82,8 @@ class CheckoutsController extends Controller
       $suppliers = Suppliers::all();
       $units = Units::all();
       $products = Products::all();
-      $checkin = Checkins::find($id);
-      return view('admin.inventary.edit-out', compact('checkin'), compact('suppliers', 'units', 'products'));
+      $checkout = Checkouts::find($id);
+      return view('admin.inventary.edit-out', compact('checkout'), compact('suppliers', 'units', 'products'));
     }
 
     /**
@@ -94,7 +95,42 @@ class CheckoutsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $newNInvoice = $request->input('nInvoice');
+      $newTProducts = $request->input('TProducts');
+      $newLetters = $request->input('letters');
+      $newProvider = $request->input('provider');
+      $newDescription = $request->input('description');
+      $newUnit = $request->input('unit');
+      $newCheckout = $request->input('checkout');
+      $newCost = $request->input('cost');
+      $newPrice = $request->input('price');
+      $newQuantityCO = $request->input('quantityCO');
+      $newMerma = $request->input('merma');
+      $newStock = $request->input('stock');
+      $newTotalAmount = $request->input('totalAmount');
+      $newTotalMult = $request->input('totalMult');
+
+      $checkout = Checkouts::find($id);
+
+      $checkout->nInvoice = $newNInvoice;
+      $checkout->TProducts = $newTProducts;
+      $checkout->letters = $newLetters;
+      $checkout->provider = $newProvider;
+      $checkout->description = $newDescription;
+      $checkout->unit = $newUnit;
+      $checkout->checkout = $newCheckout;
+      $checkout->cost = $newCost;
+      $checkout->price = $newPrice;
+      $checkout->quantityCO = $newQuantityCO;
+      $checkout->merma = $newMerma;
+      $checkout->stock = $newStock;
+      $checkout->totalAmount = $newTotalAmount;
+      $checkout->totalMult = $newTotalMult;
+
+
+      $checkout->save();
+
+      return redirect('admin/inventary-out')->with('success','Producto actualizado correctamente');
     }
 
     /**
