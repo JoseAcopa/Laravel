@@ -71,45 +71,45 @@
             <div class="view">
               <div class="show-product">
                 <label for="">Numero del Producto de entrada:</label>
-                {{-- <p>{{ $checkin->id }}</p> --}}
+                <p>{{ $checkout->id }}</p>
               </div>
               <div class="show-product">
                 <label for="">N° de Factura:</label>
-                {{-- <p>{{ $checkin->nInvoice }}</p> --}}
+                <p>{{ $checkout->nInvoice }}</p>
               </div>
               <div class="show-product">
-                <label for="">N° de Producto:</label>
-                {{-- <p>{{ $checkin->TProducts }}</p> --}}
+                <label for="">Tipo de Producto:</label>
+                <p>{{ $checkout->TProducts }}</p>
               </div>
               <div class="show-product">
                 <label for="">Proveedor:</label>
-                {{-- <p>{{ $checkin->provider }}</p> --}}
+                <p>{{ $checkout->provider }}</p>
               </div>
               <div class="show-product">
                 <label for="">Descripción:</label>
-                {{-- <p>{{ $checkin->description }}</p> --}}
+                <p>{{ $checkout->description }}</p>
               </div>
             </div>
             <div class="view">
               <div class="show-product">
-                <label for="">Fecha de Entrada:</label>
-                {{-- <p>{{ $checkin->checkin }}</p> --}}
+                <label for="">Fecha de salida:</label>
+                <p>{{ $checkout->checkout }}</p>
               </div>
               <div class="show-product">
-                <label for="">Cantidad de Entrada:</label>
-                {{-- <p>{{ $checkin->quantity }}</p> --}}
+                <label for="">Cantidad de Salida:</label>
+                <p>{{ $checkout->quantityCO }}</p>
               </div>
               <div class="show-product">
                 <label for="">Existencia:</label>
-                {{-- <p>{{ $checkin->stock }}</p> --}}
+                <p>{{ $checkout->stock }}</p>
               </div>
               <div class="show-product">
                 <label for="">Unidad de Medida:</label>
-                {{-- <p>{{ $checkin->unit }}</p> --}}
+                <p>{{ $checkout->unit }}</p>
               </div>
               <div class="show-product">
                 <label for="">Costo:</label>
-                {{-- <p>{{ $checkin->cost }}</p> --}}
+                <p>{{ $checkout->cost }}</p>
               </div>
             </div>
           </div>

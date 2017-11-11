@@ -109,7 +109,7 @@ class CheckinsController extends Controller
       $checkin = Checkins::find($id);
 
       $checkin->nInvoice = $newNInvoice;
-      $checkin->TProducts = $newNProducts;
+      $checkin->TProducts = $newTProducts;
       $checkin->letters = $newLetters;
       $checkin->provider = $newProvider;
       $checkin->description = $newDescription;

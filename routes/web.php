@@ -65,24 +65,16 @@ Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
 Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
 Route::resource('admin/checkin','CheckinsController');
 // ------------------End checkin----------------------------------------
-Route::get('/admin/inventary-out', function(){
-  return view ('admin/inventary/inventary-out');
-});
 
-Route::get('/admin/add-out', function(){
-  return view ('admin/inventary/add-out');
-});
-
-Route::get('/admin/edit-out', function(){
-  return view ('admin/inventary/edit-out');
-});
+// ------------------checkouts----------------------------------------
+Route::get('/admin/add-out', 'CheckoutsController@create');
+Route::get('/admin/edit-out/{checkout}', 'CheckoutsController@edit');
+Route::get('/admin/show-out/{checkout}', 'CheckoutsController@show');
+Route::resource('/admin/inventary-out','CheckoutsController');
+// ------------------End checkin----------------------------------------
 
 Route::get('/admin/clasificationProduct', function(){
   return view ('admin/inventary/clasificationProduct');
-});
-
-Route::get('/admin/show-out', function(){
-  return view ('admin/inventary/show-out');
 });
 
 

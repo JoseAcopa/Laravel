@@ -66,61 +66,56 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i>Registrar Salidas</h2>
-          <form class="container-add-clients">
+          <form class="container-add-clients" method="POST" action="/admin/inventary-out">
+            {{ csrf_field() }}
             <div class="date-clients">
-              <label for="nFactura">N° de Factura:</label>
-              <input type="text" name="nFactura" value="" readonly="readonly">
+              <label for="nInvoice">N° de Factura:</label>
+              <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="nProduct">Tipo de Producto:</label>
-                  <select class="" name="unit">
-                    <option value=""></option>
-                    <option value="">Piezas</option>
-                    <option value="">Metros</option>
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts' hidden="">
+                  <select class="" name="" onchange="myProduct(this)">
+                    <option value="">Seleccione producto</option>
+                    @foreach ($products as $product)
+                      <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
+                    @endforeach
                   </select>
-                  </div>
-                  {{-- <label for="TProducts">Nombre de Producto:</label>
-                  <input type="text"  name="TProducts" value="" id='TProducts'  placeholder="Producto" readonly="readonly"> --}}
-
-                  <div class="iniciales">
-                    {{-- <label for="VM">Iniciales:</label> --}}
-                    <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'  readonly="readonly">
-                  </div>
+                </div>
+                <div class="iniciales">
+                  <input type="text" class="inicialesInput" name="letters" value="" id='letters'  readonly="readonly">
+                </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="" readonly="readonly">
+              <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description"  readonly="readonly"></textarea>
-
+              <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
             </div>
             <div class="date-clients">
               <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value=""  readonly="readonly">
-              <label for="dateOut">Fecha de Salida:</label>
-              <input type="date" name="dateOUT" value="">
-              {{-- <select class="" name="unit">
-                <option value=""></option>
-                <option value="">Piezas</option>
-                <option value="">Metros</option>
-              </select> --}}
+              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+              <label for="checkout">Fecha de Salida:</label>
+              <input type="date" name="checkout" value="">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  readonly="readonly">
-              <label for="salePrice4">Precio de Venta:</label>
-              <input type="text" name="salePrice4" value="" readonly="readonly">
+              <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
+              <label for="price">Precio de Venta:</label>
+              <input type="text" name="price" value="" placeholder="Precio de Venta">
             </div>
             <div class="date-clients">
-              <label for="quantityOut">Cantidad de Salida:</label>
-              <input type="text" name="quantityOut" value=""  placeholder="Cantidad de Salida" >
-              <label for="waste">Merma:</label>
-              <input type="text" name="waste" value=""  placeholder="Merma" >
-              <label for="goods">Existencia:</label>
-              <input type="text" name="goods" value=""  placeholder="Existencia" >
-              <label for="price">Precio Total:</label>
-              <input type="text" name="price" value=""  placeholder="Precio Total" >
+              <label for="quantityCO">Cantidad de Salida:</label>
+              <input type="number" name="quantityCO" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
+              <label for="merma">Merma:</label>
+              <input type="text" name="merma" value=""  placeholder="Merma">
+              <label for="stock">Existencia:</label>
+              <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
+              <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
+              <label for="totalAmount">Precio Total:</label>
+              <input type="text" name="totalAmount" value=""  placeholder="Precio Total">
+              <input type="text" name="totalMult" value="100"  placeholder="Precio Total" hidden="">
             </div>
             <div class="button-client">
-              <a href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</a>
-              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">
@@ -133,5 +128,42 @@
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myProduct(e) {
+        var val = <?php echo$products;?>;
+        var newVal = {};
+
+        val.map((item)=>{
+          newVal[item.id] = item
+        })
+
+        var product = newVal[e.value]
+        var newTProducts = product.TProducts
+        var newInitials = product.initials+"-"+product.id
+        var newStock = parseInt(product.quantity)
+        var newProvider = product.provider
+        var newCost = product.cost
+        var newDescription = product.description
+        var newUnit = product.unit
+
+        document.getElementById('TProducts').value=newTProducts
+        document.getElementById('letters').value=newInitials
+        document.getElementById('stock').value=newStock
+        document.getElementById('stockFixe').value=newStock
+        document.getElementById('provider').value=newProvider
+        document.getElementById('cost').value=newCost
+        document.getElementById('description').value=newDescription
+        document.getElementById('unit').value=newUnit
+      }
+    </script>
+    <script type="text/javascript">
+      function mySuma(e) {
+        var stock = document.getElementById('stockFixe').value
+        var quantity = e.value
+        var newStock = parseInt(stock) - parseInt(quantity)
+
+        document.getElementById('stock').value=newStock
+      }
+    </script>
   </body>
 </html>

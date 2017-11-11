@@ -145,6 +145,7 @@
         document.getElementById('cost').value=newCost
         document.getElementById('description').value=newDescription
         document.getElementById('unit').value=newUnit
+        console.log(newProvider);
       }
     </script>
     <script type="text/javascript">
