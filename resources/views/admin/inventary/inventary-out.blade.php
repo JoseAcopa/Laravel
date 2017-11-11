@@ -67,8 +67,8 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square"></i> Registrar Salidas</a>
-            <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+            <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square fa-lg"></i> Registrar Salidas</a>
+            <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left fa-lg"></i> Atras</a>
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">

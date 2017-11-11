@@ -60,7 +60,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-pencil-square"></i>Registrar Salidas</li>
+              <li class="ol-active"><i class="fa fa-pencil-square fa-lg"></i>Registrar Salidas</li>
             </ol>
           </div>
         </div>
@@ -115,7 +115,7 @@
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
-              <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+              <a href="{{url('admin/inventary-out')}}"  class="btn-danger "><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">
