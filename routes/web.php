@@ -59,6 +59,14 @@ Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
 
+// ------------------clasificationProduct---------------------------------------
+Route::get('/admin/clasificationProduct', 'TypeProductsControllers@create');
+Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
+// Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
+Route::resource('admin/clasificationProduct','TypeProductsControllers');
+// ------------------End clasificationProduct----------------------------------------
+
+
 // ------------------checkin----------------------------------------
 Route::get('/admin/add-checkin', 'CheckinsController@create');
 Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
@@ -77,9 +85,6 @@ Route::get('/admin/edit-out', function(){
   return view ('admin/inventary/edit-out');
 });
 
-Route::get('/admin/clasificationProduct', function(){
-  return view ('admin/inventary/clasificationProduct');
-});
 
 Route::get('/admin/show-out', function(){
   return view ('admin/inventary/show-out');

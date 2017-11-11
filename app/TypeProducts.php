@@ -9,6 +9,6 @@ class TypeProducts extends Model
   protected $table = 'typeProducts';
 
   protected $fillable = [
-      'type'
+      'type','letters',
   ];
 }

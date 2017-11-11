@@ -67,14 +67,13 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Clasificación de Producto</h2>
           <div class="clasific">
-            <form class="container-add-clientsClasific" method="POST" action="#">
+            <form class="container-add-clientsClasific" method="POST" action="/admin/clasificationProduct">
+              {{ csrf_field() }}
               <div class="date-clientsClasific">
-                <label for="unit">Tipo de Producto:</label>
-                <select class="" name="unit">
-                  <option value="null">Seleccione Producto</option>
-                </select>
+                <label for="typeP">Tipo de Producto:</label>
+                <input type="text" name="typeP" value="" >
                 <label for="ini">Iniciales:</label>
-                <input type="text" name="ini" value=""  readonly="readonly">
+                <input type="text" name="ini" value=""  >
               </div>
               <div class="button-clientClasific">
                 <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -92,102 +91,18 @@
                      </tr>
                     </thead>
                     <tbody class="tbodymain">
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
-                      <tr class="tbody">
-                        <td class="action">
-                          <a href="{{url('/admin/edit-out')}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                          <a href="#" alt="Eliminar" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></a>
-                        </td>
-                        <td>73472345</td>
-                        <td>73472524</td>
-                      </tr>
+                      @foreach ($typesProducts as $key)
+                        <tr class="tbody">
+                          <td class="action">
+                            <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id_Producto]]) !!}
+                              <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                            {!! Form::close() !!}
+                          </td>
+                          <td>{{$key->type}}</td>
+                          <td>{{$key->letters}}</td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table>
               </div>
