@@ -44,11 +44,11 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <<li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventary')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Entradas</small></a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Entradas</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -71,62 +71,91 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="nProducts">N° de Producto:</label>
-              <select class="" name="nProducts">
-                <option value="null">Seleccione Producto</option>
-                @foreach ($products as $product)
-                  <option value="{{ $product->nProducts }}">{{ $product->nProducts }}</option>
-                @endforeach
-              </select>
-              <input type="text" name="nProducts" value=""  placeholder="Número Productos" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts' hidden="">
+                  <input type="text" class="inicialesInput"  name="price" value="100" hidden="">
+                  <select class="" name="" onchange="myProduct(this)">
+                    <option value="null">Seleccione Producto</option>
+                    @foreach ($products as $product)
+                      <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
+                    @endforeach
+                  </select>
+                  </div>
+                  <div class="iniciales">
+                    <input type="text" class="inicialesInput"  name="letters" value="" id='letters'  readonly="readonly">
+                  </div>
+              </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider">
-                <option value="null">Seleccione Proveedor</option>
-                @foreach ($suppliers as $supplier)
-                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
-                @endforeach
-              </select>
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
+              <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
-              <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada" required>
+              <input type="number" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value=""  placeholder="Existencia" required>
-              <label for="unit">Unidad de Medida:</label>
-              <select class="" name="unit">
-                <option value="null">Seleccione Unidad de Medida</option>
-                @foreach ($units as $unit)
-                  <option value="{{$unit->type}}">{{$unit->type}}</option>
-                @endforeach
-              </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo" required>
-            </div>
+              <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
+              <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
+          </div>
             <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4" required>
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
             </div>
             <div class="button-client">
-              <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>
-              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/checkin')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
         </div>
       </div>
     </main>
-    <footer id="footerQuotation">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myProduct(e) {
+        var val = <?php echo$products;?>;
+        var newVal = {};
+
+        val.map((item)=>{
+          newVal[item.id] = item
+        })
+
+        var product = newVal[e.value]
+        var newTProducts = product.TProducts
+        var newInitials = product.initials+"-"+product.id
+        var newStock = parseInt(product.quantity)
+        var newProvider = product.provider
+        var newCost = product.cost
+        var newDescription = product.description
+        var newUnit = product.unit
+
+        document.getElementById('TProducts').value=newTProducts
+        document.getElementById('letters').value=newInitials
+        document.getElementById('stock').value=newStock
+        document.getElementById('stockFixe').value=newStock
+        document.getElementById('provider').value=newProvider
+        document.getElementById('cost').value=newCost
+        document.getElementById('description').value=newDescription
+        document.getElementById('unit').value=newUnit
+        console.log(newProvider);
+      }
+    </script>
+    <script type="text/javascript">
+      function mySuma(e) {
+        var stock = document.getElementById('stockFixe').value
+        var quantity = e.value
+        var newStock = parseInt(stock) + parseInt(quantity)
+
+        document.getElementById('stock').value=newStock
+      }
+    </script>
   </body>
 </html>

@@ -67,57 +67,45 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square"></i> Registrar Salidas</a>
-            <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+            <a href="{{url('admin/add-out')}}" class="btn-green" ><i class="fa fa-pencil-square fa-lg"></i> Registrar Salidas</a>
+            <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left fa-lg"></i> Atras</a>
           </div>
-          <div class="table">
+          @if ($message = Session::get('success'))
+            <div class="message-danger">
+              <p>{{ $message }}</p>
+            </div>
+          @endif
+          <div >
             <table id="Jtabla">
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
                   <th>N° de Factura</th>
-                  <th>N° de Producto</th>
-                  <th>Fabricante</th>
-                  <th>Descripción</th>
-                  <th>Fecha de Entrada</th>
-                  <th>Cantidad de Entrada</th>
-                  <th>Unidad de Medida</th>
-                  <th>Costo</th>
-                  <th>Precio de Venta 1</th>
-                  <th>Precio de Venta 2</th>
-                  <th>Precio de Venta 3</th>
-                  <th>Precio de Venta 4</th>
-                  <th>Fecha de Salida</th>
-                  <th>Cantidad de Salida</th>
-                  <th>Merma</th>
+                  <th>Tipo de Producto</th>
+                  <th>Proveedor</th>
+                  <th>Salida</th>
                   <th>Existencia</th>
-                  <th>Precio Total</th>
+                  <th>Costo</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
-                <tr class="tbody">
-                  <td class="action">
-                    <a href="{{url('/admin/edit-out')}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a href="#" alt="Eliminar"><i class="fa fa-trash-o"></i></a>
-                  </td>
-                  <td>73472345</td>
-                  <td>73472524</td>
-                  <td>Gates</td>
-                  <td>Servicios Electricos Automotriz Patricio</td>
-                  <td>12/03/17</td>
-                  <td>50</td>
-                  <td>metros</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                  <td>$500.00</td>
-                </tr>
+                @foreach($checkouts as $checkout)
+                  <tr class="tbody">
+                    <td class="action">
+                      <a class="btn-info" href="{{url('/admin/show-out',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a href="{{url('/admin/edit-out',$checkout->id)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['inventary-out.destroy', $checkout->id]]) !!}
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                      {!! Form::close() !!}
+                    </td>
+                    <td>{{$checkout->nInvoice}}</td>
+                    <td>{{$checkout->TProducts}}</td>
+                    <td>{{$checkout->provider}}</td>
+                    <td>{{$checkout->checkout}}</td>
+                    <td>{{$checkout->stock}}</td>
+                    <td>{{$checkout->cost}}</td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

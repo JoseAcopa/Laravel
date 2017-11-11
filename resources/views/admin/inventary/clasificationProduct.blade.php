@@ -46,9 +46,9 @@
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
           <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
+          <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Clasificación</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -60,35 +60,59 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-user-plus"></i>Registar Empleados</li>
+              <li class="ol-active"><i class="fa fa-pencil-square"></i>Clasificación de Producto</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-user-plus"></i> Registrar Empleados</h2>
-          <form class="container-add-clients" method="POST" action="/admin/employee">
-            {{ csrf_field() }}
-            <div class="date-client">
-              <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
-              <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+          <h2><i class="fa fa-pencil-square"></i> Clasificación de Producto</h2>
+          <div class="clasific">
+            <form class="container-add-clientsClasific" method="POST" action="/admin/clasificationProduct">
+              {{ csrf_field() }}
+              <div class="date-clientsClasific">
+                <label for="typeP">Tipo de Producto:</label>
+                <input type="text" name="typeP" value="" >
+                <label for="ini">Iniciales:</label>
+                <input type="text" name="ini" value=""  >
+              </div>
+              <div class="button-clientClasific">
+                <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+                <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+              </div>
+            </form>
+            <div class="container-add-clientsClasificTable">
+              <div>
+                  <table id="Jtabla">
+                    <thead>
+                      <tr class="theader">
+                        <th>Acciones</th>
+                        <th>Tipo de Producto</th>
+                        <th>N° de Producto</th>
+                     </tr>
+                    </thead>
+                    <tbody class="tbodymain">
+                      @foreach ($typesProducts as $key)
+                        <tr class="tbody">
+                          <td class="action">
+                            <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id_Producto]]) !!}
+                              <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                            {!! Form::close() !!}
+                          </td>
+                          <td>{{$key->type}}</td>
+                          <td>{{$key->letters}}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                  </table>
+              </div>
             </div>
-            <div class="date-client">
-              <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
-            </div>
-            <div class="button-client">
-              <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
-              <a href="{{ url('/admin/employee') }}" class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
-            </div>
-          </form>
+
+          </div>
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

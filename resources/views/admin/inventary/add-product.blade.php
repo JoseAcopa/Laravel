@@ -48,7 +48,7 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventary')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Registrar</small></a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Registrar</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -71,8 +71,21 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value=""  placeholder="Número Productos" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden="">
+                  <select class="tproductSelect" name="" onchange="myTest(this);" id='test'>
+                    <option value="null">Seleccione Tipo de Producto</option>
+                    @foreach ($typeProducts as $typeProduct)
+                      <option value="{{$typeProduct->id_Producto}}">{{$typeProduct->type}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="iniciales">
+                  <input type="text" class="inicialesInput" id="VM" value="" name="initials" readonly="readonly">
+                </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="null">Seleccione Proveedor</option>
@@ -80,16 +93,12 @@
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="text" name="quantity" value=""  placeholder="Cantidad Entrada" required>
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value=""  placeholder="Existencia" required>
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="null">Seleccione Unidad de Medida</option>
@@ -97,22 +106,16 @@
                   <option value="{{$unit->type}}">{{$unit->type}}</option>
                 @endforeach
               </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo" required>
             </div>
             <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value=""  placeholder="Precio de Venta 1" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value=""  placeholder="Precio de Venta 2" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value=""  placeholder="Precio de Venta 3" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value=""  placeholder="Precio de Venta 4" required>
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value=""  placeholder="Costo" required>
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
             </div>
             <div class="button-client">
-              <button href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</button>
-              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">
@@ -121,9 +124,21 @@
         </div>
       </div>
     </main>
-    <footer id="footerQuotation">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myTest(e){
+        var val = <?php echo$typeProducts;?>;
+        var newVal = {};
+        val.map((item)=>{
+          newVal[item.id_Producto] = item
+        })
+        var typeProduct = newVal[e.value]
+        var lettersManguera = document.getElementById('VM').value=typeProduct.letters;
+        var typeManguera = document.getElementById('TProducts').value=typeProduct.type;
+      }
+    </script>
   </body>
 </html>

@@ -66,56 +66,66 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square-o"></i>Editar Salidas</h2>
-          <form class="container-add-clients">
+          {!! Form::model($checkout, ['method' => 'PATCH','route' => ['inventary-out.update', $checkout->id], 'class' => 'container-add-clients']) !!}
+            {{ csrf_field() }}
             <div class="date-clients">
-              <label for="nFactura">N° de Factura:</label>
-              <input type="text" name="nFactura" value="" readonly="readonly">
-              <label for="nProduct">N° de Producto:</label>
-              <input type="text" name="nProduct" value="" readonly="readonly">
+              <label for="nInvoice">N° de Factura:</label>
+              <input type="text" name="nInvoice" value="{{ $checkout->nInvoice }}" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <select class="" name="TProducts" onchange="myProduct(this)">
+                    <option value="{{ $checkout->TProducts }}">{{ $checkout->TProducts }}</option>
+                    @foreach ($products as $product)
+                      <option value="{{$product->id}}">{{$product->id}}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="iniciales">
+                  <input type="text" class="inicialesInput" name="letters" value="{{ $checkout->letters }}" id='letters'  readonly="readonly">
+                </div>
+              </div>
               <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="" readonly="readonly">
+              <select class="" name="provider">
+                <option value="{{ $checkout->provider }}">{{ $checkout->provider }}</option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
+                @endforeach
+              </select>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description"  readonly="readonly"></textarea>
-              <label for="dateEntry">Fecha de Entrada:</label>
-              <input type="date" name="dateEntry" value=""  readonly="readonly">
+              <textarea type="text" rows="4" name="description" >{{ $checkout->description }}</textarea>
             </div>
             <div class="date-clients">
-              <label for="quantityEntry">Cantidad de Entrada:</label>
-              <input type="text" name="quantityEntry" value="" readonly="readonly">
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
-                <option value=""></option>
-                <option value="">Piezas</option>
-                <option value="">Metros</option>
+                <option value="{{ $checkout->unit }}">{{ $checkout->unit }}</option>
+                @foreach ($units as $unit)
+                  <option value="{{ $unit->type }}">{{ $unit->type }}</option>
+                @endforeach
               </select>
+              <label for="checkout">Fecha de Salida:</label>
+              <input type="date" name="checkout" value="{{ $checkout->checkout }}">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  readonly="readonly">
-              <label for="salePrice1">Precio de Venta 1:</label>
-              <input type="text" name="salePrice1" value=""  readonly="readonly">
-              <label for="salePrice2">Precio de Venta 2:</label>
-              <input type="text" name="salePrice2" value=""  readonly="readonly">
-              <label for="salePrice3">Precio de Venta 3:</label>
-              <input type="text" name="salePrice3" value=""  readonly="readonly">
+              <input type="text" name="cost" value="{{ $checkout->cost }}" required>
+              <label for="price">Precio de Venta :</label>
+              <input type="text" name="price" value="{{ $checkout->price }}" required>
             </div>
             <div class="date-clients">
-              <label for="salePrice4">Precio de Venta 4:</label>
-              <input type="text" name="salePrice4" value="" readonly="readonly">
-              <label for="dateOut">Fecha de Salida:</label>
-              <input type="date" name="dateOUT" value="">
-              <label for="quantityOut">Cantidad de Salida:</label>
-              <input type="text" name="quantityOut" value="" >
-              <label for="waste">Merma:</label>
-              <input type="text" name="waste" value="" >
-              <label for="goods">Existencia:</label>
-              <input type="text" name="goods" value="" >
-              <label for="price">Precio Total:</label>
-              <input type="text" name="price" value="" >
+              <label for="quantityCO">Cantidad de Salida:</label>
+              <input type="text" name="quantityCO" value="{{ $checkout->quantityCO }}" required>
+              <label for="merma">Merma:</label>
+              <input type="text" name="merma" value="{{ $checkout->merma }}" required>
+              <label for="stock">Existencia:</label>
+              <input type="text" name="stock" value="{{ $checkout->stock }}" required>
+              <label for="totalAmount">Precio Total:</label>
+              <input type="text" name="totalAmount" value="{{ $checkout->totalAmount }}" required>
+              <input type="text" name="totalMult" value="{{ $checkout->totalMult }}" required hidden="">
             </div>
             <div class="button-client">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i>  Guardar</a>
+              <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
               <a href="{{url('admin/inventary-out')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
             </div>
-          </form>
+          {!! Form::close() !!}
           <div class="button-pdf">
 
           </div>

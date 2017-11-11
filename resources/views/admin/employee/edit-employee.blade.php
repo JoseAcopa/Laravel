@@ -81,8 +81,8 @@
               <input type="password" name="contrasena" value='{{ $employee->contrasena }}' required>
             </div>
             <div class="button-client">
-              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
+              <a href="{{ url('/admin/employee') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
             </div>
           {!! Form::close() !!}
         </div>

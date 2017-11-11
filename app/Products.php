@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
 {
-  // protected $table = 'employee';
+  // protected $table = 'products';
   // protected $id = "id";
 
   // public $timestamps = false;
 
   protected $fillable = [
-      'nInvoice', 'nProducts', 'provider', 'description',
-      'checkin', 'quantity', 'stock', 'unit', 'cost', 'price1',
-      'price2', 'price3', 'price4',
+      'nInvoice', 'TProducts', 'provider', 'checkin', 'quantity',
+      'unit', 'cost','description', 'initials', 'stock',
   ];
 }

@@ -72,8 +72,22 @@
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value="{{ $product->nInvoice }}" required>
-              <label for="nProducts">N° de Producto:</label>
-              <input type="text" name="nProducts" value="{{ $product->nProducts }}" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProducts">Tipo de Producto:</label>
+                  <input type="text" id="TProducts" value="{{ $product->TProducts }}" name="TProducts" readonly="readonly" hidden="">
+                  <select class="tproductSelect" name="" onchange="myTProduct(this);" id='test'>
+                    <option value="{{ $product->TProducts }}">{{ $product->TProducts }}</option>
+                    @foreach ($typeProducts as $typeProduct)
+                      <option value="{{ $typeProduct->id_Producto }}">{{ $typeProduct->type }}</option>
+                    @endforeach
+                  </select>
+                </div>
+                <div class="iniciales">
+                  {{-- <label for="VM">Iniciales:</label> --}}
+                  <input type="text" class="inicialesInput" id="VM" value="{{ $product->initials }}" name="initials" readonly="readonly">
+                </div>
+              </div>
               <label for="provider">Proveedor:</label>
               <select class="" name="provider">
                 <option value="{{ $product->provider }}">{{ $product->provider }}</option>
@@ -81,16 +95,12 @@
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
                 @endforeach
               </select>
-              <label for="description">Dirección:</label>
-              <textarea type="text" rows="6" name="description" >{{ $product->description }}</textarea>
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="{{ $product->checkin }}" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="text" name="quantity" value="{{ $product->quantity }}" required>
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="{{ $product->stock }}" required>
               <label for="unit">Unidad de Medida:</label>
               <select class="" name="unit">
                 <option value="{{ $product->unit }}">{{ $product->unit }}</option>
@@ -98,22 +108,16 @@
                   <option value="{{ $unit->type }}">{{ $unit->type }}</option>
                 @endforeach
               </select>
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="{{ $product->cost }}" required>
             </div>
             <div class="date-clients">
-              <label for="price1">Precio de Venta 1:</label>
-              <input type="text" name="price1" value="{{ $product->price1 }}" required>
-              <label for="price2">Precio de Venta 2:</label>
-              <input type="text" name="price2" value="{{ $product->price2 }}" required>
-              <label for="price3">Precio de Venta 3:</label>
-              <input type="text" name="price3" value="{{ $product->price3 }}" required>
-              <label for="price4">Precio de Venta 4:</label>
-              <input type="text" name="price4" value="{{ $product->price4 }}" required>
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value="{{ $product->cost }}" required>
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" >{{ $product->description }}</textarea>
             </div>
             <div class="button-client">
-              <button type="submit" href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</button>
-              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i>  Cancelar</a>
+              <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
+              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           {!! Form::close() !!}
           {{-- </form> --}}
@@ -123,9 +127,21 @@
         </div>
       </div>
     </main>
-    <footer id="footerQuotation">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript">
+      function myTProduct(e){
+        var val = <?php echo$typeProducts;?>;
+        var newVal = {};
+        val.map((item)=>{
+          newVal[item.id_Producto] = item
+        })
+        var typeProduct = newVal[e.value]
+        var lettersManguera = document.getElementById('VM').value=typeProduct.letters;
+        var typeManguera = document.getElementById('TProducts').value=typeProduct.type;
+      }
+    </script>
   </body>
 </html>

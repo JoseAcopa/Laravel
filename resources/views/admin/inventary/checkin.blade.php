@@ -68,7 +68,7 @@
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-checkin')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Producto de entrada</a>
-            <a href="{{url('admin/inventary')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+            <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -82,6 +82,7 @@
                   <th>Acciones</th>
                   <th>N° de Factura</th>
                   <th>N° de Producto</th>
+                  <th>Tipo de Producto</th>
                   <th>Proveedores</th>
                   <th>Descripción</th>
                   <th>Fecha de Entrada</th>
@@ -98,7 +99,8 @@
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $checkin->nInvoice }}</td>
-                    <td>{{ $checkin->nProducts }}</td>
+                    <td>{{ $checkin->letters }}</td>
+                    <td>{{ $checkin->TProducts }}</td>
                     <td>{{ $checkin->provider }}</td>
                     <td>{{ $checkin->description }}</td>
                     <td>{{ $checkin->checkin }}</td>

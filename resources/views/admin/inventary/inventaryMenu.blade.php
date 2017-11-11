@@ -65,7 +65,7 @@
             </ol>
           </div>
         </div>
-        <div class="table-container">
+        <div class="table-container-i">
           <!-- <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-success" ><i class="fa fa-user-plus"></i> Registrar Productos</a>
             <a href="{{url('admin/add-out')}}" class="btn-success" ><i class="fa fa-user-plus"></i> Salidas</a>
@@ -75,12 +75,12 @@
               <h2><i class="fa fa-pencil-square"></i> Inventario</h2>
             </div>
             <div class="inventaryMenu">
-              <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Inventario</label></a>
-              <!-- <a href="{{url('admin/inventary-out')}}" class="out"> <i class="fa fa-sign-out fa-3x"></i><label for="">Salidas</label></a> -->
+              <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Productos</label></a>
+              {{-- <a href="#" class="out"> <i class="fa fa-leanpub fa-3x"></i><label for="">Precios de Ventas</label></a> --}}
               <a href="#" class="reports"> <i class="fa fa-book fa-3x"></i><label for="">Reportes</label></a>
             </div>
             <div class="img">
-              <img src="{{ url('img/MV1.jpg')}}" alt="">
+              <img src="{{ url('img/productos2.jpg')}}" alt="">
 
             </div>
 

@@ -67,69 +67,55 @@
         <div class="for-container">
           <h2><i class="fa fa-eye"></i> Mostrar Producto</h2>
           <div class="line"></div>
-          <div class="date-clients">
-            <div class="show-product">
-              <label for="">Numero del Producto:</label>
-              <p>{{ $product->id }}</p>
+          <div class="show">
+            <div class="view">
+              <div class="show-product">
+                <label for="">Numero del Producto:</label>
+                <p>{{ $product->initials }}-{{ $product->id }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">N° de Factura:</label>
+                <p>{{ $product->nInvoice }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Tipo de Producto:</label>
+                <p>{{ $product->TProducts }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Proveedor:</label>
+                <p>{{ $product->provider }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Descripción:</label>
+                <p>{{ $product->description }}</p>
+              </div>
             </div>
-            <div class="show-product">
-              <label for="">N° de Factura:</label>
-              <p>{{ $product->nInvoice }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">N° de Producto:</label>
-              <p>{{ $product->nProducts }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Proveedor:</label>
-              <p>{{ $product->provider }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Descripción:</label>
-              <p>{{ $product->description }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Fecha de Entrada:</label>
-              <p>{{ $product->checkin }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Cantidad de Entrada:</label>
-              <p>{{ $product->quantity }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Existencia:</label>
-              <p>{{ $product->stock }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Unidad de Medida:</label>
-              <p>{{ $product->unit }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Costo:</label>
-              <p>{{ $product->cost }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 1:</label>
-              <p>{{ $product->price1 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 2:</label>
-              <p>{{ $product->price2 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 3:</label>
-              <p>{{ $product->price3 }}</p>
-            </div>
-            <div class="show-product">
-              <label for="">Precio de Venta 4:</label>
-              <p>{{ $product->price4 }}</p>
+            <div class="view">
+              <div class="show-product">
+                <label for="">Fecha de Entrada:</label>
+                <p>{{ $product->checkin }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Cantidad de Entrada:</label>
+                <p>{{ $product->quantity }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Unidad de Medida:</label>
+                <p>{{ $product->unit }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Costo:</label>
+                <p>{{ $product->cost }}</p>
+              </div>
             </div>
           </div>
-          <a href="{{url('admin/inventary')}}"  class="btn-success"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+            <div class="btn-show">
+              <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+            </div>
         </div>
       </div>
     </main>
-    <footer id="footerQuotation">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

@@ -44,11 +44,11 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i> Clientes</a></li>
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
+          <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Mostrar</small></a></li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -60,35 +60,66 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-user-plus"></i>Registar Empleados</li>
+              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Producto de Entrada</li>
             </ol>
           </div>
         </div>
         <div class="for-container">
-          <h2><i class="fa fa-user-plus"></i> Registrar Empleados</h2>
-          <form class="container-add-clients" method="POST" action="/admin/employee">
-            {{ csrf_field() }}
-            <div class="date-client">
-              <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
-              <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+          <h2><i class="fa fa-eye"></i> Mostrar Producto de Salida</h2>
+          <div class="line"></div>
+          <div class="show">
+            <div class="view">
+              <div class="show-product">
+                <label for="">Numero del Producto de entrada:</label>
+                <p>{{ $checkout->id }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">N° de Factura:</label>
+                <p>{{ $checkout->nInvoice }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Tipo de Producto:</label>
+                <p>{{ $checkout->TProducts }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Proveedor:</label>
+                <p>{{ $checkout->provider }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Descripción:</label>
+                <p>{{ $checkout->description }}</p>
+              </div>
             </div>
-            <div class="date-client">
-              <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+            <div class="view">
+              <div class="show-product">
+                <label for="">Fecha de salida:</label>
+                <p>{{ $checkout->checkout }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Cantidad de Salida:</label>
+                <p>{{ $checkout->quantityCO }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Existencia:</label>
+                <p>{{ $checkout->stock }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Unidad de Medida:</label>
+                <p>{{ $checkout->unit }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Costo:</label>
+                <p>{{ $checkout->cost }}</p>
+              </div>
             </div>
-            <div class="button-client">
-              <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
-              <a href="{{ url('/admin/employee') }}" class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
-            </div>
-          </form>
+          </div>
+          <div class="btn-show">
+            <a href="{{url('admin/inventary-out')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+          </div>
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

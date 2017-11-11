@@ -49,7 +49,7 @@
         </div>
         <div class="login-button-lost">
           <button type="submit" class="btn-login">Login</button>
-          <a href="{{ route('password.request') }}" class="lost"><p>Olvidaste tu contraseña?</p></a>
+          <a href="#" class="lost"><p>Olvidaste tu contraseña?</p></a>
         </div>
       </form>
     </main>
