@@ -70,7 +70,7 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
+              <input type="text" name="nInvoice" value="" required>
               <div class="clasification">
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
@@ -87,27 +87,29 @@
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
+              <input type="text" name="provider" value="" id='provider'readonly="readonly">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+              <textarea type="text" rows="4" name="description" id='description'readonly="readonly"></textarea>
             </div>
             <div class="date-clients">
               <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+              <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="checkout">Fecha de Salida:</label>
               <input type="date" name="checkout" value="">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
-              <label for="price">Precio de Venta:</label>
-              <input type="text" name="price" value="" placeholder="Precio de Venta">
+              <input type="text" name="cost" value="" id='cost' readonly="readonly">
+              {{-- <label for="precio1">Porcentaje:</label>
+              <input type="text" name="Porcentaje" value="" id='Porcentaje' placeholder="Porcentaje"> --}}
+              <label for="stock">Existencia:</label>
+              <input type="text" name="stock" value="" id='stock'  readonly="readonly">
             </div>
             <div class="date-clients">
               <label for="quantityCO">Cantidad de Salida:</label>
               <input type="number" name="quantityCO" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="merma">Merma:</label>
-              <input type="text" name="merma" value=""  placeholder="Merma">
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
+              <input type="text" name="merma" value=""  placeholder="Merma" onclick="resta()">
+              <label for="price">Precio de Venta:</label>
+              <input type="text" name="price" value="" placeholder="Precio de Venta">
               <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
               <label for="totalAmount">Precio Total:</label>
               <input type="text" name="totalAmount" value=""  placeholder="Precio Total">
@@ -164,6 +166,16 @@
 
         document.getElementById('stock').value=newStock
       }
+    </script>
+    <script type="text/javascript">
+    function resta() {
+      var decrase= Number (document.getElementById('merma').value);
+      var out= Number (document.getElementById('quantityCO').value);
+      var result = decrase-out ;
+
+      document.getElementById('quantityCO').value=result;
+    }
+
     </script>
   </body>
 </html>

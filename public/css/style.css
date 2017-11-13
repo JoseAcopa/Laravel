@@ -693,6 +693,35 @@ thead{
   outline: 0;
 }
 
+/*****************************/
+.quotationTotal{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  background: #fff;
+  border: 2px solid rgb(15, 42, 66);
+  border-radius: 6px;
+  padding-bottom: 9px;
+  padding-top: 9px;
+}
+.quotationTotal label{
+  margin-left: 20px;
+}
+
+.quotationTotal input{
+  width: 80% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-bottom: 10px !important;
+  margin-top: 0px !important;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
+}
 
 .date-clientstextA{
   display: flex;
@@ -742,14 +771,18 @@ thead{
 }
 
 .button-inventary{
-  margin-top: 20px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin: auto;
 }
 
 .button-inventary a{
+  margin-top: 30px !important;
   margin-right: 30px;
+  margin: auto;
+  margin-bottom: 15px;
 }
 
 .container-add-client{
@@ -846,7 +879,7 @@ thead{
   color: #e4ece0;
   font-family: sans-serif;
   font-weight: bold;
-  padding: 12px;
+  padding: 10px;
   border-radius: 6px;
   text-decoration: none;
 
@@ -866,7 +899,7 @@ select{
 .observation-clients{
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 65%;
   font-family: sans-serif;
   font-weight: bold;
   color: #727274;
