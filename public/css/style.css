@@ -659,6 +659,41 @@ thead{
   font-weight: bold;
   color: #727274;
 }
+
+.salePrice{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  background: #fff;
+  border: 2px solid rgb(15, 42, 66);
+  border-radius: 6px;
+}
+
+.salePrice h2{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.salePrice label{
+  margin-left: 20px;
+}
+
+.salePrice input{
+  width: 80% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
+}
+
+
 .date-clientstextA{
   display: flex;
   flex-direction: column;
@@ -920,6 +955,44 @@ select{
 .inventaryMenu .product label:hover{
     cursor:pointer;
 }
+
+/*****************price***************/
+.inventaryMenu .price  {
+  box-shadow: 2px 2px 1px #899a1c;
+  padding: 0px 0px 0px 20px;
+  background: #899a1c;
+  text-align: center;
+  border:3px solid #899a1c;
+  border-radius: 6px;
+  text-decoration: none;
+  display: flex;
+  align-self: center;
+  justify-content: space-between;
+}
+.inventaryMenu .price  i{
+  margin: 20px 28px 5px 5px;
+  color: #fff;
+}
+.inventaryMenu .price label{
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  color: #000;
+  padding: 20px 0px 20px 5px;
+  background: #DADFE1;
+}
+/**************Botones Price hover**********/
+.inventaryMenu .price:hover  {
+    box-shadow: 2px 2px 5px #013243;
+    cursor:pointer;
+}
+
+.inventaryMenu .price label:hover{
+    cursor:pointer;
+}
+
+
+/*****************************/
 
 .inventaryMenu .reports  {
   padding: 0px 0px 0px 5px;
