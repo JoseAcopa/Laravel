@@ -1326,3 +1326,8 @@ select{
   font-family: sans-serif;
   outline: 0;
 }
+
+#ps {
+  display: flex;
+  flex-direction: row;
+}

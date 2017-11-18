@@ -109,55 +109,33 @@
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="text" name="priceList" value=""  placeholder="Precio Lista" required>
+              <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" required>
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo" required>
+              <input type="text" name="cost" value="" id="cost" placeholder="Costo" required>
               <label for="description">Descripción:</label>
               <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
             </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 1</h2>
-              <label for="porcentaje1"></label>
-              <select class="" name="">
-                <option value=""></option>
+            <div class="date-clients">
+              <label for="">Categoria Precio Venta</label>
+              <select class="" name="" onchange="priceSales(this);">
+                <option value="">Seleccione categoria</option>
+                <option value="Categoria 1">Categoria 1</option>
+                <option value="Categoria 2">Categoria 2</option>
+                <option value="Categoria 3">Categoria 3</option>
               </select>
-              <label for="precio1">Precio de Venta:</label>
-              <input type="text" name="priceSales1" value="" placeholder="Precio de Venta 1" required>
+              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" required>
             </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 2</h2>
-              <label for="porcentaje2"></label>
-              <select class="" name="">
-                <option value=""></option>
-              </select>
-              <label for="precio2">Precio de Venta:</label>
-              <input type="text" name="priceSales2" value="" placeholder="Precio de Venta 2" required>
+            <div class="date-clients">
+              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" required>
+              <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
+              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" required>
             </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 3</h2>
-              <label for="porcentaje3"></label>
-              <select class="" name="">
-                <option value=""></option>
-              </select>
-              <label for="precio3">Precio de Venta:</label>
-              <input type="text" name="priceSales3" value="" placeholder="Precio de Venta 3" required>
-            </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 4</h2>
-              <label for="porcentaje4">Porcentaje:</label>
-              <select class="" name="">
-                <option value=""></option>
-              </select>
-              <label for="precio4">Precio de Venta:</label>
-              <input type="text" name="priceSales4" value="" placeholder="Precio de Venta 4" required>
-            </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 5</h2>
-              <label for="porcentaje5">Porcentaje:</label>
-              <select class="" name="">
-                <option value=""></option>
-              </select>
-              <label for="precio5">Precio de Venta:</label>
+            <div class="date-clients">
+              <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" required>
+              <label for="priceSales5">Precio de Venta 5:</label>
               <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
             </div>
             <div class="button-client">
@@ -185,6 +163,50 @@
         var typeProduct = newVal[e.value]
         var lettersManguera = document.getElementById('VM').value=typeProduct.letters;
         var typeManguera = document.getElementById('TProducts').value=typeProduct.type;
+      }
+    </script>
+    <script type="text/javascript">
+      function priceSales(val) {
+        var value = val.value
+        var priceList = document.getElementById('priceList').value
+        var cost = document.getElementById('cost').value
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
+
+        if (value === 'Categoria 1') {
+          for (var i = 0; i < cat1.length; i++) {
+            var res = cat1[i] * priceList
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.70)'
+            document.getElementById('pv2').innerHTML = ' (x0.65)'
+            document.getElementById('pv3').innerHTML = ' (x0.60)'
+            document.getElementById('pv4').innerHTML = ' (x0.57)'
+          }
+        }else if (value === 'Categoria 2') {
+          for (var i = 0; i < cat2.length; i++) {
+            var res = cat2[i] * cost
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.40)'
+            document.getElementById('pv2').innerHTML = ' (x0.37)'
+            document.getElementById('pv3').innerHTML = ' (x0.36)'
+            document.getElementById('pv4').innerHTML = ' (x0.35)'
+          }
+        }else if (value === 'Categoria 3') {
+          for (var i = 0; i < cat3.length; i++) {
+            var res = cost / cat3[i]
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
+            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
+            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
+            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+          }
+        }
+        document.getElementById('priceSales1').value=newRes[0]
+        document.getElementById('priceSales2').value=newRes[1]
+        document.getElementById('priceSales3').value=newRes[2]
+        document.getElementById('priceSales4').value=newRes[3]
       }
     </script>
   </body>
