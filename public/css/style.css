@@ -972,25 +972,25 @@ select{
   justify-content: space-around;
 }
 .clasification .select{
-  width: 100%;
+  width: 65%;
   display: flex;
   flex-direction: column;
   height: auto;
 }
 .clasification .iniciales{
-  width: 70px;
+  width: 100px;
   display: flex;
   flex-direction: column;
   padding-top: 18px;
 }
 .tproductSelect{
-  width: 100% !important;
+  width: 95% !important;
   height: auto;
 }
 .inicialesInput{
-    width: 50% !important;
+    width: 85% !important;
     height: 16px;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 .img{
   width: 50%;
@@ -1278,4 +1278,51 @@ select{
 .searchDescription select{
   width: 30%;
   border-radius: 0px !important;
+}
+/********************************/
+
+.salePrice{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  background: #fff;
+  border: 2px solid rgb(15, 42, 66);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.salePrice h2{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.salePrice label{
+  margin-left: 20px;
+}
+
+.salePrice input{
+  width: 80% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
+}
+
+.salePrice select{
+  width: 85% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
 }
