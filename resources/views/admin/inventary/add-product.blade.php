@@ -109,7 +109,7 @@
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="text" name="pricelist" value=""  placeholder="Precio Lista" required>
+              <input type="text" name="priceList" value=""  placeholder="Precio Lista" required>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo" required>
               <label for="description">Descripción:</label>
@@ -122,7 +122,7 @@
                 <option value=""></option>
               </select>
               <label for="precio1">Precio de Venta:</label>
-              <input type="text" name="precio1" value="" id='precio1' placeholder="Precio de  Venta 1">
+              <input type="text" name="priceSales1" value="" placeholder="Precio de Venta 1" required>
             </div>
             <div class="salePrice">
               <h2>Precio de Venta 2</h2>
@@ -131,7 +131,7 @@
                 <option value=""></option>
               </select>
               <label for="precio2">Precio de Venta:</label>
-              <input type="text" name="precio2" value="" id='precio2' placeholder="Precio de  Venta 2">
+              <input type="text" name="priceSales2" value="" placeholder="Precio de Venta 2" required>
             </div>
             <div class="salePrice">
               <h2>Precio de Venta 3</h2>
@@ -140,7 +140,7 @@
                 <option value=""></option>
               </select>
               <label for="precio3">Precio de Venta:</label>
-              <input type="text" name="precio3" value="" id='precio3' placeholder="Precio de  Venta 3">
+              <input type="text" name="priceSales3" value="" placeholder="Precio de Venta 3" required>
             </div>
             <div class="salePrice">
               <h2>Precio de Venta 4</h2>
@@ -149,7 +149,7 @@
                 <option value=""></option>
               </select>
               <label for="precio4">Precio de Venta:</label>
-              <input type="text" name="precio4" value="" id='precio3' placeholder="Precio de  Venta 4">
+              <input type="text" name="priceSales4" value="" placeholder="Precio de Venta 4" required>
             </div>
             <div class="salePrice">
               <h2>Precio de Venta 5</h2>
@@ -158,16 +158,7 @@
                 <option value=""></option>
               </select>
               <label for="precio5">Precio de Venta:</label>
-              <input type="text" name="precio5" value="" id='precio3' placeholder="Precio de  Venta 5">
-            </div>
-            <div class="salePrice">
-              <h2>Precio de Venta 6</h2>
-              <label for="porcentaje6">Porcentaje:</label>
-              <select class="" name="">
-                <option value=""></option>
-              </select>
-              <label for="precio6">Precio de Venta:</label>
-              <input type="text" name="precio6" value="" id='precio3' placeholder="Precio de  Venta 6">
+              <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>

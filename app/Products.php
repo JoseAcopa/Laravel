@@ -12,7 +12,9 @@ class Products extends Model
   // public $timestamps = false;
 
   protected $fillable = [
-      'nInvoice', 'TProducts', 'provider', 'checkin', 'quantity',
-      'unit', 'cost','description', 'initials', 'stock',
+      'nInvoice', 'TProducts', 'initials', 'provider', 'checkin',
+      'quantity', 'unit', 'priceList', 'cost','description', 'stock',
+      'priceSales1', 'priceSales2', 'priceSales3', 'priceSales4',
+      'priceSales5',
   ];
 }
