@@ -109,8 +109,11 @@
               <label for="merma">Merma:</label>
               <input type="text" name="merma" value=""  placeholder="Merma" onclick="resta()">
               <label for="price">Precio de Venta:</label>
-              <input type="text" name="price" value="" placeholder="Precio de Venta">
-              <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              {{-- <input type="text" name="price" value="" placeholder="Precio de Venta"> --}}
+              {{-- <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden=""> --}}
               <label for="totalAmount">Precio Total:</label>
               <input type="text" name="totalAmount" value=""  placeholder="Precio Total">
               <input type="text" name="totalMult" value="100"  placeholder="Precio Total" hidden="">

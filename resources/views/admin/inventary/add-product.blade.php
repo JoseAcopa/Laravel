@@ -76,7 +76,7 @@
                   <label for="TProducts">Tipo de Producto:</label>
                   <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden="">
                   <select class="tproductSelect" name="" onchange="myTest(this);" id='test'>
-                    <option value="null">Seleccione Tipo de Producto</option>
+                    <option value="null">Seleccione</option>
                     @foreach ($typeProducts as $typeProduct)
                       <option value="{{$typeProduct->id_Producto}}">{{$typeProduct->type}}</option>
                     @endforeach
@@ -108,10 +108,66 @@
               </select>
             </div>
             <div class="date-clients">
+              <label for="pricelist">Precio Lista:</label>
+              <input type="text" name="pricelist" value=""  placeholder="Precio Lista" required>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value=""  placeholder="Costo" required>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
+              <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 1</h2>
+              <label for="porcentaje1"></label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio1">Precio de Venta:</label>
+              <input type="text" name="precio1" value="" id='precio1' placeholder="Precio de  Venta 1">
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 2</h2>
+              <label for="porcentaje2"></label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio2">Precio de Venta:</label>
+              <input type="text" name="precio2" value="" id='precio2' placeholder="Precio de  Venta 2">
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 3</h2>
+              <label for="porcentaje3"></label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio3">Precio de Venta:</label>
+              <input type="text" name="precio3" value="" id='precio3' placeholder="Precio de  Venta 3">
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 4</h2>
+              <label for="porcentaje4">Porcentaje:</label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio4">Precio de Venta:</label>
+              <input type="text" name="precio4" value="" id='precio3' placeholder="Precio de  Venta 4">
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 5</h2>
+              <label for="porcentaje5">Porcentaje:</label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio5">Precio de Venta:</label>
+              <input type="text" name="precio5" value="" id='precio3' placeholder="Precio de  Venta 5">
+            </div>
+            <div class="salePrice">
+              <h2>Precio de Venta 6</h2>
+              <label for="porcentaje6">Porcentaje:</label>
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              <label for="precio6">Precio de Venta:</label>
+              <input type="text" name="precio6" value="" id='precio3' placeholder="Precio de  Venta 6">
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -124,7 +180,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>

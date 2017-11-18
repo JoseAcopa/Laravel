@@ -87,8 +87,8 @@
               <input type="text" name="provider" value="" id='provider'  readonly="readonly">
             </div>
             <div class="date-clients">
-              <label for="rfc">RFC:</label>
-              <input type="text" name="rfc" value="" id='rfc' readonly="readonly">
+              {{-- <label for="rfc">RFC:</label>
+              <input type="text" name="rfc" value="" id='rfc' readonly="readonly"> --}}
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="cost">Costo:</label>

@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/select2.css') }}"/>
+    <script src="{{ url('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url('js/select2.js') }}"></script>
   </head>
   <body>
     <header>
@@ -68,20 +71,24 @@
           <h2><i class="fa fa-pencil-square"></i> Registrar Entrada</h2>
           <form class="container-add-clients" method="POST" action="/admin/checkin">
             {{ csrf_field() }}
+            <div class="searchDescription">
+              <i class="fa fa-search fa-lg"></i>
+              <select id="search" onchange="myProduct(this)">
+                <option value="null"></option>
+                @foreach ($products as $product)
+                  <option value="{{ $product->id }}">{{ $product->description }}</option>
+                @endforeach
+              </select>
+            </div>
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
               <div class="clasification">
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
-                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts' hidden="">
+                  {{-- <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required> --}}
+                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'>
                   <input type="text" class="inicialesInput"  name="price" value="100" hidden="">
-                  <select class="" name="" onchange="myProduct(this)">
-                    <option value="null">Seleccione Producto</option>
-                    @foreach ($products as $product)
-                      <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
-                    @endforeach
-                  </select>
                   </div>
                   <div class="iniciales">
                     <input type="text" class="inicialesInput"  name="letters" value="" id='letters'  readonly="readonly">
@@ -94,11 +101,11 @@
               <label for="checkin">Fecha de Entrada:</label>
               <input type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
-              <input type="number" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
+              <input type="tel" pattern="[0-9]*" title="numero invalido" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="stock">Existencia:</label>
               <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
               <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
-          </div>
+            </div>
             <div class="date-clients">
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
@@ -118,6 +125,11 @@
     <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#search").select2();
+      });
+    </script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript">
       function myProduct(e) {
@@ -145,7 +157,6 @@
         document.getElementById('cost').value=newCost
         document.getElementById('description').value=newDescription
         document.getElementById('unit').value=newUnit
-        console.log(newProvider);
       }
     </script>
     <script type="text/javascript">

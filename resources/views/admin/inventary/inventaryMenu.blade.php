@@ -76,7 +76,6 @@
             </div>
             <div class="inventaryMenu">
               <a href="{{url('admin/inventary')}}" class="product"> <i class="fa fa-leanpub fa-3x"></i><label for="">Productos</label></a>
-              <a href="{{url('admin/inventary/price/price')}}" class="price"> <i class="fa fa-money fa-3x"></i><label for="">Precios de Ventas</label></a>
               <a href="#" class="reports"> <i class="fa fa-book fa-3x"></i><label for="">Reportes</label></a>
             </div>
             <div class="img">
