@@ -71,19 +71,22 @@
               <label for="folio">Folio:</label>
               <input type="text" name="folio" value=""  placeholder="Folio">
               <label for="date">Fecha:</label>
-              <input type="text" name="date" value=""  placeholder="">
+              <input type="date" name="date" value=""  placeholder="">
               <label for="number-client">Número de Cliente:</label>
-              <input type="text" name="number-client" value=""  placeholder="Número de Cliente">
+              <select class="" name="">
+                <option value=""></option>
+              </select>
+              {{-- <input type="text" name="number-client" value=""  placeholder="Número de Cliente"> --}}
               <label for="name-company">Nombre de la empresa:</label>
-              <input type="text" name="name-company" value=""  placeholder="Nombre de la empresa">
+              <input type="text" name="name-company" value=""  readonly="">
             </div>
             <div class="date-clients">
               <label for="name">RFC:</label>
-              <input type="text" name="rfc" value=""  placeholder="RFC">
+              <input type="text" name="rfc" value=""  readonly="">
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value=""  placeholder="Teléfono">
+              <input type="text" name="telephone" value="" readonly="">
               <label for="adress">Dirección:</label>
-              <textarea type="text" rows="6" name="adress"  placeholder="Dirección"></textarea>
+              <textarea type="text" rows="6" name="adress"  readonly=""></textarea>
             </div>
             <div class="date-clients">
               <label for="nc">Nombre Completo:</label>
@@ -99,6 +102,15 @@
               <label for="observation">Observaciones:</label>
               <textarea type="text" rows="6" name="observation"  placeholder="Observaciones"></textarea>
             </div>
+
+            <div class="quotationTotal">
+              <label for="subtotal">SubTotal:</label>
+              <input type="text" name="subtotal" value=""  placeholder="SubTotal">
+              <label for="iva">IVA:</label>
+              <input type="text" name="iva" value=""  placeholder="IVA">
+              <label for="total">TOTAL:</label>
+              <input type="text" name="total" value=""  placeholder="Total">
+            </div>
             <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
@@ -107,18 +119,18 @@
                 <thead>
                   <tr class="theader">
                     <th>Acciones</th>
-                    <th>N° de Producto</th>
-                    <th>Unidad de Medida</th>
-                    <th>Precio de Venta 1</th>
-                    <th>Precio de Venta 2</th>
-                    <th>Precio de Venta 3</th>
-                    <th>Precio de Venta 4</th>
+                    <th>Tipo de Producto</th>
+                    <th>Proveedor</th>
+                    <th>Costo</th>
+                    <th>Precio 1</th>
+                    <th>Precio 2</th>
+                    <th>Precio 3</th>
                  </tr>
                 </thead>
                 <tbody class="tbodymain">
                   <tr class="tbody">
                     <td class="action">
-                      <a href="#" alt="Eliminar"><i class="fa fa-trash-o fa-lg"></i></a>
+                      <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>00078</td>
                     <td>metros</td>
@@ -130,8 +142,9 @@
                 </tbody>
               </table>
             </div>
+
             <div class="button-inventary">
-              <a href="#" class="btn-success"><i class="fa fa-save"></i> Guardar</a>
+              <a href="#" class="btn-green"><i class="fa fa-save fa-lg"></i> Guardar</a>
               <a href="#" class="pdf"><i class="fa fa-file-pdf-o"></i>  Imprimir PDF</a>
               <a href="{{ url('/admin/quotation') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>

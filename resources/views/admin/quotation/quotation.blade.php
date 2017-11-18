@@ -69,7 +69,7 @@
           <div class="container-search">
             <a href="{{url('admin/add-quotation')}}" class="btn-green" ><i class="fa fa-book"></i>  Cotizar</a>
           </div>
-          <div class="table">
+          <div >
             <table id="Jtabla">
               <thead>
                 <tr class="theader">
@@ -79,7 +79,7 @@
                   <th>Número de Cliente</th>
                   <th>Nombre de la Empresa</th>
                   <th>RFC</th>
-                  <th>Teléfono</th>
+                  {{-- <th>Teléfono</th>
                   <th>Dirección</th>
                   <th>Nombre Completo</th>
                   <th>Puesto</th>
@@ -87,23 +87,23 @@
                   <th>N° de Licitación</th>
                   <th>Observaciones</th>
                   <th>Productos</th>
-                  <th>SubTotal</th>
-                  <th>Total</th>
+                  <th>SubTotal</th> --}}
+                  {{-- <th>Total</th> --}}
                </tr>
               </thead>
               <tbody class="tbodymain">
                 <tr class="tbody">
                   <td class="action">
-                    <a href="{{url('/admin/edit-quotation')}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a href="#" alt="Eliminar"><i class="fa fa-trash-o"></i></a>
+                    <a class="btn-info" href="}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>                    <a class="btn-edit" href="{{url('/admin/edit-quotation')}}"><i class="fa fa-pencil-square-o"></i></a>
+                    <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                   </td>
                   <td>RXS-000-2017</td>
                   <td>25-06-2017</td>
                   <td>0001</td>
                   <td>Servicios Electricos Automotriz Patricio</td>
                   <td>PACR720402U71</td>
-                  <td>9932065554</td>
-                  <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
+                  {{-- <td>9932065554</td> --}}
+                  {{-- <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
                   <td>Nirandelli Patricio Mayo</td>
                   <td>Encargado de sistemas</td>
                   <td>delli.patricio.mayo@gmail.com</td>
@@ -111,7 +111,7 @@
                   <td>mmmmmmmmmmmmmmmmmmmmmmhhgffffffffdfhj</td>
                   <td>manguera</td>
                   <td>600</td>
-                  <td>700</td
+                  <td>700</td --}}
                 </tr>
               </tbody>
             </table>

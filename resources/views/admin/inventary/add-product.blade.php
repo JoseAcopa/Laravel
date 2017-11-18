@@ -76,7 +76,7 @@
                   <label for="TProducts">Tipo de Producto:</label>
                   <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden="">
                   <select class="tproductSelect" name="" onchange="myTest(this);" id='test'>
-                    <option value="null">Seleccione Tipo de Producto</option>
+                    <option value="null">Seleccione</option>
                     @foreach ($typeProducts as $typeProduct)
                       <option value="{{$typeProduct->id_Producto}}">{{$typeProduct->type}}</option>
                     @endforeach
@@ -108,10 +108,35 @@
               </select>
             </div>
             <div class="date-clients">
+              <label for="pricelist">Precio Lista:</label>
+              <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" required>
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value=""  placeholder="Costo" required>
+              <input type="text" name="cost" value="" id="cost" placeholder="Costo" required>
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" placeholder="Descripción"></textarea>
+              <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
+            </div>
+            <div class="date-clients">
+              <label for="">Categoria Precio Venta</label>
+              <select class="" name="" onchange="priceSales(this);">
+                <option value="">Seleccione categoria</option>
+                <option value="Categoria 1">Categoria 1</option>
+                <option value="Categoria 2">Categoria 2</option>
+                <option value="Categoria 3">Categoria 3</option>
+              </select>
+              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" required>
+              <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
+              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" required>
+              <label for="priceSales5">Precio de Venta 5:</label>
+              <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -124,7 +149,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
@@ -138,6 +163,50 @@
         var typeProduct = newVal[e.value]
         var lettersManguera = document.getElementById('VM').value=typeProduct.letters;
         var typeManguera = document.getElementById('TProducts').value=typeProduct.type;
+      }
+    </script>
+    <script type="text/javascript">
+      function priceSales(val) {
+        var value = val.value
+        var priceList = document.getElementById('priceList').value
+        var cost = document.getElementById('cost').value
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
+
+        if (value === 'Categoria 1') {
+          for (var i = 0; i < cat1.length; i++) {
+            var res = cat1[i] * priceList
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.70)'
+            document.getElementById('pv2').innerHTML = ' (x0.65)'
+            document.getElementById('pv3').innerHTML = ' (x0.60)'
+            document.getElementById('pv4').innerHTML = ' (x0.57)'
+          }
+        }else if (value === 'Categoria 2') {
+          for (var i = 0; i < cat2.length; i++) {
+            var res = cat2[i] * cost
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.40)'
+            document.getElementById('pv2').innerHTML = ' (x0.37)'
+            document.getElementById('pv3').innerHTML = ' (x0.36)'
+            document.getElementById('pv4').innerHTML = ' (x0.35)'
+          }
+        }else if (value === 'Categoria 3') {
+          for (var i = 0; i < cat3.length; i++) {
+            var res = cost / cat3[i]
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
+            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
+            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
+            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+          }
+        }
+        document.getElementById('priceSales1').value=newRes[0]
+        document.getElementById('priceSales2').value=newRes[1]
+        document.getElementById('priceSales3').value=newRes[2]
+        document.getElementById('priceSales4').value=newRes[3]
       }
     </script>
   </body>

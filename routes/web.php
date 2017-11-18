@@ -58,6 +58,17 @@ Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
 Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
+Route::get('/admin/add-entrada', function(){
+  return view ('admin/inventary/add-entrada');
+});
+
+Route::get('/admin/inventary/price/price', function(){
+  return view ('admin/inventary/price/price');
+});
+
+Route::get('/admin/inventary/price/add-price', function(){
+  return view ('admin/inventary/price/add-price');
+});
 
 // ------------------clasificationProduct---------------------------------------
 Route::get('/admin/clasificationProduct', 'TypeProductsControllers@create');
@@ -140,9 +151,6 @@ Route::get('/users/edit-out', function(){
   return view ('users/inventary/edit-out');
 });
 
-Route::get('/admin/add-entrada', function(){
-  return view ('admin/inventary/add-entrada');
-});
 
 // -------------------login--------------------------------------
 Auth::routes();
