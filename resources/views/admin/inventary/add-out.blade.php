@@ -95,7 +95,7 @@
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="checkout">Fecha de Salida:</label>
-              <input type="date" name="checkout" value="">
+              <input type="date" name="checkout" value="" class="date">
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' readonly="readonly">
               {{-- <label for="precio1">Porcentaje:</label>

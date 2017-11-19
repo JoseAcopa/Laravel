@@ -10,6 +10,7 @@ background-image: url('../img/3.jpg');
   width: 100%;
   background: #1E8BC3;
   position: fixed;
+  z-index: 3;
 }
 
 .ul-nav{
@@ -671,10 +672,8 @@ thead{
 .date-clientstextA textarea{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 97% !important;
   font-family: sans-serif;
-  font-weight: bold;
-  color: #727274;
 }
 .container-add-clients input{
   width: 95%;
