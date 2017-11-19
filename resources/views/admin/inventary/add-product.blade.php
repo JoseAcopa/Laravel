@@ -124,17 +124,17 @@
                 <option value="Categoria 3">Categoria 3</option>
               </select>
               <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
-              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" required>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly="" required>
             </div>
             <div class="date-clients">
               <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
-              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" required>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly="" required>
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
-              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" required>
+              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="" required>
             </div>
             <div class="date-clients">
               <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
-              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" required>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly="" required>
               <label for="priceSales5">Precio de Venta 5:</label>
               <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
             </div>
@@ -203,10 +203,10 @@
             document.getElementById('pv4').innerHTML = ' (/ 0.85)'
           }
         }
-        document.getElementById('priceSales1').value=newRes[0]
-        document.getElementById('priceSales2').value=newRes[1]
-        document.getElementById('priceSales3').value=newRes[2]
-        document.getElementById('priceSales4').value=newRes[3]
+        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
       }
     </script>
   </body>
