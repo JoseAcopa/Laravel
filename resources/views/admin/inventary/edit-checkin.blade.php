@@ -103,8 +103,18 @@
               <input type="text" name="cost" id='cost' value="{{ $checkin->cost }}" required>
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value="{{ $checkin->unit }}" readonly="">
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" readonly="">{{ $checkin->description }}</textarea>
+            </div>
+            <div class="chekinText">
+              <div class="add-chekinTextArea">
+                <label for="description">Descripción:</label>
+                <textarea type="text" rows="4" name="description" readonly="">{{ $checkin->description }}</textarea>
+              </div>
+              <div class="checkinMoney">
+                <label for="money">Tipo de moneda:</label>
+                <select class="" name="">
+                  <option value="">Seleccione tipo de moneda</option>
+                </select>
+              </div>
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>

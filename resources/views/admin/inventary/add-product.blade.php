@@ -134,13 +134,13 @@
             </div>
             <div class="date-clients">
               <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
-              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" required>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly=""  required>
               <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
-              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" required>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly=""  required>
             </div>
             <div class="date-clients">
               <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
-              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" required>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly=""  required>
 
               <label for="priceSales5">Precio de Venta 5:</label>
               <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>

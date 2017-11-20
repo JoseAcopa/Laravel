@@ -846,6 +846,22 @@ select{
   font-weight: bold;
   color: #727274;
 }
+.chekinText{
+  display: flex;
+  flex-direction: row;
+  width: 97%;
+  margin-left: 13px;
+}
+
+.add-chekinTextArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  width: 68%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+}
 
 .inventary{
   display: flex;
@@ -1374,4 +1390,24 @@ select{
   border: 1px solid #006064;
   font-family: sans-serif;
   outline: 0;
+}
+
+input:hover::before {
+  content: "\f05e";
+  font-family: FontAwesome;
+  color: red;
+}
+
+input:-moz-read-only {
+  background: #eee7e7;
+}
+input:read-only {
+  background: #eee7e7;
+}
+
+textarea:-moz-read-only {
+  background: #eee7e7;
+}
+textarea:read-only {
+  background: #eee7e7;
 }

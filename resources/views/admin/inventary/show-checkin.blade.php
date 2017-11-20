@@ -115,6 +115,10 @@
                 <label for="">Costo:</label>
                 <p>${{ $checkin->cost }}</p>
               </div>
+              <div class="show-product">
+                <label for="">Tipo de moneda:</label>
+                <p></p>
+              </div>
             </div>
             <div class="view">
               <div class="show-product">

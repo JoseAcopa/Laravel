@@ -115,11 +115,22 @@
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' placeholder="Costo">
               <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+              {{-- <span class="fa-stack fa-lg">
+                <i class="fa fa-ban fa-stack-2x text-danger"></i>
+              </span> --}}
+              <input type="text"  name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
             </div>
-            <div class="date-">
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+            <div class="chekinText">
+              <div class="add-chekinTextArea">
+                <label for="description">Descripción:</label>
+                <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+              </div>
+              <div class="checkinMoney">
+                <label for="money">Tipo de moneda:</label>
+                <select class="" name="">
+                  <option value="">Seleccione tipo de moneda</option>
+                </select>
+              </div>
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
