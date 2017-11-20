@@ -112,6 +112,12 @@
               <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" required>
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id="cost" placeholder="Costo" required>
+              <label for="money">Tipo de moneda:</label>
+              <select class="" name="">
+                <option value="">Seleccione tipo de moneda</option>
+              </select>
+            </div>
+            <div class="date-clientstextA">
               <label for="description">Descripción:</label>
               <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
             </div>
@@ -121,20 +127,21 @@
                 <option value="">Seleccione categoria</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Categoria 3</option>
+                <option value="Categoria 3">Otros</option>
               </select>
-              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
-              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly="" required>
-            </div>
-            <div class="date-clients">
-              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
-              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly="" required>
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
               <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="" required>
             </div>
             <div class="date-clients">
+              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" required>
               <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
-              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly="" required>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" required>
+
               <label for="priceSales5">Precio de Venta 5:</label>
               <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
             </div>

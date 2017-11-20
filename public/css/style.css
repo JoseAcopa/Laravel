@@ -672,10 +672,8 @@ thead{
 .date-clientstextA textarea{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 97% !important;
   font-family: sans-serif;
-  font-weight: bold;
-  color: #727274;
 }
 .container-add-clients input{
   width: 95%;
@@ -712,10 +710,14 @@ thead{
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .button-inventary a{
   margin-right: 30px;
+  margin: auto;
+  margin-top: 15px;
 }
 
 .container-add-client{
@@ -828,11 +830,18 @@ select{
   outline: 0px;
   height: auto;
 }
+.obs-Total{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: 13px;
+}
 
 .observation-clients{
   display: flex;
   flex-direction: column;
-  width: 95%;
+  justify-content: flex-start !important;
+  width: 68%;
   font-family: sans-serif;
   font-weight: bold;
   color: #727274;
@@ -1331,4 +1340,38 @@ select{
 #ps {
   display: flex;
   flex-direction: row;
+}
+
+.quotationTotal{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  background: #fff;
+  border: 2px solid rgb(15, 42, 66);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.quotationTotal h2{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.quotationTotal label{
+  margin-left: 20px;
+}
+
+.quotationTotal input{
+  width: 80% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
 }
