@@ -1392,22 +1392,20 @@ select{
   outline: 0;
 }
 
-input:hover::before {
-  content: "\f05e";
-  font-family: FontAwesome;
-  color: red;
-}
-
 input:-moz-read-only {
   background: #eee7e7;
+  cursor: not-allowed;
 }
 input:read-only {
   background: #eee7e7;
+  cursor: not-allowed;
 }
 
 textarea:-moz-read-only {
   background: #eee7e7;
+  cursor: not-allowed;
 }
 textarea:read-only {
   background: #eee7e7;
+  cursor: not-allowed;
 }
