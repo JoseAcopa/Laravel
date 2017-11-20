@@ -69,17 +69,18 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Registrar Entrada</h2>
+          <div class="searchDescription">
+            <i class="fa fa-search fa-lg"></i>
+            <select id="search" onchange="myProduct(this)">
+              <<option value="null">Buscar Producto</option>
+              @foreach ($products as $product)
+                <option value="{{ $product->id }}">{{ $product->description }}</option>
+              @endforeach
+            </select>
+          </div>
           <form class="container-add-clients" method="POST" action="/admin/checkin">
             {{ csrf_field() }}
-            <div class="searchDescription">
-              <i class="fa fa-search fa-lg"></i>
-              <select id="search" onchange="myProduct(this)">
-                <<option value="null">Buscar Producto</option>
-                @foreach ($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->description }}</option>
-                @endforeach
-              </select>
-            </div>
+
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value="" placeholder="Número Factura" required>
