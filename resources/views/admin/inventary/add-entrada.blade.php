@@ -80,7 +80,6 @@
           </div>
           <form class="container-add-clients" method="POST" action="/admin/checkin">
             {{ csrf_field() }}
-
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
               <input type="text" name="nInvoice" value="" placeholder="Número Factura" required>
@@ -94,7 +93,7 @@
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider" id='provider'>
+              <select class="select-design" name="provider" id='provider'>
                 <option value="" id='provider'></option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
@@ -103,7 +102,7 @@
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="" required>
+              <input class="date-design" type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="tel" pattern="[0-9]*" title="numero invalido" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="stock">Existencia:</label>
@@ -116,9 +115,6 @@
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' placeholder="Costo">
               <label for="unit">Unidad de Medida:</label>
-              {{-- <span class="fa-stack fa-lg">
-                <i class="fa fa-ban fa-stack-2x text-danger"></i>
-              </span> --}}
               <input type="text"  name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
             </div>
             <div class="chekinText">
@@ -128,14 +124,14 @@
               </div>
               <div class="checkinMoney">
                 <label for="money">Tipo de moneda:</label>
-                <select class="" name="">
+                <select class="select-design" name="">
                   <option value="">Seleccione tipo de moneda</option>
                 </select>
               </div>
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <select class="" name="" onchange="priceSales(this);">
+              <select class="select-design" name="" onchange="priceSales(this);">
                 <option value="">Seleccione categoria</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>

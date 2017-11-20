@@ -81,7 +81,7 @@
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider">
+              <select class="select-design" name="provider">
                 <option value="{{ $checkin->provider }}">{{ $checkin->provider }}</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
@@ -90,7 +90,7 @@
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="{{ $checkin->checkin }}" required>
+              <input type="date" class="date-design" name="checkin" value="{{ $checkin->checkin }}" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="number" name="quantity" value="{{ $checkin->quantity }}" required>
               <label for="stock">Existencia:</label>
@@ -111,14 +111,14 @@
               </div>
               <div class="checkinMoney">
                 <label for="money">Tipo de moneda:</label>
-                <select class="" name="">
+                <select class="select-design" name="">
                   <option value="">Seleccione tipo de moneda</option>
                 </select>
               </div>
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <select class="" name="" onchange="priceSales(this);">
+              <select class="select-design" class="select-design" onchange="priceSales(this);">
                 <option value="">Seleccione categoria</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>

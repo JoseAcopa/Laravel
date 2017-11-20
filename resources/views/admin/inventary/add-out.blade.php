@@ -7,6 +7,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/select2.css') }}"/>
+    <script src="{{ url('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url('js/select2.js') }}"></script>
   </head>
   <body>
     <header>
@@ -66,6 +69,15 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i>Registrar Salidas</h2>
+          <div class="searchDescription">
+            <i class="fa fa-search"></i>
+            <select id="search" onchange="myProduct(this)">
+              <<option value="null">Buscar Producto</option>
+              @foreach ($products as $product)
+                <option value="{{ $product->id }}">{{ $product->description }}</option>
+              @endforeach
+            </select>
+          </div>
           <form class="container-add-clients" method="POST" action="/admin/inventary-out">
             {{ csrf_field() }}
             <div class="date-clients">
@@ -75,7 +87,7 @@
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
                   <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts' hidden="">
-                  <select class="" name="" onchange="myProduct(this)">
+                  <select class="select-design" name="" onchange="myProduct(this)">
                     <option value="">Seleccione producto</option>
                     @foreach ($products as $product)
                       <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
@@ -95,7 +107,7 @@
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="checkout">Fecha de Salida:</label>
-              <input type="date" name="checkout" value="" class="date">
+              <input type="date" class="date-design" name="checkout" value="" class="date">
               <label for="cost">Costo:</label>
               <input type="text" name="cost" value="" id='cost' readonly="readonly">
               {{-- <label for="precio1">Porcentaje:</label>
@@ -109,7 +121,7 @@
               <label for="merma">Merma:</label>
               <input type="text" name="merma" value=""  placeholder="Merma" onclick="resta()">
               <label for="price">Precio de Venta:</label>
-              <select class="" name="">
+              <select class="select-design" name="">
                 <option value=""></option>
               </select>
               {{-- <input type="text" name="price" value="" placeholder="Precio de Venta"> --}}
@@ -132,6 +144,11 @@
     <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#search").select2();
+      });
+    </script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript">
       function myProduct(e) {

@@ -75,7 +75,7 @@
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
                   <input type="text" id="TProducts" value="{{ $product->TProducts }}" name="TProducts" readonly="readonly" hidden="">
-                  <select class="tproductSelect" name="" onchange="myTProduct(this);" id='test'>
+                  <select class="select-design" name="" onchange="myTProduct(this);" id='test'>
                     <option value="{{ $product->TProducts }}">{{ $product->TProducts }}</option>
                     @foreach ($typeProducts as $typeProduct)
                       <option value="{{ $typeProduct->id_Producto }}">{{ $typeProduct->type }}</option>
@@ -83,12 +83,11 @@
                   </select>
                 </div>
                 <div class="iniciales">
-                  {{-- <label for="VM">Iniciales:</label> --}}
                   <input type="text" class="inicialesInput" id="VM" value="{{ $product->initials }}" name="initials" readonly="readonly">
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider">
+              <select class="select-design" name="provider">
                 <option value="{{ $product->provider }}">{{ $product->provider }}</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
@@ -97,11 +96,11 @@
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="{{ $product->checkin }}" required>
+              <input type="date" class="date-design" name="checkin" value="{{ $product->checkin }}" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="text" name="quantity" value="{{ $product->quantity }}" required>
               <label for="unit">Unidad de Medida:</label>
-              <select class="" name="unit">
+              <select class="select-design" name="unit">
                 <option value="{{ $product->unit }}">{{ $product->unit }}</option>
                 @foreach ($units as $unit)
                   <option value="{{ $unit->type }}">{{ $unit->type }}</option>
@@ -114,7 +113,7 @@
               <label for="cost">Costo:</label>
               <input type="text" name="cost" id='cost' value="{{ $product->cost }}" required>
               <label for="money">Tipo de moneda:</label>
-              <select class="" name="">
+              <select class="select-design" name="">
                 <option value="">Seleccione tipo de moneda</option>
               </select>
             </div>
@@ -124,7 +123,7 @@
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <select class="" name="" onchange="priceSales(this);">
+              <select class="select-design" name="" onchange="priceSales(this);">
                 <option value="">Seleccione categoria</option>
                 <option value="Categoria 1">Categoria 1</option>
                 <option value="Categoria 2">Categoria 2</option>
