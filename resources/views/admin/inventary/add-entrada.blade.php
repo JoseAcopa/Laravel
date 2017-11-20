@@ -116,6 +116,8 @@
               <input type="text" name="cost" value="" id='cost' placeholder="Costo">
               <label for="unit">Unidad de Medida:</label>
               <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+            </div>
+            <div class="date-">
               <label for="description">Descripción:</label>
               <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
             </div>
