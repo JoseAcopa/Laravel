@@ -81,10 +81,7 @@
                 <label for="">Tipo de Producto:</label>
                 <p>{{ $product->TProducts }}</p>
               </div>
-              <div class="show-product">
-                <label for="">Categoria:</label>
-                <p>{{ $product->TProducts }}</p>
-              </div>
+
               <div class="show-product">
                 <label for="">Proveedor:</label>
                 <p>{{ $product->provider }}</p>
@@ -93,12 +90,13 @@
                 <label for="">Descripción:</label>
                 <p>{{ $product->description }}</p>
               </div>
-            </div>
-            <div class="view">
               <div class="show-product">
                 <label for="">Fecha de Entrada:</label>
                 <p>{{ $product->checkin }}</p>
               </div>
+            </div>
+            <div class="view">
+
               <div class="show-product">
                 <label for="">Cantidad de Entrada:</label>
                 <p>{{ $product->quantity }}</p>
