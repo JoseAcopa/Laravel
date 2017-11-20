@@ -43,16 +43,21 @@ class CheckinsController extends Controller
     {
       $checkin = new Checkins;
       $checkin->nInvoice = request('nInvoice');
-      $checkin->TProducts = request('TProducts');
-      $checkin->letters = request('letters');
+      $checkin->TProduct = request('TProduct');
+      $checkin->NProduct = request('NProduct');
       $checkin->provider = request('provider');
-      $checkin->description = request('description');
       $checkin->checkin = request('checkin');
       $checkin->quantity = request('quantity');
       $checkin->stock = request('stock');
       $checkin->unit = request('unit');
+      $checkin->priceList = request('priceList');
       $checkin->cost = request('cost');
-      $checkin->price = request('price');
+      $checkin->description = request('description');
+      $checkin->priceSales1 = request('priceSales1');
+      $checkin->priceSales2 = request('priceSales2');
+      $checkin->priceSales3 = request('priceSales3');
+      $checkin->priceSales4 = request('priceSales4');
+      $checkin->priceSales5 = request('priceSales5');
       $checkin->save();
       return redirect('admin/checkin')->with('success','Producto '. $checkin->TProducts .' Guardado correctamente');
 
@@ -95,30 +100,40 @@ class CheckinsController extends Controller
     public function update(Request $request, $id)
     {
       $newNInvoice = $request->input('nInvoice');
-      $newTProducts = $request->input('TProducts');
-      $newLetters = $request->input('letters');
+      $newTProduct = $request->input('TProduct');
+      $newNProduct = $request->input('NProduct');
       $newProvider = $request->input('provider');
-      $newDescription = $request->input('description');
       $newCheckin = $request->input('checkin');
       $newQuantity = $request->input('quantity');
       $newStock = $request->input('stock');
       $newUnit = $request->input('unit');
+      $newPriceList = $request->input('priceList');
       $newCost = $request->input('cost');
-      $newPrice = $request->input('price');
+      $newDescription = $request->input('description');
+      $newPriceSales1 = $request->input('priceSales1');
+      $newPriceSales2 = $request->input('priceSales2');
+      $newPriceSales3 = $request->input('priceSales3');
+      $newPriceSales4 = $request->input('priceSales4');
+      $newPriceSales5 = $request->input('priceSales5');
 
       $checkin = Checkins::find($id);
 
       $checkin->nInvoice = $newNInvoice;
-      $checkin->TProducts = $newTProducts;
-      $checkin->letters = $newLetters;
+      $checkin->TProduct = $newTProduct;
+      $checkin->NProduct = $newNProduct;
       $checkin->provider = $newProvider;
-      $checkin->description = $newDescription;
       $checkin->checkin = $newCheckin;
       $checkin->quantity = $newQuantity;
       $checkin->stock = $newStock;
       $checkin->unit = $newUnit;
+      $checkin->priceList = $newPriceList;
       $checkin->cost = $newCost;
-      $checkin->price = $newPrice;
+      $checkin->description = $newDescription;
+      $checkin->priceSales1 = $newPriceSales1;
+      $checkin->priceSales2 = $newPriceSales2;
+      $checkin->priceSales3 = $newPriceSales3;
+      $checkin->priceSales4 = $newPriceSales4;
+      $checkin->priceSales5 = $newPriceSales5;
       $checkin->save();
 
       return redirect('admin/checkin')->with('success','Producto actualizado correctamente');

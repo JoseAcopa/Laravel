@@ -85,11 +85,11 @@
               <input type="text" name="nInvoice" value="" placeholder="Número Factura" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="TProducts">Tipo de Producto:</label>
-                  <input type="text" class="inicialesInput" name="TProducts" value="" id='TProducts'>
+                  <label for="TProduct">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput" name="TProduct" value="" id='TProducts' readonly="readonly">
                 </div>
                 <div class="iniciales">
-                  <input type="text" class="inicialesInput" name="letters" value="" id='letters'  readonly="readonly">
+                  <input type="text" class="inicialesInput" name="NProduct" value="" id='letters' readonly="readonly">
                 </div>
               </div>
               <label for="provider">Proveedor:</label>

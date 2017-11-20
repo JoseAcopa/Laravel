@@ -12,7 +12,8 @@ class Checkins extends Model
   // public $timestamps = false;
 
   protected $fillable = [
-      'nInvoice', 'TProducts', 'letters', 'provider', 'checkin',
-      'quantity', 'stock', 'unit', 'cost', 'price', 'description',
+      'nInvoice', 'TProduct', 'NProduct', 'provider', 'checkin',
+      'quantity', 'stock', 'unit', 'priceList', 'cost', 'description',
+      'priceSales1', 'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5',
   ];
 }
