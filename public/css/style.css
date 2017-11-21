@@ -1428,3 +1428,17 @@ textarea:read-only {
   background: #eee7e7;
   cursor: not-allowed;
 }
+
+.input-radio{
+  display: flex;
+  flex-direction: row;
+}
+
+.input-radio input{
+  width: 20px;
+}
+
+.input-radio label{
+  cursor: pointer;
+  margin-right: 20px;
+}

@@ -11,8 +11,8 @@ class Checkouts extends Model
 
   // public $timestamps = false;
   protected $fillable = [
-      'nInvoice', 'TProducts', 'letters', 'provider', 'description',
-      'unit', 'checkout', 'cost', 'price', 'quantityCO', 'merma', 'stock',
-      'totalAmount', 'totalMult',
+      'nInvoice', 'TProduct', 'NProduct', 'provider', 'checkout',
+      'quantity', 'merma', 'stock', 'unit', 'priceList', 'cost', 'priceSales',
+      'description', 'totalAmount',
   ];
 }

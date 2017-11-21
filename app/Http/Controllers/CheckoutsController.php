@@ -42,21 +42,22 @@ class CheckoutsController extends Controller
     {
       $checkout = new Checkouts;
       $checkout->nInvoice = request('nInvoice');
-      $checkout->TProducts = request('TProducts');
-      $checkout->letters = request('letters');
+      $checkout->TProduct = request('TProduct');
+      $checkout->NProduct = request('NProduct');
       $checkout->provider = request('provider');
-      $checkout->description = request('description');
-      $checkout->unit = request('unit');
       $checkout->checkout = request('checkout');
-      $checkout->cost = request('cost');
-      $checkout->price = request('price');
-      $checkout->quantityCO = request('quantityCO');
+      $checkout->quantity = request('quantity');
       $checkout->merma = request('merma');
       $checkout->stock = request('stock');
+      $checkout->unit = request('unit');
+      $checkout->priceList = request('priceList');
+      $checkout->cost = request('cost');
+      $checkout->priceSales = request('priceSales');
+      $checkout->description = request('description');
       $checkout->totalAmount = request('totalAmount');
-      $checkout->totalMult = request('totalMult');
+
       $checkout->save();
-      return redirect('admin/inventary-out')->with('success','Producto '. $checkout->TProducts .' Guardado correctamente');
+      return redirect('admin/inventary-out')->with('success','Producto '. $checkout->TProduct .' Guardado correctamente');
     }
 
     /**
@@ -96,38 +97,36 @@ class CheckoutsController extends Controller
     public function update(Request $request, $id)
     {
       $newNInvoice = $request->input('nInvoice');
-      $newTProducts = $request->input('TProducts');
-      $newLetters = $request->input('letters');
+      $newTProduct = $request->input('TProduct');
+      $newNProduct = $request->input('NProduct');
       $newProvider = $request->input('provider');
-      $newDescription = $request->input('description');
-      $newUnit = $request->input('unit');
       $newCheckout = $request->input('checkout');
-      $newCost = $request->input('cost');
-      $newPrice = $request->input('price');
-      $newQuantityCO = $request->input('quantityCO');
+      $newQuantity = $request->input('quantity');
       $newMerma = $request->input('merma');
       $newStock = $request->input('stock');
+      $newUnit = $request->input('unit');
+      $newPriceList = $request->input('priceList');
+      $newCost = $request->input('cost');
+      $newPriceSales = $request->input('priceSales');
+      $newDescription = $request->input('description');
       $newTotalAmount = $request->input('totalAmount');
-      $newTotalMult = $request->input('totalMult');
 
       $checkout = Checkouts::find($id);
 
       $checkout->nInvoice = $newNInvoice;
-      $checkout->TProducts = $newTProducts;
-      $checkout->letters = $newLetters;
+      $checkout->TProduct = $newTProduct;
+      $checkout->NProduct = $newNProduct;
       $checkout->provider = $newProvider;
-      $checkout->description = $newDescription;
-      $checkout->unit = $newUnit;
       $checkout->checkout = $newCheckout;
-      $checkout->cost = $newCost;
-      $checkout->price = $newPrice;
-      $checkout->quantityCO = $newQuantityCO;
+      $checkout->quantity = $newQuantity;
       $checkout->merma = $newMerma;
       $checkout->stock = $newStock;
+      $checkout->unit = $newUnit;
+      $checkout->priceList = $newPriceList;
+      $checkout->cost = $newCost;
+      $checkout->priceSales = $newPriceSales;
+      $checkout->description = $newDescription;
       $checkout->totalAmount = $newTotalAmount;
-      $checkout->totalMult = $newTotalMult;
-
-
       $checkout->save();
 
       return redirect('admin/inventary-out')->with('success','Producto actualizado correctamente');

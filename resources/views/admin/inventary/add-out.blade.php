@@ -85,17 +85,11 @@
               <input type="text" name="nInvoice" value="" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="TProducts">Tipo de Producto:</label>
-                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts' hidden="">
-                  <select class="select-design" name="" onchange="myProduct(this)">
-                    <option value="">Seleccione producto</option>
-                    @foreach ($products as $product)
-                      <option value="{{ $product->id }}">{{ $product->TProducts }}</option>
-                    @endforeach
-                  </select>
+                  <label for="TProduct">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput" name="TProduct" value="" id='TProduct' readonly="">
                 </div>
                 <div class="iniciales">
-                  <input type="text" class="inicialesInput" name="letters" value="" id='letters'  readonly="readonly">
+                  <input type="text" class="inicialesInput" name="NProduct" value="" id='letters'  readonly="readonly">
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
@@ -104,31 +98,36 @@
               <textarea type="text" rows="4" name="description" id='description'readonly="readonly"></textarea>
             </div>
             <div class="date-clients">
-              <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="checkout">Fecha de Salida:</label>
               <input type="date" class="date-design" name="checkout" value="" class="date">
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="" id='cost' readonly="readonly">
-              {{-- <label for="precio1">Porcentaje:</label>
-              <input type="text" name="Porcentaje" value="" id='Porcentaje' placeholder="Porcentaje"> --}}
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value="" id='unit' readonly="readonly">
               <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="" id='stock'  readonly="readonly">
+              <input type="text" name="stock" value="" id='stock' readonly="readonly">
+              <input type="text" name="" value="" id='stockFixe' hidden="">
+              <label for="quantity">Cantidad de Salida:</label>
+              <input type="number" name="quantity" value="0" placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
+              <label for="merma">Merma:</label>
+              <input type="text" name="merma" value="" placeholder="Merma" onclick="resta()">
             </div>
             <div class="date-clients">
-              <label for="quantityCO">Cantidad de Salida:</label>
-              <input type="number" name="quantityCO" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
-              <label for="merma">Merma:</label>
-              <input type="text" name="merma" value=""  placeholder="Merma" onclick="resta()">
-              <label for="price">Precio de Venta:</label>
-              <select class="select-design" name="">
-                <option value=""></option>
-              </select>
-              {{-- <input type="text" name="price" value="" placeholder="Precio de Venta"> --}}
-              {{-- <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden=""> --}}
+              <label for="priceList">Precio Lista:</label>
+              <input type="text" name="priceList" value="" id='priceList' placeholder="Precio Lista" readonly="">
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" id="cost" value="" placeholder="Costo" readonly="">
+              <label for="priceSales">Precio de Venta:</label>
+              <div class="input-radio">
+                <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv1" value=""><label for="pv1">Venta 1</label>
+                <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv2" value=""><label for="pv2">Venta 2</label>
+                <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv3" value=""><label for="pv3">Venta 3</label>
+              </div>
+              <div class="input-radio">
+                <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv4" value=""><label for="pv4">Venta 4</label>
+                <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv5" value=""><label for="pv5">Venta 5</label>
+              </div>
+              <input type="text" name="priceSales" value="" id='priceSales' placeholder="Precio Venta">
               <label for="totalAmount">Precio Total:</label>
-              <input type="text" name="totalAmount" value=""  placeholder="Precio Total">
-              <input type="text" name="totalMult" value="100"  placeholder="Precio Total" hidden="">
+              <input type="text" name="totalAmount" value="" placeholder="Precio Total">
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -160,15 +159,21 @@
         })
 
         var product = newVal[e.value]
-        var newTProducts = product.TProducts
+        var newTProduct = product.TProducts
         var newInitials = product.initials+"-"+product.id
         var newStock = parseInt(product.quantity)
         var newProvider = product.provider
         var newCost = product.cost
         var newDescription = product.description
         var newUnit = product.unit
+        var newPriceList = product.priceList
+        var newPriceSales1 = product.priceSales1
+        var newPriceSales2 = product.priceSales2
+        var newPriceSales3 = product.priceSales3
+        var newPriceSales4 = product.priceSales4
+        var newPriceSales5 = product.priceSales5
 
-        document.getElementById('TProducts').value=newTProducts
+        document.getElementById('TProduct').value=newTProduct
         document.getElementById('letters').value=newInitials
         document.getElementById('stock').value=newStock
         document.getElementById('stockFixe').value=newStock
@@ -176,6 +181,12 @@
         document.getElementById('cost').value=newCost
         document.getElementById('description').value=newDescription
         document.getElementById('unit').value=newUnit
+        document.getElementById('priceList').value=newPriceList
+        document.getElementById('pv1').value=newPriceSales1
+        document.getElementById('pv2').value=newPriceSales2
+        document.getElementById('pv3').value=newPriceSales3
+        document.getElementById('pv4').value=newPriceSales4
+        document.getElementById('pv5').value=newPriceSales5
       }
     </script>
     <script type="text/javascript">
@@ -188,14 +199,23 @@
       }
     </script>
     <script type="text/javascript">
+      function checkbox(val) {
+        var checked = val.checked
+        var value = val.value
+
+        if (checked === true) {
+          document.getElementById('priceSales').value=value
+        }
+      }
+    </script>
+    <script type="text/javascript">
     function resta() {
       var decrase= Number (document.getElementById('merma').value);
-      var out= Number (document.getElementById('quantityCO').value);
+      var out= Number (document.getElementById('quantity').value);
       var result = decrase-out ;
 
       document.getElementById('quantityCO').value=result;
     }
-
     </script>
   </body>
 </html>
