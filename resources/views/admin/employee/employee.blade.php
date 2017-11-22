@@ -97,10 +97,10 @@
                       {!! Form::close() !!}
                     </td>
                     <td>RX-{{ $employee->id }}</td>
-                    <td>{{ $employee->nombre_Empleado }}</td>
-                    <td>{{ $employee->telefono }}</td>
-                    <td>{{ $employee->usuario }}</td>
-                    <td>{{ $employee->contrasena }}</td>
+                    <td>{{ $employee->name }}</td>
+                    <td>{{ $employee->phone }}</td>
+                    <td>{{ $employee->user }}</td>
+                    <td>{{ $employee->password }}</td>
                   </tr>
                 @endforeach
               </tbody>

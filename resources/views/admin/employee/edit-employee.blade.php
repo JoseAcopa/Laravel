@@ -70,15 +70,15 @@
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" value='{{ $employee->nombre_Empleado }}' required>
+              <input type="text" name="name" value='{{ $employee->name }}' required>
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="telefono" value='{{ $employee->telefono }}' required>
+              <input type="text" name="phone" value='{{ $employee->phone }}' required>
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="usuario" value='{{ $employee->usuario }}' required>
+              <input type="text" name="user" value='{{ $employee->user }}' required>
               <label for="password">Contraseña:</label>
-              <input type="password" name="contrasena" value='{{ $employee->contrasena }}' required>
+              <input type="password" name="password" value='{{ $employee->password }}' required>
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

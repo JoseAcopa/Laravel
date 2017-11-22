@@ -69,16 +69,16 @@
           <form class="container-add-clients" method="POST" action="/admin/employee">
             {{ csrf_field() }}
             <div class="date-client">
-              <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
-              <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+              <label for="name">Nombre Completo:</label>
+              <input type="text" name="name" id="name"  placeholder="Nombre Completo" required>
+              <label for="phone">Teléfono:</label>
+              <input type="text" name="phone" id="phone" placeholder="Teléfono" required>
             </div>
             <div class="date-client">
-              <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+              <label for="user">Usuario:</label>
+              <input type="text" name="user" id="user" placeholder="Usuario" required>
+              <label for="password">Contraseña:</label>
+              <input type="password" name="password" id="password" placeholder="Contraseña" required>
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

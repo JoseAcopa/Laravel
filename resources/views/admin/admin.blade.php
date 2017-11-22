@@ -55,6 +55,7 @@
       </aside>
       <div class="container" id="container">
         <div class="location">
+          {{-- <h1 class="title">Administrador: {{ auth()->user()->name }}</h1> --}}
           <h1 class="title">Administrador</h1>
           <div class="breadcrumb">
             <ol>
