@@ -69,37 +69,40 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Registrar Entrada</h2>
+          <div class="searchDescription">
+            <i class="fa fa-search fa-lg"></i>
+            <select id="search" onchange="myProduct(this)">
+              <<option value="null">Buscar Producto</option>
+              @foreach ($products as $product)
+                <option value="{{ $product->id }}">{{ $product->description }}</option>
+              @endforeach
+            </select>
+          </div>
           <form class="container-add-clients" method="POST" action="/admin/checkin">
             {{ csrf_field() }}
-            <div class="searchDescription">
-              <i class="fa fa-search fa-lg"></i>
-              <select id="search" onchange="myProduct(this)">
-                <option value="null"></option>
-                @foreach ($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->description }}</option>
+            <div class="date-clients">
+              <label for="nInvoice">N° de Factura:</label>
+              <input type="text" name="nInvoice" value="" placeholder="Número Factura" required>
+              <div class="clasification">
+                <div class="select">
+                  <label for="TProduct">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput" name="TProduct" value="" id='TProducts' readonly="readonly">
+                </div>
+                <div class="iniciales">
+                  <input type="text" class="inicialesInput" name="NProduct" value="" id='letters' readonly="readonly">
+                </div>
+              </div>
+              <label for="provider">Proveedor:</label>
+              <select class="select-design" name="provider" id='provider'>
+                <option value="" id='provider'></option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
                 @endforeach
               </select>
             </div>
             <div class="date-clients">
-              <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required>
-              <div class="clasification">
-                <div class="select">
-                  <label for="TProducts">Tipo de Producto:</label>
-                  {{-- <input type="text" name="nInvoice" value=""  placeholder="Número Factura" required> --}}
-                  <input type="text" class="inicialesInput"  name="TProducts" value="" id='TProducts'>
-                  <input type="text" class="inicialesInput"  name="price" value="100" hidden="">
-                  </div>
-                  <div class="iniciales">
-                    <input type="text" class="inicialesInput"  name="letters" value="" id='letters'  readonly="readonly">
-                  </div>
-              </div>
-              <label for="provider">Proveedor:</label>
-              <input type="text" name="provider" value="" id='provider' placeholder="Provedor" readonly="readonly">
-            </div>
-            <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="" required>
+              <input class="date-design" type="date" name="checkin" value="" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="tel" pattern="[0-9]*" title="numero invalido" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
               <label for="stock">Existencia:</label>
@@ -107,12 +110,47 @@
               <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
             </div>
             <div class="date-clients">
+              <label for="priceList">Precio Lista:</label>
+              <input type="text" name="priceList" value="" id='priceList' placeholder="Precio Lista">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="" id='cost' placeholder="Costo" readonly="readonly">
+              <input type="text" name="cost" value="" id='cost' placeholder="Costo">
               <label for="unit">Unidad de Medida:</label>
-              <input type="text" name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+              <input type="text"  name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+            </div>
+            <div class="chekinText">
+              <div class="add-chekinTextArea">
+                <label for="description">Descripción:</label>
+                <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+              </div>
+              <div class="checkinMoney">
+                <label for="money">Tipo de moneda:</label>
+                <select class="select-design" name="">
+                  <option value="">Seleccione tipo de moneda</option>
+                </select>
+              </div>
+            </div>
+            <div class="date-clients">
+              <label for="">Categoria Precio Venta</label>
+              <select class="select-design" name="" onchange="priceSales(this);">
+                <option value="">Seleccione categoria</option>
+                <option value="Categoria 1">Categoria 1</option>
+                <option value="Categoria 2">Categoria 2</option>
+                <option value="Categoria 3">Categoria 3</option>
+              </select>
+              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly="" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly="" required>
+              <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
+              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
+              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly="" required>
+              <label for="priceSales5">Precio de Venta 5:</label>
+              <input type="text" name="priceSales5" value="" id="priceSales5" placeholder="Precio de Venta 5" required>
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -122,7 +160,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript">
@@ -148,6 +186,12 @@
         var newCost = product.cost
         var newDescription = product.description
         var newUnit = product.unit
+        var newPriceList = product.priceList
+        var newPriceSales1 = product.priceSales1
+        var newPriceSales2 = product.priceSales2
+        var newPriceSales3 = product.priceSales3
+        var newPriceSales4 = product.priceSales4
+        var newPriceSales5 = product.priceSales5
 
         document.getElementById('TProducts').value=newTProducts
         document.getElementById('letters').value=newInitials
@@ -157,6 +201,12 @@
         document.getElementById('cost').value=newCost
         document.getElementById('description').value=newDescription
         document.getElementById('unit').value=newUnit
+        document.getElementById('priceList').value=newPriceList
+        document.getElementById('priceSales1').value=newPriceSales1
+        document.getElementById('priceSales2').value=newPriceSales2
+        document.getElementById('priceSales3').value=newPriceSales3
+        document.getElementById('priceSales4').value=newPriceSales4
+        document.getElementById('priceSales5').value=newPriceSales5
       }
     </script>
     <script type="text/javascript">
@@ -166,6 +216,50 @@
         var newStock = parseInt(stock) + parseInt(quantity)
 
         document.getElementById('stock').value=newStock
+      }
+    </script>
+    <script type="text/javascript">
+      function priceSales(val) {
+        var value = val.value
+        var priceList = document.getElementById('priceList').value
+        var cost = document.getElementById('cost').value
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
+
+        if (value === 'Categoria 1') {
+          for (var i = 0; i < cat1.length; i++) {
+            var res = cat1[i] * priceList
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.70)'
+            document.getElementById('pv2').innerHTML = ' (x0.65)'
+            document.getElementById('pv3').innerHTML = ' (x0.60)'
+            document.getElementById('pv4').innerHTML = ' (x0.57)'
+          }
+        }else if (value === 'Categoria 2') {
+          for (var i = 0; i < cat2.length; i++) {
+            var res = cat2[i] * cost
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.40)'
+            document.getElementById('pv2').innerHTML = ' (x0.37)'
+            document.getElementById('pv3').innerHTML = ' (x0.36)'
+            document.getElementById('pv4').innerHTML = ' (x0.35)'
+          }
+        }else if (value === 'Categoria 3') {
+          for (var i = 0; i < cat3.length; i++) {
+            var res = cost / cat3[i]
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
+            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
+            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
+            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+          }
+        }
+        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
       }
     </script>
   </body>

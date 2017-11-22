@@ -73,20 +73,15 @@
               <input type="text" name="nInvoice" value="{{ $checkin->nInvoice }}" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="TProducts">Tipo de Producto:</label>
-                  <select class="" name="" onchange="myProduct(this)">
-                    <option value="{{ $checkin->TProducts }}">{{ $checkin->TProducts }}</option>
-                    @foreach ($products as $product)
-                      <option value="{{$product->id}}">{{$product->id}}</option>
-                    @endforeach
-                  </select>
-                  </div>
-                  <div class="iniciales">
-                    <input type="text" class="inicialesInput" name="letters" value="{{ $checkin->letters }}" id='letters'  readonly="readonly">
-                  </div>
+                  <label for="TProduct">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput" name="TProduct" value="{{ $checkin->TProduct }}" readonly="">
+                </div>
+                <div class="iniciales">
+                  <input type="text" class="inicialesInput" name="NProduct" value="{{ $checkin->NProduct }}" id='letters'  readonly="readonly">
+                </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider">
+              <select class="select-design" name="provider">
                 <option value="{{ $checkin->provider }}">{{ $checkin->provider }}</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
@@ -95,24 +90,54 @@
             </div>
             <div class="date-clients">
               <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" name="checkin" value="{{ $checkin->checkin }}" required>
+              <input type="date" class="date-design" name="checkin" value="{{ $checkin->checkin }}" required>
               <label for="quantity">Cantidad de Entrada:</label>
               <input type="number" name="quantity" value="{{ $checkin->quantity }}" required>
               <label for="stock">Existencia:</label>
               <input type="text" name="stock" value="{{ $checkin->stock }}" readonly="">
             </div>
             <div class="date-clients">
-              <label for="unit">Unidad de Medida:</label>
-              <select class="" name="unit">
-                <option value="{{ $checkin->unit }}">{{ $checkin->unit }}</option>
-                @foreach ($units as $unit)
-                  <option value="{{ $unit->type }}">{{ $unit->type }}</option>
-                @endforeach
-              </select>
+              <label for="priceList">Precio Lista:</label>
+              <input type="text" name="priceList" id='priceList' value="{{ $checkin->priceList }}" required>
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="{{ $checkin->cost }}" required>
-              <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" >{{ $checkin->description }}</textarea>
+              <input type="text" name="cost" id='cost' value="{{ $checkin->cost }}" required>
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value="{{ $checkin->unit }}" readonly="">
+            </div>
+            <div class="chekinText">
+              <div class="add-chekinTextArea">
+                <label for="description">Descripción:</label>
+                <textarea type="text" rows="4" name="description" readonly="">{{ $checkin->description }}</textarea>
+              </div>
+              <div class="checkinMoney">
+                <label for="money">Tipo de moneda:</label>
+                <select class="select-design" name="">
+                  <option value="">Seleccione tipo de moneda</option>
+                </select>
+              </div>
+            </div>
+            <div class="date-clients">
+              <label for="">Categoria Precio Venta</label>
+              <select class="select-design" class="select-design" onchange="priceSales(this);">
+                <option value="">Seleccione categoria</option>
+                <option value="Categoria 1">Categoria 1</option>
+                <option value="Categoria 2">Categoria 2</option>
+                <option value="Categoria 3">Categoria 3</option>
+              </select>
+              <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+              <input type="text" name="priceSales1" value="{{ $checkin->priceSales1 }}" id="priceSales1" placeholder="Precio de Venta 1" readonly="" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+              <input type="text" name="priceSales2" value="{{ $checkin->priceSales2 }}" id="priceSales2" placeholder="Precio de Venta 2" readonly="" required>
+              <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
+              <input type="text" name="priceSales3" value="{{ $checkin->priceSales3 }}" id="priceSales3" placeholder="Precio de Venta 3" readonly="" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
+              <input type="text" name="priceSales4" value="{{ $checkin->priceSales4 }}" id="priceSales4" placeholder="Precio de Venta 4" readonly="" required>
+              <label for="priceSales5">Precio de Venta 5:</label>
+              <input type="text" name="priceSales5" value="{{ $checkin->priceSales5 }}" id="priceSales5" placeholder="Precio de Venta 5" required>
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -133,6 +158,50 @@
       function myProduct(e) {
         var val = <?php echo$products;?>;
         console.log(val);
+      }
+    </script>
+    <script type="text/javascript">
+      function priceSales(val) {
+        var value = val.value
+        var priceList = document.getElementById('priceList').value
+        var cost = document.getElementById('cost').value
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
+
+        if (value === 'Categoria 1') {
+          for (var i = 0; i < cat1.length; i++) {
+            var res = cat1[i] * priceList
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.70)'
+            document.getElementById('pv2').innerHTML = ' (x0.65)'
+            document.getElementById('pv3').innerHTML = ' (x0.60)'
+            document.getElementById('pv4').innerHTML = ' (x0.57)'
+          }
+        }else if (value === 'Categoria 2') {
+          for (var i = 0; i < cat2.length; i++) {
+            var res = cat2[i] * cost
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.40)'
+            document.getElementById('pv2').innerHTML = ' (x0.37)'
+            document.getElementById('pv3').innerHTML = ' (x0.36)'
+            document.getElementById('pv4').innerHTML = ' (x0.35)'
+          }
+        }else if (value === 'Categoria 3') {
+          for (var i = 0; i < cat3.length; i++) {
+            var res = cost / cat3[i]
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
+            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
+            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
+            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+          }
+        }
+        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
       }
     </script>
   </body>

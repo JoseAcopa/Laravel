@@ -56,6 +56,8 @@
   position: absolute;
   left: -100000px;
   width: 100%;
+  /*editado acopa*/
+  font-family: Roboto;
   z-index: 1051; }
 
 .select2-results {
@@ -128,7 +130,9 @@
 .select2-container--default .select2-selection--single {
   background-color: #fff;
   border: 1px solid #aaa;
-  border-radius: 4px; }
+  /*editado acopa*/
+  font-family: Roboto;
+  border-radius: 0px 6px 6px 0px; }
   .select2-container--default .select2-selection--single .select2-selection__rendered {
     color: #444;
     line-height: 28px; }

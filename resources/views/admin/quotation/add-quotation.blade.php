@@ -98,19 +98,21 @@
               <label for="number-licitacion">Número de Licitación:</label>
               <input type="text" name="numer-licitacion" value=""  placeholder="Numero de Licitación">
             </div>
-            <div class="observation-clients">
-              <label for="observation">Observaciones:</label>
-              <textarea type="text" rows="6" name="observation"  placeholder="Observaciones"></textarea>
+            <div class="obs-Total">
+              <div class="observation-clients">
+                <label for="observation">Observaciones:</label>
+                <textarea type="text" rows="13" name="observation"  placeholder="Observaciones"></textarea>
+              </div>
+              <div class="quotationTotal">
+                <label for="subtotal">SubTotal:</label>
+                <input type="text" name="subtotal" value=""  placeholder="SubTotal">
+                <label for="iva">IVA:</label>
+                <input type="text" name="iva" value=""  placeholder="IVA">
+                <label for="total">TOTAL:</label>
+                <input type="text" name="total" value=""  placeholder="Total">
+              </div>
             </div>
 
-            <div class="quotationTotal">
-              <label for="subtotal">SubTotal:</label>
-              <input type="text" name="subtotal" value=""  placeholder="SubTotal">
-              <label for="iva">IVA:</label>
-              <input type="text" name="iva" value=""  placeholder="IVA">
-              <label for="total">TOTAL:</label>
-              <input type="text" name="total" value=""  placeholder="Total">
-            </div>
             <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
@@ -145,8 +147,8 @@
 
             <div class="button-inventary">
               <a href="#" class="btn-green"><i class="fa fa-save fa-lg"></i> Guardar</a>
-              <a href="#" class="pdf"><i class="fa fa-file-pdf-o"></i>  Imprimir PDF</a>
-              <a href="{{ url('/admin/quotation') }}"  class="btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <a href="#" class="pdf"><i class="fa fa-file-pdf-o fa-lg"></i>  Imprimir PDF</a>
+              <a href="{{ url('/admin/quotation') }}"  class="btn-danger fa-lg"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">

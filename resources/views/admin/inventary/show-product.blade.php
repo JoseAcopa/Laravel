@@ -70,7 +70,7 @@
           <div class="show">
             <div class="view">
               <div class="show-product">
-                <label for="">Numero del Producto:</label>
+                <label for="">N° de Producto:</label>
                 <p>{{ $product->initials }}-{{ $product->id }}</p>
               </div>
               <div class="show-product">
@@ -81,6 +81,7 @@
                 <label for="">Tipo de Producto:</label>
                 <p>{{ $product->TProducts }}</p>
               </div>
+
               <div class="show-product">
                 <label for="">Proveedor:</label>
                 <p>{{ $product->provider }}</p>
@@ -89,12 +90,13 @@
                 <label for="">Descripción:</label>
                 <p>{{ $product->description }}</p>
               </div>
-            </div>
-            <div class="view">
               <div class="show-product">
                 <label for="">Fecha de Entrada:</label>
                 <p>{{ $product->checkin }}</p>
               </div>
+            </div>
+            <div class="view">
+
               <div class="show-product">
                 <label for="">Cantidad de Entrada:</label>
                 <p>{{ $product->quantity }}</p>
@@ -104,8 +106,38 @@
                 <p>{{ $product->unit }}</p>
               </div>
               <div class="show-product">
+                <label for="">Precio Lista:</label>
+                <p>${{ $product->priceList }}</p>
+              </div>
+              <div class="show-product">
                 <label for="">Costo:</label>
-                <p>{{ $product->cost }}</p>
+                <p>${{ $product->cost }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Tipo de moneda:</label>
+                <p></p>
+              </div>
+            </div>
+            <div class="view">
+              <div class="show-product">
+                <label for="">Precio de Venta 1:</label>
+                <p>{{ $product->priceSales1 }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Precio de Venta 2:</label>
+                <p>{{ $product->priceSales2 }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Precio de Venta 3:</label>
+                <p>{{ $product->priceSales3 }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Precio de Venta 4:</label>
+                <p>{{ $product->priceSales4 }}</p>
+              </div>
+              <div class="show-product">
+                <label for="">Precio de Venta 5:</label>
+                <p>{{ $product->priceSales5 }}</p>
               </div>
             </div>
           </div>

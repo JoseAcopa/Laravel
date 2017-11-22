@@ -10,6 +10,7 @@ background-image: url('../img/3.jpg');
   width: 100%;
   background: #1E8BC3;
   position: fixed;
+  z-index: 3;
 }
 
 .ul-nav{
@@ -26,10 +27,11 @@ background-image: url('../img/3.jpg');
 #aside{
   background-color: #222d32;
   width: 225px;
-  height: 100vh;
+  height: 95vh;
   position: fixed;
   margin: 55px 0px 0px 0px;
   z-index: 3;
+  overflow-y: auto;
 }
 
 .bg-indicator{
@@ -671,10 +673,8 @@ thead{
 .date-clientstextA textarea{
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 97% !important;
   font-family: sans-serif;
-  font-weight: bold;
-  color: #727274;
 }
 .container-add-clients input{
   width: 95%;
@@ -685,6 +685,26 @@ thead{
   border: 1px solid #006064;
   font-family: sans-serif;
   outline: 0;
+}
+
+.select-design{
+  width: 100% !important;
+  padding: 7px !important;
+  border-radius: 6px !important;
+  border: 1px solid #006064 !important;
+  font-family: sans-serif !important;
+  outline: 0 !important;
+  background: #fff !important;
+}
+
+.date-design{
+  width: 97% !important;
+  padding: 6px !important;
+  border-radius: 6px !important;
+  border: 1px solid #006064 !important;
+  font-family: sans-serif !important;
+  outline: 0 !important;
+  background: #fff !important;
 }
 
 .container-add-clients textarea{
@@ -711,10 +731,14 @@ thead{
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin: auto;
+  margin-bottom: 10px;
 }
 
 .button-inventary a{
   margin-right: 30px;
+  margin: auto;
+  margin-top: 15px;
 }
 
 .container-add-client{
@@ -827,11 +851,34 @@ select{
   outline: 0px;
   height: auto;
 }
+.obs-Total{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: 13px;
+}
 
 .observation-clients{
   display: flex;
   flex-direction: column;
-  width: 95%;
+  justify-content: flex-start !important;
+  width: 68%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+}
+.chekinText{
+  display: flex;
+  flex-direction: row;
+  width: 97%;
+  margin-left: 13px;
+}
+
+.add-chekinTextArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  width: 68%;
   font-family: sans-serif;
   font-weight: bold;
   color: #727274;
@@ -983,10 +1030,7 @@ select{
   flex-direction: column;
   padding-top: 18px;
 }
-.tproductSelect{
-  width: 95% !important;
-  height: auto;
-}
+
 .inicialesInput{
     width: 85% !important;
     height: 16px;
@@ -1267,7 +1311,8 @@ select{
 .searchDescription .fa-search{
   background: #164867;
   color: #fff;
-  padding: 5px;
+  padding: 4px;
+  border-radius: 6px 0px 0px 6px;
 }
 .searchDescription{
   width: 100%;
@@ -1276,7 +1321,7 @@ select{
   margin-bottom: 20px;
 }
 .searchDescription select{
-  width: 30%;
+  width: 30% !important;
   border-radius: 0px !important;
 }
 /********************************/
@@ -1330,4 +1375,70 @@ select{
 #ps {
   display: flex;
   flex-direction: row;
+}
+
+.quotationTotal{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: #727274;
+  background: #fff;
+  border: 2px solid rgb(15, 42, 66);
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.quotationTotal h2{
+  margin: auto;
+  margin-top: 10px;
+}
+
+.quotationTotal label{
+  margin-left: 20px;
+}
+
+.quotationTotal input{
+  width: 80% !important;
+  padding: 8px;
+  border-radius: 6px;
+  margin: auto;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border: 1px solid #006064;
+  font-family: sans-serif;
+  outline: 0;
+}
+
+input:-moz-read-only {
+  background: #eee7e7;
+  cursor: not-allowed;
+}
+input:read-only {
+  background: #eee7e7;
+  cursor: not-allowed;
+}
+
+textarea:-moz-read-only {
+  background: #eee7e7;
+  cursor: not-allowed;
+}
+textarea:read-only {
+  background: #eee7e7;
+  cursor: not-allowed;
+}
+
+.input-radio{
+  display: flex;
+  flex-direction: row;
+}
+
+.input-radio input{
+  width: 20px;
+}
+
+.input-radio label{
+  cursor: pointer;
+  margin-right: 20px;
 }

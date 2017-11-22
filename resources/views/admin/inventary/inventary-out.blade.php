@@ -82,10 +82,11 @@
                   <th>Acciones</th>
                   <th>N° de Factura</th>
                   <th>Tipo de Producto</th>
+                  <th>Descripcion</th>
                   <th>Proveedor</th>
                   <th>Salida</th>
                   <th>Existencia</th>
-                  <th>Costo</th>
+                  <th>Precio Venta</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
@@ -99,11 +100,12 @@
                       {!! Form::close() !!}
                     </td>
                     <td>{{$checkout->nInvoice}}</td>
-                    <td>{{$checkout->TProducts}}</td>
+                    <td>{{$checkout->TProduct}}</td>
                     <td>{{$checkout->provider}}</td>
                     <td>{{$checkout->checkout}}</td>
                     <td>{{$checkout->stock}}</td>
                     <td>{{$checkout->cost}}</td>
+                    <td>{{$checkout->priceSales}}</td>
                   </tr>
                 @endforeach
               </tbody>

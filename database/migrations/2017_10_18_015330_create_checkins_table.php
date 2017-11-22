@@ -16,16 +16,21 @@ class CreateCheckinsTable extends Migration
         Schema::create('checkins', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nInvoice');
-            $table->string('TProducts');
-            $table->string('letters');
+            $table->string('TProduct');
+            $table->string('NProduct');
             $table->string('provider');
             $table->string('checkin');
             $table->string('quantity');
             $table->string('stock');
             $table->string('unit');
+            $table->string('priceList');
             $table->string('cost');
-            $table->string('price');
             $table->string('description');
+            $table->string('priceSales1');
+            $table->string('priceSales2');
+            $table->string('priceSales3');
+            $table->string('priceSales4');
+            $table->string('priceSales5');
             $table->timestamps();
         });
     }

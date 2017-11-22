@@ -27,6 +27,7 @@ div.dataTables_filter input {
 	padding: 5px 10px 5px 10px;
   border-radius: 5px;
   border: 1px solid #006064;
+	outline: 0;
 }
 
 div.dataTables_info {
