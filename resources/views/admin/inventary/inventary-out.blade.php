@@ -101,10 +101,10 @@
                     </td>
                     <td>{{$checkout->nInvoice}}</td>
                     <td>{{$checkout->TProduct}}</td>
+                    <td>{{$checkout->description}}</td>
                     <td>{{$checkout->provider}}</td>
                     <td>{{$checkout->checkout}}</td>
                     <td>{{$checkout->stock}}</td>
-                    <td>{{$checkout->cost}}</td>
                     <td>{{$checkout->priceSales}}</td>
                   </tr>
                 @endforeach

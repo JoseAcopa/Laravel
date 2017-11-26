@@ -3,8 +3,11 @@
 // Route::get('/', function () {
 //     return view('login');
 // });
+
 Route::get('/', 'Auth\LoginController@showLoginForm');
-Route::post('login','Auth\LoginController@login');
+Route::post('/', 'Auth\LoginController@login');
+// Route::get('/', 'Auth\LoginController@showLoginForm');
+// Route::post('login','Auth\LoginController@login');
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');

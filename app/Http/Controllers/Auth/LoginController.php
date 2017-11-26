@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Auth;
 
 class LoginController extends Controller
@@ -17,21 +18,30 @@ class LoginController extends Controller
     return view('login');
   }
 
-  public function login()
+  public function login(Request $request)
   {
-    $credentials = $this->validate(request(), [
+    $this->validate($request, [
       'user' => 'required|string',
       'password' => 'required|string'
     ]);
 
-    $response = Auth::attempt($credentials, true);
+    $credentials = [
+      'user'=>$request->user,
+      'password'=>$request->password
+    ];
 
-    if ($response) {
+    if (Auth::attempt($credentials)) {
       return redirect('admin/admin-welcome');
-    }else {
-      return back()
-        ->withErrors(['user' => 'Usuario no coincide en nuestro registro'])
-        ->withInput(request(['user']));
     }
+    return back()
+      ->withErrors(['user' => 'Usuario no coincide en nuestro registro'])
+      ->withInput(request(['user']));
+  }
+
+  public function logOut()
+  {
+    Auth::logout();
+
+    return view('login')->with('error_message', 'Logged out correctly');
   }
 }
