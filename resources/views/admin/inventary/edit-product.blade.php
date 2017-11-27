@@ -209,10 +209,10 @@
             document.getElementById('pv4').innerHTML = ' (/ 0.85)'
           }
         }
-        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
+        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
       }
     </script>
   </body>

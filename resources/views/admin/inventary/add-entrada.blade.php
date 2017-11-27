@@ -70,7 +70,7 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Registrar Entrada</h2>
           <div class="searchDescription">
-            <i class="fa fa-search fa-lg"></i>
+            <i class="fa fa-search"></i>
             <select id="search" onchange="myProduct(this)">
               <<option value="null">Buscar Producto</option>
               @foreach ($products as $product)

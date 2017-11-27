@@ -142,7 +142,7 @@
               <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
               <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly=""  required>
               <label for="priceSales5">Precio de Venta 5:</label>
-              <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
+              <input type="text" name="priceSales5" id='priceSales5' value="0.00" placeholder="Precio de Venta 5" onchange="priceFive(this);">
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -209,10 +209,19 @@
             document.getElementById('pv4').innerHTML = ' (/ 0.85)'
           }
         }
-        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
+        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
+      }
+    </script>
+    <script type="text/javascript">
+      function priceFive(val) {
+        var value = val.value
+        var valueDefault = 0
+        if(value === ''){
+          document.getElementById('priceSales5').value=valueDefault.toFixed(2)
+        }
       }
     </script>
   </body>
