@@ -49,7 +49,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Inventario</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="#">Registro de Productos <small class="bg-indicator">Activo</small></a></li>
+                <li><a href="#">Registro de Entrada <small class="bg-indicator">Activo</small></a></li>
+                <li><a href="#">Registro de Salida <small class="bg-indicator">Activo</small></a></li>
+                <li><a href="#">Registro Tipo Producto <small class="bg-indicator">Activo</small></a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -130,6 +138,13 @@
           "bSort": true,
           "bInfo": true,
           "bAutoWidth": true
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#inventary").click(function(){
+            $(".submenu-list").slideToggle("slow");
         });
       });
     </script>

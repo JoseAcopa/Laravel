@@ -421,15 +421,15 @@
   margin-top: 20px !important;
 }
 
-.table::-webkit-scrollbar {
-    width: 1em;
+#aside::-webkit-scrollbar {
+    width: .4em;
 }
 
-.table::-webkit-scrollbar-track {
+#aside::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px #006064;
 }
 
-.table::-webkit-scrollbar-thumb {
+#aside::-webkit-scrollbar-thumb {
   background-color: #006064;
   outline: 1px solid slategrey;
   border-radius: 6px;
@@ -1441,4 +1441,33 @@ textarea:read-only {
 .input-radio label{
   cursor: pointer;
   margin-right: 20px;
+}
+/*********************ListINventary****************************/
+
+.fa-chevron-down{
+  margin-left: 50px;
+  margin-top: 3px;
+}
+
+.submenu-list{
+  background: #222d32;
+  padding: 0px;
+  display: none;
+}
+
+.submenu-list li {
+  background: #222d32;
+}
+
+.submenu-list a {
+  background: #222d32 !important;
+  color: #b8c7ce !important;
+  font-size: 13px !important;
+  padding: 10px !important;
+  margin-top: -22px !important;
+  border: 0px !important;
+  font-weight: 400 !important;
+}
+.submenu-list a:hover {
+  color: #fff !important;
 }
