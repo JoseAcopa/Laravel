@@ -31,18 +31,11 @@ Route::get('/admin/add-employee', 'EmployeeController@create');
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
 Route::resource('admin/employee','EmployeeController');
 // ------------------End Employee------------------------------------
-
-Route:: get('/admin/quotation', function(){
-  return view('admin/quotation/quotation');
-});
-
-Route:: get('/admin/add-quotation', function(){
-  return view('admin/quotation/add-quotation');
-});
-
-Route:: get('/admin/edit-quotation', function(){
-  return view ('admin/quotation/edit-quotation');
-});
+// ------------------quotations----------------------------------------
+Route::resource('/admin/quotation', 'QuotationsController');
+Route::get('/admin/add-quotation', 'QuotationsController@create');
+Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
+// ------------------end quotations----------------------------------------
 // ------------------inventary----------------------------------------
 Route::get('/admin/inventaryMenu', function(){
   return view ('admin/inventary/inventaryMenu');

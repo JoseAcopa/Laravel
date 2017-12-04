@@ -94,7 +94,7 @@
                       @foreach ($typesProducts as $key)
                         <tr class="tbody">
                           <td class="action">
-                            <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                            {{-- <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a> --}}
                             {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id_Producto]]) !!}
                               <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                             {!! Form::close() !!}
