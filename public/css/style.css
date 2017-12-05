@@ -1466,8 +1466,13 @@ textarea:read-only {
   padding: 10px !important;
   margin-top: -22px !important;
   border: 0px !important;
-  font-weight: 400 !important;
+  font-weight: 500 !important;
+  font-family: sans-serif;
 }
 .submenu-list a:hover {
   color: #fff !important;
+  background: #1e282c !important;
+  transition: .2s !important;
+  border-left: 4px solid #1E8BC3 !important;
+  transition: .5s !important;
 }

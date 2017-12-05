@@ -52,10 +52,10 @@
           <li class="active">
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
               <ul class="submenu-list" id="submenu-list">
-                <li><a href="#">Registro de Productos <small class="bg-indicator">Activo</small></a></li>
-                <li><a href="#">Registro de Entrada <small class="bg-indicator">Activo</small></a></li>
-                <li><a href="#">Registro de Salida <small class="bg-indicator">Activo</small></a></li>
-                <li><a href="#">Registro Tipo Producto <small class="bg-indicator">Activo</small></a></li>
+                <li class="active" ><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos <small class="bg-indicator">Consulta</small></a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
               </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
@@ -81,9 +81,9 @@
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil "></i> Registrar Productos</a>
-            <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
+            {{-- <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
             <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in fa-lg"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
+            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a> --}}
           </div>
           <div class="">
             <table id="Jtabla">

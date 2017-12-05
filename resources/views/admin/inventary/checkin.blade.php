@@ -49,7 +49,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Entradas</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/add-product')}}">Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}">Entrada de Productos<small class="bg-indicator">Consulta </small></a></li>
+                <li><a href="{{url('admin/inventary-out')}}">Salida </a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">Tipo Producto</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -68,7 +76,7 @@
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-checkin')}}" class="btn-green" ><i class="fa fa-pencil"></i> Registrar Producto de entrada</a>
-            <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+            {{-- <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a> --}}
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -131,5 +139,6 @@
         });
       });
     </script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>
