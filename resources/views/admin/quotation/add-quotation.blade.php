@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
   </head>
   <body>
     <header>
@@ -121,7 +123,7 @@
               </div>
             </div>
 
-            {{-- <div class="button-inventary">
+             <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
             <div class="">
@@ -140,18 +142,19 @@
                 <tbody class="tbodymain">
                   <tr class="tbody">
                     <td class="action">
+                      <input type="checkbox" name="" value="">
                       <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>00078</td>
                     <td>metros</td>
                     <td>Encargado de sistemas</td>
-                    <td>delli.patricio.mayo@gmail.com</td>
-                    <td>Encargado de sistemas</td>
-                    <td>delli.patricio.mayo@gmail.com</td>
+                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
+                    <td><input type="checkbox" name="" value="">Encargado de sistemas</td>
+                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
                   </tr>
                 </tbody>
               </table>
-            </div> --}}
+            </div>
 
             <div class="button-inventary">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -171,5 +174,19 @@
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
+    <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('#Jtabla').dataTable({
+          "bPaginate": true,
+          "bLengthChange": true,
+          "bFilter": true,
+          "bSort": true,
+          "bInfo": true,
+          "bAutoWidth": true
+        });
+      });
+    </script>
   </body>
 </html>
