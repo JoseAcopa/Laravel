@@ -156,7 +156,7 @@
         $("#search").select2();
       });
     </script>
-    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
+    {{-- <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
