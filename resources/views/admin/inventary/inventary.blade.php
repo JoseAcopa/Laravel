@@ -50,12 +50,12 @@
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li class="active">
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li class="active" ><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos <small class="bg-indicator">Consulta</small></a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
+            <a id="inventary" ><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list" >
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos <small class="bg-indicator">Consulta</small></a></li>
+                <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
               </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>

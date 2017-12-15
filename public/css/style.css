@@ -1473,6 +1473,6 @@ textarea:read-only {
   color: #fff !important;
   background: #1e282c !important;
   transition: .2s !important;
-  border-left: 4px solid #1E8BC3 !important;
+  /*border-left: 4px solid #1E8BC3 !important;*/
   transition: .5s !important;
 }

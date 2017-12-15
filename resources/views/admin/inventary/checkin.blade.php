@@ -52,7 +52,7 @@
           <li class="active">
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
               <ul class="submenu-list" id="submenu-list">
-                <li><a href="{{url('admin/add-product')}}">Productos </a></li>
+                <li><a href="{{url('admin/inventary')}}">Productos </a></li>
                 <li><a href="{{url('admin/checkin')}}">Entrada de Productos<small class="bg-indicator">Consulta </small></a></li>
                 <li><a href="{{url('admin/inventary-out')}}">Salida </a></li>
                 <li><a href="{{url('admin/clasificationProduct')}}">Tipo Producto</a></li>
