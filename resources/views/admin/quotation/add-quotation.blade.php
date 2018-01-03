@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
   </head>
   <body>
     <header>
@@ -48,7 +50,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li >
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización <small class="bg-indicator">Cotizar</small></a></li>
         </ul>
@@ -66,54 +76,54 @@
         </div>
         <div class="for-container">
           <h2><i class="fa fa-book"></i> Realizar Cotización</h2>
-          <form class="container-add-clients">
+          <form class="container-add-clients" method="POST" action="/admin/quotation">
+            {{ csrf_field() }}
             <div class="date-clients">
               <label for="folio">Folio:</label>
               <input type="text" name="folio" value=""  placeholder="Folio">
               <label for="date">Fecha:</label>
               <input type="date" name="date" value=""  placeholder="">
-              <label for="number-client">Número de Cliente:</label>
-              <select class="" name="">
-                <option value=""></option>
+              <label for="nClient">Número de Cliente:</label>
+              <select class="" name="nClient">
+                <option value="test">test</option>
               </select>
-              {{-- <input type="text" name="number-client" value=""  placeholder="Número de Cliente"> --}}
-              <label for="name-company">Nombre de la empresa:</label>
-              <input type="text" name="name-company" value=""  readonly="">
+              <label for="company">Nombre de la empresa:</label>
+              <input type="text" name="company" value="">
             </div>
             <div class="date-clients">
-              <label for="name">RFC:</label>
-              <input type="text" name="rfc" value=""  readonly="">
+              <label for="RFC">RFC:</label>
+              <input type="text" name="RFC" value="">
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="telephone" value="" readonly="">
-              <label for="adress">Dirección:</label>
-              <textarea type="text" rows="6" name="adress"  readonly=""></textarea>
+              <input type="text" name="phone" value="">
+              <label for="direction">Dirección:</label>
+              <textarea type="text" rows="6" name="direction"></textarea>
             </div>
             <div class="date-clients">
-              <label for="nc">Nombre Completo:</label>
-              <input type="text" name="nc" value=""  placeholder="Nombre Completo">
-              <label for="puesto">Puesto:</label>
-              <input type="text" name="puesto" value=""  placeholder="Puesto">
-              <label for="correo">E-mail:</label>
-              <input type="text" name="correo" value=""  placeholder="E-mail">
-              <label for="number-licitacion">Número de Licitación:</label>
-              <input type="text" name="numer-licitacion" value=""  placeholder="Numero de Licitación">
+              <label for="name">Nombre Completo:</label>
+              <input type="text" name="name" value="" placeholder="Nombre Completo">
+              <label for="job">Puesto:</label>
+              <input type="text" name="job" value="" placeholder="Puesto">
+              <label for="mail">E-mail:</label>
+              <input type="text" name="mail" value="" placeholder="E-mail">
+              <label for="nBidding">Número de Licitación:</label>
+              <input type="text" name="nBidding" value="" placeholder="Numero de Licitación">
             </div>
             <div class="obs-Total">
               <div class="observation-clients">
                 <label for="observation">Observaciones:</label>
-                <textarea type="text" rows="13" name="observation"  placeholder="Observaciones"></textarea>
+                <textarea type="text" rows="13" name="description"  placeholder="Observaciones"></textarea>
               </div>
               <div class="quotationTotal">
-                <label for="subtotal">SubTotal:</label>
-                <input type="text" name="subtotal" value=""  placeholder="SubTotal">
-                <label for="iva">IVA:</label>
-                <input type="text" name="iva" value=""  placeholder="IVA">
-                <label for="total">TOTAL:</label>
-                <input type="text" name="total" value=""  placeholder="Total">
+                <label for="total">SubTotal:</label>
+                <input type="text" name="total" value=""  placeholder="SubTotal">
+                <label for="IVA">IVA:</label>
+                <input type="text" name="IVA" value=""  placeholder="IVA">
+                <label for="totalAmount">TOTAL:</label>
+                <input type="text" name="totalAmount" value=""  placeholder="Total">
               </div>
             </div>
 
-            <div class="button-inventary">
+             <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
             <div class="">
@@ -132,21 +142,22 @@
                 <tbody class="tbodymain">
                   <tr class="tbody">
                     <td class="action">
+                      <input type="checkbox" name="" value="">
                       <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                     </td>
                     <td>00078</td>
                     <td>metros</td>
                     <td>Encargado de sistemas</td>
-                    <td>delli.patricio.mayo@gmail.com</td>
-                    <td>Encargado de sistemas</td>
-                    <td>delli.patricio.mayo@gmail.com</td>
+                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
+                    <td><input type="checkbox" name="" value="">Encargado de sistemas</td>
+                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div class="button-inventary">
-              <a href="#" class="btn-green"><i class="fa fa-save fa-lg"></i> Guardar</a>
+              <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
               <a href="#" class="pdf"><i class="fa fa-file-pdf-o fa-lg"></i>  Imprimir PDF</a>
               <a href="{{ url('/admin/quotation') }}"  class="btn-danger fa-lg"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             </div>
@@ -160,6 +171,22 @@
     <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
+    <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(function () {
+        $('#Jtabla').dataTable({
+          "bPaginate": true,
+          "bLengthChange": true,
+          "bFilter": true,
+          "bSort": true,
+          "bInfo": true,
+          "bAutoWidth": true
+        });
+      });
+    </script>
   </body>
 </html>

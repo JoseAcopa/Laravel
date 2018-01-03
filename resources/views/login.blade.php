@@ -18,34 +18,23 @@
     <main class="wrapper">
       <form class="login" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
-
         <img src="{{ url('img/LogoRX.png')}}" alt="">
         <h1>Login</h1>
-
-        <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
-          <label for="users">Usuario</label>
+        <div class="{{ $errors->has('user') ? ' has-error' : '' }}">
+          <label for="user">Usuario</label>
           <div class="icon">
-            <input type="text" id="users" value="" placeholder="usuario" value="{{ old('email') }}" required autofocus>
+            <input type="text" name="user" id="user" value="{{ old('user') }}" placeholder="usuario" autofocus>
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
-          @if ($errors->has('email'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('email') }}</strong>
-              </span>
-          @endif
+          {!! $errors->first('user','<span class="help-block">El Usuario debe ser válido</span>')!!}
         </div>
-
         <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
-          <label for="pass">Contraseña</label>
+          <label for="password">Contraseña</label>
           <div class="icon">
-            <input type="password" id="pass" value="" placeholder="contraseña" required>
+            <input type="password" name="password" id="password" value="" placeholder="contraseña">
             <i class="fa fa-key" aria-hidden="true"></i>
           </div>
-          @if ($errors->has('password'))
-              <span class="help-block">
-                  <strong>{{ $errors->first('password') }}</strong>
-              </span>
-          @endif
+          {!! $errors->first('password','<span class="help-block">La contraseña es obligatorio</span>')!!}
         </div>
         <div class="login-button-lost">
           <button type="submit" class="btn-login">Login</button>

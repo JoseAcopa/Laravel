@@ -48,7 +48,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Registrar</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos <small class="bg-indicator">Registrar</small></a></li>
+                <li><a href="{{url('admin/checkin')}}"> Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -142,7 +150,7 @@
               <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
               <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly=""  required>
               <label for="priceSales5">Precio de Venta 5:</label>
-              <input type="text" name="priceSales5" value="" placeholder="Precio de Venta 5" required>
+              <input type="text" name="priceSales5" id='priceSales5' value="0.00" placeholder="Precio de Venta 5" onchange="priceFive(this);">
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -158,7 +166,6 @@
     <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
-    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript">
       function myTest(e){
         var val = <?php echo$typeProducts;?>;
@@ -209,11 +216,23 @@
             document.getElementById('pv4').innerHTML = ' (/ 0.85)'
           }
         }
-        document.getElementById('priceSales1').value='$'+newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value='$'+newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value='$'+newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value='$'+newRes[3].toFixed(2)
+        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
       }
     </script>
+    <script type="text/javascript">
+      function priceFive(val) {
+        var value = val.value
+        var valueDefault = 0
+        if(value === ''){
+          document.getElementById('priceSales5').value=valueDefault.toFixed(2)
+        }
+      }
+    </script>
+    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>

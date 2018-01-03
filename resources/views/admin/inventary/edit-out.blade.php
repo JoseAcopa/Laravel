@@ -48,7 +48,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Salidas</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> Entradas de Productos </a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos <small class="bg-indicator">Editar</small></a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -73,53 +81,39 @@
               <input type="text" name="nInvoice" value="{{ $checkout->nInvoice }}" required>
               <div class="clasification">
                 <div class="select">
-                  <label for="TProducts">Tipo de Producto:</label>
-                  <select class="" name="TProducts" onchange="myProduct(this)">
-                    <option value="{{ $checkout->TProducts }}">{{ $checkout->TProducts }}</option>
-                    @foreach ($products as $product)
-                      <option value="{{$product->id}}">{{$product->id}}</option>
-                    @endforeach
-                  </select>
+                  <label for="TProduct">Tipo de Producto:</label>
+                  <input type="text" class="inicialesInput" name="TProduct" value="{{ $checkout->TProduct }}" readonly="">
                 </div>
                 <div class="iniciales">
-                  <input type="text" class="inicialesInput" name="letters" value="{{ $checkout->letters }}" id='letters'  readonly="readonly">
+                  <input type="text" class="inicialesInput" name="NProduct" value="{{ $checkout->NProduct }}" readonly="readonly">
                 </div>
               </div>
               <label for="provider">Proveedor:</label>
-              <select class="" name="provider">
-                <option value="{{ $checkout->provider }}">{{ $checkout->provider }}</option>
-                @foreach ($suppliers as $supplier)
-                  <option value="{{ $supplier->business }}">{{ $supplier->business }}</option>
-                @endforeach
-              </select>
+              <input type="text" name="provider" value="{{ $checkout->provider }}" readonly="">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" >{{ $checkout->description }}</textarea>
+              <textarea type="text" rows="4" name="description" readonly="">{{ $checkout->description }}</textarea>
             </div>
             <div class="date-clients">
-              <label for="unit">Unidad de Medida:</label>
-              <select class="" name="unit">
-                <option value="{{ $checkout->unit }}">{{ $checkout->unit }}</option>
-                @foreach ($units as $unit)
-                  <option value="{{ $unit->type }}">{{ $unit->type }}</option>
-                @endforeach
-              </select>
               <label for="checkout">Fecha de Salida:</label>
-              <input type="date" name="checkout" value="{{ $checkout->checkout }}">
-              <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="{{ $checkout->cost }}" required>
-              <label for="price">Precio de Venta :</label>
-              <input type="text" name="price" value="{{ $checkout->price }}" required>
-            </div>
-            <div class="date-clients">
-              <label for="quantityCO">Cantidad de Salida:</label>
-              <input type="text" name="quantityCO" value="{{ $checkout->quantityCO }}" required>
+              <input class="date-design" type="date" name="checkout" value="{{ $checkout->checkout }}">
+              <label for="unit">Unidad de Medida:</label>
+              <input type="text" name="unit" value="{{ $checkout->unit }}" readonly="">
+              <label for="stock">Existencia:</label>
+              <input type="text" name="stock" value="{{ $checkout->stock }}" readonly="">
+              <label for="quantity">Cantidad de Salida:</label>
+              <input type="number" name="quantity" value="{{ $checkout->quantity }}" required>
               <label for="merma">Merma:</label>
               <input type="text" name="merma" value="{{ $checkout->merma }}" required>
-              <label for="stock">Existencia:</label>
-              <input type="text" name="stock" value="{{ $checkout->stock }}" required>
+            </div>
+            <div class="date-clients">
+              <label for="priceList">Precio Lista:</label>
+              <input type="text" name="priceList" value="{{ $checkout->priceList }}" readonly="">
+              <label for="cost">Costo:</label>
+              <input type="text" name="cost" value="{{ $checkout->cost }}" readonly="">
+              <label for="priceSales">Precio Venta :</label>
+              <input type="text" name="priceSales" value="{{ $checkout->priceSales }}" id='priceSales' placeholder="Precio Venta">
               <label for="totalAmount">Precio Total:</label>
               <input type="text" name="totalAmount" value="{{ $checkout->totalAmount }}" required>
-              <input type="text" name="totalMult" value="{{ $checkout->totalMult }}" required hidden="">
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -135,6 +129,8 @@
     <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>

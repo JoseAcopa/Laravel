@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee;
+use App\User;
 
 class EmployeeController extends Controller
 {
@@ -14,7 +15,7 @@ class EmployeeController extends Controller
     */
    public function index()
    {
-     $employees = Employee::all();
+     $employees = User::all();
      return view('admin.employee.employee', compact('employees'));
    }
 
@@ -41,14 +42,14 @@ class EmployeeController extends Controller
     //         'body' => 'required',
     //     ]);
 
-     $employee = new Employee;
-     $employee->nombre_Empleado = request('nombre_Empleado');
-     $employee->telefono = request('telefono');
-     $employee->usuario = request('usuario');
-     $employee->contrasena = request('contrasena');
+     $employee = new User;
+     $employee->name = request('name');
+     $employee->phone = request('phone');
+     $employee->user = request('user');
+     $employee->password = request('password');
 
      $employee->save();
-     return redirect('admin/employee')->with('success','Empleado '. $employee->nombre_Empleado .' Guardado correctamente');
+     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente');
    }
 
    /**
@@ -70,7 +71,7 @@ class EmployeeController extends Controller
     */
    public function edit($id)
    {
-     $employee = Employee::find($id);
+     $employee = User::find($id);
      return view('admin.employee.edit-employee', compact('employee'));
    }
 
@@ -82,17 +83,17 @@ class EmployeeController extends Controller
     */
    public function update(Request $request, $id)
    {
-     $newName = $request->input('nombre_Empleado');
-     $newPhon = $request->input('telefono');
-     $newUsua = $request->input('usuario');
-     $newPass = $request->input('contrasena');
+     $newName = $request->input('name');
+     $newPhone = $request->input('phone');
+     $newUser = $request->input('user');
+     $newPassword = $request->input('password');
 
-     $employee = Employee::find($id);
+     $employee = User::find($id);
 
-     $employee->nombre_Empleado = $newName;
-     $employee->telefono = $newPhon;
-     $employee->usuario = $newUsua;
-     $employee->contrasena = $newPass;
+     $employee->name = $newName;
+     $employee->phone = $newPhone;
+     $employee->user = $newUser;
+     $employee->password = $newPassword;
      $employee->save();
 
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
@@ -106,7 +107,7 @@ class EmployeeController extends Controller
     */
    public function destroy($id)
    {
-     Employee::find($id)->delete();
+     User::find($id)->delete();
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' eliminado correctamente');
    }
 }

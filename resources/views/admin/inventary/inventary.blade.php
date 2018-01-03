@@ -49,7 +49,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Inventario</small></a></li>
+          <li class="active">
+            <a id="inventary" ><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list" >
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos <small class="bg-indicator">Consulta</small></a></li>
+                <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -73,9 +81,9 @@
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil "></i> Registrar Productos</a>
-            <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
+            {{-- <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
             <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in fa-lg"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a>
+            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a> --}}
           </div>
           <div class="">
             <table id="Jtabla">
@@ -130,6 +138,13 @@
           "bSort": true,
           "bInfo": true,
           "bAutoWidth": true
+        });
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#inventary").click(function(){
+            $(".submenu-list").slideToggle("slow");
         });
       });
     </script>

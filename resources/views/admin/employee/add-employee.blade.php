@@ -48,7 +48,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li >
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -69,16 +77,16 @@
           <form class="container-add-clients" method="POST" action="/admin/employee">
             {{ csrf_field() }}
             <div class="date-client">
-              <label for="nombre_Empleado">Nombre Completo:</label>
-              <input type="text" name="nombre_Empleado" id="nombre_Empleado"  placeholder="Nombre Completo" required>
-              <label for="telefono">Teléfono:</label>
-              <input type="text" name="telefono" id="telefono" placeholder="Teléfono" required>
+              <label for="name">Nombre Completo:</label>
+              <input type="text" name="name" id="name"  placeholder="Nombre Completo" required>
+              <label for="phone">Teléfono:</label>
+              <input type="text" name="phone" id="phone" placeholder="Teléfono" required>
             </div>
             <div class="date-client">
-              <label for="usuario">Usuario:</label>
-              <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
-              <label for="contrasena">Contraseña:</label>
-              <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
+              <label for="user">Usuario:</label>
+              <input type="text" name="user" id="user" placeholder="Usuario" required>
+              <label for="password">Contraseña:</label>
+              <input type="password" name="password" id="password" placeholder="Contraseña" required>
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -91,6 +99,8 @@
     <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>

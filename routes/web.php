@@ -1,19 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Route::get('/', function () {
+//     return view('login');
+// });
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', 'Auth\LoginController@showLoginForm');
+Route::post('/', 'Auth\LoginController@login');
+// Route::get('/', 'Auth\LoginController@showLoginForm');
+// Route::post('login','Auth\LoginController@login');
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');
@@ -37,18 +31,11 @@ Route::get('/admin/add-employee', 'EmployeeController@create');
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
 Route::resource('admin/employee','EmployeeController');
 // ------------------End Employee------------------------------------
-
-Route:: get('/admin/quotation', function(){
-  return view('admin/quotation/quotation');
-});
-
-Route:: get('/admin/add-quotation', function(){
-  return view('admin/quotation/add-quotation');
-});
-
-Route:: get('/admin/edit-quotation', function(){
-  return view ('admin/quotation/edit-quotation');
-});
+// ------------------quotations----------------------------------------
+Route::resource('/admin/quotation', 'QuotationsController');
+Route::get('/admin/add-quotation', 'QuotationsController@create');
+Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
+// ------------------end quotations----------------------------------------
 // ------------------inventary----------------------------------------
 Route::get('/admin/inventaryMenu', function(){
   return view ('admin/inventary/inventaryMenu');
@@ -90,11 +77,11 @@ Route::get('/admin/add-out', 'CheckoutsController@create');
 Route::get('/admin/edit-out/{checkout}', 'CheckoutsController@edit');
 Route::get('/admin/show-out/{checkout}', 'CheckoutsController@show');
 Route::resource('/admin/inventary-out','CheckoutsController');
-// ------------------End checkin----------------------------------------
+// ------------------End checkouts----------------------------------------
 
 
 
-/**************Users***************************/
+/*******************************8*******Users*******************************************/
 Route::get('/users/users-welcome', function(){
   return view ('users/users');
 });

@@ -48,13 +48,22 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="i"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li >
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/inventary')}}"> Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}">  Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
       </aside>
       <div class="container" id="container">
         <div class="location">
+          {{-- <h1 class="title">Administrador: {{ auth()->user()->name }}</h1> --}}
           <h1 class="title">Administrador</h1>
           <div class="breadcrumb">
             <ol>
@@ -97,6 +106,8 @@
     <footer id="footerM">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
+    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>

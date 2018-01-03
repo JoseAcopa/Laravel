@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-  protected $table = 'employee';
+  // protected $table = 'users';
   // protected $id = "id";
 
   // public $timestamps = false;
 
-  // protected $fillable = [
-  //     'nombre_Empleado', 'telefono', 'usario', 'contrasena',
-  // ];
+  protected $fillable = [
+      'name', 'phone', 'user', 'password',
+  ];
 }

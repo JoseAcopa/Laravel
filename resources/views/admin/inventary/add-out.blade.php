@@ -51,7 +51,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Salidas</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}">Entradas de Productos </a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos <small class="bg-indicator">Agregar</small></a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"> Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -106,9 +114,9 @@
               <input type="text" name="stock" value="" id='stock' readonly="readonly">
               <input type="text" name="" value="" id='stockFixe' hidden="">
               <label for="quantity">Cantidad de Salida:</label>
-              <input type="number" name="quantity" value="0" placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
+              <input type="number" name="quantity" value="0" id="quantity" placeholder="Cantidad Entrada" onchange="myResta(this)" required>
               <label for="merma">Merma:</label>
-              <input type="text" name="merma" value="" placeholder="Merma" onclick="resta()">
+              <input type="number" name="merma" value="" placeholder="Merma" onchange="myResta(this)">
             </div>
             <div class="date-clients">
               <label for="priceList">Precio Lista:</label>
@@ -125,9 +133,9 @@
                 <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv4" value=""><label for="pv4">Venta 4</label>
                 <input onchange="checkbox(this);" type="radio" name="priceSales1" id="pv5" value=""><label for="pv5">Venta 5</label>
               </div>
-              <input type="text" name="priceSales" value="" id='priceSales' placeholder="Precio Venta">
+              <input type="text" name="priceSales" value="" id='priceSales' placeholder="Precio Venta" readonly="">
               <label for="totalAmount">Precio Total:</label>
-              <input type="text" name="totalAmount" value="" placeholder="Precio Total">
+              <input type="text" name="totalAmount" value="" id="totalAmount" placeholder="Precio Total">
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -148,7 +156,9 @@
         $("#search").select2();
       });
     </script>
+    {{-- <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
       function myProduct(e) {
         var val = <?php echo$products;?>;
@@ -190,7 +200,7 @@
       }
     </script>
     <script type="text/javascript">
-      function mySuma(e) {
+      function myResta(e) {
         var stock = document.getElementById('stockFixe').value
         var quantity = e.value
         var newStock = parseInt(stock) - parseInt(quantity)
@@ -202,20 +212,15 @@
       function checkbox(val) {
         var checked = val.checked
         var value = val.value
+        var checkout = document.getElementById('quantity').value
+        var totalAmount = value * checkout
+
+        document.getElementById('totalAmount').value=totalAmount.toFixed(2)
 
         if (checked === true) {
           document.getElementById('priceSales').value=value
         }
       }
-    </script>
-    <script type="text/javascript">
-    function resta() {
-      var decrase= Number (document.getElementById('merma').value);
-      var out= Number (document.getElementById('quantity').value);
-      var result = decrase-out ;
-
-      document.getElementById('quantityCO').value=result;
-    }
     </script>
   </body>
 </html>

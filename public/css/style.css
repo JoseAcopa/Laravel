@@ -3,7 +3,7 @@
   margin: 0;
 }
 .fondo{
-background-image: url('../img/3.jpg');
+/*background-image: url('../img/3.jpg');*/
 }
 .nav{
   height: 55px;
@@ -421,15 +421,15 @@ background-image: url('../img/3.jpg');
   margin-top: 20px !important;
 }
 
-.table::-webkit-scrollbar {
-    width: 1em;
+#aside::-webkit-scrollbar {
+    width: .4em;
 }
 
-.table::-webkit-scrollbar-track {
+#aside::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px #006064;
 }
 
-.table::-webkit-scrollbar-thumb {
+#aside::-webkit-scrollbar-thumb {
   background-color: #006064;
   outline: 1px solid slategrey;
   border-radius: 6px;
@@ -1441,4 +1441,38 @@ textarea:read-only {
 .input-radio label{
   cursor: pointer;
   margin-right: 20px;
+}
+/*********************ListINventary****************************/
+
+.fa-chevron-down{
+  margin-left: 50px;
+  margin-top: 3px;
+}
+
+.submenu-list{
+  background: #222d32;
+  padding: 0px;
+  display: none;
+}
+
+.submenu-list li {
+  background: #222d32;
+}
+
+.submenu-list a {
+  background: #222d32 !important;
+  color: #b8c7ce !important;
+  font-size: 13px !important;
+  padding: 10px !important;
+  margin-top: -22px !important;
+  border: 0px !important;
+  font-weight: 500 !important;
+  font-family: sans-serif;
+}
+.submenu-list a:hover {
+  color: #fff !important;
+  background: #1e282c !important;
+  transition: .2s !important;
+  /*border-left: 4px solid #1E8BC3 !important;*/
+  transition: .5s !important;
 }

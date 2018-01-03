@@ -49,7 +49,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario</a></li>
+          <li >
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -65,6 +73,11 @@
             </ol>
           </div>
         </div>
+        @if ($message = Session::get('success'))
+          <div class="message-danger">
+            <p>{{ $message }}</p>
+          </div>
+        @endif
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-quotation')}}" class="btn-green" ><i class="fa fa-book"></i>  Cotizar</a>
@@ -79,40 +92,25 @@
                   <th>Número de Cliente</th>
                   <th>Nombre de la Empresa</th>
                   <th>RFC</th>
-                  {{-- <th>Teléfono</th>
-                  <th>Dirección</th>
-                  <th>Nombre Completo</th>
-                  <th>Puesto</th>
-                  <th>Correo</th>
-                  <th>N° de Licitación</th>
-                  <th>Observaciones</th>
-                  <th>Productos</th>
-                  <th>SubTotal</th> --}}
-                  {{-- <th>Total</th> --}}
                </tr>
               </thead>
               <tbody class="tbodymain">
-                <tr class="tbody">
-                  <td class="action">
-                    <a class="btn-info" href="}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>                    <a class="btn-edit" href="{{url('/admin/edit-quotation')}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
-                  </td>
-                  <td>RXS-000-2017</td>
-                  <td>25-06-2017</td>
-                  <td>0001</td>
-                  <td>Servicios Electricos Automotriz Patricio</td>
-                  <td>PACR720402U71</td>
-                  {{-- <td>9932065554</td> --}}
-                  {{-- <td>Rancheria Guineo Primera seccion carretera a reforma kilometro 11.5</td>
-                  <td>Nirandelli Patricio Mayo</td>
-                  <td>Encargado de sistemas</td>
-                  <td>delli.patricio.mayo@gmail.com</td>
-                  <td>7865</td>
-                  <td>mmmmmmmmmmmmmmmmmmmmmmhhgffffffffdfhj</td>
-                  <td>manguera</td>
-                  <td>600</td>
-                  <td>700</td --}}
-                </tr>
+                @foreach ($quotations as $quotation)
+                  <tr class="tbody">
+                    <td class="action">
+                      <a class="btn-info" href="{{url('/admin/show-product',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
+                      <a class="btn-green" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $quotation->id]]) !!}
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                      {!! Form::close() !!}
+                    </td>
+                    <td>{{$quotation->folio}}</td>
+                    <td>{{$quotation->date}}</td>
+                    <td>{{$quotation->nClient}}</td>
+                    <td>{{$quotation->company}}</td>
+                    <td>{{$quotation->RFC}}</td>
+                  </tr>
+                @endforeach
               </tbody>
             </table>
           </div>
@@ -124,6 +122,7 @@
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
     <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
     <script type="text/javascript">

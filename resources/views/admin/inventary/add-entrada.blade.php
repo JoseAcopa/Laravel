@@ -51,7 +51,15 @@
           <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active"><a href="{{url('admin/inventaryMenu')}}"><i class="fa fa-pencil-square"></i>Inventario <small class="bg-indicator">Entradas</small></a></li>
+          <li class="active">
+            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li class="active" ><a href="{{url('admin/inventary')}}">Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"> Entradas de Productos <small class="bg-indicator">Agregar</small></a></li>
+                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
+              </ul>
+          </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
         </ul>
@@ -70,7 +78,7 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Registrar Entrada</h2>
           <div class="searchDescription">
-            <i class="fa fa-search fa-lg"></i>
+            <i class="fa fa-search"></i>
             <select id="search" onchange="myProduct(this)">
               <<option value="null">Buscar Producto</option>
               @foreach ($products as $product)
@@ -169,6 +177,8 @@
       });
     </script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
+    {{-- <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script> --}}
     <script type="text/javascript">
       function myProduct(e) {
         var val = <?php echo$products;?>;

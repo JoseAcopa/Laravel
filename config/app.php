@@ -179,6 +179,7 @@ return [
 
         //agregar  provider manuales
         Collective\Html\HtmlServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
     ],
 
     /*
