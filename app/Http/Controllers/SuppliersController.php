@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Suppliers;
+use App\Http\Requests\CreateSupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 
 class SuppliersController extends Controller
 {
@@ -34,7 +36,7 @@ class SuppliersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSupplierRequest $request)
     {
       $suppliers = new Suppliers;
       $suppliers->RFC = request('RFC');
@@ -77,7 +79,7 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSupplierRequest $request, $id)
     {
       $newRFC = $request->input('RFC');
       $newBusiness = $request->input('business');

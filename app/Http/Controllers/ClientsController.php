@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Clients;
 use App\Http\Requests\CreateClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientsController extends Controller
 {
@@ -78,7 +79,7 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateClientRequest $request, $id)
     {
       $newRFC = $request->input('RFC');
       $newBusiness = $request->input('business');

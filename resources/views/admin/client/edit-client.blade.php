@@ -74,20 +74,27 @@
           </div>
         </div>
         <div class="for-container">
+          @if (count($errors) > 0)
+            <ul class="message-errors">
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
           <h2><i class="fa fa-edit"></i> Editar Cliente</h2>
           {!! Form::model($client, ['method' => 'PATCH','route' => ['client.update', $client->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="business">Nombre de la Empresa:</label>
-              <input type="text" name="business" value='{{ $client->business }}' required>
+              <input type="text" name="business" value='{{ $client->business }}'>
               <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" value='{{ $client->RFC }}' required>
+              <input type="text" name="RFC" value='{{ $client->RFC }}'>
             </div>
             <div class="date-clients">
               <label for="phone">Teléfono:</label>
-              <input type="text" name="phone" value='{{ $client->phone }}' required>
+              <input type="tel" name="phone" value='{{ $client->phone }}'>
               <label for="email">E-mail:</label>
-              <input type="text" name="email" value='{{ $client->email }}' required>
+              <input type="email" name="email" value='{{ $client->email }}'>
             </div>
             <div class="date-clients">
               <label for="address">Dirección:</label>
