@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('priceSales3');
             $table->string('priceSales4');
             $table->string('priceSales5');
+            $table->string('coin');
             $table->string('stock');
             $table->timestamps();
         });

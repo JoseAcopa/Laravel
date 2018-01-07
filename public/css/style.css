@@ -1253,6 +1253,19 @@ select{
   font-weight: 700;
 }
 
+.message-errors{
+  padding: 5px;
+  background: #F1A9A0;
+  color: #CF000F;
+  border-radius: 3px;
+  font-family: Montserrat;
+  border-left: 4px solid #CF000F;
+  width: 990px;
+  margin-bottom: 15px;
+  font-weight: 200;
+  list-style: none;
+}
+
 /*--------------------------show-product----------------------------*/
 
 .line{

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Clients;
+use App\Http\Requests\CreateClientRequest;
 
 class ClientsController extends Controller
 {
@@ -34,7 +35,7 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateClientRequest $request)
     {
       $clients = new Clients;
       $clients->RFC = request('RFC');

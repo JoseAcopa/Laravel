@@ -73,20 +73,27 @@
           </div>
         </div>
         <div class="for-container">
+          @if (count($errors) > 0)
+            <ul class="message-errors">
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
           <h2><i class="fa fa-user-plus"></i> Registrar Clientes</h2>
           <form class="container-add-clients" method="POST" action="/admin/client">
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="business">Nombre de la Empresa:</label>
-              <input type="text" name="business" placeholder="Nombre de la empresa" required>
+              <input type="text" name="business" placeholder="Nombre de la empresa">
               <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" placeholder="RFC" required>
+              <input type="text" name="RFC" placeholder="RFC">
             </div>
             <div class="date-clients">
               <label for="phone">Teléfono:</label>
-              <input type="text" name="phone" placeholder="Teléfono" required>
+              <input type="tel" name="phone" placeholder="Teléfono">
               <label for="email">E-mail:</label>
-              <input type="text" name="email" placeholder="E-mail" required>
+              <input type="email" name="email" placeholder="E-mail">
             </div>
             <div class="date-clients">
               <label for="address">Dirección:</label>
