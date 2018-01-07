@@ -76,6 +76,7 @@
         <div class="for-container">
           @if (count($errors) > 0)
             <ul class="message-errors">
+              <strong>Corrija los Siguientes datos!</strong>
               @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
               @endforeach

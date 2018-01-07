@@ -1247,7 +1247,7 @@ select{
   border-radius: 3px;
   font-family: Montserrat;
   border-left: 4px solid #00978e;
-  width: 1010px;
+  width: 1015px;
   margin-bottom: 15px;
   text-align: center;
   font-weight: 700;
@@ -1255,15 +1255,17 @@ select{
 
 .message-errors{
   padding: 5px;
-  background: #F1A9A0;
-  color: #CF000F;
+  background: #f2dede;
+  color: #a94442;
   border-radius: 3px;
-  font-family: Montserrat;
-  border-left: 4px solid #CF000F;
-  width: 1010px;
+  font-family: sans-serif;;
+  border-left: 4px solid #ebccd1;
+  width: 1015px;
   margin-bottom: 15px;
-  font-weight: 200;
-  list-style: none;
+}
+
+.message-errors li{
+  margin-left: 30px;
 }
 
 /*--------------------------show-product----------------------------*/

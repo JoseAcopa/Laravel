@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\User;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class EmployeeController extends Controller
 {
@@ -34,14 +36,8 @@ class EmployeeController extends Controller
     *
     * @return Response
     */
-   public function store(Request $request)
+   public function store(CreateUserRequest $request)
    {
-
-    //  request()->validate([
-    //         'title' => 'required',
-    //         'body' => 'required',
-    //     ]);
-
      $employee = new User;
      $employee->name = request('name');
      $employee->phone = request('phone');
@@ -81,7 +77,7 @@ class EmployeeController extends Controller
     * @param  int  $id
     * @return Response
     */
-   public function update(Request $request, $id)
+   public function update(UpdateUserRequest $request, $id)
    {
      $newName = $request->input('name');
      $newPhone = $request->input('phone');

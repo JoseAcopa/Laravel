@@ -73,20 +73,28 @@
           </div>
         </div>
         <div class="for-container">
+          @if (count($errors) > 0)
+            <ul class="message-errors">
+              <strong>Corrija los Siguientes datos!</strong>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
           <h2><i class="fa fa-edit"></i> Editar Empleado</h2>
           {!! Form::model($employee, ['method' => 'PATCH','route' => ['employee.update', $employee->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" value='{{ $employee->name }}' required>
+              <input type="text" name="name" value='{{ $employee->name }}'>
               <label for="telephone">Teléfono:</label>
-              <input type="text" name="phone" value='{{ $employee->phone }}' required>
+              <input type="tel" name="phone" value='{{ $employee->phone }}'>
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="user" value='{{ $employee->user }}' required>
+              <input type="text" name="user" value='{{ $employee->user }}'>
               <label for="password">Contraseña:</label>
-              <input type="password" name="password" value='{{ $employee->password }}' required>
+              <input type="password" name="password" value='{{ $employee->password }}'>
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
