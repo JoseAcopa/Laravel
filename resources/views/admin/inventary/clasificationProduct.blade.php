@@ -100,7 +100,7 @@
                   <option value="">Seleccione Categoria</option>
                   <option value="categoria 1">categoria 1</option>
                   <option value="categoria 2">categoria 2</option>
-                  <option value="">Otro</option>
+                  <option value="otro">Otro</option>
                 </select>
               </div>
               <div class="button-clientClasific">

@@ -7,6 +7,8 @@ use App\Products;
 use App\Suppliers;
 use App\Units;
 use App\TypeProducts;
+use App\Coins;
+use App\Http\Requests\CreateProductsRequest;
 
 class ProductsControllers extends Controller
 {
@@ -31,7 +33,8 @@ class ProductsControllers extends Controller
       $suppliers = Suppliers::all();
       $units = Units::all();
       $typeProducts = TypeProducts::all();
-      return view('admin.inventary.add-product', compact('suppliers'), compact('units', 'typeProducts'));
+      $coins = Coins::all();
+      return view('admin.inventary.add-product', compact('suppliers'), compact('units', 'typeProducts', 'coins'));
     }
 
     /**
@@ -40,7 +43,7 @@ class ProductsControllers extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductsRequest $request)
     {
       $product = new Products;
       $product->nInvoice = request('nInvoice');
@@ -59,6 +62,7 @@ class ProductsControllers extends Controller
       $product->priceSales3 = request('priceSales3');
       $product->priceSales4 = request('priceSales4');
       $product->priceSales5 = request('priceSales5');
+      $product->coin = request('coin');
       $product->save();
       return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente');
 
@@ -88,7 +92,8 @@ class ProductsControllers extends Controller
       $units = Units::all();
       $product = Products::find($id);
       $typeProducts = TypeProducts::all();
-      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units', 'typeProducts'));
+      $coins = Coins::all();
+      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units', 'typeProducts', 'coins'));
     }
 
     /**
