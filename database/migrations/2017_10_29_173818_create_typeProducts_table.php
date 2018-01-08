@@ -17,6 +17,7 @@ class CreateTypeProductsTable extends Migration
             $table->increments('id');
             $table->string('type');
             $table->string('letters');
+            $table->string('categorias');
             $table->timestamps();
         });
     }

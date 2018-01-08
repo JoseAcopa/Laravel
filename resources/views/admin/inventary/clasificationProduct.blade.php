@@ -75,17 +75,37 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Clasificación de Producto</h2>
           <div class="clasific">
+            @if (count($errors) > 0)
+              <ul class="message-errors">
+                <strong>Corrija los Siguientes datos!</strong>
+                @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+                @endforeach
+              </ul>
+            @endif
+            @if ($message = Session::get('success'))
+              <div class="message-danger">
+                <p>{{ $message }}</p>
+              </div>
+            @endif
             <form class="container-add-clientsClasific" method="POST" action="/admin/clasificationProduct">
               {{ csrf_field() }}
               <div class="date-clientsClasific">
                 <label for="typeP">Tipo de Producto:</label>
-                <input type="text" name="typeP" value="" >
+                <input type="text" name="type" value="">
                 <label for="ini">Iniciales:</label>
-                <input type="text" name="ini" value=""  >
+                <input type="text" name="letters" value="">
+                <label for="ini">Iniciales:</label>
+                <select class="select-design" name="categorias">
+                  <option value="">Seleccione Categoria</option>
+                  <option value="categoria 1">categoria 1</option>
+                  <option value="categoria 2">categoria 2</option>
+                  <option value="">Otro</option>
+                </select>
               </div>
               <div class="button-clientClasific">
                 <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
-                <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+                {{-- <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a> --}}
               </div>
             </form>
             <div class="container-add-clientsClasificTable">
@@ -95,7 +115,8 @@
                       <tr class="theader">
                         <th>Acciones</th>
                         <th>Tipo de Producto</th>
-                        <th>N° de Producto</th>
+                        <th>Letra Inicial</th>
+                        <th>Categoria</th>
                      </tr>
                     </thead>
                     <tbody class="tbodymain">
@@ -103,12 +124,13 @@
                         <tr class="tbody">
                           <td class="action">
                             {{-- <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a> --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id_Producto]]) !!}
+                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id]]) !!}
                               <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
                             {!! Form::close() !!}
                           </td>
                           <td>{{$key->type}}</td>
                           <td>{{$key->letters}}</td>
+                          <td>{{$key->categorias}}</td>
                         </tr>
                       @endforeach
                     </tbody>
