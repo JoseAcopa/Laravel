@@ -10,4 +10,9 @@ class Suppliers extends Model
   protected $fillable = [
       'RFC', 'business', 'address', 'phone', 'email',
   ];
+
+  public function product()
+  {
+    return $this->belongsTo('App\Products');
+  }
 }

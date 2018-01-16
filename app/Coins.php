@@ -11,4 +11,9 @@ class Coins extends Model
   protected $fillable = [
       'type',
   ];
+
+  public function product()
+  {
+    return $this->belongsTo('App\Products');
+  }
 }

@@ -47,12 +47,12 @@ class ProductsControllers extends Controller
     {
       $product = new Products;
       $product->nInvoice = request('nInvoice');
-      $product->TProducts = request('TProducts');
+      $product->typeProducts_id = request('TProducts');
       $product->initials = request('initials');
-      $product->provider = request('provider');
+      $product->suppliers_id = request('provider');
       $product->checkin = request('checkin');
       $product->quantity = request('quantity');
-      $product->unit = request('unit');
+      $product->unit_id = request('unit');
       $product->priceList = request('priceList');
       $product->cost = request('cost');
       $product->description = request('description');
@@ -62,7 +62,7 @@ class ProductsControllers extends Controller
       $product->priceSales3 = request('priceSales3');
       $product->priceSales4 = request('priceSales4');
       $product->priceSales5 = request('priceSales5');
-      $product->coin = request('coin');
+      $product->coin_id = request('coin');
       $product->save();
       return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente');
 
@@ -124,12 +124,12 @@ class ProductsControllers extends Controller
       $product = Products::find($id);
 
       $product->nInvoice = $newNInvoice;
-      $product->TProducts = $newTProducts;
+      $product->typeProducts_id = $newTProducts;
       $product->initials = $newInitials;
-      $product->provider = $newProvider;
+      $product->suppliers_id = $newProvider;
       $product->checkin = $newCheckin;
       $product->quantity = $newQuantity;
-      $product->unit = $newUnit;
+      $product->unit_id = $newUnit;
       $product->priceList = $newPriceList;
       $product->cost = $newCost;
       $product->description = $newDescription;
