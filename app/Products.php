@@ -26,13 +26,13 @@ class Products extends Model
     return $this->hasMany('App\Suppliers');
   }
 
-  public function unit()
+  public function units()
   {
     return $this->belongsTo('App\Units');
   }
 
   public function coin()
   {
-    return $this->belongsTo('App\Coins');
+    return $this->hasMany('App\Coins');
   }
 }
