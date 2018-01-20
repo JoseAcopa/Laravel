@@ -98,9 +98,9 @@
                 <label for="ini">Iniciales:</label>
                 <select class="select-design" name="categorias">
                   <option value="">Seleccione Categoria</option>
-                  <option value="categoria 1">categoria 1</option>
-                  <option value="categoria 2">categoria 2</option>
-                  <option value="otro">Otro</option>
+                  <option value="Categoria 1">categoria 1</option>
+                  <option value="Categoria 2">categoria 2</option>
+                  <option value="Categoria 3">Otro</option>
                 </select>
               </div>
               <div class="button-clientClasific">

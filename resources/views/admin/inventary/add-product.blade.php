@@ -125,9 +125,9 @@
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales(this);">
+              <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="" id="cost" placeholder="Costo" onchange="priceSales(this);">
+              <input type="text" name="cost" value="" id="cost" placeholder="Costo" onchange="priceSales();">
               <label for="money">Tipo de moneda:</label>
               <select class="select-design" name="coin">
                 <option value="">Seleccione tipo de moneda</option>
@@ -143,12 +143,6 @@
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
               <input type="text" name="" id="categoria" value="" readonly="">
-              {{-- <select class="select-design" name="" onchange="priceSales(this);">
-                <option value="">Seleccione categoria</option>
-                <option value="Categoria 1">Categoria 1</option>
-                <option value="Categoria 2">Categoria 2</option>
-                <option value="Categoria 3">Otros</option>
-              </select> --}}
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
               <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="">
             </div>
@@ -192,48 +186,47 @@
       }
     </script>
     <script type="text/javascript">
-      function priceSales(val) {
-        var value = val.value
+      function priceSales() {
+        var value = document.getElementById('categoria').value
+        var priceList = document.getElementById('priceList').value
+        var cost = document.getElementById('cost').value
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
         console.log(value);
-        // var priceList = document.getElementById('priceList').value
-        // var cost = document.getElementById('cost').value
-        // var cat1 = [.70, .65, .60, .57]
-        // var cat2 = [.40, .37, .36, .35]
-        // var cat3 = [.70, .75, .80, .85]
-        // var newRes = []
-        //
-        // if (value === 'Categoria 1') {
-        //   for (var i = 0; i < cat1.length; i++) {
-        //     var res = cat1[i] * priceList
-        //     newRes.push(res)
-        //     document.getElementById('pv1').innerHTML = ' (x0.70)'
-        //     document.getElementById('pv2').innerHTML = ' (x0.65)'
-        //     document.getElementById('pv3').innerHTML = ' (x0.60)'
-        //     document.getElementById('pv4').innerHTML = ' (x0.57)'
-        //   }
-        // }else if (value === 'Categoria 2') {
-        //   for (var i = 0; i < cat2.length; i++) {
-        //     var res = cat2[i] * cost
-        //     newRes.push(res)
-        //     document.getElementById('pv1').innerHTML = ' (x0.40)'
-        //     document.getElementById('pv2').innerHTML = ' (x0.37)'
-        //     document.getElementById('pv3').innerHTML = ' (x0.36)'
-        //     document.getElementById('pv4').innerHTML = ' (x0.35)'
-        //   }
-        // }else if (value === 'Categoria 3') {
-        //   for (var i = 0; i < cat3.length; i++) {
-        //     var res = cost / cat3[i]
-        //     newRes.push(res)
-        //     document.getElementById('pv1').innerHTML = ' (/ 0.70)'
-        //     document.getElementById('pv2').innerHTML = ' (/ 0.75)'
-        //     document.getElementById('pv3').innerHTML = ' (/ 0.80)'
-        //     document.getElementById('pv4').innerHTML = ' (/ 0.85)'
-        //   }
-        // }
-        // document.getElementById('priceSales1').value=newRes[0].toFixed(2)
-        // document.getElementById('priceSales2').value=newRes[1].toFixed(2)
-        // document.getElementById('priceSales3').value=newRes[2].toFixed(2)
-        // document.getElementById('priceSales4').value=newRes[3].toFixed(2)
+        if (value === 'Categoria 1') {
+          for (var i = 0; i < cat1.length; i++) {
+            var res = cat1[i] * priceList
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.70)'
+            document.getElementById('pv2').innerHTML = ' (x0.65)'
+            document.getElementById('pv3').innerHTML = ' (x0.60)'
+            document.getElementById('pv4').innerHTML = ' (x0.57)'
+          }
+        }else if (value === 'Categoria 2') {
+          for (var i = 0; i < cat2.length; i++) {
+            var res = cat2[i] * cost
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (x0.40)'
+            document.getElementById('pv2').innerHTML = ' (x0.37)'
+            document.getElementById('pv3').innerHTML = ' (x0.36)'
+            document.getElementById('pv4').innerHTML = ' (x0.35)'
+          }
+        }else if (value === 'Categoria 3') {
+          for (var i = 0; i < cat3.length; i++) {
+            var res = cost / cat3[i]
+            newRes.push(res)
+            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
+            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
+            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
+            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+          }
+        }
+        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
+        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
+        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
+        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
       }
     </script>
     <script type="text/javascript">
