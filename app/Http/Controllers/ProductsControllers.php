@@ -110,11 +110,11 @@ class ProductsControllers extends Controller
       $newInitials = $request->input('initials');
       $newProvider = $request->input('proveedor');
       $newCheckin = $request->input('fecha_entrada');
-      $newQuantity = $request->input('cantidad');
+      $newQuantity = $request->input('cantidad_entrada');
       $newUnit = $request->input('unidad');
       $newPriceList = $request->input('precio_lista');
       $newCost = $request->input('costo');
-      $newDescription = $request->input('descripcion');
+      $newDescription = $request->input('description');
       $newPriceSales1 = $request->input('priceSales1');
       $newPriceSales2 = $request->input('priceSales2');
       $newPriceSales3 = $request->input('priceSales3');
@@ -125,9 +125,9 @@ class ProductsControllers extends Controller
       $product = Products::find($id);
 
       $product->nInvoice = $newNInvoice;
-      $product->typeProducts_id = $newTProducts;
+      $product->typeProduct_id = $newTProducts;
       $product->initials = $newInitials;
-      $product->suppliers_id = $newProvider;
+      $product->supplier_id = $newProvider;
       $product->checkin = $newCheckin;
       $product->quantity = $newQuantity;
       $product->unit_id = $newUnit;
@@ -140,7 +140,7 @@ class ProductsControllers extends Controller
       $product->priceSales3 = $newPriceSales3;
       $product->priceSales4 = $newPriceSales4;
       $product->priceSales5 = $newPriceSales5;
-      $product->coin = $newCoin;
+      $product->coin_id = $newCoin;
       $product->save();
 
       return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
