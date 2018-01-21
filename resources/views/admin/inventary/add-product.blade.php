@@ -86,12 +86,12 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" value="" placeholder="Número Factura">
+              <input type="text" name="nInvoice" placeholder="Número Factura">
               <div class="clasification">
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
-                  <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden="">
-                  <select class="select-design" name="" onchange="typeProduct(this);" id='test'>
+                  {{-- <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden=""> --}}
+                  <select class="select-design" name="tipo_producto" onchange="typeProduct(this);" id='test'>
                     <option value="">Seleccione Tipo Producto</option>
                     @foreach ($typeProducts as $typeProduct)
                       <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
@@ -99,50 +99,50 @@
                   </select>
                 </div>
                 <div class="iniciales">
-                  <input type="text" class="inicialesInput" id="VM" value="" name="initials" readonly="readonly">
+                  <input type="text" class="inicialesInput" id="VM" name="initials" readonly="readonly">
                 </div>
               </div>
-              <label for="provider">Proveedor:</label>
-              <select class="select-design" name="provider">
+              <label for="proveedor">Proveedor:</label>
+              <select class="select-design" name="proveedor">
                 <option value="">Seleccione Proveedor</option>
                 @foreach ($suppliers as $supplier)
-                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                  <option value="{{$supplier->id}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
             </div>
             <div class="date-clients">
-              <label for="checkin">Fecha de Entrada:</label>
-              <input type="date" class="date-design" name="checkin" value="">
-              <label for="quantity">Cantidad de Entrada:</label>
-              <input type="text" name="quantity" value="" placeholder="Cantidad Entrada">
-              <label for="unit">Unidad de Medida:</label>
-              <select class="select-design" name="unit">
+              <label for="fecha_entrada">Fecha de Entrada:</label>
+              <input type="date" class="date-design" name="fecha_entrada" id="fecha_entrada">
+              <label for="cantidad_entrada">Cantidad de Entrada:</label>
+              <input type="text" name="cantidad_entrada" id="cantidad_entrada" placeholder="Cantidad Entrada">
+              <label for="unidad">Unidad de Medida:</label>
+              <select class="select-design" name="unidad">
                 <option value="">Seleccione Unidad de Medida</option>
                 @foreach ($units as $unit)
-                  <option value="{{$unit->type}}">{{$unit->type}}</option>
+                  <option value="{{$unit->id}}">{{$unit->type}}</option>
                 @endforeach
               </select>
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="text" name="priceList" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
+              <input type="text" name="precio_lista" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
               <label for="cost">Costo:</label>
-              <input type="text" name="cost" value="" id="cost" placeholder="Costo" onchange="priceSales();">
-              <label for="money">Tipo de moneda:</label>
-              <select class="select-design" name="coin">
+              <input type="text" name="costo" value="" id="cost" placeholder="Costo" onchange="priceSales();">
+              <label for="moneda">Tipo de moneda:</label>
+              <select class="select-design" name="moneda">
                 <option value="">Seleccione tipo de moneda</option>
                 @foreach ($coins as $coin)
-                  <option value="{{$coin->type}}">{{$coin->type}}</option>
+                  <option value="{{$coin->id}}">{{$coin->type}}</option>
                 @endforeach
               </select>
             </div>
             <div class="date-clientstextA">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" placeholder="Descripción"></textarea>
+              <textarea type="text" rows="4" name="description" id="description" placeholder="Descripción"></textarea>
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <input type="text" name="" id="categoria" value="" readonly="">
+              <input type="text" id="categoria" readonly="">
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
               <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="">
             </div>
@@ -181,7 +181,7 @@
         })
         var typeProduct = newVal[val.value]
         document.getElementById('VM').value = typeProduct.letters;
-        document.getElementById('TProducts').value = typeProduct.type;
+        // document.getElementById('TProducts').value = typeProduct.type;
         document.getElementById('categoria').value = typeProduct.categorias;
       }
     </script>

@@ -92,9 +92,8 @@
                   <th>Acciones</th>
                   <th>N° de Factura</th>
                   <th>N° de Producto</th>
-                  <th>Tipo de Producto</th>
-                  <th>Proveedores</th>
-                  <th>Descripción</th>
+                  <th>Descripción del Producto</th>
+                  <th>Tipo Producto</th>
                   <th>Fecha de Entrada</th>
                </tr>
               </thead>
@@ -110,9 +109,8 @@
                     </td>
                     <td>{{ $product->nInvoice }}</td>
                     <td>{{ $product->initials }}-{{ $product->id }}</td>
-                    <td>{{ $product->TProducts }}</td>
-                    <td>{{ $product->provider }}</td>
                     <td>{{ $product->description }}</td>
+                    <td>{{ $product->typeProduct_id }}</td>
                     <td>{{ $product->checkin }}</td>
                   </tr>
                 @endforeach
