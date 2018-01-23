@@ -12,6 +12,10 @@ Route::post('/', 'Auth\LoginController@login');
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');
 });
+
+Route::get('/admin/alta', function () {
+    return view('admin/inventary/alta');
+});
 // ------------------End Admin-----------------------------------------
 
 // ------------------Clients-----------------------------------------

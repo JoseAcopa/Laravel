@@ -51,6 +51,7 @@
           <li class="active">
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
               <ul class="submenu-list" id="submenu-list">
+                <li class="active" ><a href="{{url('admin/alta')}}">Alta de Productos </a></li>
                 <li class="active" ><a href="{{url('admin/inventary')}}">Productos </a></li>
                 <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
                 <li><a href="{{url('admin/inventary-out')}}">  Salidas de Productos</a></li>
@@ -98,8 +99,8 @@
                 <label for="ini">Iniciales:</label>
                 <select class="select-design" name="categorias">
                   <option value="">Seleccione Categoria</option>
-                  <option value="Categoria 1">categoria 1</option>
-                  <option value="Categoria 2">categoria 2</option>
+                  <option value="Categoria 1">Petrolera/Industrial</option>
+                  <option value="Categoria 2">Hidraulica</option>
                   <option value="Categoria 3">Otro</option>
                 </select>
               </div>
