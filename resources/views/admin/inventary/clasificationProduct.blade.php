@@ -99,9 +99,9 @@
                 <label for="ini">Iniciales:</label>
                 <select class="select-design" name="categorias">
                   <option value="">Seleccione Categoria</option>
-                  <option value="Categoria 1">Petrolera/Industrial</option>
-                  <option value="Categoria 2">Hidraulica</option>
-                  <option value="Categoria 3">Otro</option>
+                  <option value="Petrolera | Industrial">Petrolera | Industrial</option>
+                  <option value="Hidraulica">Hidraulica</option>
+                  <option value="Otro">Otro</option>
                 </select>
               </div>
               <div class="button-clientClasific">
