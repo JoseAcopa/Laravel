@@ -13,7 +13,7 @@ class CreateCatalogs extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class CreateCatalogs extends FormRequest
     public function rules()
     {
         return [
-            //
+          'tipo_producto' => 'max:255|required',
+          'proveedor' => 'max:255|required',
+          'unidad' => 'max:255|required',
+          'description' => 'max:255|required|unique:catalogs',
         ];
     }
 }

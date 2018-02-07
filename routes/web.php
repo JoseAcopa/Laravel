@@ -8,13 +8,10 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('/', 'Auth\LoginController@login');
 // Route::get('/', 'Auth\LoginController@showLoginForm');
 // Route::post('login','Auth\LoginController@login');
+
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', function () {
     return view('admin/admin');
-});
-
-Route::get('/admin/alta', function () {
-    return view('admin/inventary/alta');
 });
 // ------------------End Admin-----------------------------------------
 
@@ -35,11 +32,13 @@ Route::get('/admin/add-employee', 'EmployeeController@create');
 Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
 Route::resource('admin/employee','EmployeeController');
 // ------------------End Employee------------------------------------
+
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');
 Route::get('/admin/add-quotation', 'QuotationsController@create');
 Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
 // ------------------end quotations----------------------------------------
+
 // ------------------inventary----------------------------------------
 Route::get('/admin/inventaryMenu', function(){
   return view ('admin/inventary/inventaryMenu');
@@ -49,6 +48,7 @@ Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
 Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
+
 Route::get('/admin/add-entrada', function(){
   return view ('admin/inventary/add-entrada');
 });
@@ -64,10 +64,8 @@ Route::get('/admin/inventary/price/add-price', function(){
 // ------------------clasificationProduct---------------------------------------
 Route::get('/admin/clasificationProduct', 'TypeProductsControllers@create');
 Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
-// Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
 Route::resource('admin/clasificationProduct','TypeProductsControllers');
 // ------------------End clasificationProduct----------------------------------------
-
 
 // ------------------checkin----------------------------------------
 Route::get('/admin/add-checkin', 'CheckinsController@create');
@@ -82,6 +80,14 @@ Route::get('/admin/edit-out/{checkout}', 'CheckoutsController@edit');
 Route::get('/admin/show-out/{checkout}', 'CheckoutsController@show');
 Route::resource('/admin/inventary-out','CheckoutsController');
 // ------------------End checkouts----------------------------------------
+
+// ------------------Alta de Catalogo----------------------------------------
+Route::get('/admin/alta', 'CatalogsController@create');
+Route::get('/admin/edit-out/{catalog}', 'CatalogsController@edit');
+Route::resource('/admin/inventary-out','CatalogsController');
+// ------------------End Alta de Catalogo----------------------------------------
+
+
 
 
 

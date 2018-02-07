@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Catalog;
+use App\Suppliers;
+use App\Units;
+use App\TypeProducts;
+use App\Http\Requests\CreateCatalogs;
 
 class CatalogsController extends Controller
 {
@@ -23,7 +28,10 @@ class CatalogsController extends Controller
      */
     public function create()
     {
-        //
+      $suppliers = Suppliers::all();
+      $units = Units::all();
+      $typeProducts = TypeProducts::all();
+      return view('admin.inventary.alta', compact('suppliers', 'units', 'typeProducts'));
     }
 
     /**
@@ -32,9 +40,16 @@ class CatalogsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCatalogs $request)
     {
-        //
+      $product = new Catalog;
+      $product->typeProduct_id = request('tipo_producto');
+      $product->letter = request('initials');
+      $product->supplier_id = request('proveedor');
+      $product->unit_id = request('unidad');
+      $product->description = request('description');
+      $product->save();
+      return redirect('admin/inventary')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
     }
 
     /**

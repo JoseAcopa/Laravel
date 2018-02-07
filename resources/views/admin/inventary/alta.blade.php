@@ -83,25 +83,33 @@
             </ul>
           @endif
           <h2><i class="fa fa-pencil"></i> Registrar Producto</h2>
-          <form class="container-add-clients" method="POST" action="/admin/inventary">
+          <form class="container-add-clients" method="POST" action="/admin/alta">
             {{ csrf_field() }}
             <div class="date-clients">
-              <label for="TProducts">Tipo de Producto:</label>
-              {{-- <input type="text" id="TProducts" value="" name="TProducts" readonly="readonly" hidden=""> --}}
-              <select class="select-design" name="tipo_producto" onchange="typeProduct(this);" id='test'>
+              <label for="tipo_producto">Tipo de Producto:</label>
+              <select class="select-design" name="tipo_producto" id='tipo_producto'>
                 <option value="">Seleccione Tipo Producto</option>
+                @foreach ($typeProducts as $typeProduct)
+                  <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
+                @endforeach
               </select>
-              <label for="priceSales2" >Iniciales</label>
-              <input type="text" id="VM" name="initials" readonly="readonly">
+              <label for="initials" >Iniciales</label>
+              <input type="text" id="initials" name="letter" value="test" readonly="readonly">
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
               <select class="select-design" name="proveedor">
                 <option value="">Seleccione Proveedor</option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                @endforeach
               </select>
               <label for="unidad">Unidad de Medida:</label>
               <select class="select-design" name="unidad">
                 <option value="">Seleccione Unidad de Medida</option>
+                @foreach ($units as $unit)
+                  <option value="{{$unit->type}}">{{$unit->type}}</option>
+                @endforeach
               </select>
             </div>
             <div class="date-clients">
