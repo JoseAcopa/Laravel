@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
   </head>
   <body>
     <header>
@@ -52,7 +51,7 @@
           <li class="active">
             <a id="inventary" ><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
             <ul class="submenu-active" id="submenu-list" >
-              <li class="activo" ><a href="{{url('admin/catalogo')}}">Catálogo</a><small class="bg-indicator">Activo</small></li>
+              <li class="activo" ><a href="{{url('admin/catalogo')}}">Catálogo</a><small class="bg-indicator">Editar</small></li>
               <li><a href="{{url('admin/inventary')}}">Productos</a></li>
               <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
               <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
@@ -70,78 +69,68 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-                <li class="ol-active"><i class="fa fa-pencil-square"></i>Catálogo</li>
+              <li class="ol-active"><i class="fa fa-pencil"></i>Editar Productos en Catálogo</li>
             </ol>
           </div>
         </div>
-        @if ($message = Session::get('success'))
-          <div class="message-danger">
-            <p>{{ $message }}</p>
-          </div>
-        @endif
-        <div class="table-container">
-          <div class="container-search">
-            <a href="{{url('admin/alta-producto-catalogo')}}" class="btn-green" ><i class="fa fa-pencil "></i> Alta de Productos</a>
-          </div>
-          <div class="">
-            <table id="Jtabla">
-              <thead>
-                <tr class="theader">
-                  <th>Acciones</th>
-                  <th>Tipo de Porducto</th>
-                  <th>Iniciales</th>
-                  <th>Proveedor</th>
-                  <th>Unidad</th>
-                  <th>Descripción</th>
-               </tr>
-              </thead>
-              <tbody class="tbodymain">
-                @foreach ($catalog as $product)
-                  <tr class="tbody">
-                    <td class="action">
-                      <a class="btn-green-action" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
-                        <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                      {!! Form::close() !!}
-                    </td>
-                    <td>{{ $product->typeProduct_id }}</td>
-                    <td>{{ $product->letter }}</td>
-                    <td>{{ $product->supplier_id }}</td>
-                    <td>{{ $product->unit_id }}</td>
-                    <td>{{ $product->description }}</td>
-                  </tr>
+        <div class="for-container">
+          @if (count($errors) > 0)
+            <ul class="message-errors">
+              <strong>Corrija los Siguientes datos!</strong>
+              @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+              @endforeach
+            </ul>
+          @endif
+          <h2><i class="fa fa-pencil"></i> Editar Producto en Catálogo</h2>
+          {!! Form::model($catalog, ['method' => 'PATCH','route' => ['catalogo.update', $catalog->id], 'class' => 'container-add-clients']) !!}
+            {{ csrf_field() }}
+            <div class="date-clients">
+              <label for="tipo_producto">Tipo de Producto:</label>
+              <select class="select-design" name="tipo_producto" id='tipo_producto'>
+                <option value="{{$catalog->typeProduct_id}}">{{$catalog->typeProduct_id}}</option>
+                @foreach ($typeProducts as $typeProduct)
+                  <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
                 @endforeach
-              </tbody>
-            </table>
+              </select>
+              <label for="initials" >Iniciales</label>
+              <input type="text" id="initials" name="letter">
+            </div>
+            <div class="date-clients">
+              <label for="proveedor">Proveedor:</label>
+              <select class="select-design" name="proveedor">
+                <option value="{{$catalog->supplier_id}}">{{$catalog->supplier_id}}</option>
+                @foreach ($suppliers as $supplier)
+                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                @endforeach
+              </select>
+              <label for="unidad">Unidad de Medida:</label>
+              <select class="select-design" name="unidad">
+                <option value="{{$catalog->unit_id}}">{{$catalog->unit_id}}</option>
+                @foreach ($units as $unit)
+                  <option value="{{$unit->type}}">{{$unit->type}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="date-clients">
+              <label for="description">Descripción:</label>
+              <textarea type="text" rows="6" name="description" id="description" placeholder="Descripción">{{$catalog->description}}</textarea>
+            </div>
+            <div class="button-client">
+              <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
+              <a href="{{url('admin/catalogo')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+            </div>
+          {!! Form::close() !!}
+          <div class="button-pdf">
           </div>
         </div>
       </div>
     </main>
-    <footer id="footer">
-      <h3>© 2018 Todos Los Derechos Reservados</h3>
+    <footer id="footer-form">
+      <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
-    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
-    <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
-    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(function () {
-        $('#Jtabla').dataTable({
-          "bPaginate": true,
-          "bLengthChange": true,
-          "bFilter": true,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": true
-        });
-      });
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        $("#inventary").click(function(){
-            $("#submenu-list").slideToggle("slow");
-        });
-      });
-    </script>
+    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
+    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
   </body>
 </html>

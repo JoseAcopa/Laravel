@@ -72,7 +72,11 @@ class CatalogsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $suppliers = Suppliers::all();
+      $units = Units::all();
+      $typeProducts = TypeProducts::all();
+      $catalog = Catalog::find($id);
+      return view('admin.catalogs.edit', compact('suppliers', 'units', 'typeProducts', 'catalog'));
     }
 
     /**
@@ -84,7 +88,22 @@ class CatalogsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $newTypeProduct = $request->input('tipo_producto');
+      $newLetter = $request->input('letter');
+      $newSuppler = $request->input('proveedor');
+      $newUnit = $request->input('unidad');
+      $newDescription = $request->input('description');
+
+      $product = Catalog::find($id);
+
+      $product->typeProduct_id = $newTypeProduct;
+      $product->letter = $newLetter;
+      $product->supplier_id = $newSuppler;
+      $product->unit_id = $newUnit;
+      $product->description = $newDescription;
+      $product->save();
+
+      return redirect('admin/catalogo')->with('success','Producto '. $newTypeProduct .' actualizado correctamente');
     }
 
     /**
@@ -96,6 +115,6 @@ class CatalogsController extends Controller
     public function destroy($id)
     {
       Catalog::find($id)->delete();
-      return redirect('admin/catalogo')->with('success','Producto eliminado correctamente');
+      return redirect('admin/catalogo')->with('success','Producto eliminado del catálogo correctamente');
     }
 }

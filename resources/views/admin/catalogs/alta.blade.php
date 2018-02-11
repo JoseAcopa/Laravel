@@ -119,7 +119,7 @@
 
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
-              <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+              <a href="{{url('admin/catalogo')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
             </div>
           </form>
           <div class="button-pdf">
