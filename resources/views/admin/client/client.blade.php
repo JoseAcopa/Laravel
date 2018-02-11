@@ -52,10 +52,11 @@
           <li >
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
               <ul class="submenu-list" id="submenu-list">
-                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
+                <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
               </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
@@ -98,9 +99,9 @@
                   @foreach ($clients as $client)
                     <tr class="tbody">
                       <td class="action">
-                        <a class="btn-edit" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        <a class="btn-green-action" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
                         {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
-                          <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
                         {!! Form::close() !!}
                       </td>
                       <td>{{ $client->RFC }}</td>

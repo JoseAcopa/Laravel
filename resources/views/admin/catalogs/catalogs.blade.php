@@ -52,11 +52,11 @@
           <li class="active">
             <a id="inventary" ><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
             <ul class="submenu-active" id="submenu-list" >
-              <li class="activo" ><a href="{{url('admin/catalogo')}}">Catálogo</a><small class="bg-indicator">Activo</small></li>
-              <li><a href="{{url('admin/inventary')}}">Productos</a></li>
-              <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
-              <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
-              <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
+              <li class="activo" ><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a><small class="bg-indicator">Activo</small></li>
+              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos</a></li>
+              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos </a></li>
+              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+              <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
             </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>

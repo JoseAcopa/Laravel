@@ -100,6 +100,7 @@
   transition: .2s;
   border-left: 4px solid #1E8BC3;
   transition: .5s;
+  cursor: pointer;
 }
 
 .menu .ul-menu a i {
@@ -1491,7 +1492,6 @@ textarea:read-only {
 .submenu-list{
   background: #222d32;
   display: none;
-  height: 400px;
 }
 
 .submenu-active{

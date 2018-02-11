@@ -103,8 +103,7 @@ class CatalogsController extends Controller
       $product->unit_id = $newUnit;
       $product->description = $newDescription;
       $product->save();
-
-      return redirect('admin/catalogo')->with('success','Producto '. $newTypeProduct .' actualizado correctamente');
+      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente');
     }
 
     /**
