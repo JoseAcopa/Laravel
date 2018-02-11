@@ -82,9 +82,9 @@ Route::resource('/admin/inventary-out','CheckoutsController');
 // ------------------End checkouts----------------------------------------
 
 // ------------------Alta de Catalogo----------------------------------------
-Route::get('/admin/alta', 'CatalogsController@create');
+Route::get('/admin/alta-producto-catalogo', 'CatalogsController@create');
 Route::get('/admin/edit-out/{catalog}', 'CatalogsController@edit');
-Route::resource('/admin/inventary-out','CatalogsController');
+Route::resource('/admin/catalogo','CatalogsController');
 // ------------------End Alta de Catalogo----------------------------------------
 
 

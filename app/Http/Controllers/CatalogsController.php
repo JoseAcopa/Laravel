@@ -18,7 +18,8 @@ class CatalogsController extends Controller
      */
     public function index()
     {
-        //
+      $catalog = Catalog::all();
+      return view('admin.catalogs.catalogs', compact('catalog'));
     }
 
     /**
@@ -31,7 +32,7 @@ class CatalogsController extends Controller
       $suppliers = Suppliers::all();
       $units = Units::all();
       $typeProducts = TypeProducts::all();
-      return view('admin.inventary.alta', compact('suppliers', 'units', 'typeProducts'));
+      return view('admin.catalogs.alta', compact('suppliers', 'units', 'typeProducts'));
     }
 
     /**
@@ -44,12 +45,12 @@ class CatalogsController extends Controller
     {
       $product = new Catalog;
       $product->typeProduct_id = request('tipo_producto');
-      $product->letter = request('initials');
+      $product->letter = request('letter');
       $product->supplier_id = request('proveedor');
       $product->unit_id = request('unidad');
       $product->description = request('description');
       $product->save();
-      return redirect('admin/inventary')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
+      return redirect('admin/catalogo')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
     }
 
     /**
@@ -94,6 +95,7 @@ class CatalogsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Catalog::find($id)->delete();
+      return redirect('admin/catalogo')->with('success','Producto eliminado correctamente');
     }
 }

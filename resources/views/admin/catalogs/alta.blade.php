@@ -49,14 +49,14 @@
           <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
           <li class="li-menu-nav">INVENTARIO</li>
           <li class="active">
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li class="active" ><a href="{{url('admin/alta')}}">Alta de Productos <small class="bg-indicator">Registrar</small></a></li>
-                <li><a href="{{url('admin/inventary')}}">Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> Entradas de Productos</a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}">Tipos de Productos</a></li>
-              </ul>
+            <a id="inventary" ><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+            <ul class="submenu-active" id="submenu-list" >
+              <li class="activo" ><a href="{{url('admin/catalogo')}}">Catálogo</a><small class="bg-indicator">Registrar</small></li>
+              <li><a href="{{url('admin/inventary')}}">Productos</a></li>
+              <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
+              <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
+              <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos</a></li>
+            </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
@@ -69,7 +69,7 @@
             <ol>
               Se encuentra en
               <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-pencil"></i>Registrar Productos</li>
+              <li class="ol-active"><i class="fa fa-pencil"></i>Registrar Productos en Catálogo</li>
             </ol>
           </div>
         </div>
@@ -82,8 +82,8 @@
               @endforeach
             </ul>
           @endif
-          <h2><i class="fa fa-pencil"></i> Registrar Producto</h2>
-          <form class="container-add-clients" method="POST" action="/admin/alta">
+          <h2><i class="fa fa-pencil"></i> Registrar Producto en Catálogo</h2>
+          <form class="container-add-clients" method="POST" action="/admin/catalogo">
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="tipo_producto">Tipo de Producto:</label>
@@ -94,7 +94,7 @@
                 @endforeach
               </select>
               <label for="initials" >Iniciales</label>
-              <input type="text" id="initials" name="letter" value="test" readonly="readonly">
+              <input type="text" id="initials" name="letter">
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
@@ -127,7 +127,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer">
+    <footer id="footer-form">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
