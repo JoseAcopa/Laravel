@@ -87,14 +87,14 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="tipo_producto">Tipo de Producto:</label>
-              <select class="select-design" name="tipo_producto" id='tipo_producto'>
+              <select class="select-design" name="tipo_producto" onchange="typeProduct(this);">
                 <option value="">Seleccione Tipo Producto</option>
                 @foreach ($typeProducts as $typeProduct)
-                  <option value="{{$typeProduct->type}}">{{$typeProduct->type}}</option>
+                  <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
                 @endforeach
               </select>
               <label for="initials" >Iniciales</label>
-              <input type="text" id="initials" name="letter">
+              <input type="text" id="letter" name="letter" readonly>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
@@ -133,5 +133,18 @@
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
+    <script type="text/javascript">
+      function typeProduct(val){
+        var typeProducts = <?php echo$typeProducts;?>;
+        var newVal = {};
+
+        typeProducts.map((item)=>{
+          newVal[item.id] = item
+        })
+
+        var typeProduct = newVal[val.value]
+        document.getElementById('letter').value = typeProduct.letters;
+      }
+    </script>
   </body>
 </html>
