@@ -8,6 +8,7 @@ use App\Suppliers;
 use App\Units;
 use App\TypeProducts;
 use App\Http\Requests\CreateCatalogs;
+use App\Http\Requests\UpdateCatalogs;
 
 class CatalogsController extends Controller
 {
@@ -86,7 +87,7 @@ class CatalogsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCatalogs $request, $id)
     {
       $newTypeProduct = $request->input('tipo_producto');
       $newLetter = $request->input('letter');
