@@ -8,6 +8,7 @@ use App\Suppliers;
 use App\Units;
 use App\TypeProducts;
 use App\Coins;
+use App\Catalog;
 use App\Http\Requests\CreateProductsRequest;
 
 class ProductsControllers extends Controller
@@ -32,9 +33,9 @@ class ProductsControllers extends Controller
     {
       $suppliers = Suppliers::all();
       $units = Units::all();
-      $typeProducts = TypeProducts::all();
       $coins = Coins::all();
-      return view('admin.inventary.add-product', compact('suppliers', 'units', 'typeProducts', 'coins'));
+      $catalog = Catalog::all();
+      return view('admin.inventary.add-product', compact('suppliers', 'units', 'coins', 'catalog'));
     }
 
     /**

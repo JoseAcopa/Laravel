@@ -95,6 +95,7 @@
               </select>
               <label for="initials" >Iniciales</label>
               <input type="text" id="letter" name="letter" readonly>
+              <input type="text" id="categoria" name="categoria" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
@@ -144,6 +145,7 @@
 
         var typeProduct = newVal[val.value]
         document.getElementById('letter').value = typeProduct.letters;
+        document.getElementById('categoria').value = typeProduct.categorias;
       }
     </script>
   </body>

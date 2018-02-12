@@ -20,6 +20,7 @@ class CreateCatalogsTable extends Migration
             $table->string('supplier_id');
             $table->string('unit_id');
             $table->string('description');
+            $table->string('categoria');
             $table->timestamps();
         });
     }

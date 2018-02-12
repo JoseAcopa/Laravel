@@ -484,13 +484,7 @@
 thead{
   margin-top: 10px !important;
 }
-/*.theader th {
-  font-family: Roboto !important;
-  font-weight: 700 !important;
-  background: #0d7561 !important;
-  color: #e4ece0 !important;
-  padding: 5px 10px 5px 10px!important;
-}*/
+
 .theader th {
   font-family: Roboto !important;
   font-weight: 700 !important;
@@ -595,7 +589,7 @@ thead{
   flex-direction: column;
   flex-wrap: wrap;
   justify-content:space-between;
-  width: 40%;
+  width: 35%;
   margin-top: 20px;
   padding-bottom:20px;
   background: #fff;
@@ -608,7 +602,7 @@ thead{
   flex-direction: column;
   flex-wrap: wrap;
   justify-content:space-between;
-  width: 50%;
+  width: 55%;
   margin-top: 20px;
   height: 90%;
 }
@@ -1361,7 +1355,7 @@ select{
   margin-bottom: 20px;
 }
 .searchDescription select{
-  width: 30% !important;
+  width: 35% !important;
   border-radius: 0px !important;
 }
 /********************************/

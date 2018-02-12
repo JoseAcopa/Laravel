@@ -95,6 +95,7 @@
               </select>
               <label for="initials" >Iniciales</label>
               <input type="text" id="letter" name="letter" value="{{$catalog->letter}}">
+              <input type="text" id="categoria" name="categoria" value="{{$catalog->categoria}}" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
@@ -143,6 +144,7 @@
 
         var typeProduct = newVal[val.value]
         document.getElementById('letter').value = typeProduct.letters;
+        document.getElementById('categoria').value = typeProduct.categoria;
       }
     </script>
   </body>

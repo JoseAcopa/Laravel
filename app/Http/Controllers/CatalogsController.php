@@ -50,6 +50,7 @@ class CatalogsController extends Controller
       $product->supplier_id = request('proveedor');
       $product->unit_id = request('unidad');
       $product->description = request('description');
+      $product->categoria = request('categoria');
       $product->save();
       return redirect('admin/catalogo')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
     }
@@ -94,6 +95,7 @@ class CatalogsController extends Controller
       $newSuppler = $request->input('proveedor');
       $newUnit = $request->input('unidad');
       $newDescription = $request->input('description');
+      $newCategoria = $request->input('categoria');
 
       $product = Catalog::find($id);
 
@@ -102,6 +104,7 @@ class CatalogsController extends Controller
       $product->supplier_id = $newSuppler;
       $product->unit_id = $newUnit;
       $product->description = $newDescription;
+      $product->categoria = $newCategoria;
       $product->save();
       return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente');
     }
