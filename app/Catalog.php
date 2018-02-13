@@ -14,18 +14,18 @@ class Catalog extends Model
     'unit_id', 'description', 'categoria',
   ];
 
-  // public function typeProduct()
-  // {
-  //   return $this->belongsTo('App\TypeProducts');
-  // }
-  //
-  // public function suppliers()
-  // {
-  //   return $this->hasMany('App\Suppliers');
-  // }
-  //
-  // public function units()
-  // {
-  //   return $this->belongsTo('App\Units');
-  // }
+  public function typeProduct()
+  {
+    return $this->belongsTo('App\TypeProducts');
+  }
+
+  public function suppliers()
+  {
+    return $this->hasMany('App\Suppliers');
+  }
+
+  public function units()
+  {
+    return $this->belongsTo('App\Units');
+  }
 }

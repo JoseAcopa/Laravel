@@ -102,14 +102,14 @@
               <select class="select-design" name="proveedor">
                 <option value="">Seleccione Proveedor</option>
                 @foreach ($suppliers as $supplier)
-                  <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                  <option value="{{$supplier->id}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
               <label for="unidad">Unidad de Medida:</label>
               <select class="select-design" name="unidad">
                 <option value="">Seleccione Unidad de Medida</option>
                 @foreach ($units as $unit)
-                  <option value="{{$unit->type}}">{{$unit->type}}</option>
+                  <option value="{{$unit->id}}">{{$unit->type}}</option>
                 @endforeach
               </select>
             </div>

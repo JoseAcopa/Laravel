@@ -8,40 +8,30 @@ use Auth;
 
 class LoginController extends Controller
 {
-  public function __construct()
-  {
-    $this->middleware('guest', ['only' => 'showLoginForm']);
-  }
-
-  public function showLoginForm()
-  {
-    return view('login');
-  }
-
-  public function login(Request $request)
-  {
-    $this->validate($request, [
-      'user' => 'required|string',
-      'password' => 'required|string'
-    ]);
-
-    $credentials = [
-      'user'=>$request->user,
-      'password'=>$request->password
-    ];
-
-    if (Auth::attempt($credentials)) {
-      return redirect('admin/admin-welcome');
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+    use AuthenticatesUsers;
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/admin/admin-welcome';
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
     }
-    return back()
-      ->withErrors(['user' => 'Usuario no coincide en nuestro registro'])
-      ->withInput(request(['user']));
-  }
-
-  public function logOut()
-  {
-    Auth::logout();
-
-    return view('login')->with('error_message', 'Logged out correctly');
-  }
 }

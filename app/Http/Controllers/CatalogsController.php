@@ -7,6 +7,7 @@ use App\Catalog;
 use App\Suppliers;
 use App\Units;
 use App\TypeProducts;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\CreateCatalogs;
 use App\Http\Requests\UpdateCatalogs;
 
@@ -19,7 +20,9 @@ class CatalogsController extends Controller
      */
     public function index()
     {
-      $catalog = Catalog::all();
+      $catalog = Catalog::get();
+      // $catalog->units;
+      // echo $catalog;
       return view('admin.catalogs.catalogs', compact('catalog'));
     }
 

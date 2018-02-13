@@ -15,10 +15,10 @@ class CreateCatalogsTable extends Migration
     {
         Schema::create('catalogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('typeProduct_id');
+            $table->integer('typeProduct_id');
             $table->string('letter');
-            $table->string('supplier_id');
-            $table->string('unit_id');
+            $table->integer('supplier_id');
+            $table->integer('unit_id');
             $table->string('description');
             $table->string('categoria');
             $table->timestamps();

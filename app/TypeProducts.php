@@ -12,8 +12,8 @@ class TypeProducts extends Model
       'type','letters','categorias',
   ];
 
-  public function products()
+  public function catalogs()
   {
-    return $this->hasMany('App\Products');
+    return $this->hasMany('App\Catalog');
   }
 }
