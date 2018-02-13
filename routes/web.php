@@ -1,18 +1,11 @@
 <?php
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-
 Route::get('/', 'Auth\LoginController@showLoginForm');
-Route::post('/', 'Auth\LoginController@login');
-// Route::get('/', 'Auth\LoginController@showLoginForm');
-// Route::post('login','Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login')->name('login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // ------------------Start Admin-----------------------------------------
-Route::get('/admin/admin-welcome', function () {
-    return view('admin/admin');
-});
+Route::get('/admin/admin-welcome', 'AdminControllers@index');
 // ------------------End Admin-----------------------------------------
 
 // ------------------Clients-----------------------------------------
@@ -150,8 +143,8 @@ Route::get('/users/edit-out', function(){
 
 
 // -------------------login--------------------------------------
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Auth::routes();
+//
+// Route::get('/home', 'HomeController@index')->name('home');
 
 // -------------------End login--------------------------------------

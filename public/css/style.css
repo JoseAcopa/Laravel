@@ -161,6 +161,7 @@
 .login .icon{
   display: flex;
   flex-direction: row;
+  margin-bottom: -5px;
 }
 
 .login .icon .fa-user{
@@ -228,10 +229,11 @@
 
 .help-block{
   color: red !important;
-  font-family:Montserrat;
+  font-family: Montserrat;
   font-weight: bold;
   font-size: 12px;
   text-align: center;
+  margin-bottom: 20px !important;
 }
 /********************************/
 

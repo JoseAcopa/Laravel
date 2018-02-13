@@ -22,13 +22,15 @@
                     <img src="{{ url('img/image.png')}}" alt="">
                   </div>
                   <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
+                    <h3>{{auth()->user()->name}}</h3>
+                    <h3>{{auth()->user()->email}}</h3>
                     <h3></h3>
                   </div>
                   <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
+                  <form class="footerSingout" method="POST" action="{{ route('logout') }}">
+                    {{ csrf_field() }}
+                    <button class="btn-danger"><i class="fa fa-sign-out"></i> Cerrar Sesión</button>
+                  </form>
                 </ul>
               </li>
             </ul>
