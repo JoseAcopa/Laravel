@@ -8,6 +8,10 @@ use App\Http\Requests\CreateTypeProductRequest;
 
 class TypeProductsControllers extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
