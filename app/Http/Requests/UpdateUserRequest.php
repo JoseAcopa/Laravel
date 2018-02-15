@@ -27,6 +27,7 @@ class UpdateUserRequest extends FormRequest
           'name' => 'max:255|required',
           'phone' => 'digits:10|required',
           'user' => 'max:255|required',
+          'email' => 'max:255|required',
           'password' => 'max:255|required',
         ];
     }

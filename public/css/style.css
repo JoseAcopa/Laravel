@@ -1562,3 +1562,33 @@ textarea:read-only {
   margin-top: -18px;
   margin-bottom: 5px;
 }
+
+.login-errors{
+  padding: 10px;
+  background: #f2dede;
+  color: #a94442;
+  border-radius: 3px;
+  font-family: sans-serif;
+  font-size: 22px;
+  text-align: center;
+  border-left: 4px solid #ebccd1;
+  width: 40%;
+  margin-top: 40px !important;
+  margin-bottom: -30px !important;
+  margin: 0 auto;
+}
+
+.login-success{
+  padding: 10px;
+  background: #bae1e0;
+  color: #00978e;
+  border-radius: 3px;
+  font-family: sans-serif;
+  font-size: 22px;
+  text-align: center;
+  border-left: 4px solid #00978e;
+  width: 40%;
+  margin-top: 40px !important;
+  margin-bottom: -30px !important;
+  margin: 0 auto;
+}

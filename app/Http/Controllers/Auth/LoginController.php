@@ -35,6 +35,6 @@ class LoginController extends Controller
   {
     Auth::logout();
 
-    return redirect('/');
+    return redirect('/')->with('success','La sesión se cerró con éxito');
   }
 }

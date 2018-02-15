@@ -2,7 +2,7 @@
 
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login')->name('login');
-Route::post('/', 'Auth\LoginController@logout')->name('logout');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', 'AdminControllers@index');
