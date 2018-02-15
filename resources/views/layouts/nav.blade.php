@@ -11,13 +11,13 @@
             </div>
             <div class="name">
               <h3>{{auth()->user()->name}}</h3>
-              <h3>{{auth()->user()->email}}</h3>
+              <h5>{{auth()->user()->email}}</h5>
               <h3></h3>
             </div>
             <li></li>
             <form class="footerSingout" method="POST" action="{{ route('logout') }}">
               {{ csrf_field() }}
-              <button class="btn-danger"><i class="fa fa-sign-out"></i> Cerrar Sesión</button>
+              <button class="btn-danger"><i class="fa fa-sign-out fa-xl"></i> Cerrar Sesión</button>
             </form>
           </ul>
         </li>
