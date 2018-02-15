@@ -74,28 +74,27 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-user-plus"></i> Registrar Empleados</h2>
           <form class="container-add-clients" method="POST" action="/admin/employee">
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" id="name"  placeholder="Nombre Completo">
+              <input type="text" name="name" value="{{ old('name') }}" id="name" class="{{ $errors->has('name') ? 'has-error' : '' }}" placeholder="Nombre Completo">
+              {!! $errors->first('name','<span class="data-error">:message</span>')!!}
               <label for="phone">Teléfono:</label>
-              <input type="tel" name="phone" id="phone" placeholder="Teléfono">
+              <input type="tel" name="phone" value="{{ old('phone') }}" id="phone" class="{{ $errors->has('phone') ? 'has-error' : '' }}" placeholder="Teléfono">
+              {!! $errors->first('phone','<span class="data-error">:message</span>')!!}
+              <label for="email">Correo:</label>
+              <input type="email" name="email" value="{{ old('email') }}" id="email" class="{{ $errors->has('email') ? 'has-error' : '' }}" placeholder="Email">
+              {!! $errors->first('email','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="user" id="user" placeholder="Usuario">
+              <input type="text" name="user" value="{{ old('user') }}" id="user" class="{{ $errors->has('user') ? 'has-error' : '' }}" placeholder="Usuario">
+              {!! $errors->first('user','<span class="data-error">:message</span>')!!}
               <label for="password">Contraseña:</label>
-              <input type="password" name="password" id="password" placeholder="**********">
+              <input type="password" name="password" id="password" class="{{ $errors->has('password') ? 'has-error' : '' }}">
+              {!! $errors->first('password','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Employee;
 use App\User;
@@ -40,12 +41,13 @@ class EmployeeController extends Controller
    {
      $employee = new User;
      $employee->name = request('name');
-     $employee->phone = request('phone');
      $employee->user = request('user');
-     $employee->password = request('password');
+     $employee->email = request('email');
+     $employee->phone = request('phone');
+     $employee->password = bcrypt(request('password'));
 
      $employee->save();
-     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente');
+     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
    }
 
    /**

@@ -1549,3 +1549,16 @@ textarea:read-only {
   padding: 0px 5px 0px 2px;
   cursor: pointer;
 }
+
+/* pintando los errores */
+.has-error{
+  border: 1px solid #a94442 !important;
+}
+
+.data-error{
+  color: #a94442 !important;
+  font-family: Montserrat;
+  font-size: 12px;
+  margin-top: -18px;
+  margin-bottom: 5px;
+}
