@@ -50,7 +50,7 @@ class ClientsController extends Controller
       $clients->email = request('email');
 
       $clients->save();
-      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente');
+      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**
