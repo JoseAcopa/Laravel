@@ -92,7 +92,7 @@
                      </tr>
                     </thead>
                     <tbody class="tbodymain">
-                      @foreach ($typesProducts as $key)
+                      @foreach ($categories as $key)
                         <tr class="tbody">
                           <td class="action">
                             {{-- <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a> --}}

@@ -55,9 +55,9 @@ Route::get('/admin/inventary/price/add-price', function(){
 });
 
 // ------------------clasificationProduct---------------------------------------
-Route::get('/admin/clasificationProduct', 'TypeProductsControllers@create');
-Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
-Route::resource('admin/clasificationProduct','TypeProductsControllers');
+Route::get('/admin/clasificationProduct', 'CategoriesController@create');
+Route::get('/admin/edit-checkin/{checkin}', 'CategoriesController@edit');
+Route::resource('admin/clasificationProduct','CategoriesController');
 // ------------------End clasificationProduct----------------------------------------
 
 // ------------------checkin----------------------------------------

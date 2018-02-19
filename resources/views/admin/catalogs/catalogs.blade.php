@@ -80,7 +80,7 @@
                         <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
-                    <td>{{ $product->typeProduct_id }}</td>
+                    <td>{{ $product->category->type }}</td>
                     <td>{{ $product->letter }}</td>
                     <td>{{ $product->supplier->business }}</td>
                     <td>{{ $product->unit->type }}</td>

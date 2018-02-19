@@ -54,17 +54,17 @@
           <form class="container-add-clients" method="POST" action="/admin/catalogo">
             {{ csrf_field() }}
             <div class="date-clients">
-              <label for="tipo_producto">Tipo de Producto:</label>
-              <select class="{{ $errors->has('tipo_producto') ? 'has-error' : 'select-design' }}" name="tipo_producto" onchange="typeProduct(this);">
+              <label for="category">Tipo de Producto:</label>
+              <select class="{{ $errors->has('category') ? 'has-error' : 'select-design' }}" name="category" onchange="typeProduct(this);">
                 <option value="">Seleccione Tipo Producto</option>
-                @foreach ($typeProducts as $typeProduct)
-                  <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
+                @foreach ($categories as $categorie)
+                  <option value="{{$categorie->id}}">{{$categorie->type}}</option>
                 @endforeach
               </select>
-              {!! $errors->first('tipo_producto','<span class="data-error">:message</span>')!!}
+              {!! $errors->first('category','<span class="data-error">:message</span>')!!}
               <label for="initials" >Iniciales</label>
               <input class="{{ $errors->has('letter') ? 'has-error' : '' }}" type="text" id="letter" name="letter" readonly>
-              <input type="text" id="categoria" name="categoria" hidden>
+              <input type="text" id="categoria" name="tipo_categoria" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
@@ -108,16 +108,16 @@
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
       function typeProduct(val){
-        var typeProducts = <?php echo$typeProducts;?>;
+        var categories = <?php echo$categories;?>;
         var newVal = {};
 
-        typeProducts.map((item)=>{
+        categories.map((item)=>{
           newVal[item.id] = item
         })
 
-        var typeProduct = newVal[val.value]
-        document.getElementById('letter').value = typeProduct.letters;
-        document.getElementById('categoria').value = typeProduct.categorias;
+        var category = newVal[val.value]
+        document.getElementById('letter').value = category.letters;
+        document.getElementById('categoria').value = category.categorias;
       }
     </script>
   </body>
