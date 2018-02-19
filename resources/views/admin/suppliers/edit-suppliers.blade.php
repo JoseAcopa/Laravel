@@ -50,32 +50,29 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-edit"></i> Editar Proveedores</h2>
           {!! Form::model($supplier, ['method' => 'PATCH','route' => ['suppliers.update', $supplier->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="business">Nombre de la Empresa:</label>
-              <input type="text" name="business" value='{{ $supplier->business }}'>
+              <input type="text" name="business" class="{{ $errors->has('business') ? 'has-error' : '' }}" value='{{ $supplier->business }}'>
+              {!! $errors->first('business','<span class="data-error">:message</span>')!!}
               <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" value='{{ $supplier->RFC }}'>
+              <input type="text" name="RFC" class="{{ $errors->has('RFC') ? 'has-error' : '' }}" value='{{ $supplier->RFC }}'>
+              {!! $errors->first('RFC','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="phone">Teléfono:</label>
-              <input type="tel" name="phone" value='{{ $supplier->phone }}'>
+              <input type="tel" name="phone" class="{{ $errors->has('phone') ? 'has-error' : '' }}" value='{{ $supplier->phone }}'>
+              {!! $errors->first('phone','<span class="data-error">:message</span>')!!}
               <label for="email">E-mail:</label>
-              <input type="email" name="email" value='{{ $supplier->email }}'>
+              <input type="email" name="email" class="{{ $errors->has('email') ? 'has-error' : '' }}" value='{{ $supplier->email }}'>
+              {!! $errors->first('email','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="address">Dirección:</label>
-              <textarea type="text" rows="6" name="address">{{ $supplier->address }}</textarea>
+              <textarea type="text" rows="6" name="address" class="{{ $errors->has('address') ? 'has-error' : '' }}">{{ $supplier->address }}</textarea>
+              {!! $errors->first('address','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

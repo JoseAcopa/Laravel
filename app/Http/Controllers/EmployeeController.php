@@ -84,16 +84,18 @@ class EmployeeController extends Controller
    public function update(UpdateUserRequest $request, $id)
    {
      $newName = $request->input('name');
-     $newPhone = $request->input('phone');
      $newUser = $request->input('user');
+     $newEmail = $request->input('email');
+     $newPhone = $request->input('phone');
      $newPassword = $request->input('password');
 
      $employee = User::find($id);
 
      $employee->name = $newName;
-     $employee->phone = $newPhone;
      $employee->user = $newUser;
-     $employee->password = $newPassword;
+     $employee->email = $newEmail;
+     $employee->phone = $newPhone;
+     $employee->password = bcrypt($newPassword);
      $employee->save();
 
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
