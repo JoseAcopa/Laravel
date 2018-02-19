@@ -9,12 +9,30 @@ class Products extends Model
   // protected $table = 'products';
   // protected $id = "id";
 
-  // public $timestamps = false;
-
   protected $fillable = [
-      'nInvoice', 'TProducts', 'initials', 'provider', 'checkin',
-      'quantity', 'unit', 'priceList', 'cost','description', 'stock',
+      'nInvoice', 'typeProduct_id', 'initials', 'supplier_id', 'checkin',
+      'quantity', 'unit_id', 'priceList', 'cost','description', 'stock',
       'priceSales1', 'priceSales2', 'priceSales3', 'priceSales4',
-      'priceSales5',
+      'priceSales5', 'coin_id',
   ];
+
+  public function typeProduct()
+  {
+    return $this->belongsTo('App\TypeProducts');
+  }
+
+  public function suppliers()
+  {
+    return $this->hasMany('App\Suppliers');
+  }
+
+  public function units()
+  {
+    return $this->belongsTo('App\Units');
+  }
+
+  public function coin()
+  {
+    return $this->hasMany('App\Coins');
+  }
 }

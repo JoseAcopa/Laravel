@@ -1,13 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Employee;
 use App\User;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
     * Display a listing of the resource.
     *
@@ -34,22 +39,17 @@ class EmployeeController extends Controller
     *
     * @return Response
     */
-   public function store(Request $request)
+   public function store(CreateUserRequest $request)
    {
-
-    //  request()->validate([
-    //         'title' => 'required',
-    //         'body' => 'required',
-    //     ]);
-
      $employee = new User;
      $employee->name = request('name');
-     $employee->phone = request('phone');
      $employee->user = request('user');
-     $employee->password = request('password');
+     $employee->email = request('email');
+     $employee->phone = request('phone');
+     $employee->password = bcrypt(request('password'));
 
      $employee->save();
-     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente');
+     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
    }
 
    /**
@@ -81,19 +81,21 @@ class EmployeeController extends Controller
     * @param  int  $id
     * @return Response
     */
-   public function update(Request $request, $id)
+   public function update(UpdateUserRequest $request, $id)
    {
      $newName = $request->input('name');
-     $newPhone = $request->input('phone');
      $newUser = $request->input('user');
+     $newEmail = $request->input('email');
+     $newPhone = $request->input('phone');
      $newPassword = $request->input('password');
 
      $employee = User::find($id);
 
      $employee->name = $newName;
-     $employee->phone = $newPhone;
      $employee->user = $newUser;
-     $employee->password = $newPassword;
+     $employee->email = $newEmail;
+     $employee->phone = $newPhone;
+     $employee->password = bcrypt($newPassword);
      $employee->save();
 
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');

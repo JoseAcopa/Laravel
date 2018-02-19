@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -50,12 +26,13 @@
           <li class="li-menu-nav">INVENTARIO</li>
           <li class="active">
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li class="active" ><a href="{{url('admin/inventary')}}">Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
-                <li><a href="{{url('admin/inventary-out')}}">  Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}">  Tipos de Productos <small class="bg-indicator">Consulta</small></a></li>
-              </ul>
+            <ul class="submenu-active" id="submenu-list" >
+              <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos</a></li>
+              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos </a></li>
+              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+              <li class="activo"><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a><small class="bg-indicator">Activo</small></li>
+            </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
@@ -75,17 +52,37 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Clasificación de Producto</h2>
           <div class="clasific">
+            @if (count($errors) > 0)
+              <ul class="message-errors">
+                <strong>Corrija los Siguientes datos!</strong>
+                @foreach ($errors->all() as $error)
+                  <li>{{$error}}</li>
+                @endforeach
+              </ul>
+            @endif
+            @if ($message = Session::get('success'))
+              <div class="message-danger">
+                <p>{{ $message }}</p>
+              </div>
+            @endif
             <form class="container-add-clientsClasific" method="POST" action="/admin/clasificationProduct">
               {{ csrf_field() }}
               <div class="date-clientsClasific">
                 <label for="typeP">Tipo de Producto:</label>
-                <input type="text" name="typeP" value="" >
+                <input type="text" name="type" value="">
                 <label for="ini">Iniciales:</label>
-                <input type="text" name="ini" value=""  >
+                <input type="text" name="letters" value="">
+                <label for="ini">Iniciales:</label>
+                <select class="select-design" name="categorias">
+                  <option value="">Seleccione Categoria</option>
+                  <option value="Petrolera | Industrial">Petrolera | Industrial</option>
+                  <option value="Hidraulica">Hidraulica</option>
+                  <option value="Otro">Otro</option>
+                </select>
               </div>
               <div class="button-clientClasific">
                 <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
-                <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a>
+                {{-- <a href="{{url('admin/inventary')}}"  class="btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i>  Cancelar</a> --}}
               </div>
             </form>
             <div class="container-add-clientsClasificTable">
@@ -95,7 +92,8 @@
                       <tr class="theader">
                         <th>Acciones</th>
                         <th>Tipo de Producto</th>
-                        <th>N° de Producto</th>
+                        <th>Letra Inicial</th>
+                        <th>Categoria</th>
                      </tr>
                     </thead>
                     <tbody class="tbodymain">
@@ -103,12 +101,13 @@
                         <tr class="tbody">
                           <td class="action">
                             {{-- <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a> --}}
-                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id_Producto]]) !!}
-                              <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                            {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id]]) !!}
+                              <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
                             {!! Form::close() !!}
                           </td>
                           <td>{{$key->type}}</td>
                           <td>{{$key->letters}}</td>
+                          <td>{{$key->categorias}}</td>
                         </tr>
                       @endforeach
                     </tbody>

@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Clients;
+use App\Http\Requests\CreateClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 
 class ClientsController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,7 @@ class ClientsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateClientRequest $request)
     {
       $clients = new Clients;
       $clients->RFC = request('RFC');
@@ -44,7 +50,7 @@ class ClientsController extends Controller
       $clients->email = request('email');
 
       $clients->save();
-      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente');
+      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**
@@ -77,7 +83,7 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateClientRequest $request, $id)
     {
       $newRFC = $request->input('RFC');
       $newBusiness = $request->input('business');

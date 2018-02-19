@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -50,12 +26,13 @@
           <li class="li-menu-nav">INVENTARIO</li>
           <li >
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
-              </ul>
+            <ul class="submenu-list" id="submenu-list">
+              <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
+              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
+              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+              <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
+            </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
@@ -78,15 +55,28 @@
             {{ csrf_field() }}
             <div class="date-client">
               <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" id="name"  placeholder="Nombre Completo" required>
+              <input type="text" name="name" value="{{ old('name') }}" id="name" class="{{ $errors->has('name') ? 'has-error' : '' }}" placeholder="Nombre Completo">
+              {!! $errors->first('name','<span class="data-error">:message</span>')!!}
               <label for="phone">Teléfono:</label>
-              <input type="text" name="phone" id="phone" placeholder="Teléfono" required>
+              <input type="tel" name="phone" value="{{ old('phone') }}" id="phone" class="{{ $errors->has('phone') ? 'has-error' : '' }}" placeholder="Teléfono">
+              {!! $errors->first('phone','<span class="data-error">:message</span>')!!}
+              <label for="email">Correo:</label>
+              <input type="email" name="email" value="{{ old('email') }}" id="email" class="{{ $errors->has('email') ? 'has-error' : '' }}" placeholder="Email">
+              {!! $errors->first('email','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-client">
               <label for="user">Usuario:</label>
-              <input type="text" name="user" id="user" placeholder="Usuario" required>
+              <input type="text" name="user" value="{{ old('user') }}" id="user" class="{{ $errors->has('user') ? 'has-error' : '' }}" placeholder="Usuario">
+              {!! $errors->first('user','<span class="data-error">:message</span>')!!}
               <label for="password">Contraseña:</label>
-              <input type="password" name="password" id="password" placeholder="Contraseña" required>
+              <input type="password" name="password" id="password" class="{{ $errors->has('password') ? 'has-error' : '' }}">
+              {!! $errors->first('password','<span class="data-error">:message</span>')!!}
+              <label for="user">Privilegio:</label>
+              <select name="" class="select-design">
+                <option value=""></option>
+                <option value="">Administrador</option>
+                <option value="">Usuario</option>
+              </select>
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

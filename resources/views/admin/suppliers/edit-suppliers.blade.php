@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -50,12 +26,13 @@
           <li class="li-menu-nav">INVENTARIO</li>
           <li >
             <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
-              </ul>
+            <ul class="submenu-list" id="submenu-list">
+              <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
+              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
+              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+              <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
+            </ul>
           </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
@@ -78,19 +55,24 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="business">Nombre de la Empresa:</label>
-              <input type="text" name="business" value='{{ $supplier->business }}' required>
+              <input type="text" name="business" class="{{ $errors->has('business') ? 'has-error' : '' }}" value='{{ $supplier->business }}'>
+              {!! $errors->first('business','<span class="data-error">:message</span>')!!}
               <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" value='{{ $supplier->RFC }}' required>
+              <input type="text" name="RFC" class="{{ $errors->has('RFC') ? 'has-error' : '' }}" value='{{ $supplier->RFC }}'>
+              {!! $errors->first('RFC','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="phone">Teléfono:</label>
-              <input type="text" name="phone" value='{{ $supplier->phone }}' required>
+              <input type="tel" name="phone" class="{{ $errors->has('phone') ? 'has-error' : '' }}" value='{{ $supplier->phone }}'>
+              {!! $errors->first('phone','<span class="data-error">:message</span>')!!}
               <label for="email">E-mail:</label>
-              <input type="text" name="email" value='{{ $supplier->email }}' required>
+              <input type="email" name="email" class="{{ $errors->has('email') ? 'has-error' : '' }}" value='{{ $supplier->email }}'>
+              {!! $errors->first('email','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="address">Dirección:</label>
-              <textarea type="text" rows="6" name="address">{{ $supplier->address }}</textarea>
+              <textarea type="text" rows="6" name="address" class="{{ $errors->has('address') ? 'has-error' : '' }}">{{ $supplier->address }}</textarea>
+              {!! $errors->first('address','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>

@@ -9,6 +9,11 @@ class TypeProducts extends Model
   protected $table = 'typeProducts';
 
   protected $fillable = [
-      'type','letters',
+      'type','letters','categorias',
   ];
+
+  public function catalogs()
+  {
+    return $this->hasMany('App\Catalog');
+  }
 }

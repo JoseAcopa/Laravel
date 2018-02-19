@@ -10,4 +10,9 @@ class Suppliers extends Model
   protected $fillable = [
       'RFC', 'business', 'address', 'phone', 'email',
   ];
+
+  public function catalog()
+  {
+    return $this->hasMany('App\Catalog');
+  }
 }

@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Suppliers;
+use App\Http\Requests\CreateSupplierRequest;
+use App\Http\Requests\UpdateSupplierRequest;
 
 class SuppliersController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,7 +40,7 @@ class SuppliersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSupplierRequest $request)
     {
       $suppliers = new Suppliers;
       $suppliers->RFC = request('RFC');
@@ -44,7 +50,7 @@ class SuppliersController extends Controller
       $suppliers->email = request('email');
 
       $suppliers->save();
-      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente');
+      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**
@@ -77,7 +83,7 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateSupplierRequest $request, $id)
     {
       $newRFC = $request->input('RFC');
       $newBusiness = $request->input('business');

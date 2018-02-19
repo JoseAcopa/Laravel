@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TypeProducts;
+use App\Http\Requests\CreateTypeProductRequest;
 
 class TypeProductsControllers extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -34,13 +39,14 @@ class TypeProductsControllers extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTypeProductRequest $request)
     {
         $typesProducts = new TypeProducts;
-        $typesProducts->type = request('typeP');
-        $typesProducts->letters = request('ini');
+        $typesProducts->type = request('type');
+        $typesProducts->letters = request('letters');
+        $typesProducts->categorias = request('categorias');
         $typesProducts->save();
-        return redirect('admin/clasificationProduct')->with('success',$typesProducts->type,'Guardado correctamente');
+        return redirect('admin/clasificationProduct')->with('success', $typesProducts->type.' Guardado correctamente');
     }
 
     /**
@@ -86,6 +92,6 @@ class TypeProductsControllers extends Controller
     public function destroy($id)
     {
         TypeProducts::find($id)->delete();
-        return view('admin/clasificationProduct') -> with('sucess', 'value',$id,'Eliminado correctamente');
+        return redirect('admin/clasificationProduct')->with('success', 'Tipo de producto eliminado correctamente');
     }
 }

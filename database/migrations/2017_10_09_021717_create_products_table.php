@@ -16,12 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nInvoice');
-            $table->string('TProducts');
+            $table->integer('typeProduct_id');
             $table->string('initials');
-            $table->string('provider');
+            $table->integer('supplier_id');
             $table->string('checkin');
             $table->string('quantity');
-            $table->string('unit');
+            $table->integer('unit_id');
             $table->string('priceList');
             $table->string('cost');
             $table->string('description');
@@ -30,6 +30,7 @@ class CreateProductsTable extends Migration
             $table->string('priceSales3');
             $table->string('priceSales4');
             $table->string('priceSales5');
+            $table->integer('coin_id');
             $table->string('stock');
             $table->timestamps();
         });

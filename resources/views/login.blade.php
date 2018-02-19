@@ -15,26 +15,41 @@
         </ul>
       </nav>
     </header>
+    @if ($message = Session::get('error'))
+      <div class="login-errors">
+        <p>{{ $message }}</p>
+      </div>
+    @endif
+    @if ($message = Session::get('flash'))
+      <div class="login-errors">
+        <p>{{ $message }}</p>
+      </div>
+    @endif
+    @if ($message = Session::get('success'))
+      <div class="login-success">
+        <p>{{ $message }}</p>
+      </div>
+    @endif
     <main class="wrapper">
       <form class="login" method="POST" action="{{ route('login') }}">
         {{ csrf_field() }}
         <img src="{{ url('img/LogoRX.png')}}" alt="">
         <h1>Login</h1>
-        <div class="{{ $errors->has('user') ? ' has-error' : '' }}">
-          <label for="user">Usuario</label>
+        <div>
+          <label for="email">Correo</label>
           <div class="icon">
-            <input type="text" name="user" id="user" value="{{ old('user') }}" placeholder="usuario" autofocus>
+            <input type="email" name="email" id="email" value="{{ old('email') }}" class="{{ $errors->has('email') ? 'has-error' : '' }}" placeholder="email" autofocus>
             <i class="fa fa-user" aria-hidden="true"></i>
           </div>
-          {!! $errors->first('user','<span class="help-block">El Usuario debe ser válido</span>')!!}
+          {!! $errors->first('email','<span class="help-block">El correo electrónico no es válido</span>')!!}
         </div>
-        <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
+        <div>
           <label for="password">Contraseña</label>
           <div class="icon">
-            <input type="password" name="password" id="password" value="" placeholder="contraseña">
+            <input type="password" name="password" id="password" value="" class="{{ $errors->has('password') ? 'has-error' : '' }}" placeholder="password">
             <i class="fa fa-key" aria-hidden="true"></i>
           </div>
-          {!! $errors->first('password','<span class="help-block">La contraseña es obligatorio</span>')!!}
+          {!! $errors->first('password','<span class="help-block">:message</span>')!!}
         </div>
         <div class="login-button-lost">
           <button type="submit" class="btn-login">Login</button>

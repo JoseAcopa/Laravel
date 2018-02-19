@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Quotations;
+use App\Products;
 
 class QuotationsController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +30,8 @@ class QuotationsController extends Controller
      */
     public function create()
     {
-      return view('admin.quotation.add-quotation');
+      $products = Products::all();
+      return view('admin.quotation.add-quotation', compact('products'));
     }
 
     /**

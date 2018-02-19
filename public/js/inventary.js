@@ -1,5 +1,5 @@
 $(document).ready(function(){
   $("#inventary").click(function(){
-      $(".submenu-list").slideToggle("slow");
+      $("#submenu-list").slideToggle("slow");
   });
 });

@@ -12,31 +12,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -134,24 +110,31 @@
                     <th>Tipo de Producto</th>
                     <th>Proveedor</th>
                     <th>Costo</th>
-                    <th>Precio 1</th>
-                    <th>Precio 2</th>
-                    <th>Precio 3</th>
+                    <th>Precios</th>
                  </tr>
                 </thead>
                 <tbody class="tbodymain">
-                  <tr class="tbody">
-                    <td class="action">
-                      <input type="checkbox" name="" value="">
-                      <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
-                    </td>
-                    <td>00078</td>
-                    <td>metros</td>
-                    <td>Encargado de sistemas</td>
-                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
-                    <td><input type="checkbox" name="" value="">Encargado de sistemas</td>
-                    <td><input type="checkbox" name="" value="">delli.patricio.mayo@gmail.com</td>
-                  </tr>
+                  @foreach ($products as $product)
+                    <tr class="tbody">
+                      <td class="action">
+                        <input type="checkbox" id="{{$product->id}}" value="" onchange="getDataTAble(this);">
+                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
+                      </td>
+                      <td>{{$product->TProducts}}</td>
+                      <td>{{$product->provider}}</td>
+                      <td>{{$product->cost}}</td>
+                      <td>
+                        <select class="" name="">
+                          <option value="">Precio</option>
+                          <option value="">{{$product->priceSales1}}</option>
+                          <option value="">{{$product->priceSales2}}</option>
+                          <option value="">{{$product->priceSales3}}</option>
+                          <option value="">{{$product->priceSales4}}</option>
+                          <option value="">{{$product->priceSales5}}</option>
+                        </select>
+                      </td>
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
@@ -187,6 +170,18 @@
           "bAutoWidth": true
         });
       });
+    </script>
+    <script type="text/javascript">
+      function getDataTAble(val) {
+        var value = document.getElementsByClassName('tbody')
+        var checkbox = document.getElementById(val.id).checked
+        var arry = []
+         if (checkbox === true) {
+           arry.push(value[val.id-1].innerText)
+         }
+
+        console.log(arry);
+      }
     </script>
   </body>
 </html>
