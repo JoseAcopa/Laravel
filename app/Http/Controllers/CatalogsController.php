@@ -24,9 +24,7 @@ class CatalogsController extends Controller
      */
     public function index()
     {
-      $catalog = Catalog::get();
-      // $catalog->units;
-      // echo $catalog;
+      $catalog = Catalog::all();
       return view('admin.catalogs.catalogs', compact('catalog'));
     }
 
@@ -59,7 +57,7 @@ class CatalogsController extends Controller
       $product->description = request('description');
       $product->categoria = request('categoria');
       $product->save();
-      return redirect('admin/catalogo')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
+      return redirect('admin/catalogo')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente.')->withInput(request(['description']));
     }
 
     /**
@@ -113,7 +111,7 @@ class CatalogsController extends Controller
       $product->description = $newDescription;
       $product->categoria = $newCategoria;
       $product->save();
-      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente');
+      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente.');
     }
 
     /**
@@ -125,6 +123,6 @@ class CatalogsController extends Controller
     public function destroy($id)
     {
       Catalog::find($id)->delete();
-      return redirect('admin/catalogo')->with('success','Producto eliminado del catálogo correctamente');
+      return redirect('admin/catalogo')->with('success','Producto eliminado del catálogo correctamente.');
     }
 }

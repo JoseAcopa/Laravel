@@ -50,39 +50,31 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-pencil"></i> Editar Producto en Catálogo</h2>
           {!! Form::model($catalog, ['method' => 'PATCH','route' => ['catalogo.update', $catalog->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="tipo_producto">Tipo de Producto:</label>
-              <select class="select-design" name="tipo_producto" id='tipo_producto' onchange="typeProduct(this);">
+              <select class="{{ $errors->has('tipo_producto') ? 'has-error' : 'select-design' }}" name="tipo_producto" id='tipo_producto' onchange="typeProduct(this);">
                 <option value="{{$catalog->typeProduct_id}}">{{$catalog->typeProduct_id}}</option>
                 @foreach ($typeProducts as $typeProduct)
                   <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
                 @endforeach
               </select>
               <label for="initials" >Iniciales</label>
-              <input type="text" id="letter" name="letter" value="{{$catalog->letter}}">
+              <input type="text" id="letter" name="letter" value="{{$catalog->letter}}" readonly>
               <input type="text" id="categoria" name="categoria" value="{{$catalog->categoria}}" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
-              <select class="select-design" name="proveedor">
+              <select class="{{ $errors->has('proveedor') ? 'has-error' : 'select-design' }}" name="proveedor">
                 <option value="{{$catalog->supplier_id}}">{{$catalog->supplier_id}}</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
               <label for="unidad">Unidad de Medida:</label>
-              <select class="select-design" name="unidad">
+              <select class="{{ $errors->has('unidad') ? 'has-error' : 'select-design' }}" name="unidad">
                 <option value="{{$catalog->unit_id}}">{{$catalog->unit_id}}</option>
                 @foreach ($units as $unit)
                   <option value="{{$unit->type}}">{{$unit->type}}</option>
@@ -91,7 +83,8 @@
             </div>
             <div class="date-clients">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" id="description" placeholder="Descripción">{{$catalog->description}}</textarea>
+              <textarea type="text" rows="6" name="description" id="description" class="{{ $errors->has('description') ? 'has-error' : '' }}" placeholder="Descripción">{{$catalog->description}}</textarea>
+              {!! $errors->first('description','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>

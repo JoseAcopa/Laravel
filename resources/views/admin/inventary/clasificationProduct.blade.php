@@ -52,14 +52,6 @@
         <div class="for-container">
           <h2><i class="fa fa-pencil-square"></i> Clasificación de Producto</h2>
           <div class="clasific">
-            @if (count($errors) > 0)
-              <ul class="message-errors">
-                <strong>Corrija los Siguientes datos!</strong>
-                @foreach ($errors->all() as $error)
-                  <li>{{$error}}</li>
-                @endforeach
-              </ul>
-            @endif
             @if ($message = Session::get('success'))
               <div class="message-danger">
                 <p>{{ $message }}</p>
@@ -69,16 +61,19 @@
               {{ csrf_field() }}
               <div class="date-clientsClasific">
                 <label for="typeP">Tipo de Producto:</label>
-                <input type="text" name="type" value="">
+                <input type="text" name="type" id="type" class="{{ $errors->has('type') ? 'has-error' : '' }}" >
+                {!! $errors->first('type','<span class="data-error">:message</span>')!!}
                 <label for="ini">Iniciales:</label>
-                <input type="text" name="letters" value="">
+                <input type="text" name="letters" id="name" class="{{ $errors->has('letters') ? 'has-error' : '' }}" >
+                {!! $errors->first('letters','<span class="data-error">:message</span>')!!}
                 <label for="ini">Iniciales:</label>
-                <select class="select-design" name="categorias">
+                <select name="categorias" id="name" class="{{ $errors->has('categorias') ? 'has-error' : 'select-design' }}" >
                   <option value="">Seleccione Categoria</option>
                   <option value="Petrolera | Industrial">Petrolera | Industrial</option>
                   <option value="Hidraulica">Hidraulica</option>
                   <option value="Otro">Otro</option>
                 </select>
+                {!! $errors->first('categorias','<span class="data-error">:message</span>')!!}
               </div>
               <div class="button-clientClasific">
                 <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
