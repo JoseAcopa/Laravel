@@ -24,7 +24,10 @@ class CatalogsController extends Controller
      */
     public function index()
     {
-      $catalog = Catalog::all();
+      // $catalog = Catalog::get();
+      // $catalog->unit;
+      // return json_decode($catalog, true);
+      $catalog = Catalog::with(['unit', 'supplier'])->get();
       return view('admin.catalogs.catalogs', compact('catalog'));
     }
 

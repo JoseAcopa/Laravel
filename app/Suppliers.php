@@ -11,7 +11,7 @@ class Suppliers extends Model
       'RFC', 'business', 'address', 'phone', 'email',
   ];
 
-  public function catalog()
+  public function catalogs()
   {
     return $this->hasMany('App\Catalog');
   }

@@ -19,12 +19,12 @@ class Catalog extends Model
     return $this->belongsTo('App\TypeProducts');
   }
 
-  public function suppliers()
+  public function supplier()
   {
-    return $this->hasMany('App\Suppliers');
+    return $this->belongsTo('App\Suppliers');
   }
 
-  public function units()
+  public function unit()
   {
     return $this->belongsTo('App\Units');
   }

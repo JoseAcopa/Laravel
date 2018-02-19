@@ -82,8 +82,8 @@
                     </td>
                     <td>{{ $product->typeProduct_id }}</td>
                     <td>{{ $product->letter }}</td>
-                    <td>{{ $product->supplier_id }}</td>
-                    <td>{{ $product->unit_id }}</td>
+                    <td>{{ $product->supplier->business }}</td>
+                    <td>{{ $product->unit->type }}</td>
                     <td>{{ $product->description }}</td>
                   </tr>
                 @endforeach
