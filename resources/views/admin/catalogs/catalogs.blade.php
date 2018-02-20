@@ -64,7 +64,7 @@
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
-                  <th>Tipo de Porducto</th>
+                  <th>Tipo de Producto</th>
                   <th>Iniciales</th>
                   <th>Proveedor</th>
                   <th>Unidad</th>

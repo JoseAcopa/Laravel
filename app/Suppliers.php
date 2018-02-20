@@ -15,4 +15,9 @@ class Suppliers extends Model
   {
     return $this->hasMany('App\Catalog');
   }
+
+  public function products()
+  {
+    return $this->hasMany('App\Products');
+  }
 }

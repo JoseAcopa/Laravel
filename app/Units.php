@@ -15,8 +15,8 @@ class Units extends Model
     return $this->hasMany('App\Catalog');
   }
 
-  public function product()
+  public function products()
   {
-    return $this->belongsTo('App\Products');
+    return $this->hasMany('App\Products');
   }
 }
