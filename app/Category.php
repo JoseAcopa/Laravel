@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TypeProducts extends Model
+class Category extends Model
 {
-  protected $table = 'typeProducts';
+  // protected $table = 'typeProducts';
 
   protected $fillable = [
       'type','letters','categorias',
@@ -15,5 +15,10 @@ class TypeProducts extends Model
   public function catalogs()
   {
     return $this->hasMany('App\Catalog');
+  }
+
+  public function products()
+  {
+    return $this->hasMany('App\Products');
   }
 }

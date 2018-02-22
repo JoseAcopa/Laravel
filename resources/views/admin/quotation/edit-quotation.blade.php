@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">

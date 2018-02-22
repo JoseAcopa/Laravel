@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use App\Products;
 use App\Suppliers;
 use App\Units;
-use App\TypeProducts;
+use App\Category;
 use App\Coins;
 use App\Catalog;
 use App\Http\Requests\CreateProductsRequest;
 
 class ProductsControllers extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -31,11 +35,9 @@ class ProductsControllers extends Controller
      */
     public function create()
     {
-      $suppliers = Suppliers::all();
-      $units = Units::all();
       $coins = Coins::all();
-      $catalog = Catalog::all();
-      return view('admin.inventary.add-product', compact('suppliers', 'units', 'coins', 'catalog'));
+      $catalog = Catalog::with(['unit', 'supplier', 'category'])->get();
+      return view('admin.inventary.add-product', compact('coins', 'catalog'));
     }
 
     /**
@@ -48,12 +50,12 @@ class ProductsControllers extends Controller
     {
       $product = new Products;
       $product->nInvoice = request('nInvoice');
-      $product->typeProduct_id = request('tipo_producto');
+      $product->category_id = request('category_id');
       $product->initials = request('initials');
-      $product->supplier_id = request('proveedor');
+      $product->supplier_id = request('supplier_id');
       $product->checkin = request('fecha_entrada');
       $product->quantity = request('cantidad_entrada');
-      $product->unit_id = request('unidad');
+      $product->unit_id = request('unit_id');
       $product->priceList = request('precio_lista');
       $product->cost = request('costo');
       $product->description = request('description');

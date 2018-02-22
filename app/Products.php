@@ -10,29 +10,29 @@ class Products extends Model
   // protected $id = "id";
 
   protected $fillable = [
-      'nInvoice', 'typeProduct_id', 'initials', 'supplier_id', 'checkin',
+      'nInvoice', 'category_id', 'initials', 'supplier_id', 'checkin',
       'quantity', 'unit_id', 'priceList', 'cost','description', 'stock',
       'priceSales1', 'priceSales2', 'priceSales3', 'priceSales4',
       'priceSales5', 'coin_id',
   ];
 
-  public function typeProduct()
+  public function category()
   {
-    return $this->belongsTo('App\TypeProducts');
+    return $this->belongsTo('App\Category');
   }
 
-  public function suppliers()
+  public function supplier()
   {
-    return $this->hasMany('App\Suppliers');
+    return $this->belongsTo('App\Suppliers');
   }
 
-  public function units()
+  public function unit()
   {
     return $this->belongsTo('App\Units');
   }
 
   public function coin()
   {
-    return $this->hasMany('App\Coins');
+    return $this->belongsTo('App\Coins');
   }
 }

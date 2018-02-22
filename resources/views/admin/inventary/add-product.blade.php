@@ -13,31 +13,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -99,11 +75,13 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" placeholder="Número Factura">
+              <input type="text" name="nInvoice" value="{{ old('nInvoice') }}" class="{{ $errors->has('nInvoice') ? 'has-error' : '' }}" placeholder="Número Factura">
+              {!! $errors->first('nInvoice','<span class="data-error">:message</span>')!!}
               <div class="clasification">
                 <div class="select">
                   <label for="TProduct">Tipo de Producto:</label>
                   <input type="text" class="inicialesInput" name="tipo_producto" value="" id='TProduct' readonly="">
+                  <input type="text" name='category_id' id='category_id' hidden>
                 </div>
                 <div class="iniciales">
                   <input type="text" class="inicialesInput" id="letter" name="initials" readonly>
@@ -111,12 +89,7 @@
               </div>
               <label for="proveedor">Proveedor:</label>
               <input type="text" name="proveedor" id="proveedor" value="" readonly>
-              {{-- <select class="select-design" name="proveedor">
-                <option value="">Seleccione Proveedor</option>
-                @foreach ($suppliers as $supplier)
-                  <option value="{{$supplier->id}}">{{$supplier->business}}</option>
-                @endforeach
-              </select> --}}
+              <input type="text" name='supplier_id' id='supplier_id' hidden>
             </div>
             <div class="date-clients">
               <label for="fecha_entrada">Fecha de Entrada:</label>
@@ -125,12 +98,7 @@
               <input type="number" name="cantidad_entrada" id="cantidad_entrada" placeholder="Cantidad Entrada">
               <label for="unidad">Unidad de Medida:</label>
               <input type="text" name="unidad" value="" id="unidad" readonly>
-              {{-- <select class="select-design" name="unidad">
-                <option value="">Seleccione Unidad de Medida</option>
-                @foreach ($units as $unit)
-                  <option value="{{$unit->id}}">{{$unit->type}}</option>
-                @endforeach
-              </select> --}}
+              <input type="text" name='unit_id' id='unit_id' hidden>
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
@@ -190,60 +158,24 @@
       function catalogo(val) {
         var catalog = <?php echo$catalog;?>;
         var orderCatalog = {}
-        var priceList = document.getElementById('priceList').value
-        var cost = document.getElementById('cost').value
-        var cat1 = [.70, .65, .60, .57]
-        var cat2 = [.40, .37, .36, .35]
-        var cat3 = [.70, .75, .80, .85]
-        var newRes = []
 
         catalog.map((item)=>{
           orderCatalog[val.value] = item
         })
 
-        console.log(catalog);
         var newCatalog = orderCatalog[val.value]
-
-        if (newCatalog.categoria === 'Petrolera | Industrial') {
-          for (var i = 0; i < cat1.length; i++) {
-            var res = cat1[i] * priceList
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.70)'
-            document.getElementById('pv2').innerHTML = ' (x0.65)'
-            document.getElementById('pv3').innerHTML = ' (x0.60)'
-            document.getElementById('pv4').innerHTML = ' (x0.57)'
-          }
-        }else if (newCatalog.categoria === 'Hidraulica') {
-          for (var i = 0; i < cat2.length; i++) {
-            var res = cat2[i] * priceList
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.40)'
-            document.getElementById('pv2').innerHTML = ' (x0.37)'
-            document.getElementById('pv3').innerHTML = ' (x0.36)'
-            document.getElementById('pv4').innerHTML = ' (x0.35)'
-          }
-        }else if (newCatalog.categoria === 'Otro') {
-          for (var i = 0; i < cat3.length; i++) {
-            var res = cost / cat3[i]
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
-            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
-            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
-            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
-          }
-        }
-
+        console.log(newCatalog);
         document.getElementById('letter').value = newCatalog.letter
-        document.getElementById('TProduct').value = newCatalog.typeProduct_id
+        document.getElementById('TProduct').value = newCatalog.category.type
         document.getElementById('categoria').value = newCatalog.categoria
-        document.getElementById('proveedor').value = newCatalog.supplier_id
-        document.getElementById('unidad').value = newCatalog.unit_id
+        document.getElementById('proveedor').value = newCatalog.supplier.business
+        document.getElementById('unidad').value = newCatalog.unit.type
         document.getElementById('description').value = newCatalog.description
 
-        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
+        // id ocultos
+        document.getElementById('category_id').value = newCatalog.category_id
+        document.getElementById('supplier_id').value = newCatalog.supplier_id
+        document.getElementById('unit_id').value = newCatalog.unit_id
       }
     </script>
 

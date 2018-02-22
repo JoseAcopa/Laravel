@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -74,40 +50,32 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-pencil"></i> Editar Producto en Catálogo</h2>
           {!! Form::model($catalog, ['method' => 'PATCH','route' => ['catalogo.update', $catalog->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
-              <label for="tipo_producto">Tipo de Producto:</label>
-              <select class="select-design" name="tipo_producto" id='tipo_producto' onchange="typeProduct(this);">
-                <option value="{{$catalog->typeProduct_id}}">{{$catalog->typeProduct_id}}</option>
-                @foreach ($typeProducts as $typeProduct)
-                  <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
+              <label for="category">Tipo de Producto:</label>
+              <select class="{{ $errors->has('category') ? 'has-error' : 'select-design' }}" name="category" id='tipo_producto' onchange="typeProduct(this);">
+                <option value="{{$catalog->category_id}}">{{$catalog->category->type}}</option>
+                @foreach ($categories as $categorie)
+                  <option value="{{$categorie->id}}">{{$categorie->type}}</option>
                 @endforeach
               </select>
               <label for="initials" >Iniciales</label>
-              <input type="text" id="letter" name="letter" value="{{$catalog->letter}}">
+              <input type="text" id="letter" name="letter" value="{{$catalog->letter}}" readonly>
               <input type="text" id="categoria" name="categoria" value="{{$catalog->categoria}}" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
-              <select class="select-design" name="proveedor">
-                <option value="{{$catalog->supplier_id}}">{{$catalog->supplier_id}}</option>
+              <select class="{{ $errors->has('proveedor') ? 'has-error' : 'select-design' }}" name="proveedor">
+                <option value="{{$catalog->supplier_id}}">{{$catalog->supplier->business}}</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{$supplier->business}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
               <label for="unidad">Unidad de Medida:</label>
-              <select class="select-design" name="unidad">
-                <option value="{{$catalog->unit_id}}">{{$catalog->unit_id}}</option>
+              <select class="{{ $errors->has('unidad') ? 'has-error' : 'select-design' }}" name="unidad">
+                <option value="{{$catalog->unit_id}}">{{$catalog->unit->type}}</option>
                 @foreach ($units as $unit)
                   <option value="{{$unit->type}}">{{$unit->type}}</option>
                 @endforeach
@@ -115,7 +83,8 @@
             </div>
             <div class="date-clients">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" id="description" placeholder="Descripción">{{$catalog->description}}</textarea>
+              <textarea type="text" rows="6" name="description" id="description" class="{{ $errors->has('description') ? 'has-error' : '' }}" placeholder="Descripción">{{$catalog->description}}</textarea>
+              {!! $errors->first('description','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -135,16 +104,16 @@
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
       function typeProduct(val){
-        var typeProducts = <?php echo$typeProducts;?>;
+        var categories = <?php echo$categories;?>;
         var newVal = {};
 
-        typeProducts.map((item)=>{
+        categories.map((item)=>{
           newVal[item.id] = item
         })
 
-        var typeProduct = newVal[val.value]
-        document.getElementById('letter').value = typeProduct.letters;
-        document.getElementById('categoria').value = typeProduct.categoria;
+        var category = newVal[val.value]
+        document.getElementById('letter').value = category.letters;
+        document.getElementById('categoria').value = category.categoria;
       }
     </script>
   </body>

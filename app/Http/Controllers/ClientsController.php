@@ -9,6 +9,10 @@ use App\Http\Requests\UpdateClientRequest;
 
 class ClientsController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +50,7 @@ class ClientsController extends Controller
       $clients->email = request('email');
 
       $clients->save();
-      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente');
+      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**

@@ -24,7 +24,7 @@ class CreateSupplierRequest extends FormRequest
     public function rules()
     {
         return [
-          'business' => 'max:255|required',
+          'business' => 'max:255|required|unique:suppliers',
           'RFC' => 'max:255|required',
           'address' => 'max:255|required',
           'phone' => 'digits:10|required',

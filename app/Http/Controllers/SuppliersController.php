@@ -9,6 +9,10 @@ use App\Http\Requests\UpdateSupplierRequest;
 
 class SuppliersController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +50,7 @@ class SuppliersController extends Controller
       $suppliers->email = request('email');
 
       $suppliers->save();
-      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente');
+      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**

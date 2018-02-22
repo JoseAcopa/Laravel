@@ -10,31 +10,7 @@
   </head>
   <body>
     <header>
-      <nav class="nav">
-        <ul class="ul-nav">
-          <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-          <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
-          <div class="sesion">
-            <ul>
-              <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
-                <ul>
-                  <div class="photo">
-                    <img src="{{ url('img/image.png')}}" alt="">
-                  </div>
-                  <div class="name">
-                    <h3>Nirandelli Patricio Mayo</h3>
-                    <h3></h3>
-                  </div>
-                  <li></li>
-                  <div class="footerSingout">
-                    <a href="#" class="sign-out"><i class="fa fa-sign-out"></i> Cerrar Sesión</a>
-                  </div>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </ul>
-      </nav>
+      @include('../layouts/nav')
     </header>
     <main class="wrapper">
       <aside class="menu" id="aside">
@@ -75,32 +51,29 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-edit"></i> Editar Cliente</h2>
           {!! Form::model($client, ['method' => 'PATCH','route' => ['client.update', $client->id], 'class' => 'container-add-clients']) !!}
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="business">Nombre de la Empresa:</label>
-              <input type="text" name="business" value='{{ $client->business }}'>
+              <input type="text" name="business" class="{{ $errors->has('business') ? 'has-error' : '' }}" value='{{ $client->business }}'>
+              {!! $errors->first('business','<span class="data-error">:message</span>')!!}
               <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" value='{{ $client->RFC }}'>
+              <input type="text" name="RFC" class="{{ $errors->has('RFC') ? 'has-error' : '' }}" value='{{ $client->RFC }}'>
+              {!! $errors->first('RFC','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="phone">Teléfono:</label>
-              <input type="tel" name="phone" value='{{ $client->phone }}'>
+              <input type="tel" name="phone" class="{{ $errors->has('phone') ? 'has-error' : '' }}" value='{{ $client->phone }}'>
+              {!! $errors->first('phone','<span class="data-error">:message</span>')!!}
               <label for="email">E-mail:</label>
-              <input type="email" name="email" value='{{ $client->email }}'>
+              <input type="email" name="email" class="{{ $errors->has('email') ? 'has-error' : '' }}" value='{{ $client->email }}'>
+              {!! $errors->first('email','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="address">Dirección:</label>
-              <textarea type="text" rows="6" name="address">{{ $client->address }}</textarea>
+              <textarea type="text" rows="6" class="{{ $errors->has('address') ? 'has-error' : '' }}" name="address">{{ $client->address }}</textarea>
+              {!! $errors->first('address','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button type="submit" href="#" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
