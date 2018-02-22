@@ -12,8 +12,8 @@ class Coins extends Model
       'type',
   ];
 
-  public function product()
+  public function products()
   {
-    return $this->belongsTo('App\Products');
+    return $this->hasMany('App\Products');
   }
 }

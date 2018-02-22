@@ -69,7 +69,7 @@
                   <th>Nombre completo</th>
                   <th>Teléfono</th>
                   <th>Usuario</th>
-                  <th>Contraseña</th>
+                  {{-- <th>Contraseña</th> --}}
                   <th>Privilegio</th>
                </tr>
               </thead>
@@ -86,8 +86,8 @@
                     <td>{{ $employee->name }}</td>
                     <td>{{ $employee->phone }}</td>
                     <td>{{ $employee->user }}</td>
-                    <td>{{ $employee->password }}</td>
-                    <td></td>
+                    {{-- <td>{{ $employee->password }}</td> --}}
+                    <td>admin</td>
                   </tr>
                 @endforeach
               </tbody>

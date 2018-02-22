@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\TypeProducts;
-use App\Http\Requests\CreateTypeProductRequest;
+use App\Category;
+use App\Http\Requests\CreateCategoriesRequest;
 
-class TypeProductsControllers extends Controller
+class CategoriesController extends Controller
 {
-    public function __construct()
-    {
-      $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +15,8 @@ class TypeProductsControllers extends Controller
      */
     public function index()
     {
-        $typesProducts = TypeProducts::all();
-        return view('admin.inventary.clasificationProduct',compact('typesProducts'));
+      $categories = Category::all();
+      return view('admin.inventary.clasificationProduct',compact('categories'));
     }
 
     /**
@@ -39,14 +35,14 @@ class TypeProductsControllers extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateTypeProductRequest $request)
+    public function store(CreateCategoriesRequest $request)
     {
-        $typesProducts = new TypeProducts;
-        $typesProducts->type = request('type');
-        $typesProducts->letters = request('letters');
-        $typesProducts->categorias = request('categorias');
-        $typesProducts->save();
-        return redirect('admin/clasificationProduct')->with('success', $typesProducts->type.' Guardado correctamente');
+      $category = new Category;
+      $category->type = request('type');
+      $category->letters = request('letters');
+      $category->categorias = request('categorias');
+      $category->save();
+      return redirect('admin/clasificationProduct')->with('success', $category->type.' Guardado correctamente');
     }
 
     /**
@@ -91,7 +87,7 @@ class TypeProductsControllers extends Controller
      */
     public function destroy($id)
     {
-        TypeProducts::find($id)->delete();
-        return redirect('admin/clasificationProduct')->with('success', 'Tipo de producto eliminado correctamente');
+      Category::find($id)->delete();
+      return redirect('admin/clasificationProduct')->with('success', 'Tipo de producto eliminado correctamente');
     }
 }

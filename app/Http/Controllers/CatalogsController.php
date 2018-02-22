@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Catalog;
 use App\Suppliers;
 use App\Units;
-use App\TypeProducts;
-use Illuminate\Support\Facades\DB;
+use App\Category;
 use App\Http\Requests\CreateCatalogs;
 use App\Http\Requests\UpdateCatalogs;
 
@@ -24,9 +23,10 @@ class CatalogsController extends Controller
      */
     public function index()
     {
-      $catalog = Catalog::get();
-      // $catalog->units;
-      // echo $catalog;
+      // $catalog = Catalog::get();
+      // $catalog->unit;
+      // return json_decode($catalog, true);
+      $catalog = Catalog::with(['unit', 'supplier', 'category'])->get();
       return view('admin.catalogs.catalogs', compact('catalog'));
     }
 
@@ -39,8 +39,8 @@ class CatalogsController extends Controller
     {
       $suppliers = Suppliers::all();
       $units = Units::all();
-      $typeProducts = TypeProducts::all();
-      return view('admin.catalogs.alta', compact('suppliers', 'units', 'typeProducts'));
+      $categories = Category::all();
+      return view('admin.catalogs.alta', compact('suppliers', 'units', 'categories'));
     }
 
     /**
@@ -52,14 +52,14 @@ class CatalogsController extends Controller
     public function store(CreateCatalogs $request)
     {
       $product = new Catalog;
-      $product->typeProduct_id = request('tipo_producto');
+      $product->category_id = request('category');
       $product->letter = request('letter');
       $product->supplier_id = request('proveedor');
       $product->unit_id = request('unidad');
       $product->description = request('description');
-      $product->categoria = request('categoria');
+      $product->categoria = request('tipo_categoria');
       $product->save();
-      return redirect('admin/catalogo')->with('success','Producto '. $product->typeProduct_id .' Guardado correctamente');
+      return redirect('admin/catalogo')->with('success','Producto '. $product->category_id .' Guardado correctamente.')->withInput(request(['description']));
     }
 
     /**
@@ -83,9 +83,12 @@ class CatalogsController extends Controller
     {
       $suppliers = Suppliers::all();
       $units = Units::all();
-      $typeProducts = TypeProducts::all();
+      $categories = Category::all();
       $catalog = Catalog::find($id);
-      return view('admin.catalogs.edit', compact('suppliers', 'units', 'typeProducts', 'catalog'));
+      $catalog->unit;
+      $catalog->supplier;
+      $catalog->category;
+      return view('admin.catalogs.edit', compact('suppliers', 'units', 'categories', 'catalog'));
     }
 
     /**
@@ -97,7 +100,7 @@ class CatalogsController extends Controller
      */
     public function update(UpdateCatalogs $request, $id)
     {
-      $newTypeProduct = $request->input('tipo_producto');
+      $newCategory = $request->input('category');
       $newLetter = $request->input('letter');
       $newSuppler = $request->input('proveedor');
       $newUnit = $request->input('unidad');
@@ -106,14 +109,14 @@ class CatalogsController extends Controller
 
       $product = Catalog::find($id);
 
-      $product->typeProduct_id = $newTypeProduct;
+      $product->category_id = $newCategory;
       $product->letter = $newLetter;
       $product->supplier_id = $newSuppler;
       $product->unit_id = $newUnit;
       $product->description = $newDescription;
       $product->categoria = $newCategoria;
       $product->save();
-      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente');
+      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente.');
     }
 
     /**
@@ -125,6 +128,6 @@ class CatalogsController extends Controller
     public function destroy($id)
     {
       Catalog::find($id)->delete();
-      return redirect('admin/catalogo')->with('success','Producto eliminado del catálogo correctamente');
+      return redirect('admin/catalogo')->with('success','Producto eliminado del catálogo correctamente.');
     }
 }

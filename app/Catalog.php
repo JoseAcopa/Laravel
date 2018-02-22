@@ -10,21 +10,21 @@ class Catalog extends Model
   // protected $id = "id";
 
   protected $fillable = [
-    'typeProduct_id', 'initials', 'supplier_id',
+    'category_id', 'initials', 'supplier_id',
     'unit_id', 'description', 'categoria',
   ];
 
-  public function typeProduct()
+  public function category()
   {
-    return $this->belongsTo('App\TypeProducts');
+    return $this->belongsTo('App\Category');
   }
 
-  public function suppliers()
+  public function supplier()
   {
-    return $this->hasMany('App\Suppliers');
+    return $this->belongsTo('App\Suppliers');
   }
 
-  public function units()
+  public function unit()
   {
     return $this->belongsTo('App\Units');
   }

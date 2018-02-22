@@ -53,14 +53,6 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-pencil"></i> Registrar Producto</h2>
           <div class="searchDescription">
             <i class="fa fa-search"></i>
@@ -75,73 +67,76 @@
             {{ csrf_field() }}
             <div class="date-clients">
               <label for="nInvoice">N° de Factura:</label>
-              <input type="text" name="nInvoice" placeholder="Número Factura">
+              <input type="text" name="nInvoice" value="-" placeholder="Número Factura">
               <div class="clasification">
                 <div class="select">
                   <label for="TProduct">Tipo de Producto:</label>
-                  <input type="text" class="inicialesInput" name="tipo_producto" value="" id='TProduct' readonly="">
+                  <input type="text" name="tipo_producto" id='TProduct' value="{{ old('tipo_producto') }}" class="{{ $errors->has('tipo_producto') ? 'has-error' : 'inicialesInput' }}" readonly>
+                  {!! $errors->first('tipo_producto','<span class="data-error">:message</span>')!!}
                 </div>
                 <div class="iniciales">
-                  <input type="text" class="inicialesInput" id="letter" name="initials" readonly>
+                  <input type="text" id="letter" name="initials" value="{{ old('initials') }}" readonly>
                 </div>
               </div>
               <label for="proveedor">Proveedor:</label>
-              <input type="text" name="proveedor" id="proveedor" value="" readonly>
-              {{-- <select class="select-design" name="proveedor">
-                <option value="">Seleccione Proveedor</option>
-                @foreach ($suppliers as $supplier)
-                  <option value="{{$supplier->id}}">{{$supplier->business}}</option>
-                @endforeach
-              </select> --}}
+              <input type="text" name="proveedor" id="proveedor" value="{{ old('proveedor') }}" class="{{ $errors->has('proveedor') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('proveedor','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="fecha_entrada">Fecha de Entrada:</label>
-              <input type="date" class="date-design" name="fecha_entrada" id="fecha_entrada">
+              <input type="date" name="fecha_entrada" id="fecha_entrada" value="{{ old('fecha_entrada') }}" class="{{ $errors->has('fecha_entrada') ? 'has-error' : 'date-design' }}">
+              {!! $errors->first('fecha_entrada','<span class="data-error">:message</span>')!!}
               <label for="cantidad_entrada">Cantidad de Entrada:</label>
-              <input type="number" name="cantidad_entrada" id="cantidad_entrada" placeholder="Cantidad Entrada">
+              <input type="number" name="cantidad_entrada" id="cantidad_entrada" value="{{ old('cantidad_entrada') }}" class="{{ $errors->has('cantidad_entrada') ? 'has-error' : '' }}" placeholder="Cantidad Entrada" min="0">
+              {!! $errors->first('cantidad_entrada','<span class="data-error">:message</span>')!!}
               <label for="unidad">Unidad de Medida:</label>
-              <input type="text" name="unidad" value="" id="unidad" readonly>
-              {{-- <select class="select-design" name="unidad">
-                <option value="">Seleccione Unidad de Medida</option>
-                @foreach ($units as $unit)
-                  <option value="{{$unit->id}}">{{$unit->type}}</option>
-                @endforeach
-              </select> --}}
+              <input type="text" name="unidad" id="unidad" value="{{ old('unidad') }}" class="{{ $errors->has('unidad') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('unidad','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="number" name="precio_lista" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
+              <input type="number" name="precio_lista" id="priceList" placeholder="Precio Lista" onchange="priceSales();" value="{{ old('precio_lista') }}" class="{{ $errors->has('precio_lista') ? 'has-error' : '' }}">
+              {!! $errors->first('precio_lista','<span class="data-error">:message</span>')!!}
               <label for="cost">Costo:</label>
-              <input type="number" name="costo" value="" id="cost" placeholder="Costo" onchange="priceSales();">
+              <input type="number" name="costo" id="cost" placeholder="Costo" onchange="priceSales();" value="{{ old('costo') }}" class="{{ $errors->has('costo') ? 'has-error' : '' }}">
+              {!! $errors->first('costo','<span class="data-error">:message</span>')!!}
               <label for="moneda">Tipo de moneda:</label>
-              <select class="select-design" name="moneda">
+              <select name="moneda" value="{{ old('moneda') }}" class="{{ $errors->has('moneda') ? 'has-error' : 'select-design' }}">
                 <option value="">Seleccione tipo de moneda</option>
                 @foreach ($coins as $coin)
                   <option value="{{$coin->id}}">{{$coin->type}}</option>
                 @endforeach
               </select>
+              {!! $errors->first('moneda','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clientstextA">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="4" name="description" id="description" placeholder="Descripción" readonly></textarea>
+              <textarea type="text" rows="4" name="description" id="description" placeholder="Descripción" class="{{ $errors->has('description') ? 'has-error' : '' }}" readonly>{{ old('description') }}</textarea>
+              {!! $errors->first('description','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <input type="text" id="categoria" readonly="">
+              <input type="text" id="categoria" name="categoria" value="{{ old('categoria') }}" class="{{ $errors->has('categoria') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('categoria','<span class="data-error">:message</span>')!!}
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
-              <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly>
+              <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{ old('priceSales3') }}" class="{{ $errors->has('priceSales3') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('priceSales3','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
-              <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly>
+              <input type="text" name="priceSales1" id="priceSales1" placeholder="Precio de Venta 1" value="{{ old('priceSales1') }}" class="{{ $errors->has('priceSales1') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('priceSales1','<span class="data-error">:message</span>')!!}
               <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
-              <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly>
+              <input type="text" name="priceSales4" id="priceSales4" placeholder="Precio de Venta 4" value="{{ old('priceSales4') }}" class="{{ $errors->has('priceSales4') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('priceSales4','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
-              <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly>
+              <input type="text" name="priceSales2" id="priceSales2" placeholder="Precio de Venta 2" value="{{ old('priceSales2') }}" class="{{ $errors->has('priceSales2') ? 'has-error' : '' }}" readonly>
+              {!! $errors->first('priceSales2','<span class="data-error">:message</span>')!!}
               <label for="priceSales5">Precio de Venta 5:</label>
-              <input type="text" name="priceSales5" id='priceSales5' value="0.00" placeholder="Precio de Venta 5" onchange="priceFive(this);">
+              <input type="text" name="priceSales5" id='priceSales5' placeholder="Precio de Venta 5" value="{{ old('priceSales5') }}" class="{{ $errors->has('priceSales5') ? 'has-error' : '' }}">
+              {!! $errors->first('priceSales5','<span class="data-error">:message</span>')!!}
             </div>
             <div class="button-client">
               <button href="#" class="btn-save"><i class="fa fa-save fa-lg"></i>  Guardar</button>
@@ -164,115 +159,108 @@
     </script>
     <script type="text/javascript">
       function catalogo(val) {
-        var catalog = <?php echo$catalog;?>;
-        var orderCatalog = {}
-        var priceList = document.getElementById('priceList').value
-        var cost = document.getElementById('cost').value
+        var id = val.value;
+        var priceList = $("#priceList").val()
+        var cost = $("#cost").val()
         var cat1 = [.70, .65, .60, .57]
         var cat2 = [.40, .37, .36, .35]
         var cat3 = [.70, .75, .80, .85]
         var newRes = []
 
-        catalog.map((item)=>{
-          orderCatalog[val.value] = item
+        $.ajax({
+          url: '/producto/'+id,
+          type: 'GET',
+          success: (res)=>{
+
+            $('#letter').val(res.letter);
+            $('#TProduct').val(res.category.type);
+            $('#categoria').val(res.categoria);
+            $('#proveedor').val(res.supplier.business);
+            $('#unidad').val(res.unit.type);
+            $('#description').val(res.description);
+
+            if (res.categoria === 'Petrolera | Industrial') {
+              for (var i = 0; i < cat1.length; i++) {
+                var res = cat1[i] * priceList
+                newRes.push(res)
+                $('#pv1').text("(x0.70)")
+                $('#pv2').text("(x0.65)")
+                $('#pv3').text("(x0.60)")
+                $('#pv4').text("(x0.57)")
+              }
+            }else if (res.categoria === 'Hidraulica') {
+              for (var i = 0; i < cat2.length; i++) {
+                var res = cat2[i] * cost
+                newRes.push(res)
+                $('#pv1').text("(x0.40)")
+                $('#pv2').text("(x0.37)")
+                $('#pv3').text("(x0.36)")
+                $('#pv4').text("(x0.35)")
+              }
+            }else if (res.categoria === 'Otro') {
+              for (var i = 0; i < cat3.length; i++) {
+                var res = cost / cat3[i]
+                newRes.push(res)
+                $('#pv1').text("(/ 0.70)")
+                $('#pv2').text("(/ 0.75)")
+                $('#pv3').text("(/ 0.80)")
+                $('#pv4').text("(/ 0.85)")
+              }
+            }
+
+            $('#priceSales1').val(newRes[0].toFixed(2))
+            $('#priceSales2').val(newRes[1].toFixed(2))
+            $('#priceSales3').val(newRes[2].toFixed(2))
+            $('#priceSales4').val(newRes[3].toFixed(2))
+          }
         })
-
-        console.log(catalog);
-        var newCatalog = orderCatalog[val.value]
-
-        if (newCatalog.categoria === 'Petrolera | Industrial') {
-          for (var i = 0; i < cat1.length; i++) {
-            var res = cat1[i] * priceList
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.70)'
-            document.getElementById('pv2').innerHTML = ' (x0.65)'
-            document.getElementById('pv3').innerHTML = ' (x0.60)'
-            document.getElementById('pv4').innerHTML = ' (x0.57)'
-          }
-        }else if (newCatalog.categoria === 'Hidraulica') {
-          for (var i = 0; i < cat2.length; i++) {
-            var res = cat2[i] * priceList
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.40)'
-            document.getElementById('pv2').innerHTML = ' (x0.37)'
-            document.getElementById('pv3').innerHTML = ' (x0.36)'
-            document.getElementById('pv4').innerHTML = ' (x0.35)'
-          }
-        }else if (newCatalog.categoria === 'Otro') {
-          for (var i = 0; i < cat3.length; i++) {
-            var res = cost / cat3[i]
-            newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
-            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
-            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
-            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
-          }
-        }
-
-        document.getElementById('letter').value = newCatalog.letter
-        document.getElementById('TProduct').value = newCatalog.typeProduct_id
-        document.getElementById('categoria').value = newCatalog.categoria
-        document.getElementById('proveedor').value = newCatalog.supplier_id
-        document.getElementById('unidad').value = newCatalog.unit_id
-        document.getElementById('description').value = newCatalog.description
-
-        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
       }
     </script>
-
-
-
-
-
-
-
-
-
     <script type="text/javascript">
       function priceSales() {
-        var value = document.getElementById('categoria').value
-        var priceList = document.getElementById('priceList').value
-        var cost = document.getElementById('cost').value
+        var categoria = $("#categoria").val()
+        var priceList = $("#priceList").val()
+        var cost = $("#cost").val()
         var cat1 = [.70, .65, .60, .57]
         var cat2 = [.40, .37, .36, .35]
         var cat3 = [.70, .75, .80, .85]
         var newRes = []
 
-        if (value === 'Categoria 1') {
+        if (categoria === 'Petrolera | Industrial') {
           for (var i = 0; i < cat1.length; i++) {
             var res = cat1[i] * priceList
             newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.70)'
-            document.getElementById('pv2').innerHTML = ' (x0.65)'
-            document.getElementById('pv3').innerHTML = ' (x0.60)'
-            document.getElementById('pv4').innerHTML = ' (x0.57)'
+            $('#pv1').text("(x0.70)")
+            $('#pv2').text("(x0.65)")
+            $('#pv3').text("(x0.60)")
+            $('#pv4').text("(x0.57)")
           }
-        }else if (value === 'Categoria 2') {
+        }else if (categoria === 'Hidraulica') {
           for (var i = 0; i < cat2.length; i++) {
             var res = cat2[i] * cost
             newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (x0.40)'
-            document.getElementById('pv2').innerHTML = ' (x0.37)'
-            document.getElementById('pv3').innerHTML = ' (x0.36)'
-            document.getElementById('pv4').innerHTML = ' (x0.35)'
+            $('#pv1').text("(x0.40)")
+            $('#pv2').text("(x0.37)")
+            $('#pv3').text("(x0.36)")
+            $('#pv4').text("(x0.35)")
           }
-        }else if (value === 'Categoria 3') {
+        }else if (categoria === 'Otro') {
           for (var i = 0; i < cat3.length; i++) {
             var res = cost / cat3[i]
             newRes.push(res)
-            document.getElementById('pv1').innerHTML = ' (/ 0.70)'
-            document.getElementById('pv2').innerHTML = ' (/ 0.75)'
-            document.getElementById('pv3').innerHTML = ' (/ 0.80)'
-            document.getElementById('pv4').innerHTML = ' (/ 0.85)'
+            $('#pv1').text("(/ 0.70)")
+            $('#pv2').text("(/ 0.75)")
+            $('#pv3').text("(/ 0.80)")
+            $('#pv4').text("(/ 0.85)")
           }
         }
-        document.getElementById('priceSales1').value=newRes[0].toFixed(2)
-        document.getElementById('priceSales2').value=newRes[1].toFixed(2)
-        document.getElementById('priceSales3').value=newRes[2].toFixed(2)
-        document.getElementById('priceSales4').value=newRes[3].toFixed(2)
+
+        if (categoria.length > 0) {
+          $('#priceSales1').val(newRes[0].toFixed(2))
+          $('#priceSales2').val(newRes[1].toFixed(2))
+          $('#priceSales3').val(newRes[2].toFixed(2))
+          $('#priceSales4').val(newRes[3].toFixed(2))
+        }
       }
     </script>
     <script type="text/javascript">

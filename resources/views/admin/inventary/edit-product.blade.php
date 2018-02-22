@@ -60,12 +60,12 @@
                 <div class="select">
                   <label for="TProducts">Tipo de Producto:</label>
                   {{-- <input type="text" id="TProducts" value="{{ $product->ty }}" name="TProducts" readonly="readonly" hidden=""> --}}
-                  <select class="select-design" name="tipo_producto" onchange="myTProduct(this);" id='test'>
+                  {{-- <select class="select-design" name="tipo_producto" onchange="myTProduct(this);" id='test'>
                     <option value="{{ $product->typeProduct_id }}">{{ $product->typeProduct_id }}</option>
                     @foreach ($typeProducts as $typeProduct)
                       <option value="{{ $typeProduct->id_Producto }}">{{ $typeProduct->type }}</option>
                     @endforeach
-                  </select>
+                  </select> --}}
                 </div>
                 <div class="iniciales">
                   <input type="text" class="inicialesInput" id="VM" value="{{ $product->initials }}" name="initials" readonly="readonly">

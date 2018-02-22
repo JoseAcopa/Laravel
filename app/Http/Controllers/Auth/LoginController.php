@@ -28,13 +28,13 @@ class LoginController extends Controller
     if (Auth::attempt($credentials)) {
       return redirect('admin/admin-welcome');
     }
-    return back()->with('error','Los datos ingresados no existen en la base de datos')->withInput(request(['email']));
+    return back()->with('error','Los datos ingresados no existen en la base de datos.')->withInput(request(['email']));
   }
 
   public function logout()
   {
     Auth::logout();
 
-    return redirect('/')->with('success','La sesión se cerró con éxito');
+    return redirect('/')->with('success','La sesión se cerró correctamente');
   }
 }

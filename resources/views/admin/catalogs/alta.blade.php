@@ -50,48 +50,44 @@
           </div>
         </div>
         <div class="for-container">
-          @if (count($errors) > 0)
-            <ul class="message-errors">
-              <strong>Corrija los Siguientes datos!</strong>
-              @foreach ($errors->all() as $error)
-                <li>{{$error}}</li>
-              @endforeach
-            </ul>
-          @endif
           <h2><i class="fa fa-pencil"></i> Registrar Producto en Catálogo</h2>
           <form class="container-add-clients" method="POST" action="/admin/catalogo">
             {{ csrf_field() }}
             <div class="date-clients">
-              <label for="tipo_producto">Tipo de Producto:</label>
-              <select class="select-design" name="tipo_producto" onchange="typeProduct(this);">
+              <label for="category">Tipo de Producto:</label>
+              <select class="{{ $errors->has('category') ? 'has-error' : 'select-design' }}" name="category" onchange="typeProduct(this);">
                 <option value="">Seleccione Tipo Producto</option>
-                @foreach ($typeProducts as $typeProduct)
-                  <option value="{{$typeProduct->id}}">{{$typeProduct->type}}</option>
+                @foreach ($categories as $categorie)
+                  <option value="{{$categorie->id}}">{{$categorie->type}}</option>
                 @endforeach
               </select>
+              {!! $errors->first('category','<span class="data-error">:message</span>')!!}
               <label for="initials" >Iniciales</label>
-              <input type="text" id="letter" name="letter" readonly>
-              <input type="text" id="categoria" name="categoria" hidden>
+              <input class="{{ $errors->has('letter') ? 'has-error' : '' }}" type="text" id="letter" name="letter" readonly>
+              <input type="text" id="categoria" name="tipo_categoria" hidden>
             </div>
             <div class="date-clients">
               <label for="proveedor">Proveedor:</label>
-              <select class="select-design" name="proveedor">
+              <select class="{{ $errors->has('proveedor') ? 'has-error' : 'select-design' }}" name="proveedor">
                 <option value="">Seleccione Proveedor</option>
                 @foreach ($suppliers as $supplier)
                   <option value="{{$supplier->id}}">{{$supplier->business}}</option>
                 @endforeach
               </select>
+              {!! $errors->first('proveedor','<span class="data-error">:message</span>')!!}
               <label for="unidad">Unidad de Medida:</label>
-              <select class="select-design" name="unidad">
+              <select class="{{ $errors->has('unidad') ? 'has-error' : 'select-design' }}" name="unidad">
                 <option value="">Seleccione Unidad de Medida</option>
                 @foreach ($units as $unit)
                   <option value="{{$unit->id}}">{{$unit->type}}</option>
                 @endforeach
               </select>
+              {!! $errors->first('unidad','<span class="data-error">:message</span>')!!}
             </div>
             <div class="date-clients">
               <label for="description">Descripción:</label>
-              <textarea type="text" rows="6" name="description" id="description" placeholder="Descripción"></textarea>
+              <textarea type="text" rows="6" name="description" id="description" class="{{ $errors->has('description') ? 'has-error' : '' }}" placeholder="Descripción">{{ old('description') }}</textarea>
+              {!! $errors->first('description','<span class="data-error">:message</span>')!!}
             </div>
 
             <div class="button-client">
@@ -112,16 +108,16 @@
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
       function typeProduct(val){
-        var typeProducts = <?php echo$typeProducts;?>;
+        var categories = <?php echo$categories;?>;
         var newVal = {};
 
-        typeProducts.map((item)=>{
+        categories.map((item)=>{
           newVal[item.id] = item
         })
 
-        var typeProduct = newVal[val.value]
-        document.getElementById('letter').value = typeProduct.letters;
-        document.getElementById('categoria').value = typeProduct.categorias;
+        var category = newVal[val.value]
+        document.getElementById('letter').value = category.letters;
+        document.getElementById('categoria').value = category.categorias;
       }
     </script>
   </body>

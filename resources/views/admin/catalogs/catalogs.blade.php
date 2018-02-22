@@ -64,7 +64,7 @@
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
-                  <th>Tipo de Porducto</th>
+                  <th>Tipo de Producto</th>
                   <th>Iniciales</th>
                   <th>Proveedor</th>
                   <th>Unidad</th>
@@ -80,10 +80,10 @@
                         <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
-                    <td>{{ $product->typeProduct_id }}</td>
+                    <td>{{ $product->category->type }}</td>
                     <td>{{ $product->letter }}</td>
-                    <td>{{ $product->supplier_id }}</td>
-                    <td>{{ $product->unit_id }}</td>
+                    <td>{{ $product->supplier->business }}</td>
+                    <td>{{ $product->unit->type }}</td>
                     <td>{{ $product->description }}</td>
                   </tr>
                 @endforeach

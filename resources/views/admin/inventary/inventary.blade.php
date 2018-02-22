@@ -72,6 +72,7 @@
                   <th>Descripción del Producto</th>
                   <th>Tipo Producto</th>
                   <th>Fecha de Entrada</th>
+                  <th>Stock</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
@@ -85,10 +86,11 @@
                       {!! Form::close() !!}
                     </td>
                     <td>{{ $product->nInvoice }}</td>
-                    <td>{{ $product->initials }}-{{ $product->id }}</td>
+                    <td>{{ $product->initials }}</td>
                     <td>{{ $product->description }}</td>
-                    <td>{{ $product->typeProduct_id }}</td>
+                    <td>{{ $product->category }}</td>
                     <td>{{ $product->checkin }}</td>
+                    <td>{{ $product->stock }}</td>
                   </tr>
                 @endforeach
               </tbody>
