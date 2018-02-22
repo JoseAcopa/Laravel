@@ -1599,3 +1599,13 @@ textarea:read-only {
   margin-bottom: -30px !important;
   margin: 0 auto;
 }
+/**********************/
+.for-container-quotitation{
+  padding: 10px;
+  background: #f2f2f2;
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin: 15px 0px 15px 0px;
+  
+}

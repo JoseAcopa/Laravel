@@ -7,8 +7,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
+    <!-- <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}"> -->
+    <!-- <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}"> -->
+    <link rel="stylesheet" type="text/css" href="{{ url('css/select2.css') }}"/>
+    <script src="{{ url('js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ url('js/select2.js') }}"></script>
   </head>
   <body>
     <header>
@@ -102,41 +105,89 @@
              <div class="button-inventary">
               <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
             </div>
-            <div class="">
-              <table id="Jtabla">
-                <thead>
-                  <tr class="theader">
-                    <th>Acciones</th>
-                    <th>Tipo de Producto</th>
-                    <th>Proveedor</th>
-                    <th>Costo</th>
-                    <th>Precios</th>
-                 </tr>
-                </thead>
-                <tbody class="tbodymain">
+            <div class="for-container-quotitation">
+              <div class="searchDescription">
+                <i class="fa fa-search"></i>
+                <select id="search" onchange="myProduct(this)">
+                  <<option value="null">Buscar Producto</option>
                   @foreach ($products as $product)
-                    <tr class="tbody">
-                      <td class="action">
-                        <input type="checkbox" id="{{$product->id}}" value="" onchange="getDataTAble(this);">
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
-                      </td>
-                      <td>{{$product->TProducts}}</td>
-                      <td>{{$product->provider}}</td>
-                      <td>{{$product->cost}}</td>
-                      <td>
-                        <select class="" name="">
-                          <option value="">Precio</option>
-                          <option value="">{{$product->priceSales1}}</option>
-                          <option value="">{{$product->priceSales2}}</option>
-                          <option value="">{{$product->priceSales3}}</option>
-                          <option value="">{{$product->priceSales4}}</option>
-                          <option value="">{{$product->priceSales5}}</option>
-                        </select>
-                      </td>
-                    </tr>
+                    <option value="{{ $product->id }}">{{ $product->description }}</option>
                   @endforeach
-                </tbody>
-              </table>
+                </select>
+              </div>
+              <div class="container-add-clients">
+
+                <div class="date-clients">
+                  <label for="nInvoice">N° de Factura:</label>
+                  <input type="text" name="nInvoice" value="" placeholder="Número Factura" required>
+                  <div class="clasification">
+                    <div class="select">
+                      <label for="TProduct">Tipo de Producto:</label>
+                      <input type="text" class="inicialesInput" name="TProduct" value="" id='TProducts' readonly="readonly">
+                    </div>
+                    <div class="iniciales">
+                      <input type="text" class="inicialesInput" name="NProduct" value="" id='letters' readonly="readonly">
+                    </div>
+                  </div>
+                  <label for="provider">Proveedor:</label>
+                  <select class="select-design" name="provider" id='provider'>
+                    <option value="" id='provider'></option>
+                      <option value=""></option>
+                  </select>
+                </div>
+                <div class="date-clients">
+                  <label for="checkin">Fecha de Entrada:</label>
+                  <input class="date-design" type="date" name="checkin" value="" required>
+                  <label for="quantity">Cantidad de Entrada:</label>
+                  <input type="tel" pattern="[0-9]*" title="numero invalido" name="quantity" value="0"  placeholder="Cantidad Entrada" onchange="mySuma(this)" required>
+                  <label for="stock">Existencia:</label>
+                  <input type="text" name="stock" value="" id='stock'  placeholder="Existencia" readonly="readonly">
+                  <input type="text" name="" value="" id='stockFixe'  placeholder="Existencia" hidden="">
+                </div>
+                <div class="date-clients">
+                  <label for="priceList">Precio Lista:</label>
+                  <input type="text" name="priceList" value="" id='priceList' placeholder="Precio Lista">
+                  <label for="cost">Costo:</label>
+                  <input type="text" name="cost" value="" id='cost' placeholder="Costo">
+                  <label for="unit">Unidad de Medida:</label>
+                  <input type="text"  name="unit" value="" id='unit'  placeholder="Unidad de medida" readonly="readonly">
+                </div>
+                <div class="chekinText">
+                  <div class="add-chekinTextArea">
+                    <label for="description">Descripción:</label>
+                    <textarea type="text" rows="4" name="description" id='description' placeholder="Descripción" readonly="readonly"></textarea>
+                  </div>
+                  <div class="checkinMoney">
+                    <label for="money">Tipo de moneda:</label>
+                    <select class="select-design" name="">
+                      <option value="">Seleccione tipo de moneda</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="date-clients">
+                  <label for="">Categoria Precio Venta</label>
+                  <select class="select-design" name="" onchange="priceSales(this);">
+                    <option value="">Seleccione categoria</option>
+                    <option value="Categoria 1">Categoria 1</option>
+                    <option value="Categoria 2">Categoria 2</option>
+                    <option value="Categoria 3">Categoria 3</option>
+                  </select>
+                  <label for="priceSales1" id='ps'>Precio de Venta 1<p id="pv1"></p></label>
+                  <input type="text" name="priceSales1" value="" id="priceSales1" placeholder="Precio de Venta 1" readonly="" required>
+                </div>
+                <div class="date-clients">
+                  <label for="priceSales2" id='ps'>Precio de Venta 2 <p id="pv2"></p></label>
+                  <input type="text" name="priceSales2" value="" id="priceSales2" placeholder="Precio de Venta 2" readonly="" required>
+                  <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
+                  <input type="text" name="priceSales3" value="" id="priceSales3" placeholder="Precio de Venta 3" readonly="" required>
+                </div>
+                <div class="date-clients">
+                  <label for="priceSales4" id='ps'>Precio de Venta 4 <p id="pv4"></p></label>
+                  <input type="text" name="priceSales4" value="" id="priceSales4" placeholder="Precio de Venta 4" readonly="" required>
+                  <label for="priceSales5">Precio de Venta 5:</label>
+                  <input type="text" name="priceSales5" value="" id="priceSales5" placeholder="Precio de Venta 5" required>
+                </div>
+              </div>
             </div>
 
             <div class="button-inventary">
@@ -154,34 +205,39 @@
     <footer id="footerQuotation">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
-    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
+
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
-    <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
-    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+    <!-- <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
+    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script> -->
     <script type="text/javascript">
-      $(function () {
-        $('#Jtabla').dataTable({
-          "bPaginate": true,
-          "bLengthChange": true,
-          "bFilter": true,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": true
-        });
+      $(document).ready(function() {
+        $("#search").select2();
       });
     </script>
-    <script type="text/javascript">
-      function getDataTAble(val) {
-        var value = document.getElementsByClassName('tbody')
-        var checkbox = document.getElementById(val.id).checked
-        var arry = []
-         if (checkbox === true) {
-           arry.push(value[val.id-1].innerText)
-         }
-
-        console.log(arry);
-      }
-    </script>
+    // <script type="text/javascript">
+    //   $(function () {
+    //     $('#Jtabla').dataTable({
+    //       "bPaginate": true,
+    //       "bLengthChange": true,
+    //       "bFilter": true,
+    //       "bSort": true,
+    //       "bInfo": true,
+    //       "bAutoWidth": true
+    //     });
+    //   });
+    // </script>
+    // <script type="text/javascript">
+    //   function getDataTAble(val) {
+    //     var value = document.getElementsByClassName('tbody')
+    //     var checkbox = document.getElementById(val.id).checked
+    //     var arry = []
+    //      if (checkbox === true) {
+    //        arry.push(value[val.id-1].innerText)
+    //      }
+    //
+    //     console.log(arry);
+    //   }
+    // </script>
   </body>
 </html>
