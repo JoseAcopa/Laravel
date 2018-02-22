@@ -81,7 +81,6 @@
                 <div class="select">
                   <label for="TProduct">Tipo de Producto:</label>
                   <input type="text" class="inicialesInput" name="tipo_producto" value="" id='TProduct' readonly="">
-                  <input type="text" name='category_id' id='category_id' hidden>
                 </div>
                 <div class="iniciales">
                   <input type="text" class="inicialesInput" id="letter" name="initials" readonly>
@@ -89,7 +88,6 @@
               </div>
               <label for="proveedor">Proveedor:</label>
               <input type="text" name="proveedor" id="proveedor" value="" readonly>
-              <input type="text" name='supplier_id' id='supplier_id' hidden>
             </div>
             <div class="date-clients">
               <label for="fecha_entrada">Fecha de Entrada:</label>
@@ -98,13 +96,12 @@
               <input type="number" name="cantidad_entrada" id="cantidad_entrada" placeholder="Cantidad Entrada">
               <label for="unidad">Unidad de Medida:</label>
               <input type="text" name="unidad" value="" id="unidad" readonly>
-              <input type="text" name='unit_id' id='unit_id' hidden>
             </div>
             <div class="date-clients">
               <label for="pricelist">Precio Lista:</label>
-              <input type="number" name="precio_lista" value="" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
+              <input type="number" name="precio_lista" value="0" id="priceList" placeholder="Precio Lista" onchange="priceSales();">
               <label for="cost">Costo:</label>
-              <input type="number" name="costo" value="" id="cost" placeholder="Costo" onchange="priceSales();">
+              <input type="number" name="costo" value="0" id="cost" placeholder="Costo" onchange="priceSales();">
               <label for="moneda">Tipo de moneda:</label>
               <select class="select-design" name="moneda">
                 <option value="">Seleccione tipo de moneda</option>
@@ -156,26 +153,61 @@
     </script>
     <script type="text/javascript">
       function catalogo(val) {
-        var catalog = <?php echo$catalog;?>;
-        var orderCatalog = {}
+        var id = val.value;
+        var priceList = $("#priceList").val()
+        var cost = $("#cost").val()
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
 
-        catalog.map((item)=>{
-          orderCatalog[val.value] = item
+        $.ajax({
+          url: '/producto/'+id,
+          type: 'GET',
+          success: (res)=>{
+
+            $('#letter').val(res.letter);
+            $('#TProduct').val(res.category.type);
+            $('#categoria').val(res.categoria);
+            $('#proveedor').val(res.supplier.business);
+            $('#unidad').val(res.unit.type);
+            $('#description').val(res.description);
+
+            if (res.categoria === 'Petrolera | Industrial') {
+              for (var i = 0; i < cat1.length; i++) {
+                var res = cat1[i] * priceList
+                newRes.push(res)
+                $('#pv1').text("(x0.70)")
+                $('#pv2').text("(x0.65)")
+                $('#pv3').text("(x0.60)")
+                $('#pv4').text("(x0.57)")
+              }
+            }else if (res.categoria === 'Hidraulica') {
+              for (var i = 0; i < cat2.length; i++) {
+                var res = cat2[i] * cost
+                newRes.push(res)
+                $('#pv1').text("(x0.40)")
+                $('#pv2').text("(x0.37)")
+                $('#pv3').text("(x0.36)")
+                $('#pv4').text("(x0.35)")
+              }
+            }else if (res.categoria === 'Otro') {
+              for (var i = 0; i < cat3.length; i++) {
+                var res = cost / cat3[i]
+                newRes.push(res)
+                $('#pv1').text("(/ 0.70)")
+                $('#pv2').text("(/ 0.75)")
+                $('#pv3').text("(/ 0.80)")
+                $('#pv4').text("(/ 0.85)")
+              }
+            }
+
+            $('#priceSales1').val(newRes[0].toFixed(2))
+            $('#priceSales2').val(newRes[1].toFixed(2))
+            $('#priceSales3').val(newRes[2].toFixed(2))
+            $('#priceSales4').val(newRes[3].toFixed(2))
+          }
         })
-
-        var newCatalog = orderCatalog[val.value]
-        console.log(newCatalog);
-        document.getElementById('letter').value = newCatalog.letter
-        document.getElementById('TProduct').value = newCatalog.category.type
-        document.getElementById('categoria').value = newCatalog.categoria
-        document.getElementById('proveedor').value = newCatalog.supplier.business
-        document.getElementById('unidad').value = newCatalog.unit.type
-        document.getElementById('description').value = newCatalog.description
-
-        // id ocultos
-        document.getElementById('category_id').value = newCatalog.category_id
-        document.getElementById('supplier_id').value = newCatalog.supplier_id
-        document.getElementById('unit_id').value = newCatalog.unit_id
       }
     </script>
 

@@ -81,7 +81,8 @@ Route::resource('/admin/catalogo','CatalogsController');
 // ------------------End Alta de Catalogo----------------------------------------
 
 
-
+// =======================metodos ajax ==============================================
+Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
 
 
 /*******************************8*******Users*******************************************/

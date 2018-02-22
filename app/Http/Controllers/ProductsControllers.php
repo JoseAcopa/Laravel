@@ -160,4 +160,13 @@ class ProductsControllers extends Controller
       Products::find($id)->delete();
       return redirect('admin/inventary')->with('success','Producto '. $id .' eliminado correctamente');
     }
+
+    public function getProductAjax($id)
+    {
+      $product = Catalog::find($id);
+      $product->unit;
+      $product->supplier;
+      $product->category;
+      return $product;
+    }
 }
