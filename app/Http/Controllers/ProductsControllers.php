@@ -50,12 +50,12 @@ class ProductsControllers extends Controller
     {
       $product = new Products;
       $product->nInvoice = request('nInvoice');
-      $product->category_id = request('category_id');
+      $product->category = request('tipo_producto');
       $product->initials = request('initials');
-      $product->supplier_id = request('supplier_id');
+      $product->supplier = request('proveedor');
       $product->checkin = request('fecha_entrada');
       $product->quantity = request('cantidad_entrada');
-      $product->unit_id = request('unit_id');
+      $product->unit = request('unidad');
       $product->priceList = request('precio_lista');
       $product->cost = request('costo');
       $product->description = request('description');
@@ -67,7 +67,10 @@ class ProductsControllers extends Controller
       $product->priceSales5 = request('priceSales5');
       $product->coin_id = request('moneda');
       $product->save();
-      return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente');
+      return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente')
+      ->withInput(request(['tipo_producto' , 'proveedor', 'fecha_entrada', 'cantidad_entrada',
+      'unidad', 'precio_lista', 'costo', 'moneda', 'description', 'categoria', 'priceSales1',
+      'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5', 'initials']));
 
     }
 
