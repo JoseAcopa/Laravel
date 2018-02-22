@@ -83,6 +83,7 @@ class ProductsControllers extends Controller
     public function show($id)
     {
       $product = Products::find($id);
+      $product->coin;
       return view('admin.inventary.show-product', compact('product'));
     }
 
@@ -97,9 +98,8 @@ class ProductsControllers extends Controller
       $suppliers = Suppliers::all();
       $units = Units::all();
       $product = Products::find($id);
-      $typeProducts = TypeProducts::all();
       $coins = Coins::all();
-      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units', 'typeProducts', 'coins'));
+      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units', 'coins'));
     }
 
     /**

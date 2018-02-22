@@ -32,7 +32,7 @@ class CreateProductsRequest extends FormRequest
           'precio_lista' => 'max:255|required',
           'costo' => 'max:255|required',
           'moneda' => 'max:20|required',
-          'description' => 'max:255|required|unique:products',
+          'description' => 'max:255|required',
           'categoria' => 'max:255|required',
           'priceSales1' => 'max:255|required',
           'priceSales2' => 'max:255|required',
