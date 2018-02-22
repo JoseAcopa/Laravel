@@ -63,12 +63,12 @@
               </div>
               <div class="show-product">
                 <label for="">Tipo de Producto:</label>
-                <p>{{ $product->typeProduct_id }}</p>
+                <p>{{ $product->category }}</p>
               </div>
 
               <div class="show-product">
                 <label for="">Proveedor:</label>
-                <p>{{ $product->supplier_id }}</p>
+                <p>{{ $product->supplier }}</p>
               </div>
               <div class="show-product">
                 <label for="">Descripción:</label>
@@ -87,7 +87,7 @@
               </div>
               <div class="show-product">
                 <label for="">Unidad de Medida:</label>
-                <p>{{ $product->unit_id }}</p>
+                <p>{{ $product->unit }}</p>
               </div>
               <div class="show-product">
                 <label for="">Precio Lista:</label>
@@ -99,7 +99,7 @@
               </div>
               <div class="show-product">
                 <label for="">Tipo de moneda:</label>
-                <p>{{ $product->coin_id }}</p>
+                <p>{{ $product->coin->type }}</p>
               </div>
             </div>
             <div class="view">
