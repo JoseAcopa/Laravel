@@ -171,6 +171,7 @@
           url: '/producto/'+id,
           type: 'GET',
           success: (res)=>{
+            console.log(res.id);
             $('#idProduct').val(res.id);
             $('#letter').val(res.letter);
             $('#TProduct').val(res.category.type);

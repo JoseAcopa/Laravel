@@ -58,19 +58,15 @@
         <div class="table-container">
           <div class="container-search">
             <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil "></i> Registrar Productos</a>
-            {{-- <a href="{{url('admin/clasificationProduct')}}" class="btn-green" ><i class="fa fa-list-alt "></i> Tipos de Productos</a>
-            <a href="{{url('admin/checkin')}}" class="btn-green" ><i class="fa fa-sign-in fa-lg"></i> Entradas</a>
-            <a href="{{url('admin/inventary-out')}}" class="btn-green" ><i class="fa fa-sign-out"></i> Salidas</a> --}}
           </div>
           <div class="">
             <table id="Jtabla">
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
-                  <th>N° de Factura</th>
+                  <th>Tipo Producto</th>
                   <th>N° de Producto</th>
                   <th>Descripción del Producto</th>
-                  <th>Tipo Producto</th>
                   <th>Fecha de Entrada</th>
                   <th>Stock</th>
                </tr>
@@ -85,10 +81,9 @@
                         <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
                       {!! Form::close() !!}
                     </td>
-                    <td>{{ $product->nInvoice }}</td>
-                    <td>{{ $product->initials }}</td>
-                    <td>{{ $product->description }}</td>
                     <td>{{ $product->category }}</td>
+                    <td>{{ $product->initials }}-{{ $product->id }}</td>
+                    <td>{{ $product->description }}</td>
                     <td>{{ $product->checkin }}</td>
                     <td>{{ $product->stock }}</td>
                   </tr>

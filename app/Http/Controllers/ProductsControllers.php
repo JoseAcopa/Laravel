@@ -53,6 +53,7 @@ class ProductsControllers extends Controller
       $product = Products::find($idProduct);
       if ($product === null) {
         $product = new Products;
+        $product->id = $idProduct;
         $product->category = request('category');
         $product->initials = request('initials');
         $product->supplier = request('proveedor');
@@ -70,6 +71,7 @@ class ProductsControllers extends Controller
         $product->unit = request('unidad');
         $product->description = request('description');
       }
+
       $product->save();
 
       $invoice = new Invoice;
@@ -118,11 +120,11 @@ class ProductsControllers extends Controller
      */
     public function edit($id)
     {
-      $suppliers = Suppliers::all();
-      $units = Units::all();
+      // $suppliers = Suppliers::all();
+      // $units = Units::all();
       $product = Products::find($id);
-      $coins = Coins::all();
-      return view('admin.inventary.edit-product', compact('product'), compact('suppliers', 'units', 'coins'));
+      // $coins = Coins::all();
+      return view('admin.inventary.edit-product', compact('product'));
     }
 
     /**
@@ -134,42 +136,23 @@ class ProductsControllers extends Controller
      */
     public function update(Request $request, $id)
     {
-      $newNInvoice = $request->input('nInvoice');
-      $newTProducts = $request->input('tipo_producto');
+      $newCategory = $request->input('category');
       $newInitials = $request->input('initials');
-      $newProvider = $request->input('proveedor');
+      $newSupplier = $request->input('proveedor');
       $newCheckin = $request->input('fecha_entrada');
-      $newQuantity = $request->input('cantidad_entrada');
       $newUnit = $request->input('unidad');
-      $newPriceList = $request->input('precio_lista');
-      $newCost = $request->input('costo');
       $newDescription = $request->input('description');
-      $newPriceSales1 = $request->input('priceSales1');
-      $newPriceSales2 = $request->input('priceSales2');
-      $newPriceSales3 = $request->input('priceSales3');
-      $newPriceSales4 = $request->input('priceSales4');
-      $newPriceSales5 = $request->input('priceSales5');
-      $newCoin = $request->input('moneda');
+      $newStock = $request->input('cantidad_entrada');
 
       $product = Products::find($id);
 
-      $product->nInvoice = $newNInvoice;
-      $product->typeProduct_id = $newTProducts;
+      $product->category = $newCategory;
       $product->initials = $newInitials;
-      $product->supplier_id = $newProvider;
+      $product->supplier = $newSupplier;
       $product->checkin = $newCheckin;
-      $product->quantity = $newQuantity;
-      $product->unit_id = $newUnit;
-      $product->priceList = $newPriceList;
-      $product->cost = $newCost;
+      $product->unit = $newUnit;
       $product->description = $newDescription;
-      $product->stock = $newQuantity;
-      $product->priceSales1 = $newPriceSales1;
-      $product->priceSales2 = $newPriceSales2;
-      $product->priceSales3 = $newPriceSales3;
-      $product->priceSales4 = $newPriceSales4;
-      $product->priceSales5 = $newPriceSales5;
-      $product->coin_id = $newCoin;
+      $product->stock = $newStock;
       $product->save();
 
       return redirect('admin/inventary')->with('success','Producto actualizado correctamente');

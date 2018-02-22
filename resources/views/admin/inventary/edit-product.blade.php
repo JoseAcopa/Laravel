@@ -74,9 +74,9 @@
               <label for="proveedor">Proveedor:</label>
               <select class="select-design" name="proveedor">
                 <option value="{{ $product->supplier_id }}">{{ $product->supplier_id }}</option>
-                @foreach ($suppliers as $supplier)
+                {{-- @foreach ($suppliers as $supplier)
                   <option value="{{ $supplier->id }}">{{ $supplier->business }}</option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
             <div class="date-clients">
@@ -87,9 +87,9 @@
               <label for="unidad">Unidad de Medida:</label>
               <select class="select-design" name="unidad">
                 <option value="{{ $product->unit_id }}">{{ $product->unit_id }}</option>
-                @foreach ($units as $unit)
+                {{-- @foreach ($units as $unit)
                   <option value="{{ $unit->id }}">{{ $unit->type }}</option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
             <div class="date-clients">
@@ -149,7 +149,6 @@
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
     <script type="text/javascript">
       function myTProduct(e){
-        var val = <?php echo$typeProducts;?>;
         var newVal = {};
         val.map((item)=>{
           newVal[item.id_Producto] = item
