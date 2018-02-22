@@ -100,7 +100,7 @@
       </div>
     </main>
     <footer id="footer">
-      <h3>© 2017 Todos Los Derechos Reservados</h3>
+      <h3>© 2018 Todos Los Derechos Reservados</h3>
     </footer>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>

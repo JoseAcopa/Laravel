@@ -71,8 +71,9 @@
               <div class="clasification">
                 <div class="select">
                   <label for="TProduct">Tipo de Producto:</label>
-                  <input type="text" name="tipo_producto" id='TProduct' value="{{ old('tipo_producto') }}" class="{{ $errors->has('tipo_producto') ? 'has-error' : 'inicialesInput' }}" readonly>
-                  {!! $errors->first('tipo_producto','<span class="data-error">:message</span>')!!}
+                  <input type="text" name="category" id='TProduct' value="{{ old('category') }}" class="{{ $errors->has('category') ? 'has-error' : 'inicialesInput' }}" readonly>
+                  {!! $errors->first('category','<span class="data-error">:message</span>')!!}
+                  <input type="text" name="idProduct" id="idProduct" hidden>
                 </div>
                 <div class="iniciales">
                   <input type="text" id="letter" name="initials" value="{{ old('initials') }}" readonly>
@@ -116,8 +117,7 @@
             </div>
             <div class="date-clients">
               <label for="">Categoria Precio Venta</label>
-              <input type="text" id="categoria" name="categoria" value="{{ old('categoria') }}" class="{{ $errors->has('categoria') ? 'has-error' : '' }}" readonly>
-              {!! $errors->first('categoria','<span class="data-error">:message</span>')!!}
+              <input type="text" id="categoria" readonly>
               <label for="priceSales3" id='ps'>Precio de Venta 3 <p id="pv3"></p></label>
               <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{ old('priceSales3') }}" class="{{ $errors->has('priceSales3') ? 'has-error' : '' }}" readonly>
               {!! $errors->first('priceSales3','<span class="data-error">:message</span>')!!}
@@ -171,7 +171,7 @@
           url: '/producto/'+id,
           type: 'GET',
           success: (res)=>{
-
+            $('#idProduct').val(res.id);
             $('#letter').val(res.letter);
             $('#TProduct').val(res.category.type);
             $('#categoria').val(res.categoria);

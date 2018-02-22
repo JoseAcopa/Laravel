@@ -9,6 +9,7 @@ use App\Units;
 use App\Category;
 use App\Coins;
 use App\Catalog;
+use App\Invoice;
 use App\Http\Requests\CreateProductsRequest;
 
 class ProductsControllers extends Controller
@@ -48,30 +49,52 @@ class ProductsControllers extends Controller
      */
     public function store(CreateProductsRequest $request)
     {
-      $product = new Products;
-      $product->nInvoice = request('nInvoice');
-      $product->category = request('tipo_producto');
-      $product->initials = request('initials');
-      $product->supplier = request('proveedor');
-      $product->checkin = request('fecha_entrada');
-      $product->quantity = request('cantidad_entrada');
-      $product->unit = request('unidad');
-      $product->priceList = request('precio_lista');
-      $product->cost = request('costo');
-      $product->description = request('description');
-      $product->stock = request('cantidad_entrada');
-      $product->priceSales1 = request('priceSales1');
-      $product->priceSales2 = request('priceSales2');
-      $product->priceSales3 = request('priceSales3');
-      $product->priceSales4 = request('priceSales4');
-      $product->priceSales5 = request('priceSales5');
-      $product->coin_id = request('moneda');
+      $idProduct = request('idProduct');
+      $product = Products::find($idProduct);
+      if ($product === null) {
+        $product = new Products;
+        $product->category = request('category');
+        $product->initials = request('initials');
+        $product->supplier = request('proveedor');
+        $product->checkin = request('fecha_entrada');
+        $product->unit = request('unidad');
+        $product->description = request('description');
+        $product->stock = request('cantidad_entrada');
+      }else {
+        $stock  = (integer)$product->stock + (integer)request('cantidad_entrada');
+        $product->stock=(string)$stock;
+        $product->category = request('category');
+        $product->initials = request('initials');
+        $product->supplier = request('proveedor');
+        $product->checkin = request('fecha_entrada');
+        $product->unit = request('unidad');
+        $product->description = request('description');
+      }
       $product->save();
-      return redirect('admin/inventary')->with('success','Producto '. $product->TProducts .' Guardado correctamente')
-      ->withInput(request(['tipo_producto' , 'proveedor', 'fecha_entrada', 'cantidad_entrada',
-      'unidad', 'precio_lista', 'costo', 'moneda', 'description', 'categoria', 'priceSales1',
-      'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5', 'initials']));
 
+      $invoice = new Invoice;
+      $invoice->nInvoice = request('nInvoice');
+      $invoice->category = request('category');
+      $invoice->initials = request('initials');
+      $invoice->supplier = request('proveedor');
+      $invoice->checkin = request('fecha_entrada');
+      $invoice->quantity = request('cantidad_entrada');
+      $invoice->unit = request('unidad');
+      $invoice->priceList = request('precio_lista');
+      $invoice->cost = request('costo');
+      $invoice->description = request('description');
+      $invoice->priceSales1 = request('priceSales1');
+      $invoice->priceSales2 = request('priceSales2');
+      $invoice->priceSales3 = request('priceSales3');
+      $invoice->priceSales4 = request('priceSales4');
+      $invoice->priceSales5 = request('priceSales5');
+      $invoice->coin_id = request('moneda');
+      $invoice->save();
+
+      return redirect('admin/inventary')->with('success','Producto '. $product->category .' Guardado correctamente')
+      ->withInput(request(['tipo_producto' , 'proveedor', 'fecha_entrada', 'cantidad_entrada',
+      'unidad', 'precio_lista', 'costo', 'moneda', 'description', 'priceSales1',
+      'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5', 'initials']));
     }
 
     /**

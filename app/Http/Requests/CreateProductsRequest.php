@@ -24,7 +24,7 @@ class CreateProductsRequest extends FormRequest
     public function rules()
     {
         return [
-          'tipo_producto' => 'max:255|required',
+          'category' => 'max:255|required',
           'proveedor' => 'max:255|required',
           'fecha_entrada' => 'max:255|required',
           'cantidad_entrada' => 'max:255|required',
@@ -33,7 +33,6 @@ class CreateProductsRequest extends FormRequest
           'costo' => 'max:255|required',
           'moneda' => 'max:20|required',
           'description' => 'max:255|required',
-          'categoria' => 'max:255|required',
           'priceSales1' => 'max:255|required',
           'priceSales2' => 'max:255|required',
           'priceSales3' => 'max:255|required',
