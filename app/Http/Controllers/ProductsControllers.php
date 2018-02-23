@@ -60,6 +60,8 @@ class ProductsControllers extends Controller
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
+        $product->priceList = request('precio_lista');
+        $product->cost = request('costo');
         $product->stock = request('cantidad_entrada');
       }else {
         $stock  = (integer)$product->stock + (integer)request('cantidad_entrada');
@@ -70,6 +72,8 @@ class ProductsControllers extends Controller
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
+        $product->priceList = request('precio_lista');
+        $product->cost = request('costo');
       }
 
       $product->save();

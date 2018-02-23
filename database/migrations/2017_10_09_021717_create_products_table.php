@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('checkin');
             $table->string('unit');
             $table->string('description');
+            $table->string('priceList');
+            $table->string('cost');
             $table->string('stock');
             $table->timestamps();
         });
