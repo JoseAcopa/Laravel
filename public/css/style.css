@@ -1608,3 +1608,11 @@ textarea:read-only {
   border-radius: 5px;
   margin: 15px 0px 15px 0px;
 }
+
+#accesos-permisos{
+  display: none;
+}
+
+#permisos-accesos{
+  display: none;
+}

@@ -87,7 +87,7 @@
                     <td>{{ $employee->phone }}</td>
                     <td>{{ $employee->user }}</td>
                     {{-- <td>{{ $employee->password }}</td> --}}
-                    <td>admin</td>
+                    <td>{{ $employee->tipo }}</td>
                   </tr>
                 @endforeach
               </tbody>

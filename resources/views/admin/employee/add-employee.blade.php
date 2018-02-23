@@ -72,53 +72,38 @@
               <input type="password" name="password" id="password" class="{{ $errors->has('password') ? 'has-error' : '' }}">
               {!! $errors->first('password','<span class="data-error">:message</span>')!!}
               <label for="user">Tipo de Usuario:</label>
-              <select name="" class="select-design">
+              <select name="tipo" class="{{ $errors->has('tipo') ? 'has-error' : 'select-design' }}" onchange="tipoUser(this);">
                 <option value=""></option>
-                <option value="">Administrador</option>
-                <option value="">Usuario</option>
+                <option value="admin">Administrador</option>
+                <option value="user">Usuario</option>
               </select>
+              {!! $errors->first('tipo','<span class="data-error">:message</span>')!!}
             </div>
-            <div class="date-client">
-              <h3>Accesos</h3>
+            <div class="date-client" id="permisos-accesos">
+              <h3>Accesos al sistema</h3>
               <hr>
-              <label for="user">Clientes</label>
-              <input type="checkbox" name="">
-              <label for="user">Proveedores</label>
-              <input type="checkbox" name="">
-              <label for="user">Empleados</label>
-              <input type="checkbox" name="">
-              <label for="user">Inventario</label>
-              <input type="checkbox" name="">
-              <label for="user">Consultar</label>
-              <input type="checkbox" name="">
-              {{-- <h3>Permisos</h3>
-              <hr>
-              <label for="user">Crear</label>
-              <input type="checkbox" name="">
-              <label for="user">Editar</label>
-              <input type="checkbox" name="">
-              <label for="user">Eliminar</label>
-              <input type="checkbox" name=""> --}}
+              <label for="cliente">Clientes</label>
+              <input id="cliente" type="checkbox" name="accesos[]" value="clientes">
+              <label for="proveedores">Proveedores</label>
+              <input id="proveedores" type="checkbox" name="accesos[]" value="proveedores">
+              <label for="empleados">Empleados</label>
+              <input id="empleados" type="checkbox" name="accesos[]" value="empleados">
+              <label for="inventario">Inventario</label>
+              <input id="inventario" type="checkbox" name="accesos[]" value="inventario">
+              <label for="cotizacion">Cotización</label>
+              <input id="cotizacion" type="checkbox" name="accesos[]" value="cotizacion">
             </div>
-            <div class="date-client">
-              {{-- <h3>Accesos</h3>
-              <hr>
-              <label for="user">Clientes</label>
-              <input type="checkbox" name="">
-              <label for="user">Proveedores</label>
-              <input type="checkbox" name="">
-              <label for="user">Empleados</label>
-              <input type="checkbox" name="">
-              <label for="user">Inventario</label>
-              <input type="checkbox" name=""> --}}
+            <div class="date-client" id="accesos-permisos">
               <h3>Permisos</h3>
               <hr>
-              <label for="user">Crear</label>
-              <input type="checkbox" name="">
-              <label for="user">Editar</label>
-              <input type="checkbox" name="">
-              <label for="user">Eliminar</label>
-              <input type="checkbox" name="">
+              <label for="create">Crear</label>
+              <input id="create" type="checkbox" name="permisos[]" value="create">
+              <label for="read">Leer</label>
+              <input id="read" type="checkbox" name="permisos[]" value="read">
+              <label for="update">Editar</label>
+              <input id="update" type="checkbox" name="permisos[]" value="update">
+              <label for="delete">Eliminar</label>
+              <input id="delete" type="checkbox" name="permisos[]" value="delete">
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -134,5 +119,16 @@
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
     <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
+    <script type="text/javascript">
+      function tipoUser(val) {
+        if (val.value === 'admin') {
+          document.getElementById('permisos-accesos').style.display = "none"
+          document.getElementById('accesos-permisos').style.display = "none"
+        }else {
+          document.getElementById('permisos-accesos').style.display = "block"
+          document.getElementById('accesos-permisos').style.display = "block"
+        }
+      }
+    </script>
   </body>
 </html>
