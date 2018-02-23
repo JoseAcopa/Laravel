@@ -67,7 +67,9 @@
         @endif
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/alta-producto-catalogo')}}" class="btn-green" ><i class="fa fa-pencil "></i> Alta de Productos</a>
+            @if (auth()->user()->create === 1)
+              <a href="{{url('admin/alta-producto-catalogo')}}" class="btn-green" ><i class="fa fa-pencil "></i> Alta de Productos</a>
+            @endif
           </div>
           <div class="">
             <table id="Jtabla">
@@ -85,10 +87,14 @@
                 @foreach ($catalog as $product)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="btn-green-action" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
-                        <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                      {!! Form::close() !!}
+                      @if (auth()->user()->update === 1)
+                        <a class="btn-green-action" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      @endif
+                      @if (auth()->user()->delete === 1)
+                        {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
+                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
+                        {!! Form::close() !!}
+                      @endif
                     </td>
                     <td>{{ $product->category->type }}</td>
                     <td>{{ $product->letter }}</td>

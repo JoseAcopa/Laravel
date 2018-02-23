@@ -21,7 +21,7 @@ $factory->define(App\User::class, function (Faker $faker) {
       'email' => 'jose.acopa.martinez@gmail.com',
       'phone' => 99,
       'user' => 'Acopa',
-      'tipo' => 'Admin',
+      'tipo' => 'admin',
       'cliente' => true,
       'proveedores' => true,
       'empleados' => true,

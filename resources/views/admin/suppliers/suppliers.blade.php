@@ -62,7 +62,9 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{ url('/admin/add-suppliers') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
+            @if (auth()->user()->create === 1)
+              <a href="{{ url('/admin/add-suppliers') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
+            @endif
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -85,10 +87,14 @@
                   @foreach ($suppliers as $supplier)
                     <tr class="tbody">
                       <td class="action">
-                        <a class="btn-green-action" href="{{ url('admin/edit-suppliers',$supplier->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['suppliers.destroy', $supplier->id]]) !!}
-                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                        {!! Form::close() !!}
+                        @if (auth()->user()->update === 1)
+                          <a class="btn-green-action" href="{{ url('admin/edit-suppliers',$supplier->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        @endif
+                        @if (auth()->user()->delete === 1)
+                          {!! Form::open(['method' => 'DELETE','route' => ['suppliers.destroy', $supplier->id]]) !!}
+                            <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
+                          {!! Form::close() !!}
+                        @endif
                       </td>
                       <td>{{ $supplier->RFC }}</td>
                       <td>{{ $supplier->business }}</td>

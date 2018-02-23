@@ -67,7 +67,9 @@
         @endif
         <div class="table-container">
           <div class="container-search">
-            <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil "></i> Registrar Productos</a>
+            @if (auth()->user()->create === 1)
+              <a href="{{url('admin/add-product')}}" class="btn-green" ><i class="fa fa-pencil "></i> Registrar Productos</a>
+            @endif
           </div>
           <div class="">
             <table id="Jtabla">
@@ -86,10 +88,14 @@
                   <tr class="tbody">
                     <td class="action">
                       <a class="btn-info" href="{{url('/admin/show-product',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye fa-lg"></i></a>
-                      <a class="btn-green-action" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
-                        <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                      {!! Form::close() !!}
+                      @if (auth()->user()->update === 1)
+                        <a class="btn-green-action" href="{{url('/admin/edit-product',$product->id)}}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      @endif
+                      @if (auth()->user()->delete === 1)
+                        {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $product->id]]) !!}
+                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
+                        {!! Form::close() !!}
+                      @endif
                     </td>
                     <td>{{ $product->category }}</td>
                     <td>{{ $product->initials }}-{{ $product->id }}</td>

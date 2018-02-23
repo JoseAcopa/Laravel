@@ -62,7 +62,9 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{ url('/admin/add-client') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
+            @if (auth()->user()->create === 1)
+              <a href="{{ url('/admin/add-client') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
+            @endif
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -85,10 +87,14 @@
                   @foreach ($clients as $client)
                     <tr class="tbody">
                       <td class="action">
-                        <a class="btn-green-action" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
-                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                        {!! Form::close() !!}
+                        @if (auth()->user()->update === 1)
+                          <a class="btn-green-action" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                        @endif
+                        @if (auth()->user()->delete === 1)
+                          {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
+                            <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
+                          {!! Form::close() !!}
+                        @endif
                       </td>
                       <td>{{ $client->RFC }}</td>
                       <td>{{ $client->business }}</td>
