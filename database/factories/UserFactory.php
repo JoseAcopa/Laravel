@@ -17,11 +17,21 @@ $factory->define(App\User::class, function (Faker $faker) {
     static $password;
 
     return [
-      'name' => $faker->name,
-      'email' => $faker->unique()->safeEmail,
-      'phone' => $faker->paragraph,
-      'user' => $faker->paragraph,
-      'password' => $password ?: $password = bcrypt('secret'),
-      // 'remember_token' => str_random(10),
+      'name' => 'Jose Acopa',
+      'email' => 'jose.acopa.martinez@gmail.com',
+      'phone' => 99,
+      'user' => 'Acopa',
+      'tipo' => 'Admin',
+      'cliente' => true,
+      'proveedores' => true,
+      'empleados' => true,
+      'inventario' => true,
+      'cotizacion' => true,
+      'create' => true,
+      'read' => true,
+      'update' => true,
+      'delete' => true,
+      'password' => $password ?: $password = bcrypt('123'),
+      'remember_token' => str_random(10),
     ];
 });

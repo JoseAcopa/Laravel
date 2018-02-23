@@ -71,12 +71,54 @@
               <label for="password">Contraseña:</label>
               <input type="password" name="password" id="password" class="{{ $errors->has('password') ? 'has-error' : '' }}">
               {!! $errors->first('password','<span class="data-error">:message</span>')!!}
-              <label for="user">Privilegio:</label>
+              <label for="user">Tipo de Usuario:</label>
               <select name="" class="select-design">
                 <option value=""></option>
                 <option value="">Administrador</option>
                 <option value="">Usuario</option>
               </select>
+            </div>
+            <div class="date-client">
+              <h3>Accesos</h3>
+              <hr>
+              <label for="user">Clientes</label>
+              <input type="checkbox" name="">
+              <label for="user">Proveedores</label>
+              <input type="checkbox" name="">
+              <label for="user">Empleados</label>
+              <input type="checkbox" name="">
+              <label for="user">Inventario</label>
+              <input type="checkbox" name="">
+              <label for="user">Consultar</label>
+              <input type="checkbox" name="">
+              {{-- <h3>Permisos</h3>
+              <hr>
+              <label for="user">Crear</label>
+              <input type="checkbox" name="">
+              <label for="user">Editar</label>
+              <input type="checkbox" name="">
+              <label for="user">Eliminar</label>
+              <input type="checkbox" name=""> --}}
+            </div>
+            <div class="date-client">
+              {{-- <h3>Accesos</h3>
+              <hr>
+              <label for="user">Clientes</label>
+              <input type="checkbox" name="">
+              <label for="user">Proveedores</label>
+              <input type="checkbox" name="">
+              <label for="user">Empleados</label>
+              <input type="checkbox" name="">
+              <label for="user">Inventario</label>
+              <input type="checkbox" name=""> --}}
+              <h3>Permisos</h3>
+              <hr>
+              <label for="user">Crear</label>
+              <input type="checkbox" name="">
+              <label for="user">Editar</label>
+              <input type="checkbox" name="">
+              <label for="user">Eliminar</label>
+              <input type="checkbox" name="">
             </div>
             <div class="button-client">
               <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
@@ -86,7 +128,7 @@
         </div>
       </div>
     </main>
-    <footer id="footer-form">
+    <footer id="footer">
       <h3>© 2017 Todos Los Derechos Reservados</h3>
     </footer>
     <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
