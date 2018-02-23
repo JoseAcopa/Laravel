@@ -22,22 +22,32 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li class="active" ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
+          @if (auth()->user()->cliente === 1)
+            <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          @endif
+          @if (auth()->user()->proveedores === 1)
+            <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
+          @endif
+          @if (auth()->user()->empleados === 1)
+            <li class="active" ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
+          @endif
           <li class="li-menu-nav">INVENTARIO</li>
-          <li >
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-            <ul class="submenu-list" id="submenu-list">
-              <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
-              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
-              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
-              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
-              <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
-            </ul>
-          </li>
+          @if (auth()->user()->inventario === 1)
+            <li>
+              <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
+              </ul>
+            </li>
+          @endif
           <li class="li-menu-nav">COTIZACION</li>
-          <li><a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
+          @if (auth()->user()->cotizacion === 1)
+            <li><a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
+          @endif
         </ul>
       </aside>
       <div class="container" id="container">
@@ -53,7 +63,9 @@
         </div>
         <div class="table-container">
           <div class="container-search">
-            <a href="{{ url('admin/add-employee') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
+            @if (auth()->user()->create === 1)
+              <a href="{{ url('admin/add-employee') }}" class="btn-green" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
+            @endif
           </div>
           @if ($message = Session::get('success'))
             <div class="message-danger">
@@ -69,24 +81,26 @@
                   <th>Nombre completo</th>
                   <th>Teléfono</th>
                   <th>Usuario</th>
-                  {{-- <th>Contraseña</th> --}}
-                  <th>Privilegio</th>
+                  <th>Tipo de Usuario</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
                 @foreach ($employees as $employee)
                   <tr class="tbody">
                     <td class="action">
-                      <a class="btn-green-action" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
-                      {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
-                        <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
-                      {!! Form::close() !!}
+                      @if (auth()->user()->update === 1)
+                        <a class="btn-green-action" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o fa-lg"></i></a>
+                      @endif
+                      @if (auth()->user()->delete === 1)
+                        {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
+                          <button type="submit" class="btn-danger-action"><i class="fa fa-trash-o fa-lg"></i></button>
+                        {!! Form::close() !!}
+                      @endif
                     </td>
                     <td>RX-{{ $employee->id }}</td>
                     <td>{{ $employee->name }}</td>
                     <td>{{ $employee->phone }}</td>
                     <td>{{ $employee->user }}</td>
-                    {{-- <td>{{ $employee->password }}</td> --}}
                     <td>{{ $employee->tipo }}</td>
                   </tr>
                 @endforeach

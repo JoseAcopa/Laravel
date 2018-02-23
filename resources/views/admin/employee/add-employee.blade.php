@@ -20,22 +20,32 @@
         <ul class="ul-menu">
           <li class="li-menu-nav">MENU DE NAVEGACION</li>
           <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
+          @if (auth()->user()->cliente === 1)
+            <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
+          @endif
+          @if (auth()->user()->proveedores === 1)
+            <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
+          @endif
+          @if (auth()->user()->empleados === 1)
+            <li class="active"><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados <small class="bg-indicator">Registrar</small></a></li>
+          @endif
           <li class="li-menu-nav">INVENTARIO</li>
-          <li >
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-            <ul class="submenu-list" id="submenu-list">
-              <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
-              <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
-              <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
-              <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
-              <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
-            </ul>
-          </li>
+          @if (auth()->user()->inventario === 1)
+            <li>
+              <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
+              <ul class="submenu-list" id="submenu-list">
+                <li><a href="{{url('admin/catalogo')}}"><i class="fa fa-list"></i>Catálogo</a></li>
+                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list"></i>Productos </a></li>
+                <li><a href="{{url('admin/checkin')}}"><i class="fa fa-list"></i>Entradas de Productos</a></li>
+                <li><a href="{{url('admin/inventary-out')}}"><i class="fa fa-list"></i>Salidas de Productos</a></li>
+                <li><a href="{{url('admin/clasificationProduct')}}"><i class="fa fa-list"></i>Tipos de Productos</a></li>
+              </ul>
+            </li>
+          @endif
           <li class="li-menu-nav">COTIZACION</li>
-          <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
+          @if (auth()->user()->cotizacion === 1)
+            <li><a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
+          @endif
         </ul>
       </aside>
       <div class="container" id="container">
