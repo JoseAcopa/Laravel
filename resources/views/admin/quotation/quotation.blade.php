@@ -36,6 +36,8 @@
           </li>
           <li class="li-menu-nav">COTIZACION</li>
           <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
+          <li class="li-menu-nav">REPORTES</li>
+          <li><a href="{{url('admin/reportes')}}"><i class="fa fa-book"></i>Reportes</a></li>
         </ul>
       </aside>
       <div class="container" id="container">
