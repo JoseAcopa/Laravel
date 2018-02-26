@@ -306,6 +306,7 @@
   -moz-border-radius: 6px;
   text-decoration: none;
   border: 0;
+  cursor: pointer;
 }
 
 .btn-danger{
@@ -1615,4 +1616,48 @@ textarea:read-only {
 
 #permisos-accesos{
   display: none;
+}
+
+#tablaCotizacion{
+  width: 100%;
+}
+
+.cotizar-total{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-family: Montserrat;
+  margin: 0px 20px 0px 20px;
+}
+
+#modal-producto{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100vh !important;
+  width: 100vw !important;
+  background-color: rgba(0,0,0,0.8);
+  position: fixed;
+  z-index: 300;
+  display: none;
+}
+
+.container-getProduct{
+  margin-top: 40px !important;
+  margin: 0 auto !important;
+  width: 90%;
+  background: #cdcdcd;
+  padding: 20px;
+  height: auto;
+}
+
+.select-product{
+  width: 50px;
+  padding: 7px;
+  border-radius: 5px;
+  border: 1px #666 solid;
+  margin-top: -7px;
 }

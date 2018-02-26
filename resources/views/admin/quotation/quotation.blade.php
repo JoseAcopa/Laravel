@@ -74,11 +74,12 @@
               <thead>
                 <tr class="theader">
                   <th>Acciones</th>
-                  <th>Folio</th>
+                  <th>Empleados</th>
                   <th>Fecha</th>
-                  <th>Número de Cliente</th>
+                  <th>Cliente</th>
                   <th>Nombre de la Empresa</th>
-                  <th>RFC</th>
+                  <th>Subtotal</th>
+                  <th>Total</th>
                </tr>
               </thead>
               <tbody class="tbodymain">
