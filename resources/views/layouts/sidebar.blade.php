@@ -12,25 +12,25 @@ function current_page($url = '/'){
       <div class="user-panel">
         <div class="pull-left image">
         @if (Auth::user()->avatar == null)
-          <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
+          <img src="{{ url('img/LogoRX.png')}}"  alt="User Image">
         @else
           <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
         @endif
         </div>
         <div class="pull-left info">
           <p>
-          @if (Auth::user()->social_name == null)
+          {{-- @if (Auth::user()->social_name == null)
             {{ Auth::user()->name}}
           @else
             {{ Auth::user()->social_name}}
-          @endif
+          @endif --}}
           </p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <a href="#"><i class="fa fa-circle text-success"></i> Online </a>
         </div>
       </div>
       <!-- Sidebar Menu -->
-      <ul class="sidebar-menu" data-widget="tree">
+      <ul class="sidebar-menu" data-widget="tree"><br>
         <li class="header">MENU DE NAVEGACION</li>
         <!-- Optionally, you can add icons to the links -->
         <li <?php echo current_page('admin/admin-welcome') ? "class='active'" : "";?>><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
