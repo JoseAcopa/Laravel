@@ -35,7 +35,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-striped">
             <thead>
-              <tr>
+              <tr class="success">
                 <th>Acciones</th>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>

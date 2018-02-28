@@ -35,7 +35,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-striped">
             <thead>
-              <tr>
+              <tr class="success">
                 <th>Acciones</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>
