@@ -18,4 +18,5 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
   <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css')}}">
 </head>

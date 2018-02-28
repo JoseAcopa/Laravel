@@ -4,6 +4,10 @@
 	justify-content: space-around;
 }
 
+.top-copasat{
+	margin-top: 25px !important;
+}
+
 div.dataTables_length label {
 	font-weight: normal;
 	float: left;
