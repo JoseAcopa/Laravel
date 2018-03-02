@@ -1,3 +1,19 @@
+#permisos-accesos{
+	display: none;
+}
+
+#accesos-permisos{
+	display: none;
+}
+
+#btn-password{
+	display: none;
+}
+
+#btn-cancel{
+	display: none;
+}
+
 .row-copasat{
 	display: flex;
 	flex-direction: row;

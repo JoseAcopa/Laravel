@@ -39,6 +39,7 @@
                 <th>Acciones</th>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>
+                <th>Siglas</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
                 <th>E-mail</th>
@@ -58,8 +59,9 @@
                       @endif
                     </td>
                     <td>{{ $client->RFC }}</td>
-                    <td>{{ $client->business }}</td>
-                    <td>{{ $client->address }}</td>
+                    <td>{{ str_limit($client->business, 30) }}</td>
+                    <td>{{ $client->siglas }}</td>
+                    <td>{{ str_limit($client->address, 50) }}</td>
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->email }}</td>
                   </tr>

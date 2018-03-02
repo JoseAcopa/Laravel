@@ -56,7 +56,7 @@
               <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
                 <label for="user">Tipo de Usuario:</label>
                 <select name="tipo" class="form-control" onchange="tipoUser(this);">
-                  <option value=""></option>
+                  <option value=""> Seleccione tipo de usuario</option>
                   <option value="admin">Administrador</option>
                   <option value="user">Usuario</option>
                 </select>
@@ -136,12 +136,12 @@
 
     <script type="text/javascript">
       function tipoUser(val) {
-        if (val.value === 'admin') {
-          document.getElementById('permisos-accesos').style.display = "none"
-          document.getElementById('accesos-permisos').style.display = "none"
-        }else {
+        if (val.value === 'user') {
           document.getElementById('permisos-accesos').style.display = "block"
           document.getElementById('accesos-permisos').style.display = "block"
+        }else {
+          document.getElementById('permisos-accesos').style.display = "none"
+          document.getElementById('accesos-permisos').style.display = "none"
         }
       }
     </script>

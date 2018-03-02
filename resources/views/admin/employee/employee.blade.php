@@ -39,6 +39,7 @@
                 <th>Acciones</th>
                 <th>N° de Empleado</th>
                 <th>Nombre completo</th>
+                <th>Correo</th>
                 <th>Teléfono</th>
                 <th>Usuario</th>
                 <th>Tipo de Usuario</th>
@@ -59,6 +60,7 @@
                   </td>
                   <td>RX-{{ $employee->id }}</td>
                   <td>{{ $employee->name }}</td>
+                  <td>{{ $employee->email }}</td>
                   <td>{{ $employee->phone }}</td>
                   <td>{{ $employee->user }}</td>
                   <td>{{ $employee->tipo }}</td>

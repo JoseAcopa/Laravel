@@ -59,15 +59,30 @@ class EmployeeController extends Controller
        $employee->update = true;
        $employee->delete = true;
      }else {
-       $employee->cliente = in_array("clientes", request()->accesos) ? true : false;
-       $employee->proveedores = in_array("proveedores", request()->accesos) ? true : false;
-       $employee->empleados = in_array("empleados", request()->accesos) ? true : false;
-       $employee->inventario = in_array("inventario", request()->accesos) ? true : false;
-       $employee->cotizacion = in_array("cotizacion", request()->accesos) ? true : false;
-       $employee->create = in_array("create", request()->permisos) ? true : false;
-       $employee->read = in_array("read", request()->permisos) ? true : false;
-       $employee->update = in_array("update", request()->permisos) ? true : false;
-       $employee->delete = in_array("delete", request()->permisos) ? true : false;
+       if (count(request()->accesos) > 0) {
+         $employee->cliente = in_array("clientes", request()->accesos) ? true : false;
+         $employee->proveedores = in_array("proveedores", request()->accesos) ? true : false;
+         $employee->empleados = in_array("empleados", request()->accesos) ? true : false;
+         $employee->inventario = in_array("inventario", request()->accesos) ? true : false;
+         $employee->cotizacion = in_array("cotizacion", request()->accesos) ? true : false;
+       }else {
+         $employee->cliente = false;
+         $employee->proveedores = false;
+         $employee->empleados = false;
+         $employee->inventario = false;
+         $employee->cotizacion = false;
+       }
+       if (count(request()->permisos) > 0) {
+         $employee->create = in_array("create", request()->permisos) ? true : false;
+         $employee->read = in_array("read", request()->permisos) ? true : false;
+         $employee->update = in_array("update", request()->permisos) ? true : false;
+         $employee->delete = in_array("delete", request()->permisos) ? true : false;
+       }else {
+         $employee->create = false;
+         $employee->read = false;
+         $employee->update = false;
+         $employee->delete = false;
+       }
      }
 
      $employee->save();
@@ -109,7 +124,11 @@ class EmployeeController extends Controller
      $newUser = $request->input('user');
      $newEmail = $request->input('email');
      $newPhone = $request->input('phone');
-     $newPassword = $request->input('password');
+     $newPassword = bcrypt($request->input('password'));
+     $newTipo = $request->input('tipo');
+     $newAccesso = $request->input('accesos');
+     $newPermisos = $request->input('permisos');
+
 
      $employee = User::find($id);
 
@@ -117,9 +136,48 @@ class EmployeeController extends Controller
      $employee->user = $newUser;
      $employee->email = $newEmail;
      $employee->phone = $newPhone;
-     $employee->password = bcrypt($newPassword);
-     $employee->save();
+     if (strlen($newPassword) > 0) {
+       $employee->password = $newPassword;
+     }
+     $employee->tipo = $newTipo;
+     if ($newTipo === 'admin') {
+       $employee->cliente = true;
+       $employee->proveedores = true;
+       $employee->empleados = true;
+       $employee->inventario = true;
+       $employee->cotizacion = true;
+       $employee->create = true;
+       $employee->read = true;
+       $employee->update = true;
+       $employee->delete = true;
+     }else {
+       if (count($newAccesso) > 0) {
+         $employee->cliente = in_array("clientes", $newAccesso) ? true : false;
+         $employee->proveedores = in_array("proveedores", $newAccesso) ? true : false;
+         $employee->empleados = in_array("empleados", $newAccesso) ? true : false;
+         $employee->inventario = in_array("inventario", $newAccesso) ? true : false;
+         $employee->cotizacion = in_array("cotizacion", $newAccesso) ? true : false;
+       }else {
+         $employee->cliente = false;
+         $employee->proveedores = false;
+         $employee->empleados = false;
+         $employee->inventario = false;
+         $employee->cotizacion = false;
+       }
+       if (count($newPermisos) > 0) {
+         $employee->create = in_array("create", $newPermisos) ? true : false;
+         $employee->read = in_array("read", $newPermisos) ? true : false;
+         $employee->update = in_array("update", $newPermisos) ? true : false;
+         $employee->delete = in_array("delete", $newPermisos) ? true : false;
+       }else {
+         $employee->create = false;
+         $employee->read = false;
+         $employee->update = false;
+         $employee->delete = false;
+       }
+     }
 
+     $employee->save();
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
    }
 

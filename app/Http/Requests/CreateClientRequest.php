@@ -27,6 +27,7 @@ class CreateClientRequest extends FormRequest
           'business' => 'max:255|required|unique:clients',
           'RFC' => 'max:255|required',
           'address' => 'max:255|required',
+          'siglas' => 'max:255|required',
         ];
     }
 }

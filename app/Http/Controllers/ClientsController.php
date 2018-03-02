@@ -48,8 +48,9 @@ class ClientsController extends Controller
       $clients->address = request('address');
       $clients->phone = request('phone') === null ? '' : request('phone');
       $clients->email = request('email') === null ? '' : request('email');
+      $clients->siglas = request('siglas');
       $clients->save();
-      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
+      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'siglas', 'address', 'phone', 'email']));
     }
 
     /**
@@ -89,6 +90,7 @@ class ClientsController extends Controller
       $newAddress = $request->input('address');
       $newPhone = $request->input('phone') === null ? '' : $request->input('phone');
       $newEmail = $request->input('email') === null ? '' : $request->input('email');
+      $newSiglas = $request->input('siglas');
 
       $client = Clients::find($id);
 
@@ -97,6 +99,7 @@ class ClientsController extends Controller
       $client->address = $newAddress;
       $client->phone = $newPhone;
       $client->email = $newEmail;
+      $client->siglas = $newSiglas;
       $client->save();
 
       return redirect('admin/client')->with('success','Cliente '. $client->business .' actualizado correctamente');
