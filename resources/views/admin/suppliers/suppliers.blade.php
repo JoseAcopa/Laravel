@@ -58,8 +58,8 @@
                       @endif
                     </td>
                     <td>{{ $supplier->RFC }}</td>
-                    <td>{{ $supplier->business }}</td>
-                    <td>{{ $supplier->address }}</td>
+                    <td>{{ str_limit($supplier->business, 30) }}</td>
+                    <td>{{ str_limit($supplier->address, 50) }}</td>
                     <td>{{ $supplier->phone }}</td>
                     <td>{{ $supplier->email }}</td>
                   </tr>

@@ -59,7 +59,7 @@ class CatalogsController extends Controller
       $product->description = request('description');
       $product->categoria = request('tipo_categoria');
       $product->save();
-      return redirect('admin/catalogo')->with('success','Producto '. $product->category_id .' Guardado correctamente.')->withInput(request(['description']));
+      return redirect('admin/catalogo')->with('success','Producto '. $product->category_id .' Guardado correctamente.')->withInput(request(['description', 'unidad']));
     }
 
     /**
