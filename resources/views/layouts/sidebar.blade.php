@@ -38,17 +38,17 @@ function current_page($url = '/'){
         <li <?php echo current_page('admin/suppliers') ? "class='active'" : "";?>><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
         <li <?php echo current_page('admin/employee') ? "class='active'" : "";?>><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
         <li class="header">INVENTARIO</li>
-        <li class="treeview <?php echo current_page('admin/catalogo') ? "active" : "";?>">
+        <li class="treeview <?php echo current_page('admin/catalogo') || current_page('admin/clasificationProduct') || current_page('admin/inventary') || current_page('admin/inventary-out') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
           </a>
           <ul class="treeview-menu">
+            <li <?php echo current_page('admin/clasificationProduct') ? "class='active'" : "";?>><a href="{{url('admin/clasificationProduct')}}">Tipos de Productos</a></li>
             <li <?php echo current_page('admin/catalogo') ? "class='active'" : "";?>><a href="{{url('admin/catalogo')}}">Catálogo</a></li>
             <li <?php echo current_page('admin/inventary') ? "class='active'" : "";?>><a href="{{url('admin/inventary')}}">Productos</a></li>
             <li <?php echo current_page('admin/inventary-out') ? "class='active'" : "";?>><a href="{{url('admin/inventary-out')}}">Salidas de Productos</a></li>
-            <li <?php echo current_page('admin/clasificationProduct') ? "class='active'" : "";?>><a href="{{url('admin/clasificationProduct')}}">Tipos de Productos</a></li>
           </ul>
         </li>
         <li class="header">COTIZACION</li>

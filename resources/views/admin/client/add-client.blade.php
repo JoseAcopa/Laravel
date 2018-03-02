@@ -34,15 +34,13 @@
               </div>
             </div>
             <div class="col-md-6">
-              <div class="form-group {{ $errors->has('phone') ? 'has-error' : '' }}">
+              <div class="form-group">
                 <label for="phone">Teléfono:</label>
-                <input type="tel" name="phone" value="{{ old('phone') }}" class="form-control" placeholder="Teléfono">
-                {!! $errors->first('phone','<span class="help-block">:message</span>')!!}
+                <input type="tel" name="phone" class="form-control" placeholder="Teléfono">
               </div>
-              <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+              <div class="form-group">
                 <label for="email">E-mail:</label>
-                <input type="email" name="email" value="{{ old('email') }}" class="form-control" placeholder="E-mail">
-                {!! $errors->first('email','<span class="help-block">:message</span>')!!}
+                <input type="email" name="email" class="form-control" placeholder="E-mail">
               </div>
             </div>
             <div class="col-md-12">

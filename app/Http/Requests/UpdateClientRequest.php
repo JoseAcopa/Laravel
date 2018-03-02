@@ -27,8 +27,6 @@ class UpdateClientRequest extends FormRequest
           'business' => 'max:255|required',
           'RFC' => 'max:255|required',
           'address' => 'max:255|required',
-          'phone' => 'digits:10|required',
-          'email' => 'max:255|required',
         ];
     }
 }

@@ -24,11 +24,9 @@ class CreateClientRequest extends FormRequest
     public function rules()
     {
         return [
-          'business' => 'max:255|required',
+          'business' => 'max:255|required|unique:clients',
           'RFC' => 'max:255|required',
           'address' => 'max:255|required',
-          'phone' => 'digits:10|required',
-          'email' => 'max:255|required|unique:clients',
         ];
     }
 }
