@@ -37,7 +37,7 @@ class ProductsControllers extends Controller
     public function create()
     {
       $coins = Coins::all();
-      $catalog = Catalog::with(['unit', 'supplier', 'category'])->get();
+      $catalog = Catalog::with(['supplier', 'category'])->get();
       return view('admin.inventary.add-product', compact('coins', 'catalog'));
     }
 

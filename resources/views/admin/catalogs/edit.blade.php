@@ -48,13 +48,21 @@
                 </select>
               </div>
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
-                <label for="unidad">Unidad de Medida:</label>
-                <select class="form-control" name="unidad">
-                  <option value="{{$catalog->unit_id}}">{{$catalog->unit->type}}</option>
-                  @foreach ($units as $unit)
-                    <option value="{{$unit->type}}">{{$unit->type}}</option>
-                  @endforeach
-                </select>
+                <div class="row">
+                  <div class="col-xs-6">
+                    <label for="unidad">Unidad de Medida:</label>
+                    <select class="form-control" onchange="getUnidad(this);">
+                      <option value="">Seleccione Unidad de Medida</option>
+                      @foreach ($units as $unit)
+                        <option value="{{$unit->type}}">{{$unit->type}}</option>
+                      @endforeach
+                    </select>
+                    {!! $errors->first('unidad','<span class="help-block">:message</span>')!!}
+                  </div>
+                  <div class="col-xs-6 top-copasat">
+                    <input type="text" class="form-control" name="unidad" id="unidad" value="{{$catalog->unit_id}}" readonly>
+                  </div>
+                </div>
               </div>
             </div>
             <div class="col-md-12">
@@ -84,6 +92,18 @@
         var category = newVal[val.value]
         document.getElementById('letter').value = category.letters;
         document.getElementById('categoria').value = category.categoria;
+      }
+    </script>
+    <script type="text/javascript">
+      function getUnidad(val) {
+        var value = val.value
+        if (value === 'Otros') {
+          $('#unidad').val('')
+          $('#unidad').removeAttr('readonly');
+        }else {
+          $('#unidad').val(value)
+          $('#unidad').attr('readonly', 'readonly');
+        }
       }
     </script>
 

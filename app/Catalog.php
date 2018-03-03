@@ -23,9 +23,4 @@ class Catalog extends Model
   {
     return $this->belongsTo('App\Suppliers');
   }
-
-  public function unit()
-  {
-    return $this->belongsTo('App\Units');
-  }
 }

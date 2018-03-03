@@ -10,11 +10,6 @@ class Units extends Model
       'type',
   ];
 
-  public function catalogs()
-  {
-    return $this->hasMany('App\Catalog');
-  }
-
   public function products()
   {
     return $this->hasMany('App\Products');

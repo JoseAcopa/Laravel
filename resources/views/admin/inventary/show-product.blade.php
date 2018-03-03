@@ -1,141 +1,129 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Rayos X y Servicios Induxtriales</title>
-    <link rel="stylesheet" href="{{ url('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-  </head>
-  <body>
-    <header>
-      @include('../layouts/nav')
-    </header>
-    <main class="wrapper">
-      <aside class="menu" id="aside">
-        <div class="logo">
-          <a href="{{ url('/admin/admin-welcome') }}"><img class="img-menu" src="{{ url('img/LogoRX.png')}}" alt=""></a>
-        </div>
-        <ul class="ul-menu">
-          <li class="li-menu-nav">MENU DE NAVEGACION</li>
-          <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i> Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-user"></i>Empleados</a></li>
-          <li class="li-menu-nav">INVENTARIO</li>
-          <li class="active">
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li class="active" ><a href="{{url('admin/inventary')}}">Productos <small class="bg-indicator">Visualizar</small></a></li>
-                <li><a href="{{url('admin/checkin')}}">  Entradas de Productos </a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> Tipos de Productos</a></li>
-              </ul>
-          </li>
-          <li class="li-menu-nav">COTIZACION</li>
-          <li><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización</a></li>
-        </ul>
-      </aside>
-      <div class="container" id="container">
-        <div class="location">
-          <h1 class="title">Administrador</h1>
-          <div class="breadcrumb">
-            <ol>
-              Se encuentra en
-              <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-eye"></i>Mostrar Productos</li>
-            </ol>
-          </div>
-        </div>
-        <div class="for-container">
-          <h2><i class="fa fa-eye"></i> Mostrar Producto</h2>
-          <div class="line"></div>
-          <div class="show">
-            <div class="view">
-              <div class="show-product">
-                <label for="">N° de Producto:</label>
-                <p>{{ $product->initials }}-{{ $product->id }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">N° de Factura:</label>
-                <p>{{ $product->nInvoice }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Tipo de Producto:</label>
-                <p>{{ $product->category }}</p>
-              </div>
 
-              <div class="show-product">
-                <label for="">Proveedor:</label>
-                <p>{{ $product->supplier }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Descripción:</label>
-                <p>{{ $product->description }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Fecha de Entrada:</label>
-                <p>{{ $product->checkin }}</p>
-              </div>
-            </div>
-            <div class="view">
+@extends('layouts.app')
 
-              <div class="show-product">
-                <label for="">Cantidad de Entrada:</label>
-                <p>{{ $product->quantity }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Unidad de Medida:</label>
-                <p>{{ $product->unit }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Precio Lista:</label>
-                <p>${{ $product->priceList }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Costo:</label>
-                <p>${{ $product->cost }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Tipo de moneda:</label>
-                <p>{{ $product->coin->type }}</p>
-              </div>
-            </div>
-            <div class="view">
-              <div class="show-product">
-                <label for="">Precio de Venta 1:</label>
-                <p>{{ $product->priceSales1 }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Precio de Venta 2:</label>
-                <p>{{ $product->priceSales2 }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Precio de Venta 3:</label>
-                <p>{{ $product->priceSales3 }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Precio de Venta 4:</label>
-                <p>{{ $product->priceSales4 }}</p>
-              </div>
-              <div class="show-product">
-                <label for="">Precio de Venta 5:</label>
-                <p>{{ $product->priceSales5 }}</p>
-              </div>
-            </div>
+@section('content')
+
+    <section class="content-header">
+      <h1>
+        Administrador
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
+        <li class="active">Ver Producto</li>
+      </ol>
+    </section>
+
+    <section class="content container-fluid">
+      <div class="col-md-8">
+        <div class="box box-primary">
+          <div class="box-header ui-sortable-handle" style="cursor: move;">
+            <i class="ion ion-clipboard"></i>
+            <h3 class="box-title">Producto</h3>
           </div>
-            <div class="btn-show">
-              <a href="{{url('admin/inventary')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
-            </div>
+          <div class="box-body">
+            <ul class="todo-list ui-sortable">
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->category}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Categoria</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->initials}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Iniciales</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->supplier}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Proveedor</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->checkin}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Fecha de Entrada</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->unit}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Unidad de medida</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->description}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Descripción</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->priceList}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Precio Lista</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->cost}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Costo</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">
+                  <span  <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
+                    {{$product->stock}}
+                  </span>
+                </span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Stock</small>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="box-footer clearfix no-border">
+            <a href="{{url('admin/inventary')}}" class="btn btn-info pull-right"><i class="fa fa-mail-reply"></i> Atras</a>
+          </div>
         </div>
       </div>
-    </main>
-    <footer id="footer-form">
-      <h3>© 2017 Todos Los Derechos Reservados</h3>
-    </footer>
-    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
-    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
-  </body>
-</html>
+    </section>
+
+@endsection
