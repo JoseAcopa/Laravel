@@ -1,187 +1,172 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Rayos X y Servicios Induxtriales</title>
-    <link rel="stylesheet" href="{{ url('css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
-  </head>
-  <body>
-    <header>
-      @include('../layouts/nav')
-    </header>
-    <main class="wrapper">
-      <aside class="menu" id="aside">
-        <div class="logo">
-          <a href="{{ url('/admin/admin-welcome') }}"><img class="img-menu" src="{{ url('img/LogoRX.png')}}" alt=""></a>
-        </div>
-        <ul class="ul-menu">
-          <li class="li-menu-nav">MENU DE NAVEGACION</li>
-          <li><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i>Inicio</a></li>
-          <li ><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i>Clientes</a></li>
-          <li ><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i>Proveedores</a></li>
-          <li ><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i>Empleados</a></li>
-          <li class="li-menu-nav">INVENTARIO</li>
-          <li >
-            <a id="inventary"><i class="fa fa-pencil-square"></i>Inventario <i class="fa fa-chevron-down"></i></a>
-              <ul class="submenu-list" id="submenu-list">
-                <li><a href="{{url('admin/inventary')}}"><i class="fa fa-list-ol "></i>Productos </a></li>
-                <li><a href="{{url('admin/checkin')}}"> <i class="fa fa-sign-in fa-lg"></i> Entradas de Productos</a></li>
-                <li><a href="{{url('admin/inventary-out')}}"> <i class="fa fa-sign-out"></i> Salidas de Productos</a></li>
-                <li><a href="{{url('admin/clasificationProduct')}}"> <i class="fa fa-list-alt "></i> Tipos de Productos</a></li>
-              </ul>
-          </li>
-          <li class="li-menu-nav">COTIZACION</li>
-          <li class="active"><a href="{{url('admin/quotation')}}"><i class="fa fa-book"></i>Cotización <small class="bg-indicator">Cotizar</small></a></li>
-        </ul>
-      </aside>
-      <div class="container" id="container">
-        <div class="location">
-          <h1 class="title">Administrador</h1>
-          <div class="breadcrumb">
-            <ol>
-              Se encuentra en
-              <li><i class="fa fa-home"></i>Inicio</li>
-              <li class="ol-active"><i class="fa fa-book"></i>Realizar Cotización</li>
-            </ol>
-          </div>
-        </div>
-        <div class="for-container">
-          <h2><i class="fa fa-book"></i> Realizar Cotización</h2>
-          <form class="container-add-clients" method="POST" action="/admin/quotation">
-            {{ csrf_field() }}
-            <div class="date-clients">
-              <label for="folio">Folio:</label>
-              <input type="text" name="folio" value=""  placeholder="Folio">
-              <label for="date">Fecha:</label>
-              <input type="date" name="date" value=""  placeholder="">
-              <label for="nClient">Número de Cliente:</label>
-              <select class="" name="nClient">
-                <option value="test">test</option>
-              </select>
-              <label for="company">Nombre de la empresa:</label>
-              <input type="text" name="company" value="">
-            </div>
-            <div class="date-clients">
-              <label for="RFC">RFC:</label>
-              <input type="text" name="RFC" value="">
-              <label for="telephone">Teléfono:</label>
-              <input type="text" name="phone" value="">
-              <label for="direction">Dirección:</label>
-              <textarea type="text" rows="6" name="direction"></textarea>
-            </div>
-            <div class="date-clients">
-              <label for="name">Nombre Completo:</label>
-              <input type="text" name="name" value="" placeholder="Nombre Completo">
-              <label for="job">Puesto:</label>
-              <input type="text" name="job" value="" placeholder="Puesto">
-              <label for="mail">E-mail:</label>
-              <input type="text" name="mail" value="" placeholder="E-mail">
-              <label for="nBidding">Número de Licitación:</label>
-              <input type="text" name="nBidding" value="" placeholder="Numero de Licitación">
-            </div>
-            <div class="obs-Total">
-              <div class="observation-clients">
-                <label for="observation">Observaciones:</label>
-                <textarea type="text" rows="13" name="description"  placeholder="Observaciones"></textarea>
-              </div>
-              <div class="quotationTotal">
-                <label for="total">SubTotal:</label>
-                <input type="text" name="total" value=""  placeholder="SubTotal">
-                <label for="IVA">IVA:</label>
-                <input type="text" name="IVA" value=""  placeholder="IVA">
-                <label for="totalAmount">TOTAL:</label>
-                <input type="text" name="totalAmount" value=""  placeholder="Total">
-              </div>
-            </div>
+@extends('layouts.app')
 
-             <div class="button-inventary">
-              <a href="#" class="searchProduct"><i class="fa fa-search fa-1x"></i>  Buscar Productos</a>
+@section('content')
+
+    <section class="content-header">
+      <h1>
+        Administrador
+        <small></small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
+        <li class="active">Realizar Cotización</li>
+      </ol>
+    </section>
+
+    <section class="content container-fluid">
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
+        </div>
+        <form role="form" method="POST" action="/admin/quotation">
+          {{ csrf_field() }}
+          <div class="box-body">
+            <div class="col-md-4">
+              <div class="form-group {{ $errors->has('folio') ? 'has-error' : '' }}">
+                <label for="folio">Folio:</label>
+                <input type="text" name="folio" class="form-control" placeholder="Folio">
+              </div>
+              <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }}">
+                <label for="date">Fecha:</label>
+                <input type="date" name="fecha" class="form-control">
+              </div>
+              <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
+                <label for="company">Nombre de la empresa:</label>
+                <input type="text" name="empresa" class="form-control" placeholder="nombre de la empresa">
+              </div>
             </div>
-            <div class="">
-              <table id="Jtabla">
+            <div class="col-md-4">
+              <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
+                <label for="RFC">RFC:</label>
+                <input type="text" name="RFC" class="form-control" placeholder="RFC">
+              </div>
+              <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
+                <label for="telephone">Teléfono:</label>
+                <input type="text" name="telefono" class="form-control" placeholder="telefono">
+              </div>
+              <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
+                <label for="name">Nombre Completo:</label>
+                <input type="text" name="nombre" class="form-control" placeholder="Nombre Completo">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
+                <label for="job">Puesto:</label>
+                <input type="text" name="puesto" class="form-control" placeholder="Puesto">
+              </div>
+              <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
+                <label for="mail">E-mail:</label>
+                <input type="text" name="correo" class="form-control" placeholder="E-mail">
+              </div>
+              <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
+                <label for="nBidding">Número de Licitación:</label>
+                <input type="text" name="licitacion" class="form-control" placeholder="Numero de Licitación">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
+                <label for="direction">Dirección:</label>
+                <textarea type="text" rows="4" name="direccion" class="form-control" placeholder="dirección"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group {{ $errors->has('observaciones') ? 'has-error' : '' }}">
+                <label for="observation">Observaciones:</label>
+                <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="Observaciones"></textarea>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <a href="#" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i> Buscar Producto</button>
+            </div>
+            <div class="col-md-12">
+              <br>
+              <table class="table table-bordered table-striped">
                 <thead>
-                  <tr class="theader">
-                    <th>Acciones</th>
-                    <th>Tipo de Producto</th>
-                    <th>Proveedor</th>
-                    <th>Costo</th>
-                    <th>Precios</th>
+                  <tr class="info">
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Descripción</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                    <th>Eliminar</th>
                  </tr>
                 </thead>
-                <tbody class="tbodymain">
-                  @foreach ($products as $product)
-                    <tr class="tbody">
-                      <td class="action">
-                        <input type="checkbox" id="{{$product->id}}" value="" onchange="getDataTAble(this);">
-                        <button type="submit" class="btn-danger"><i class="fa fa-trash-o fa-lg"></i></button>
-                      </td>
-                      <td>{{$product->TProducts}}</td>
-                      <td>{{$product->provider}}</td>
-                      <td>{{$product->cost}}</td>
-                      <td>
-                        <select class="" name="">
-                          <option value="">Precio</option>
-                          <option value="">{{$product->priceSales1}}</option>
-                          <option value="">{{$product->priceSales2}}</option>
-                          <option value="">{{$product->priceSales3}}</option>
-                          <option value="">{{$product->priceSales4}}</option>
-                          <option value="">{{$product->priceSales5}}</option>
-                        </select>
-                      </td>
+                <tbody>
+                    <tr>
+                      <td>Manguera Industrial</td>
+                      <td>4</td>
+                      <td>Este es un producto de gates que se esta cotizando</td>
+                      <td>100</td>
+                      <td>400</td>
+                      <td><a><i class="fa fa-times fa-lg"></i></a></td>
                     </tr>
-                  @endforeach
                 </tbody>
               </table>
             </div>
-
-            <div class="button-inventary">
-              <button type="submit" class="btn-save"><i class="fa fa-save fa-lg"></i> Guardar</button>
-              <a href="#" class="pdf"><i class="fa fa-file-pdf-o fa-lg"></i>  Imprimir PDF</a>
-              <a href="{{ url('/admin/quotation') }}"  class="btn-danger fa-lg"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
-            </div>
-          </form>
-          <div class="button-pdf">
-
           </div>
-        </div>
-      </div>
-    </main>
-    <footer id="footerQuotation">
-      <h3>© 2017 Todos Los Derechos Reservados</h3>
-    </footer>
-    <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script>
-    <script type="text/javascript" src="{{ url('js/menu-vertical.js') }}"></script>
-    <script type="text/javascript" src="{{ url('js/inventary.js') }}"></script>
-    <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
-    <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(function () {
-        $('#Jtabla').dataTable({
-          "bPaginate": true,
-          "bLengthChange": true,
-          "bFilter": true,
-          "bSort": true,
-          "bInfo": true,
-          "bAutoWidth": true
-        });
-      });
-    </script>
-    <script type="text/javascript">
-      function getDataTAble(val) {
-        var value = document.getElementsByClassName('tbody')
-        var checkbox = document.getElementById(val.id).checked
-        var arry = []
-         if (checkbox === true) {
-           arry.push(value[val.id-1].innerText)
-         }
+          <div class="box-footer">
+            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+            <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+          </div>
 
-        console.log(arry);
-      }
-    </script>
-  </body>
-</html>
+          <!-- Modal -->
+          <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Seleccione el producto a cotizar</h4>
+                </div>
+                <div class="modal-body">
+                  <table id="Jtabla" class="table table-bordered table-striped">
+                    <thead>
+                      <tr class="success">
+                        <th>Producto</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Agregar</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                          <td>Manguera Industrial</td>
+                          <td>Este es un producto de gates que se esta cotizando</td>
+                          <td>
+                            <select class="form-control">
+                              <option value="">1</option>
+                              <option value="">2</option>
+                              <option value="">3</option>
+                              <option value="">4</option>
+                            </select>
+                          </td>
+                          <td>
+                            <input class="form-control" type="number"/>
+                          </td>
+                          <td>
+                            <div class="checkbox">
+                              <label>
+                                <input type="checkbox" name="agregar[]" value="producto">
+                                Agregar
+                              </label>
+                            </div>
+                          </td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+@endsection

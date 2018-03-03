@@ -84,6 +84,10 @@ Route::resource('/admin/catalogo','CatalogsController');
 // =======================metodos ajax ==============================================
 Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
 
+// =======================Reportes ==============================================
+Route::get('/admin/reportes', function(){
+  return view ('admin/reportes/reportes');
+});
 
 /*******************************8*******Users*******************************************/
 Route::get('/users/users-welcome', function(){

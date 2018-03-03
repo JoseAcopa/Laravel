@@ -10,8 +10,8 @@ class Products extends Model
   // protected $id = "id";
 
   protected $fillable = [
-      'nInvoice', 'category_id', 'initials', 'supplier_id', 'checkin',
-      'quantity', 'unit_id', 'priceList', 'cost','description', 'stock',
+      'nInvoice', 'category', 'initials', 'supplier', 'checkin',
+      'quantity', 'unit', 'priceList', 'cost','description', 'stock',
       'priceSales1', 'priceSales2', 'priceSales3', 'priceSales4',
       'priceSales5', 'coin_id',
   ];

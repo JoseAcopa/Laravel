@@ -1,3 +1,29 @@
+#permisos-accesos{
+	display: none;
+}
+
+#accesos-permisos{
+	display: none;
+}
+
+#btn-password{
+	display: none;
+}
+
+#btn-cancel{
+	display: none;
+}
+
+.row-copasat{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.top-copasat{
+	margin-top: 25px !important;
+}
+
 div.dataTables_length label {
 	font-weight: normal;
 	float: left;
@@ -9,9 +35,9 @@ div.dataTables_length label {
 
 div.dataTables_length select {
 	width: 75px;
-	padding: 5px 10px 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #006064;
+	/* padding: 5px 10px 5px 10px; */
+  /* border-radius: 5px; */
+  /* border: 1px solid #006064; */
 }
 
 div.dataTables_filter label {
@@ -24,9 +50,9 @@ div.dataTables_filter label {
 
 div.dataTables_filter input {
 	width: 16em;
-	padding: 5px 10px 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #006064;
+	/* padding: 5px 10px 5px 10px; */
+  /* border-radius: 5px; */
+  /* border: 1px solid #006064; */
 	outline: 0;
 }
 
@@ -69,10 +95,10 @@ div.dataTables_paginate ul.pagination {
 	color: #e4ece0;
 	font-family: sans-serif;
 	font-weight: bold;
-	margin: 0px 2px 0px 2px;
-	padding: 2px 7px 2px 7px;
-	border-radius: 5px;
-	background: #336E7B;
+	/* margin: 0px 2px 0px 2px; */
+	/* padding: 2px 7px 2px 7px; */
+	/* border-radius: 5px; */
+	/* background: #336E7B; */
 	outline: 0;
 }
 

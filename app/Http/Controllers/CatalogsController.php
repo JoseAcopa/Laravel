@@ -26,7 +26,7 @@ class CatalogsController extends Controller
       // $catalog = Catalog::get();
       // $catalog->unit;
       // return json_decode($catalog, true);
-      $catalog = Catalog::with(['unit', 'supplier', 'category'])->get();
+      $catalog = Catalog::with(['supplier', 'category'])->get();
       return view('admin.catalogs.catalogs', compact('catalog'));
     }
 
@@ -59,7 +59,7 @@ class CatalogsController extends Controller
       $product->description = request('description');
       $product->categoria = request('tipo_categoria');
       $product->save();
-      return redirect('admin/catalogo')->with('success','Producto '. $product->category_id .' Guardado correctamente.')->withInput(request(['description']));
+      return redirect('admin/catalogo')->with('success','Producto '. $product->category_id .' Guardado correctamente.')->withInput(request(['description', 'unidad']));
     }
 
     /**
@@ -85,7 +85,6 @@ class CatalogsController extends Controller
       $units = Units::all();
       $categories = Category::all();
       $catalog = Catalog::find($id);
-      $catalog->unit;
       $catalog->supplier;
       $catalog->category;
       return view('admin.catalogs.edit', compact('suppliers', 'units', 'categories', 'catalog'));
