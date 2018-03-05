@@ -124,7 +124,7 @@ class EmployeeController extends Controller
      $newUser = $request->input('user');
      $newEmail = $request->input('email');
      $newPhone = $request->input('phone');
-     $newPassword = bcrypt($request->input('password'));
+     $newPassword = $request->input('password');
      $newTipo = $request->input('tipo');
      $newAccesso = $request->input('accesos');
      $newPermisos = $request->input('permisos');
@@ -136,8 +136,8 @@ class EmployeeController extends Controller
      $employee->user = $newUser;
      $employee->email = $newEmail;
      $employee->phone = $newPhone;
-     if (strlen($newPassword) > 0) {
-       $employee->password = $newPassword;
+     if ($newPassword != null) {
+       $employee->password = bcrypt($newPassword);
      }
      $employee->tipo = $newTipo;
      if ($newTipo === 'admin') {
@@ -176,7 +176,6 @@ class EmployeeController extends Controller
          $employee->delete = false;
        }
      }
-
      $employee->save();
      return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
    }
