@@ -60,8 +60,8 @@ class ProductsControllers extends Controller
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
-        $product->priceList = request('precio_lista');
-        $product->cost = request('costo');
+        $product->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+        $product->cost = request('costo') === null ? 0 : request('costo');
         $product->stock = request('cantidad_entrada');
       }else {
         $stock  = (integer)$product->stock + (integer)request('cantidad_entrada');
@@ -72,28 +72,28 @@ class ProductsControllers extends Controller
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
-        $product->priceList = request('precio_lista');
-        $product->cost = request('costo');
+        $product->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+        $product->cost = request('costo') === null ? 0 : request('costo');
       }
 
       $product->save();
 
       $invoice = new Invoice;
-      $invoice->nInvoice = request('nInvoice');
+      $invoice->nInvoice = request('nInvoice') === null ? '' : request('nInvoice');
       $invoice->category = request('category');
       $invoice->initials = request('initials');
       $invoice->supplier = request('proveedor');
       $invoice->checkin = request('fecha_entrada');
       $invoice->quantity = request('cantidad_entrada');
       $invoice->unit = request('unidad');
-      $invoice->priceList = request('precio_lista');
-      $invoice->cost = request('costo');
+      $invoice->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+      $invoice->cost = request('costo') === null ? 0 : request('costo');
       $invoice->description = request('description');
       $invoice->priceSales1 = request('priceSales1');
       $invoice->priceSales2 = request('priceSales2');
       $invoice->priceSales3 = request('priceSales3');
       $invoice->priceSales4 = request('priceSales4');
-      $invoice->priceSales5 = request('priceSales5');
+      $invoice->priceSales5 = request('priceSales5') === null ? 0 : request('priceSales5');
       $invoice->coin_id = request('moneda');
       $invoice->save();
 

@@ -36,7 +36,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="nInvoice">N° de Factura:</label>
-                <input type="text" name="nInvoice" class="form-control" value="-" placeholder="Número Factura">
+                <input type="text" name="nInvoice" class="form-control" placeholder="Número Factura">
               </div>
               <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                 <div class="row">
@@ -75,15 +75,13 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group {{ $errors->has('precio_lista') ? 'has-error' : '' }}">
+              <div class="form-group">
                 <label for="pricelist">Precio Lista:</label>
                 <input type="number" name="precio_lista" id="priceList" placeholder="Precio Lista" onchange="priceSales();" value="{{ old('precio_lista') }}" class="form-control">
-                {!! $errors->first('precio_lista','<span class="help-block">:message</span>')!!}
               </div>
-              <div class="form-group {{ $errors->has('costo') ? 'has-error' : '' }}">
+              <div class="form-group">
                 <label for="cost">Costo:</label>
                 <input type="number" name="costo" id="cost" placeholder="Costo" onchange="priceSales();" value="{{ old('costo') }}" class="form-control">
-                {!! $errors->first('costo','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('moneda') ? 'has-error' : '' }}">
                 <label for="moneda">Tipo de moneda:</label>
@@ -133,10 +131,9 @@
                 <input type="text" name="priceSales2" id="priceSales2" placeholder="Precio de Venta 2" value="{{ old('priceSales2') }}" class="form-control" readonly>
                 {!! $errors->first('priceSales2','<span class="help-block">:message</span>')!!}
               </div>
-              <div class="form-group {{ $errors->has('priceSales5') ? 'has-error' : '' }}">
+              <div class="form-group">
                 <label for="priceSales5">Precio de Venta 5:</label>
                 <input type="text" name="priceSales5" id='priceSales5' placeholder="Precio de Venta 5" value="{{ old('priceSales5') }}" class="form-control">
-                {!! $errors->first('priceSales5','<span class="help-block">:message</span>')!!}
               </div>
             </div>
           </div>
@@ -175,6 +172,8 @@
             $('#description').val(res.description);
 
             if (res.categoria === 'Petrolera | Industrial') {
+              $('#cost').attr('readonly', 'readonly');
+              $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat1.length; i++) {
                 var res = cat1[i] * priceList
                 newRes.push(res)
@@ -184,6 +183,8 @@
                 $('#pv4').text("(x0.57)")
               }
             }else if (res.categoria === 'Hidraulica') {
+              $('#cost').attr('readonly', 'readonly');
+              $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat2.length; i++) {
                 var res = cat2[i] * cost
                 newRes.push(res)
@@ -193,6 +194,8 @@
                 $('#pv4').text("(x0.35)")
               }
             }else if (res.categoria === 'Otro') {
+              $('#cost').removeAttr('readonly');
+              $('#priceList').attr('readonly', 'readonly');
               for (var i = 0; i < cat3.length; i++) {
                 var res = cost / cat3[i]
                 newRes.push(res)
@@ -222,6 +225,8 @@
         var newRes = []
 
         if (categoria === 'Petrolera | Industrial') {
+          var newCost = priceList * .50
+          $('#cost').val(newCost)
           for (var i = 0; i < cat1.length; i++) {
             var res = cat1[i] * priceList
             newRes.push(res)
@@ -231,6 +236,8 @@
             $('#pv4').text("(x0.57)")
           }
         }else if (categoria === 'Hidraulica') {
+          var newCost = priceList * .29
+          $('#cost').val(newCost)
           for (var i = 0; i < cat2.length; i++) {
             var res = cat2[i] * cost
             newRes.push(res)
