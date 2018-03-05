@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+// use Illuminate\Support\Facades\Redirect;
+// use App\resources\views;
+// use App\Http\Request\RegistrationEmployeeRequest;
+// use DB;
+
 class RegisterController extends Controller
 {
     /*
@@ -24,10 +29,10 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
+     * ruta despues de registrarse
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/admin-welcome';
 
     /**
      * Create a new controller instance.
