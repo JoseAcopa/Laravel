@@ -28,7 +28,7 @@
                   <i class="fa fa-ellipsis-v"></i>
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
-                <span class="text">{{$product->category}}</span>
+                <span class="text">{{$product->category->type}}</span>
                 <div class="tools">
                   <small class="label label-info"><i class="fa fa-clock-o"></i> Categoria</small>
                 </div>
@@ -48,7 +48,7 @@
                   <i class="fa fa-ellipsis-v"></i>
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
-                <span class="text">{{$product->supplier}}</span>
+                <span class="text">{{$product->supplier->business}}</span>
                 <div class="tools">
                   <small class="label label-info"><i class="fa fa-clock-o"></i> Proveedor</small>
                 </div>

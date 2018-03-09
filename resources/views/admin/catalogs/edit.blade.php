@@ -34,7 +34,6 @@
               <div class="form-group {{ $errors->has('letter') ? 'has-error' : '' }}">
                 <label for="initials" >Iniciales</label>
                 <input type="text" id="letter" name="letter" class="form-control" value="{{$catalog->letter}}" readonly>
-                <input type="text" id="categoria" name="categoria" value="{{$catalog->categoria}}" hidden>
               </div>
             </div>
             <div class="col-md-6">
@@ -43,7 +42,7 @@
                 <select class="form-control" name="proveedor">
                   <option value="{{$catalog->supplier_id}}">{{$catalog->supplier->business}}</option>
                   @foreach ($suppliers as $supplier)
-                    <option value="{{$supplier->business}}">{{$supplier->business}}</option>
+                    <option value="{{$supplier->id}}">{{$supplier->business}}</option>
                   @endforeach
                 </select>
               </div>
@@ -91,7 +90,6 @@
 
         var category = newVal[val.value]
         document.getElementById('letter').value = category.letters;
-        document.getElementById('categoria').value = category.categoria;
       }
     </script>
     <script type="text/javascript">

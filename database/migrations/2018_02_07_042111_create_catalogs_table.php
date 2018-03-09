@@ -18,9 +18,8 @@ class CreateCatalogsTable extends Migration
             $table->integer('category_id');
             $table->string('letter');
             $table->integer('supplier_id');
-            $table->string('unit_id');
+            $table->string('unit');
             $table->string('description');
-            $table->string('categoria');
             $table->timestamps();
         });
     }

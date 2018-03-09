@@ -11,7 +11,7 @@ class Catalog extends Model
 
   protected $fillable = [
     'category_id', 'initials', 'supplier_id',
-    'unit_id', 'description', 'categoria',
+    'unit', 'description',
   ];
 
   public function category()

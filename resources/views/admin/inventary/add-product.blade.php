@@ -51,10 +51,11 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : '' }}">
+              <div class="form-group {{ $errors->has('proveedor-view') ? 'has-error' : '' }}">
                 <label for="proveedor">Proveedor:</label>
-                <input type="text" name="proveedor" id="proveedor" value="{{ old('proveedor') }}" class="form-control" readonly>
-                {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
+                <input type="text" name="proveedor-view" id="proveedor-view" value="{{ old('proveedor') }}" class="form-control" readonly>
+                <input type="text" name="proveedor" id="proveedor" hidden>
+                {!! $errors->first('proveedor-view','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
@@ -103,9 +104,11 @@
             </div>
             <hr>
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('categoria-view') ? 'has-error' : '' }}">
                 <label for="">Categoria Precio Venta</label>
-                <input type="text" id="categoria" class="form-control" readonly>
+                <input type="text" id="categoria-view" name="categoria-view" class="form-control" readonly>
+                <input type="text" id="categoria" name="category" hidden>
+                {!! $errors->first('categoria-view','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('priceSales3') ? 'has-error' : '' }}">
                 <label for="priceSales3" id='ps'>Precio de Venta 3 <label id="pv3"></label></label>
@@ -166,12 +169,14 @@
             $('#idProduct').val(res.id);
             $('#letter').val(res.letter);
             $('#TProduct').val(res.category.type);
-            $('#categoria').val(res.categoria);
-            $('#proveedor').val(res.supplier.business);
-            $('#unidad').val(res.unit_id);
+            $('#categoria').val(res.category.id);
+            $('#categoria-view').val(res.category.categorias);
+            $('#proveedor-view').val(res.supplier.business);
+            $('#proveedor').val(res.supplier.id);
+            $('#unidad').val(res.unit);
             $('#description').val(res.description);
 
-            if (res.categoria === 'Petrolera | Industrial') {
+            if (res.category.categorias === 'Petrolera | Industrial') {
               $('#cost').attr('readonly', 'readonly');
               $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat1.length; i++) {
@@ -182,7 +187,7 @@
                 $('#pv3').text("(x0.60)")
                 $('#pv4').text("(x0.57)")
               }
-            }else if (res.categoria === 'Hidraulica') {
+            }else if (res.category.categorias === 'Hidraulica') {
               $('#cost').attr('readonly', 'readonly');
               $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat2.length; i++) {
@@ -193,7 +198,7 @@
                 $('#pv3').text("(x0.36)")
                 $('#pv4').text("(x0.35)")
               }
-            }else if (res.categoria === 'Otro') {
+            }else if (res.category.categorias === 'Otro') {
               $('#cost').removeAttr('readonly');
               $('#priceList').attr('readonly', 'readonly');
               for (var i = 0; i < cat3.length; i++) {
@@ -216,7 +221,7 @@
     </script>
     <script type="text/javascript">
       function priceSales() {
-        var categoria = $("#categoria").val()
+        var categoria = $("#categoria-view").val()
         var priceList = $("#priceList").val()
         var cost = $("#cost").val()
         var cat1 = [.70, .65, .60, .57]
@@ -224,6 +229,8 @@
         var cat3 = [.70, .75, .80, .85]
         var newRes = []
 
+        console.log(categoria);
+        
         if (categoria === 'Petrolera | Industrial') {
           var newCost = priceList * .50
           $('#cost').val(newCost)
@@ -262,15 +269,6 @@
           $('#priceSales2').val(newRes[1].toFixed(2))
           $('#priceSales3').val(newRes[2].toFixed(2))
           $('#priceSales4').val(newRes[3].toFixed(2))
-        }
-      }
-    </script>
-    <script type="text/javascript">
-      function priceFive(val) {
-        var value = val.value
-        var valueDefault = 0
-        if(value === ''){
-          document.getElementById('priceSales5').value=valueDefault.toFixed(2)
         }
       }
     </script>

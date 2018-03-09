@@ -35,7 +35,6 @@
               <div class="form-group {{ $errors->has('letter') ? 'has-error' : '' }}">
                 <label for="initials" >Iniciales</label>
                 <input class="form-control" type="text" id="letter" name="letter" readonly>
-                <input type="text" id="categoria" name="tipo_categoria" hidden>
               </div>
             </div>
             <div class="col-md-6">
@@ -93,7 +92,6 @@
 
         var category = newVal[val.value]
         document.getElementById('letter').value = category.letters;
-        document.getElementById('categoria').value = category.categorias;
       }
     </script>
     <script type="text/javascript">
