@@ -42,47 +42,47 @@
                 <div class="row">
                   <div class="col-xs-8">
                     <label for="TProduct">Tipo de Producto:</label>
-                    <input type="text" name="category" id='TProduct' value="{{ old('category') }}" class="form-control" readonly>
+                    <input type="text" name="category" id='TProduct' value="{{$product->category}}" class="form-control" readonly>
                     {!! $errors->first('category','<span class="help-block">:message</span>')!!}
                     <input type="text" name="idProduct" id="idProduct" hidden>
                   </div>
                   <div class="col-xs-4 top-copasat">
-                    <input type="text" id="letter" class="form-control" name="initials" value="{{ old('initials') }}" readonly>
+                    <input type="text" id="letter" class="form-control" name="initials" value="{{$product->initials}}" readonly>
                   </div>
                 </div>
               </div>
               <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : '' }}">
                 <label for="proveedor">Proveedor:</label>
-                <input type="text" name="proveedor" id="proveedor" value="{{ old('proveedor') }}" class="form-control" readonly>
+                <input type="text" name="proveedor" id="proveedor" value="{{$product->supplier}}" class="form-control" readonly>
                 {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('fecha_entrada') ? 'has-error' : '' }}">
                 <label for="fecha_entrada">Fecha de Entrada:</label>
-                <input type="date" name="fecha_entrada" id="fecha_entrada" value="{{ old('fecha_entrada') }}" class="form-control">
+                <input type="date" name="fecha_entrada" id="fecha_entrada" value="{{$product->checkin}}" class="form-control">
                 {!! $errors->first('fecha_entrada','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('cantidad_entrada') ? 'has-error' : '' }}">
                 <label for="cantidad_entrada">Cantidad de Entrada:</label>
-                <input type="number" name="cantidad_entrada" id="cantidad_entrada" value="{{ old('cantidad_entrada') }}" class="form-control" placeholder="Cantidad Entrada" min="0">
+                <input type="number" name="cantidad_entrada" id="cantidad_entrada" value="{{$product->quantity}}" class="form-control" placeholder="Cantidad Entrada" min="0">
                 {!! $errors->first('cantidad_entrada','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
                 <label for="unidad">Unidad de Medida:</label>
-                <input type="text" name="unidad" id="unidad" value="{{ old('unidad') }}" class="form-control" readonly>
+                <input type="text" name="unidad" id="unidad" value="{{$product->unit}}" class="form-control" readonly>
                 {!! $errors->first('unidad','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('precio_lista') ? 'has-error' : '' }}">
                 <label for="pricelist">Precio Lista:</label>
-                <input type="number" name="precio_lista" id="priceList" placeholder="Precio Lista" onchange="priceSales();" value="{{ old('precio_lista') }}" class="form-control">
+                <input type="number" name="precio_lista" id="priceList" placeholder="Precio Lista" onchange="priceSales();" value="{{$product->priceList}}" class="form-control">
                 {!! $errors->first('precio_lista','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('costo') ? 'has-error' : '' }}">
                 <label for="cost">Costo:</label>
-                <input type="number" name="costo" id="cost" placeholder="Costo" onchange="priceSales();" value="{{ old('costo') }}" class="form-control">
+                <input type="number" name="costo" id="cost" placeholder="Costo" onchange="priceSales();" value="{{$product->cost}}" class="form-control">
                 {!! $errors->first('costo','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('moneda') ? 'has-error' : '' }}">
@@ -99,7 +99,7 @@
             <div class="col-md-12">
               <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
                 <label for="description">Descripción:</label>
-                <textarea type="text" rows="4" name="description" id="description" placeholder="Descripción" class="form-control" readonly>{{ old('description') }}</textarea>
+                <textarea type="text" rows="4" name="description" id="description" placeholder="Descripción" class="form-control" readonly>{{$product->description}}</textarea>
                 {!! $errors->first('description','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -111,7 +111,7 @@
               </div>
               <div class="form-group {{ $errors->has('priceSales3') ? 'has-error' : '' }}">
                 <label for="priceSales3" id='ps'>Precio de Venta 3 <label id="pv3"></label></label>
-                <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{ old('priceSales3') }}" class="form-control" readonly>
+                <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{$product->priceList3}}" class="form-control" readonly>
                 {!! $errors->first('priceSales3','<span class="help-block">:message</span>')!!}
               </div>
             </div>

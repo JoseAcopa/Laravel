@@ -54,50 +54,62 @@ class ProductsControllers extends Controller
       if ($product === null) {
         $product = new Products;
         $product->id = $idProduct;
-        $product->category = request('category');
+        $product->category_id = request('category');
         $product->initials = request('initials');
-        $product->supplier = request('proveedor');
+        $product->supplier_id = request('proveedor');
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
-        $product->priceList = request('precio_lista');
-        $product->cost = request('costo');
+        $product->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+        $product->cost = request('costo') === null ? 0 : request('costo');
         $product->stock = request('cantidad_entrada');
+        $product->priceSales1 = request('priceSales1');
+        $product->priceSales2 = request('priceSales2');
+        $product->priceSales3 = request('priceSales3');
+        $product->priceSales4 = request('priceSales4');
+        $product->priceSales5 = request('priceSales5') === null ? 0 : request('priceSales5');
+        $product->coin_id = request('moneda');
       }else {
         $stock  = (integer)$product->stock + (integer)request('cantidad_entrada');
         $product->stock=(string)$stock;
-        $product->category = request('category');
+        $product->category_id = request('category');
         $product->initials = request('initials');
-        $product->supplier = request('proveedor');
+        $product->supplier_id = request('proveedor');
         $product->checkin = request('fecha_entrada');
         $product->unit = request('unidad');
         $product->description = request('description');
-        $product->priceList = request('precio_lista');
-        $product->cost = request('costo');
+        $product->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+        $product->cost = request('costo') === null ? 0 : request('costo');
+        $product->priceSales1 = request('priceSales1');
+        $product->priceSales2 = request('priceSales2');
+        $product->priceSales3 = request('priceSales3');
+        $product->priceSales4 = request('priceSales4');
+        $product->priceSales5 = request('priceSales5') === null ? 0 : request('priceSales5');
+        $product->coin_id = request('moneda');
       }
 
       $product->save();
 
       $invoice = new Invoice;
-      $invoice->nInvoice = request('nInvoice');
-      $invoice->category = request('category');
+      $invoice->nInvoice = request('nInvoice') === null ? '' : request('nInvoice');
+      $invoice->category_id = request('category');
       $invoice->initials = request('initials');
-      $invoice->supplier = request('proveedor');
+      $invoice->supplier_id = request('proveedor');
       $invoice->checkin = request('fecha_entrada');
       $invoice->quantity = request('cantidad_entrada');
       $invoice->unit = request('unidad');
-      $invoice->priceList = request('precio_lista');
-      $invoice->cost = request('costo');
+      $invoice->priceList = request('precio_lista') === null ? 0 : request('precio_lista');
+      $invoice->cost = request('costo') === null ? 0 : request('costo');
       $invoice->description = request('description');
       $invoice->priceSales1 = request('priceSales1');
       $invoice->priceSales2 = request('priceSales2');
       $invoice->priceSales3 = request('priceSales3');
       $invoice->priceSales4 = request('priceSales4');
-      $invoice->priceSales5 = request('priceSales5');
+      $invoice->priceSales5 = request('priceSales5') === null ? 0 : request('priceSales5');
       $invoice->coin_id = request('moneda');
       $invoice->save();
 
-      return redirect('admin/inventary')->with('success','Producto '. $product->category .' Guardado correctamente')
+      return redirect('admin/inventary')->with('success','Producto '. $product->category->type .' Guardado correctamente')
       ->withInput(request(['tipo_producto' , 'proveedor', 'fecha_entrada', 'cantidad_entrada',
       'unidad', 'precio_lista', 'costo', 'moneda', 'description', 'priceSales1',
       'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5', 'initials']));
@@ -113,6 +125,8 @@ class ProductsControllers extends Controller
     {
       $product = Products::find($id);
       $product->coin;
+      $product->supplier;
+      $product->category;
       return view('admin.inventary.show-product', compact('product'));
     }
 

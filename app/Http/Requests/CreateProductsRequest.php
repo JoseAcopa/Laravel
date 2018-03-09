@@ -25,19 +25,17 @@ class CreateProductsRequest extends FormRequest
     {
         return [
           'category' => 'max:255|required',
-          'proveedor' => 'max:255|required',
+          'proveedor-view' => 'max:255|required',
           'fecha_entrada' => 'max:255|required',
           'cantidad_entrada' => 'max:255|required',
           'unidad' => 'max:255|required',
-          'precio_lista' => 'max:255|required',
-          'costo' => 'max:255|required',
           'moneda' => 'max:20|required',
+          'categoria-view' => 'required',
           'description' => 'max:255|required',
           'priceSales1' => 'max:255|required',
           'priceSales2' => 'max:255|required',
           'priceSales3' => 'max:255|required',
           'priceSales4' => 'max:255|required',
-          'priceSales5' => 'max:255|required',
         ];
     }
 }

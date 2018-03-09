@@ -16,4 +16,9 @@ class Coins extends Model
   {
     return $this->hasMany('App\Products');
   }
+
+  public function invoices()
+  {
+    return $this->hasMany('App\Invoice');
+  }
 }
