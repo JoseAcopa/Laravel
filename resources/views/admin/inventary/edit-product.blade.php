@@ -18,31 +18,16 @@
           <div class="col-md-4">
             <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto</h3>
           </div>
-          {{-- <div class="col-md-8">
-            <div class="form-group">
-              <label>Buscar Producto en Catálogo</label>
-              <select id="searchProduct" class="form-control select2" onchange="catalogo(this)">
-                <option selected="selected" value="null">Buscar...</option>
-                @foreach ($catalog as $products)
-                  <option value="{{ $products->id }}">{{ $products->description }}</option>
-                @endforeach
-              </select>
-            </div>
-          </div> --}}
         </div>
         <form role="form" method="POST" action="/admin/inventary">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
-              <div class="form-group">
-                <label for="nInvoice">N° de Factura:</label>
-                <input type="text" name="nInvoice" class="form-control" value="-" placeholder="Número Factura">
-              </div>
               <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                 <div class="row">
                   <div class="col-xs-8">
                     <label for="TProduct">Tipo de Producto:</label>
-                    <input type="text" name="category" id='TProduct' value="{{$product->category}}" class="form-control" readonly>
+                    <input type="text" name="category" id='TProduct' value="{{$product->category->type}}" class="form-control" readonly>
                     {!! $errors->first('category','<span class="help-block">:message</span>')!!}
                     <input type="text" name="idProduct" id="idProduct" hidden>
                   </div>
@@ -53,7 +38,7 @@
               </div>
               <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : '' }}">
                 <label for="proveedor">Proveedor:</label>
-                <input type="text" name="proveedor" id="proveedor" value="{{$product->supplier}}" class="form-control" readonly>
+                <input type="text" name="proveedor" id="proveedor" value="{{$product->supplier->business}}" class="form-control" readonly>
                 {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -64,8 +49,8 @@
                 {!! $errors->first('fecha_entrada','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('cantidad_entrada') ? 'has-error' : '' }}">
-                <label for="cantidad_entrada">Cantidad de Entrada:</label>
-                <input type="number" name="cantidad_entrada" id="cantidad_entrada" value="{{$product->quantity}}" class="form-control" placeholder="Cantidad Entrada" min="0">
+                <label for="cantidad_entrada">Stock:</label>
+                <input type="number" name="cantidad_entrada" id="cantidad_entrada" value="{{$product->stock}}" class="form-control" placeholder="Cantidad Entrada" min="0">
                 {!! $errors->first('cantidad_entrada','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
@@ -88,10 +73,10 @@
               <div class="form-group {{ $errors->has('moneda') ? 'has-error' : '' }}">
                 <label for="moneda">Tipo de moneda:</label>
                 <select name="moneda" value="{{ old('moneda') }}" class="form-control">
-                  <option value="">Seleccione tipo de moneda</option>
-                  {{-- @foreach ($coins as $coin)
+                  <option value="{{$product->coin_id}}">{{$product->coin->type}}</option>
+                  @foreach ($coins as $coin)
                     <option value="{{$coin->id}}">{{$coin->type}}</option>
-                  @endforeach --}}
+                  @endforeach
                 </select>
                 {!! $errors->first('moneda','<span class="help-block">:message</span>')!!}
               </div>

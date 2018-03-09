@@ -138,11 +138,12 @@ class ProductsControllers extends Controller
      */
     public function edit($id)
     {
-      // $suppliers = Suppliers::all();
-      // $units = Units::all();
       $product = Products::find($id);
-      // $coins = Coins::all();
-      return view('admin.inventary.edit-product', compact('product'));
+      $coins = Coins::all();
+      $product->coin;
+      $product->supplier;
+      $product->category;
+      return view('admin.inventary.edit-product', compact('product', 'coins'));
     }
 
     /**
