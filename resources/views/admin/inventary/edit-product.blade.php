@@ -92,35 +92,35 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label for="">Categoria Precio Venta</label>
-                <input type="text" id="categoria" class="form-control" readonly>
+                <input type="text" id="categoria" class="form-control" value="{{$product->category->categorias}}" readonly>
               </div>
               <div class="form-group {{ $errors->has('priceSales3') ? 'has-error' : '' }}">
                 <label for="priceSales3" id='ps'>Precio de Venta 3 <label id="pv3"></label></label>
-                <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{$product->priceList3}}" class="form-control" readonly>
+                <input type="text" name="priceSales3" id="priceSales3" placeholder="Precio de Venta 3" value="{{$product->priceSales3}}" class="form-control" readonly>
                 {!! $errors->first('priceSales3','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('priceSales1') ? 'has-error' : '' }}">
                 <label for="priceSales1" id='ps'>Precio de Venta 1<label id="pv1"></label></label>
-                <input type="text" name="priceSales1" id="priceSales1" placeholder="Precio de Venta 1" value="{{ old('priceSales1') }}" class="form-control" readonly>
+                <input type="text" name="priceSales1" id="priceSales1" placeholder="Precio de Venta 1" value="{{$product->priceSales1}}" class="form-control" readonly>
                 {!! $errors->first('priceSales1','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('priceSales4') ? 'has-error' : '' }}">
                 <label for="priceSales4" id='ps'>Precio de Venta 4 <label id="pv4"></label></label>
-                <input type="text" name="priceSales4" id="priceSales4" placeholder="Precio de Venta 4" value="{{ old('priceSales4') }}" class="form-control" readonly>
+                <input type="text" name="priceSales4" id="priceSales4" placeholder="Precio de Venta 4" value="{{$product->priceSales4}}" class="form-control" readonly>
                 {!! $errors->first('priceSales4','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('priceSales2') ? 'has-error' : '' }}">
                 <label for="priceSales2" id='ps'>Precio de Venta 2 <label id="pv2"></label></label>
-                <input type="text" name="priceSales2" id="priceSales2" placeholder="Precio de Venta 2" value="{{ old('priceSales2') }}" class="form-control" readonly>
+                <input type="text" name="priceSales2" id="priceSales2" placeholder="Precio de Venta 2" value="{{$product->priceSales2}}" class="form-control" readonly>
                 {!! $errors->first('priceSales2','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('priceSales5') ? 'has-error' : '' }}">
                 <label for="priceSales5">Precio de Venta 5:</label>
-                <input type="text" name="priceSales5" id='priceSales5' placeholder="Precio de Venta 5" value="{{ old('priceSales5') }}" class="form-control">
+                <input type="text" name="priceSales5" id='priceSales5' placeholder="Precio de Venta 5" value="{{$product->priceSales5}}" class="form-control">
                 {!! $errors->first('priceSales5','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -159,7 +159,9 @@
             $('#unidad').val(res.unit_id);
             $('#description').val(res.description);
 
-            if (res.categoria === 'Petrolera | Industrial') {
+            if (res.category.categarias === 'Petrolera | Industrial') {
+              $('#cost').attr('readonly', 'readonly');
+              $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat1.length; i++) {
                 var res = cat1[i] * priceList
                 newRes.push(res)
@@ -168,7 +170,9 @@
                 $('#pv3').text("(x0.60)")
                 $('#pv4').text("(x0.57)")
               }
-            }else if (res.categoria === 'Hidraulica') {
+            }else if (res.category.categarias === 'Hidraulica') {
+              $('#cost').attr('readonly', 'readonly');
+              $('#priceList').removeAttr('readonly');
               for (var i = 0; i < cat2.length; i++) {
                 var res = cat2[i] * cost
                 newRes.push(res)
@@ -177,7 +181,9 @@
                 $('#pv3').text("(x0.36)")
                 $('#pv4').text("(x0.35)")
               }
-            }else if (res.categoria === 'Otro') {
+            }else if (res.category.categarias === 'Otro') {
+              $('#cost').removeAttr('readonly');
+              $('#priceList').attr('readonly', 'readonly');
               for (var i = 0; i < cat3.length; i++) {
                 var res = cost / cat3[i]
                 newRes.push(res)
