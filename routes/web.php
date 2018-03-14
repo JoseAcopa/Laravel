@@ -80,6 +80,9 @@ Route::get('/admin/editar-producto-catalogo/{catalog}', 'CatalogsController@edit
 Route::resource('/admin/catalogo','CatalogsController');
 // ------------------End Alta de Catalogo----------------------------------------
 
+// ------------------facturas----------------------------------------
+Route::resource('/admin/facturas', 'ControllerInvoices');
+// ------------------End facturas----------------------------------------
 
 // =======================metodos ajax ==============================================
 Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
@@ -88,68 +91,3 @@ Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
 Route::get('/admin/reportes', function(){
   return view ('admin/reportes/reportes');
 });
-
-/*******************************8*******Users*******************************************/
-Route::get('/users/users-welcome', function(){
-  return view ('users/users');
-});
-
-Route::get('/users/client', function(){
-  return view ('users/client/client');
-});
-
-Route::get('/users/edit-client', function(){
-  return view ('users/client/edit-client');
-});
-
-Route::get('/users/add-client', function(){
-  return view ('users/client/add-client');
-});
-
-Route::get('/users/quotation', function(){
-  return view ('users/quotation/quotation');
-});
-
-Route::get('/users/add-quotation', function(){
-  return view ('users/quotation/add-quotation');
-});
-
-Route::get('/users/edit-quotation', function(){
-  return view ('users/quotation/edit-quotation');
-});
-
-Route::get('/users/inventaryMenu', function(){
-  return view ('users/inventary/inventaryMenu');
-});
-
-Route::get('/users/inventary', function(){
-  return view ('users/inventary/inventary');
-});
-
-Route::get('/users/add-product', function(){
-  return view ('users/inventary/add-product');
-});
-
-Route::get('/users/edit-product', function(){
-  return view ('users/inventary/edit-product');
-});
-
-Route::get('/users/inventary-out', function(){
-  return view ('users/inventary/inventary-out');
-});
-
-Route::get('/users/add-out', function(){
-  return view ('users/inventary/add-out');
-});
-
-Route::get('/users/edit-out', function(){
-  return view ('users/inventary/edit-out');
-});
-
-
-// -------------------login--------------------------------------
-// Auth::routes();
-//
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// -------------------End login--------------------------------------

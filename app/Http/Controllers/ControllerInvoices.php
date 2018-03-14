@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Invoice;
 
 class ControllerInvoices extends Controller
 {
@@ -13,7 +14,8 @@ class ControllerInvoices extends Controller
      */
     public function index()
     {
-        //
+      $invoices = Invoice::all();
+      return view('admin.facturas.index', compact('invoices'));
     }
 
     /**

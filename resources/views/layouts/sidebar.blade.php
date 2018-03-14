@@ -52,7 +52,7 @@ function current_page($url = '/'){
             <li <?php echo current_page('admin/inventary-out') ? "class='active'" : "";?>><a href="#">Salidas de Productos</a></li>
           </ul>
         </li>
-        <li><a href="#"><i class="fa fa-clipboard"></i> <span>Facturas</span></a></li>
+        <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>><a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span></a></li>
         <li class="header">COTIZACION</li>
         <li <?php echo current_page('admin/quotation') ? "class='active'" : "";?>><a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i> <span>Cotización</span></a></li>
       </ul>
