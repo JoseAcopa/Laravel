@@ -21,7 +21,8 @@
       "bFilter": true,
       "bSort": true,
       "bInfo": true,
-      "bAutoWidth": true
+      "bAutoWidth": true,
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]]
     });
   });
 </script>

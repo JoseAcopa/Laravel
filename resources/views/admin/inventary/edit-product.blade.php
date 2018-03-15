@@ -19,7 +19,7 @@
             <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto</h3>
           </div>
         </div>
-        <form role="form" method="POST" action="/admin/inventary">
+        {!! Form::model($product, ['method' => 'PATCH','route' => ['inventary.update', $product->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
@@ -27,19 +27,20 @@
                 <div class="row">
                   <div class="col-xs-8">
                     <label for="TProduct">Tipo de Producto:</label>
-                    <input type="text" name="category" id='TProduct' value="{{$product->category->type}}" class="form-control" readonly>
+                    <input type="text" id='TProduct' value="{{$product->category->type}}" class="form-control" readonly>
+                    <input type="text" value="{{$product->category->id}}" name="category" hidden>
                     {!! $errors->first('category','<span class="help-block">:message</span>')!!}
-                    <input type="text" name="idProduct" id="idProduct" hidden>
                   </div>
                   <div class="col-xs-4 top-copasat">
                     <input type="text" id="letter" class="form-control" name="initials" value="{{$product->initials}}" readonly>
                   </div>
                 </div>
               </div>
-              <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : '' }}">
+              <div class="form-group {{ $errors->has('proveedor-view') ? 'has-error' : '' }}">
                 <label for="proveedor">Proveedor:</label>
-                <input type="text" name="proveedor" id="proveedor" value="{{$product->supplier->business}}" class="form-control" readonly>
-                {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
+                <input type="text" name="proveedor-view" id="proveedor" value="{{$product->supplier->business}}" class="form-control" readonly>
+                <input name="proveedor" value="{{$product->supplier->id}}" hidden>
+                {!! $errors->first('proveedor-view','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
@@ -73,7 +74,7 @@
               <div class="form-group {{ $errors->has('moneda') ? 'has-error' : '' }}">
                 <label for="moneda">Tipo de moneda:</label>
                 <select name="moneda" value="{{ old('moneda') }}" class="form-control">
-                  <option value="{{$product->coin_id}}">{{$product->coin->type}}</option>
+                  <option value="{{$product->coin->id}}">{{$product->coin->type}}</option>
                   @foreach ($coins as $coin)
                     <option value="{{$coin->id}}">{{$coin->type}}</option>
                   @endforeach
@@ -129,79 +130,9 @@
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
             <a href="{{url('admin/inventary')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
           </div>
-        </form>
+        {!! Form::close() !!}
       </div>
     </section>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchProduct").select2();
-      });
-    </script>
-    <script type="text/javascript">
-      function catalogo(val) {
-        var id = val.value;
-        var priceList = $("#priceList").val()
-        var cost = $("#cost").val()
-        var cat1 = [.70, .65, .60, .57]
-        var cat2 = [.40, .37, .36, .35]
-        var cat3 = [.70, .75, .80, .85]
-        var newRes = []
-
-        $.ajax({
-          url: '/producto/'+id,
-          type: 'GET',
-          success: (res)=>{
-            $('#idProduct').val(res.id);
-            $('#letter').val(res.letter);
-            $('#TProduct').val(res.category.type);
-            $('#categoria').val(res.categoria);
-            $('#proveedor').val(res.supplier.business);
-            $('#unidad').val(res.unit_id);
-            $('#description').val(res.description);
-
-            if (res.category.categarias === 'Petrolera | Industrial') {
-              $('#cost').attr('readonly', 'readonly');
-              $('#priceList').removeAttr('readonly');
-              for (var i = 0; i < cat1.length; i++) {
-                var res = cat1[i] * priceList
-                newRes.push(res)
-                $('#pv1').text("(x0.70)")
-                $('#pv2').text("(x0.65)")
-                $('#pv3').text("(x0.60)")
-                $('#pv4').text("(x0.57)")
-              }
-            }else if (res.category.categarias === 'Hidraulica') {
-              $('#cost').attr('readonly', 'readonly');
-              $('#priceList').removeAttr('readonly');
-              for (var i = 0; i < cat2.length; i++) {
-                var res = cat2[i] * cost
-                newRes.push(res)
-                $('#pv1').text("(x0.40)")
-                $('#pv2').text("(x0.37)")
-                $('#pv3').text("(x0.36)")
-                $('#pv4').text("(x0.35)")
-              }
-            }else if (res.category.categarias === 'Otro') {
-              $('#cost').removeAttr('readonly');
-              $('#priceList').attr('readonly', 'readonly');
-              for (var i = 0; i < cat3.length; i++) {
-                var res = cost / cat3[i]
-                newRes.push(res)
-                $('#pv1').text("(/ 0.70)")
-                $('#pv2').text("(/ 0.75)")
-                $('#pv3').text("(/ 0.80)")
-                $('#pv4').text("(/ 0.85)")
-              }
-            }
-
-            $('#priceSales1').val(newRes[0].toFixed(2))
-            $('#priceSales2').val(newRes[1].toFixed(2))
-            $('#priceSales3').val(newRes[2].toFixed(2))
-            $('#priceSales4').val(newRes[3].toFixed(2))
-          }
-        })
-      }
-    </script>
     <script type="text/javascript">
       function priceSales() {
         var categoria = $("#categoria").val()
@@ -246,15 +177,6 @@
           $('#priceSales2').val(newRes[1].toFixed(2))
           $('#priceSales3').val(newRes[2].toFixed(2))
           $('#priceSales4').val(newRes[3].toFixed(2))
-        }
-      }
-    </script>
-    <script type="text/javascript">
-      function priceFive(val) {
-        var value = val.value
-        var valueDefault = 0
-        if(value === ''){
-          document.getElementById('priceSales5').value=valueDefault.toFixed(2)
         }
       }
     </script>

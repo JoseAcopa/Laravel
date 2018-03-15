@@ -78,17 +78,7 @@
                   <i class="fa fa-ellipsis-v"></i>
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
-                <span class="text">{{$product->description}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Descripción</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->priceList}}</span>
+                <span class="text">${{$product->priceList}} {{$product->coin->type}}</span>
                 <div class="tools">
                   <small class="label label-info"><i class="fa fa-clock-o"></i> Precio Lista</small>
                 </div>
@@ -98,7 +88,7 @@
                   <i class="fa fa-ellipsis-v"></i>
                   <i class="fa fa-ellipsis-v"></i>
                 </span>
-                <span class="text">{{$product->cost}}</span>
+                <span class="text">${{$product->cost}} {{$product->coin->type}}</span>
                 <div class="tools">
                   <small class="label label-info"><i class="fa fa-clock-o"></i> Costo</small>
                 </div>
@@ -115,6 +105,16 @@
                 </span>
                 <div class="tools">
                   <small class="label label-info"><i class="fa fa-clock-o"></i> Stock</small>
+                </div>
+              </li>
+              <li>
+                <span class="handle ui-sortable-handle">
+                  <i class="fa fa-ellipsis-v"></i>
+                  <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <span class="text">{{$product->description}}</span>
+                <div class="tools">
+                  <small class="label label-info"><i class="fa fa-clock-o"></i> Descripción</small>
                 </div>
               </li>
             </ul>

@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
-use App\Suppliers;
-use App\Units;
-use App\Category;
 use App\Coins;
 use App\Catalog;
 use App\Invoice;
 use App\Http\Requests\CreateProductsRequest;
+use App\Http\Requests\UpdateProductsRequest;
 
 class ProductsControllers extends Controller
 {
@@ -153,7 +151,7 @@ class ProductsControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductsRequest $request, $id)
     {
       $newCategory = $request->input('category');
       $newInitials = $request->input('initials');
@@ -162,6 +160,14 @@ class ProductsControllers extends Controller
       $newUnit = $request->input('unidad');
       $newDescription = $request->input('description');
       $newStock = $request->input('cantidad_entrada');
+      $newPriceList = $request->request('precio_lista');
+      $newCost = $request->request('costo');
+      $newPriceSales1 = $request->request('priceSales1');
+      $newPriceSales2 = $request->request('priceSales2');
+      $newPriceSales3 = $request->request('priceSales3');
+      $newPriceSales4 = $request->request('priceSales4');
+      $newPriceSales4 = $request->request('priceSales5');
+      $newCoin = $request->request('moneda');
 
       $product = Products::find($id);
 
@@ -172,9 +178,18 @@ class ProductsControllers extends Controller
       $product->unit = $newUnit;
       $product->description = $newDescription;
       $product->stock = $newStock;
-      $product->save();
-
-      return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
+      $product->priceList = $newPriceList;
+      $product->cost = $newCost;
+      $product->priceSales1 = $newPriceSales1;
+      $product->priceSales2 = $newPriceSales2;
+      $product->priceSales3 = $newPriceSales3;
+      $product->priceSales4 = $newPriceSales4;
+      $product->priceSales5 = $newPriceSales5;
+      $product->coin_id = $newCoin;
+      return $product;
+      // $product->save();
+      //
+      // return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
     }
 
     /**

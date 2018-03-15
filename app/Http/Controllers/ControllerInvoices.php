@@ -7,7 +7,11 @@ use App\Invoice;
 
 class ControllerInvoices extends Controller
 {
-    /**
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -81,6 +85,7 @@ class ControllerInvoices extends Controller
      */
     public function destroy($id)
     {
-        //
+      Invoice::find($id)->delete();
+      return redirect('admin/facturas')->with('success','Factura eliminado correctamente');
     }
 }
