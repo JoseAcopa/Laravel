@@ -8,7 +8,6 @@ use App\Coins;
 use App\Catalog;
 use App\Invoice;
 use App\Http\Requests\CreateProductsRequest;
-use App\Http\Requests\UpdateProductsRequest;
 
 class ProductsControllers extends Controller
 {
@@ -151,7 +150,7 @@ class ProductsControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductsRequest $request, $id)
+    public function update($request, $id)
     {
       $newCategory = $request->input('category');
       $newInitials = $request->input('initials');
@@ -171,9 +170,9 @@ class ProductsControllers extends Controller
 
       $product = Products::find($id);
 
-      $product->category = $newCategory;
+      $product->category_id = $newCategory;
       $product->initials = $newInitials;
-      $product->supplier = $newSupplier;
+      $product->supplier_id = $newSupplier;
       $product->checkin = $newCheckin;
       $product->unit = $newUnit;
       $product->description = $newDescription;
@@ -186,10 +185,9 @@ class ProductsControllers extends Controller
       $product->priceSales4 = $newPriceSales4;
       $product->priceSales5 = $newPriceSales5;
       $product->coin_id = $newCoin;
-      return $product;
-      // $product->save();
-      //
-      // return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
+      $product->save();
+
+      return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
     }
 
     /**
@@ -204,10 +202,19 @@ class ProductsControllers extends Controller
       return redirect('admin/inventary')->with('success','Producto '. $id .' eliminado correctamente');
     }
 
-    public function getProductAjax($id)
+    public function getCatalogtAjax($id)
     {
       $product = Catalog::find($id);
       $product->unit;
+      $product->supplier;
+      $product->category;
+      return $product;
+    }
+
+    public function getProductAjax($id)
+    {
+      $product = Products::find($id);
+      $product->coin;
       $product->supplier;
       $product->category;
       return $product;

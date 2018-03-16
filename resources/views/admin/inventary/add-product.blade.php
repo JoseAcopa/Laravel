@@ -163,7 +163,7 @@
         var newRes = []
 
         $.ajax({
-          url: '/producto/'+id,
+          url: '/producto-catalogo/'+id,
           type: 'GET',
           success: (res)=>{
             $('#idProduct').val(res.id);
@@ -230,7 +230,7 @@
         var newRes = []
 
         console.log(categoria);
-        
+
         if (categoria === 'Petrolera | Industrial') {
           var newCost = priceList * .50
           $('#cost').val(newCost)

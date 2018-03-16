@@ -33,26 +33,11 @@ Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
 // ------------------end quotations----------------------------------------
 
 // ------------------inventary----------------------------------------
-Route::get('/admin/inventaryMenu', function(){
-  return view ('admin/inventary/inventaryMenu');
-});
 Route::get('/admin/add-product', 'ProductsControllers@create');
 Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
 Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
-
-Route::get('/admin/add-entrada', function(){
-  return view ('admin/inventary/add-entrada');
-});
-
-Route::get('/admin/inventary/price/price', function(){
-  return view ('admin/inventary/price/price');
-});
-
-Route::get('/admin/inventary/price/add-price', function(){
-  return view ('admin/inventary/price/add-price');
-});
 
 // ------------------clasificationProduct---------------------------------------
 Route::get('/admin/clasificationProduct', 'CategoriesController@create');
@@ -60,19 +45,12 @@ Route::get('/admin/edit-checkin/{checkin}', 'CategoriesController@edit');
 Route::resource('admin/clasificationProduct','CategoriesController');
 // ------------------End clasificationProduct----------------------------------------
 
-// ------------------checkin----------------------------------------
-Route::get('/admin/add-checkin', 'CheckinsController@create');
-Route::get('/admin/edit-checkin/{checkin}', 'CheckinsController@edit');
-Route::get('/admin/show-checkin/{checkin}', 'CheckinsController@show');
-Route::resource('admin/checkin','CheckinsController');
-// ------------------End checkin----------------------------------------
-
-// ------------------checkouts----------------------------------------
-Route::get('/admin/add-out', 'CheckoutsController@create');
-Route::get('/admin/edit-out/{checkout}', 'CheckoutsController@edit');
-Route::get('/admin/show-out/{checkout}', 'CheckoutsController@show');
-Route::resource('/admin/inventary-out','CheckoutsController');
-// ------------------End checkouts----------------------------------------
+// ------------------checkout----------------------------------------
+Route::get('/admin/add-product-output', 'CheckoutsController@create');
+Route::get('/admin/edit-product-output/{checkout}', 'CheckoutsController@edit');
+Route::get('/admin/show-product-output/{checkout}', 'CheckoutsController@show');
+Route::resource('/admin/product-output','CheckoutsController');
+// ------------------End checkout----------------------------------------
 
 // ------------------Alta de Catalogo----------------------------------------
 Route::get('/admin/alta-producto-catalogo', 'CatalogsController@create');
@@ -85,9 +63,6 @@ Route::resource('/admin/facturas', 'ControllerInvoices');
 // ------------------End facturas----------------------------------------
 
 // =======================metodos ajax ==============================================
+Route::get('/producto-catalogo/{id}', 'ProductsControllers@getCatalogtAjax');
 Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
-
-// =======================Reportes ==============================================
-Route::get('/admin/reportes', function(){
-  return view ('admin/reportes/reportes');
-});
+// =======================End metodos ajax ==============================================

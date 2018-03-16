@@ -11,8 +11,23 @@ class Checkouts extends Model
 
   // public $timestamps = false;
   protected $fillable = [
-      'nInvoice', 'TProduct', 'NProduct', 'provider', 'checkout',
-      'quantity', 'merma', 'stock', 'unit', 'priceList', 'cost', 'priceSales',
-      'description', 'totalAmount',
+    'category_id', 'initials', 'supplier_id',
+    'unit', 'description', 'priceList','cost',
+    'coin_id', 'stock', 'quantity_output', 'price_output'
   ];
+
+  public function coin()
+  {
+    return $this->belongsTo('App\Coins');
+  }
+
+  public function category()
+  {
+    return $this->belongsTo('App\Category');
+  }
+
+  public function supplier()
+  {
+    return $this->belongsTo('App\Suppliers');
+  }
 }

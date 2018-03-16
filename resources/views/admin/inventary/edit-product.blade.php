@@ -27,12 +27,12 @@
                 <div class="row">
                   <div class="col-xs-8">
                     <label for="TProduct">Tipo de Producto:</label>
-                    <input type="text" id='TProduct' value="{{$product->category->type}}" class="form-control" readonly>
+                    <input type="text" value="{{$product->category->type}}" class="form-control" readonly>
                     <input type="text" value="{{$product->category->id}}" name="category" hidden>
                     {!! $errors->first('category','<span class="help-block">:message</span>')!!}
                   </div>
                   <div class="col-xs-4 top-copasat">
-                    <input type="text" id="letter" class="form-control" name="initials" value="{{$product->initials}}" readonly>
+                    <input type="text" class="form-control" name="initials" value="{{$product->initials}}" readonly>
                   </div>
                 </div>
               </div>

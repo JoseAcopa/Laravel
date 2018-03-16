@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Checkouts;
-use App\Suppliers;
-use App\Units;
 use App\Products;
 
 class CheckoutsController extends Controller
@@ -21,8 +19,8 @@ class CheckoutsController extends Controller
      */
     public function index()
     {
-      $checkouts = Checkouts::all();
-      return view('admin.inventary.inventary-out', compact('checkouts'));
+      $checkouts = Checkouts::with(['supplier', 'category'])->get();
+      return view('admin.checkout.index', compact('checkouts'));
     }
 
     /**
@@ -33,7 +31,7 @@ class CheckoutsController extends Controller
     public function create()
     {
       $products = Products::all();
-      return view('admin.inventary.add-out', compact('products'));
+      return view('admin.checkout.add', compact('products'));
     }
 
     /**
