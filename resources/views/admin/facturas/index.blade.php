@@ -49,7 +49,7 @@
                   <td class="row-copasat">
                     @if (auth()->user()->update === 1)
                       <a class="btn btn-info" href="{{ url('admin/edit-employee',$invoice->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                      <button class="btn btn-primary"><i class="fa fa-print"></i></button>
+                      <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-print"></i></a>
                     @endif
                     @if (auth()->user()->delete === 1)
                       {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', $invoice->id]]) !!}

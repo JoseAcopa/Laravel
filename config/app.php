@@ -180,6 +180,9 @@ return [
         //agregar  provider manuales
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
+
+        //generador de pdf
+        Barryvdh\DomPDF\ServiceProvider::class,
     ],
 
     /*
@@ -231,6 +234,8 @@ return [
         //agregando alias manuales
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        //alias de pdf
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 
