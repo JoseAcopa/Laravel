@@ -25,33 +25,30 @@
       <!-- info row -->
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
-          De
+          Atención:
           <address>
             <strong>{{Auth::user()->name}}</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: {{Auth::user()->phone}}<br>
+            Telefono: {{Auth::user()->phone}}<br>
             Email: {{Auth::user()->email}}
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          To
+          Para:
           <address>
-            <strong>John Doe</strong><br>
-            795 Folsom Ave, Suite 600<br>
-            San Francisco, CA 94107<br>
-            Phone: (555) 539-1037<br>
-            Email: john.doe@example.com
+            <strong>Grupo R Perforación S.A. de C.V.</strong><br>
+            Camino a Mata de Pita 7A Bis<br>
+            Las Bajadas, Veracruz.<br>
+            CP 91726.
           </address>
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          <b>Factura #{{$invoice->nInvoice}}</b><br>
+          <b>Factura RXS-{{$invoice->nInvoice}}</b><br>
           <br>
-          <b>Order ID:</b> 4F3S8J<br>
-          <b>Payment Due:</b> 2/22/2014<br>
-          <b>Account:</b> 968-34567
+          <b>No. de Licitación:</b> 4F3S8J<br>
+          <b>Fecha:</b>{{ date('d-m-Y') }}<br>
+          <b>Cuenta:</b> 968-34567
         </div>
         <!-- /.col -->
       </div>
@@ -63,10 +60,10 @@
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Qty</th>
-              <th>Product</th>
-              <th>Serial #</th>
-              <th>Description</th>
+              <th>Cant.</th>
+              <th>Producto</th>
+              <th>U. Medida</th>
+              <th>Descripcion</th>
               <th>Subtotal</th>
             </tr>
             </thead>
@@ -105,24 +102,39 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12 invoice-col">
+          <address>
+            <strong>FAVOR DE REVISAR TODAS LAS CONDICIONES DE VENTA...GRACIAS!!!</strong><br>
+          </address>
+        </div>
+      </div>
 
       <div class="row">
         <!-- accepted payments column -->
         <div class="col-xs-6">
-          <p class="lead">Payment Methods:</p>
-          <img src="image/visa.png" alt="Visa">
+          <p class="lead">Metodos de Pago:</p>
+          {{-- <img src="image/visa.png" alt="Visa">
           <img src="image/mastercard.png" alt="Mastercard">
           <img src="image/american-express.png" alt="American Express">
-          <img src="image/paypal2.png" alt="Paypal">
+          <img src="image/paypal2.png" alt="Paypal"> --}}
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
-            dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
+            DATOS FISCALES<br>
+            Rayos X y Servicios Industriales S.A. de C.V.<br>
+            Calle Júpiter No. 115<br>
+            Fracc. Galaxia<br>
+            Villahermosa, Tab.<br>
+            CP 86035<br>
+            RFC: RXS050608SY3<br><br>
+            No. de Cuenta BANAMEX: 8004175 SUC: 820<br>
+            CLABE INTERBANCARIA: 002790082080041755<br>
+            CUENTA EN USD: 70009669750
           </p>
         </div>
         <!-- /.col -->
         <div class="col-xs-6">
-          <p class="lead">Amount Due 2/22/2014</p>
+          <p class="lead">Monto adeudado:</p>
 
           <div class="table-responsive">
             <table class="table">
@@ -131,11 +143,11 @@
                 <td>$250.30</td>
               </tr>
               <tr>
-                <th>Tax (9.3%)</th>
+                <th>IVA</th>
                 <td>$10.34</td>
               </tr>
               <tr>
-                <th>Shipping:</th>
+                <th>Envío:</th>
                 <td>$5.80</td>
               </tr>
               <tr>
@@ -144,6 +156,27 @@
               </tr>
             </table>
           </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <div class="row invoice-info">
+        <hr>
+        <div class="col-sm-4 invoice-col address">
+          Calle Júpiter No. 115 Fracc. Galaxia<br>
+          Tabasco 2000 C.P 86035<br>
+          Villahermosa, Tabasco
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col address">
+          rayosxyservicios@prodigy.net.mx<br>
+          rxysisacv@prodigy.net.mx<br>
+          rx@prodigy.net.mx
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col address">
+          Tel. Oficina (993) 3 16 16 76<br>
+          Nextel Ventas (993) 2 67 65 05<br>
+          ID Nextel 92*976411*5
         </div>
         <!-- /.col -->
       </div>
