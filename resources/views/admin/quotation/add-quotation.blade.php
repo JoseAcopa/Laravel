@@ -75,12 +75,6 @@
                 <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="Observaciones"></textarea>
               </div>
             </div>
-            <div class="col-md-6">
-              <a href="#" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
-            </div>
-            <div class="col-md-6">
-              <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i> Buscar Producto</button>
-            </div>
             <div class="col-md-12">
               <br>
               <table class="table table-bordered table-striped">
@@ -105,6 +99,8 @@
                     </tr>
                 </tbody>
               </table>
+              <a href="#" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
+              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i> Buscar Producto</button>
             </div>
           </div>
           <div class="box-footer">
