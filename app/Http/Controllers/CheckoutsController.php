@@ -57,9 +57,9 @@ class CheckoutsController extends Controller
       $checkout->priceSales = request('priceSales');
       $checkout->description = request('description');
       $checkout->totalAmount = request('totalAmount');
-
-      $checkout->save();
-      return redirect('admin/inventary-out')->with('success','Producto '. $checkout->TProduct .' Guardado correctamente');
+      return $checkout;
+      // $checkout->save();
+      // return redirect('admin/product-output')->with('success','Producto '. $checkout->TProduct .' Guardado correctamente');
     }
 
     /**
