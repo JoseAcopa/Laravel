@@ -80,7 +80,10 @@ class CheckoutsController extends Controller
     public function show($id)
     {
       $checkout = Checkouts::find($id);
-      return view('admin.inventary.show-out', compact('checkout'));
+      $checkout->coin;
+      $checkout->supplier;
+      $checkout->category;
+      return view('admin.checkout.show', compact('checkout'));
     }
 
     /**
@@ -91,11 +94,11 @@ class CheckoutsController extends Controller
      */
     public function edit($id)
     {
-      $suppliers = Suppliers::all();
-      $units = Units::all();
-      $products = Products::all();
       $checkout = Checkouts::find($id);
-      return view('admin.inventary.edit-out', compact('checkout'), compact('suppliers', 'units', 'products'));
+      $checkout->coin;
+      $checkout->supplier;
+      $checkout->category;
+      return view('admin.checkout.edit', compact('checkout'));
     }
 
     /**
@@ -113,7 +116,6 @@ class CheckoutsController extends Controller
       $newProvider = $request->input('provider');
       $newCheckout = $request->input('checkout');
       $newQuantity = $request->input('quantity');
-      $newMerma = $request->input('merma');
       $newStock = $request->input('stock');
       $newUnit = $request->input('unit');
       $newPriceList = $request->input('priceList');
