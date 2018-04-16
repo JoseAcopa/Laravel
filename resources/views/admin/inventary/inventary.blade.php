@@ -63,7 +63,7 @@
                   <td>{{ $product->description }}</td>
                   <td>{{ $product->checkin }}</td>
                   <td>
-                    <span  <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
+                    <span <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
                       {{$product->stock}}
                     </span>
                   </td>

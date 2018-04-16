@@ -8,6 +8,7 @@ use App\Coins;
 use App\Catalog;
 use App\Invoice;
 use App\Http\Requests\CreateProductsRequest;
+use App\Http\Requests\UpdateProductsRequest;
 
 class ProductsControllers extends Controller
 {
@@ -150,7 +151,7 @@ class ProductsControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($request, $id)
+    public function update(UpdateProductsRequest $request, $id)
     {
       $newCategory = $request->input('category');
       $newInitials = $request->input('initials');
@@ -159,14 +160,14 @@ class ProductsControllers extends Controller
       $newUnit = $request->input('unidad');
       $newDescription = $request->input('description');
       $newStock = $request->input('cantidad_entrada');
-      $newPriceList = $request->request('precio_lista');
-      $newCost = $request->request('costo');
-      $newPriceSales1 = $request->request('priceSales1');
-      $newPriceSales2 = $request->request('priceSales2');
-      $newPriceSales3 = $request->request('priceSales3');
-      $newPriceSales4 = $request->request('priceSales4');
-      $newPriceSales4 = $request->request('priceSales5');
-      $newCoin = $request->request('moneda');
+      $newPriceList = $request->input('precio_lista');
+      $newCost = $request->input('costo');
+      $newPriceSales1 = $request->input('priceSales1');
+      $newPriceSales2 = $request->input('priceSales2');
+      $newPriceSales3 = $request->input('priceSales3');
+      $newPriceSales4 = $request->input('priceSales4');
+      $newPriceSales5 = $request->input('priceSales5');
+      $newCoin = $request->input('moneda');
 
       $product = Products::find($id);
 

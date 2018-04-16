@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Checkouts;
 use App\Products;
+use App\Http\Requests\CreateCheckoutRequest;
 
 class CheckoutsController extends Controller
 {
@@ -40,26 +41,34 @@ class CheckoutsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCheckoutRequest $request)
     {
+      // descontando stock del producto
+      $id = request('idProduct');
+      $stock = $request->input('stock');
+      $quantity = $request->input('cantidad');
+      $newStock = $stock - $quantity;
+      $product = Products::find($id);
+      $product->stock = $newStock;
+      $product->save();
+
       $checkout = new Checkouts;
-      $checkout->nInvoice = request('nInvoice');
-      $checkout->TProduct = request('TProduct');
-      $checkout->NProduct = request('NProduct');
-      $checkout->provider = request('provider');
-      $checkout->checkout = request('checkout');
-      $checkout->quantity = request('quantity');
-      $checkout->merma = request('merma');
-      $checkout->stock = request('stock');
-      $checkout->unit = request('unit');
-      $checkout->priceList = request('priceList');
-      $checkout->cost = request('cost');
-      $checkout->priceSales = request('priceSales');
+      $checkout->nInvoice = request('factura') === null ? '' : request('factura');
+      $checkout->category_id = request('categoria');
+      $checkout->initials = request('iniciales');
+      $checkout->supplier_id = request('proveedor');
+      $checkout->unit = request('unidad');
+      $checkout->date_out = request('salida');
       $checkout->description = request('description');
-      $checkout->totalAmount = request('totalAmount');
+      $checkout->priceList = request('precio_lista');
+      $checkout->cost = request('costo');
+      $checkout->coin_id = request('idMoneda');
+      $checkout->stock = $newStock;
+      $checkout->quantity_output = request('cantidad');
+      $checkout->price_output = request('precio');
 
       $checkout->save();
-      return redirect('admin/inventary-out')->with('success','Producto '. $checkout->TProduct .' Guardado correctamente');
+      return redirect('admin/product-output')->with('success','Salida Guardado correctamente');
     }
 
     /**
@@ -143,7 +152,7 @@ class CheckoutsController extends Controller
     public function destroy($id)
     {
       Checkouts::find($id)->delete();
-      return redirect('admin/inventary-out')->with('success','Producto de salida eliminado correctamente');
+      return redirect('admin/product-output')->with('success','Salida eliminado correctamente');
 
     }
 }

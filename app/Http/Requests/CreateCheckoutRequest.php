@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProductsRequest extends FormRequest
+class CreateCheckoutRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +24,18 @@ class UpdateProductsRequest extends FormRequest
     public function rules()
     {
         return [
-          'category' => 'max:255|required',
-          'proveedor' => 'max:255|required',
-          'fecha_entrada' => 'max:255|required',
-          'cantidad_entrada' => 'max:255|required',
+          'categoria' => 'max:255|required',
+          'iniciales' => 'max:255|required',
+          'proveedor-view' => 'max:255|required',
           'unidad' => 'max:255|required',
-          'moneda' => 'max:20|required',
+          'salida' => 'max:255|required',
           'description' => 'max:255|required',
-          'priceSales1' => 'max:255|required',
-          'priceSales2' => 'max:255|required',
-          'priceSales3' => 'max:255|required',
-          'priceSales4' => 'max:255|required',
+          'precio_lista' => 'max:255|required',
+          'costo' => 'max:255|required',
+          'moneda' => 'max:255|required',
+          'stock' => 'max:255|required',
+          'cantidad' => 'max:255|required',
+          'precio' => 'max:255|required',
         ];
     }
 }
