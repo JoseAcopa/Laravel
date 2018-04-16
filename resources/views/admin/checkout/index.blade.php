@@ -50,9 +50,9 @@
               @foreach ($checkouts as $checkout)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-primary" href="{{url('/admin/show-product',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info" href="{{url('/admin/edit-product',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $checkout->id]]) !!}
+                    <a class="btn btn-primary" href="{{url('/admin/show-product-output',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-info" href="{{url('/admin/edit-product-output',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    {!! Form::open(['method' => 'DELETE','route' => ['product-output.destroy', $checkout->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                     {!! Form::close() !!}
                   </td>
@@ -64,7 +64,7 @@
                       {{$checkout->stock}}
                     </span>
                   </td>
-                  <td>{{ str_limit($checkout->created_at, 10) }}</td>
+                  <td>{{ $checkout->date_out }}</td>
                   <td>{{ $checkout->quantity_output }}</td>
                   <td>{{ $checkout->price_output }}</td>
                 </tr>

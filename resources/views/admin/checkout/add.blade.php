@@ -30,20 +30,21 @@
             </div>
           </div>
         </div>
-        <form role="form" method="POST" action="/admin/add-product-output">
+        <form role="form" method="POST" action="/admin/product-output">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
               <div class="form-group">
                 <label for="factura">N° de Factura:</label>
                 <input type="text" name="factura" class="form-control" placeholder="Número Factura">
+                <input type="text" name="idProduct" id="idProduct" value="{{ old('idProduct') }}" hidden>
               </div>
               <div class="form-group {{ $errors->has('categoria-view') ? 'has-error' : '' }}">
                 <div class="row">
                   <div class="col-xs-8">
                     <label for="categoria-view">Tipo de Producto:</label>
                     <input type="text" name="categoria-view" id="categoria-view" value="{{ old('categoria-view') }}" class="form-control" readonly>
-                    <input type="text" name="categoria" id="categoria" hidden>
+                    <input type="text" name="categoria" id="categoria" value="{{ old('categoria') }}" hidden>
                     {!! $errors->first('categoria-view','<span class="help-block">:message</span>')!!}
                   </div>
                   <div class="col-xs-4 top-copasat">
@@ -53,8 +54,8 @@
               </div>
               <div class="form-group {{ $errors->has('proveedor-view') ? 'has-error' : '' }}">
                 <label for="proveedor-view">Proveedor:</label>
-                <input type="text" name="proveedor-view" id="proveedor-view" value="{{ old('proveedor') }}" class="form-control" readonly>
-                <input type="text" name="proveedor" id="proveedor" hidden>
+                <input type="text" name="proveedor-view" id="proveedor-view" value="{{ old('proveedor-view') }}" class="form-control" readonly>
+                <input type="text" name="proveedor" id="proveedor" value="{{ old('proveedor') }}" hidden>
                 {!! $errors->first('proveedor-view','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
@@ -93,17 +94,20 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('precio_lista') ? 'has-error' : '' }}">
                 <label for="pricelist">Precio Lista:</label>
                 <input type="number" name="precio_lista" id="priceList" value="{{ old('precio_lista') }}" class="form-control" readonly>
+                {!! $errors->first('precio_lista','<span class="help-block">:message</span>')!!}
               </div>
-              <div class="form-group">
+              <div class="form-group {{ $errors->has('costo') ? 'has-error' : '' }}">
                 <label for="cost">Costo:</label>
                 <input type="number" name="costo" id="cost" value="{{ old('costo') }}" class="form-control" readonly>
+                {!! $errors->first('costo','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('moneda') ? 'has-error' : '' }}">
                 <label for="moneda">Moneda:</label>
                 <input type="text" name="moneda" id="moneda" value="{{ old('moneda') }}" class="form-control" readonly>
+                <input type="text" name="idMoneda" id="idMoneda" value="{{ old('idMoneda') }}" hidden>
                 {!! $errors->first('moneda','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -130,12 +134,11 @@
     <script type="text/javascript">
       function producto(val) {
         var id = val.value;
-
+        $('#idProduct').val(id);
         $.ajax({
           url: '/producto/'+id,
           type: 'GET',
           success: (res)=>{
-            console.log(res);
             $('#categoria-view').val(res.category.type);
             $('#categoria').val(res.category.id);
             $('#letter').val(res.category.letters);
@@ -151,6 +154,7 @@
             $('#priceList').val(res.priceList);
             $('#cost').val(res.cost);
             $('#moneda').val(res.coin.type);
+            $('#idMoneda').val(res.coin.id);
             $('#description').val(res.description);
           }
         })
