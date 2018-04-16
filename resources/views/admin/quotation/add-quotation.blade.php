@@ -75,6 +75,53 @@
                 <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="Observaciones"></textarea>
               </div>
             </div>
+
+            <div class="col-md-12">
+              <hr>
+              <h3><i class="fa fa-plus"></i> Agregar Producto</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Buscar Producto</label>
+                <select id="searchProduct" class="form-control select2" onchange="product(this);">
+                  <option selected="selected" value="null">Buscar...</option>
+                  @foreach ($products as $product)
+                    <option value="{{ $product->id }}">{{ $product->description }}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Producto:</label>
+                <input type="text" name="producto" class="form-control" placeholder="producto" id="producto">
+                <input type="text" name="description" id="description" hidden>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <div class="form-group">
+                <label>Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="0">
+              </div>
+            </div>
+            <div class="col-md-2">
+              <div class="form-group">
+                <label>Precios:</label>
+                <select class="form-control" id="precioUnitario">
+                  <option selected="selected" value="null">Selecciona precio</option>
+                  <option id="price1"></option>
+                  <option id="price2"></option>
+                  <option id="price3"></option>
+                  <option id="price4"></option>
+                  <option id="price5"></option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-1">
+              <label>Agregar:</label>
+              <button type="button" name="button" class="btn btn-primary" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
+            </div>
+
             <div class="col-md-12">
               <br>
               <table class="table table-bordered table-striped">
@@ -88,81 +135,77 @@
                     <th>Eliminar</th>
                  </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                      <td>Manguera Industrial</td>
-                      <td>4</td>
-                      <td>Este es un producto de gates que se esta cotizando</td>
-                      <td>100</td>
-                      <td>400</td>
-                      <td><a><i class="fa fa-times fa-lg"></i></a></td>
-                    </tr>
+                <tbody id="tabla">
+
                 </tbody>
               </table>
               <a href="#" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
-              <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><i class="fa fa-search"></i> Buscar Producto</button>
             </div>
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
             <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
           </div>
-
-          <!-- Modal -->
-          <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-              <!-- Modal content-->
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Seleccione el producto a cotizar</h4>
-                </div>
-                <div class="modal-body">
-                  <table id="Jtabla" class="table table-bordered table-striped">
-                    <thead>
-                      <tr class="success">
-                        <th>Producto</th>
-                        <th>Descripción</th>
-                        <th>Precio</th>
-                        <th>Cantidad</th>
-                        <th>Agregar</th>
-                     </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                          <td>Manguera Industrial</td>
-                          <td>Este es un producto de gates que se esta cotizando</td>
-                          <td>
-                            <select class="form-control">
-                              <option value="">1</option>
-                              <option value="">2</option>
-                              <option value="">3</option>
-                              <option value="">4</option>
-                            </select>
-                          </td>
-                          <td>
-                            <input class="form-control" type="number"/>
-                          </td>
-                          <td>
-                            <div class="checkbox">
-                              <label>
-                                <input type="checkbox" name="agregar[]" value="producto">
-                                Agregar
-                              </label>
-                            </div>
-                          </td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-              </div>
-            </div>
-          </div>
         </form>
       </div>
     </section>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#searchProduct").select2();
+      });
+    </script>
+    <script type="text/javascript">
+      function product(val) {
+        var id = val.value
+        $.ajax({
+          url: '/producto/'+id,
+          type: 'GET',
+          success: (res)=>{
+            $('#price1').text('$'+res.priceSales1+' '+res.coin.type);
+            $('#price2').text('$'+res.priceSales2+' '+res.coin.type);
+            $('#price3').text('$'+res.priceSales3+' '+res.coin.type);
+            $('#price4').text('$'+res.priceSales4+' '+res.coin.type);
+            $('#price5').text('$'+res.priceSales5+' '+res.coin.type);
+
+            $('#producto').val(res.category.type);
+            $('#description').val(res.description);
+            $('#price1').val(res.priceSales1);
+            $('#price2').val(res.priceSales2);
+            $('#price3').val(res.priceSales3);
+            $('#price4').val(res.priceSales4);
+            $('#price5').val(res.priceSales5);
+          }
+        })
+      }
+    </script>
+    <script type="text/javascript">
+      var products = []
+      // _.find(products,{ 'id' : id })
+      function addProduct() {
+        var id = $('#searchProduct').val()
+        var producto = $('#producto').val()
+        var descripcion = $('#description').val()
+        var precio = $('#precioUnitario').val()
+        var cantidad = $('#cantidad').val()
+
+        const product = {
+          id: id,
+          product: producto,
+          description: descripcion,
+          price: precio,
+          quantity: cantidad,
+          total: Number(precio) * Number(cantidad)
+        }
+
+        products.push(product)
+
+        products.map((item)=>{
+          var iter = '';
+          iter += '<tr><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
+          console.log(iter);
+          document.getElementById('tabla').innerHTML = iter;
+        })
+      }
+    </script>
 
 @endsection
