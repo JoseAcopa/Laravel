@@ -110,39 +110,31 @@ class CheckoutsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $newNInvoice = $request->input('nInvoice');
-      $newTProduct = $request->input('TProduct');
-      $newNProduct = $request->input('NProduct');
-      $newProvider = $request->input('provider');
-      $newCheckout = $request->input('checkout');
-      $newQuantity = $request->input('quantity');
+      // descontando stock del producto
+      // $id = request('idProduct');
+      // $stock = $request->input('stock');
+      // $quantity = $request->input('cantidad');
+      // $newStock = $stock - $quantity;
+      // $product = Products::find($id);
+      // $product->stock = $newStock;
+      // $product->save();
+
+      $newNInvoice = $request->input('factura');
+      $newDate = $request->input('salida');
       $newStock = $request->input('stock');
-      $newUnit = $request->input('unit');
-      $newPriceList = $request->input('priceList');
-      $newCost = $request->input('cost');
-      $newPriceSales = $request->input('priceSales');
-      $newDescription = $request->input('description');
-      $newTotalAmount = $request->input('totalAmount');
+      $newQuantity = $request->input('cantidad');
+      $newPrice = $request->input('precio');
 
       $checkout = Checkouts::find($id);
 
       $checkout->nInvoice = $newNInvoice;
-      $checkout->TProduct = $newTProduct;
-      $checkout->NProduct = $newNProduct;
-      $checkout->provider = $newProvider;
-      $checkout->checkout = $newCheckout;
-      $checkout->quantity = $newQuantity;
-      $checkout->merma = $newMerma;
+      $checkout->date_out = $newDate;
       $checkout->stock = $newStock;
-      $checkout->unit = $newUnit;
-      $checkout->priceList = $newPriceList;
-      $checkout->cost = $newCost;
-      $checkout->priceSales = $newPriceSales;
-      $checkout->description = $newDescription;
-      $checkout->totalAmount = $newTotalAmount;
+      $checkout->quantity_output = $newQuantity;
+      $checkout->price_output = $newPrice;
       $checkout->save();
 
-      return redirect('admin/inventary-out')->with('success','Producto actualizado correctamente');
+      return redirect('admin/product-output')->with('success','Salida actualizado correctamente');
     }
 
     /**
