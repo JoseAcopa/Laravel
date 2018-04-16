@@ -16,7 +16,7 @@
       <div class="box box-primary">
         <div class="box-header with-border">
           <div class="col-md-4">
-            <h3 class="box-title"><i class="fa fa-pencil"></i> Salida de Producto</h3>
+            <h3 class="box-title"><i class="fa fa-edit"></i>Editar Salida de Producto</h3>
           </div>
         </div>
         {!! Form::model($checkout, ['method' => 'PATCH','route' => ['product-output.update', $checkout->id], 'role' => 'form']) !!}
@@ -26,6 +26,7 @@
               <div class="form-group">
                 <label for="factura">N° de Factura:</label>
                 <input type="text" name="factura" class="form-control" placeholder="Número Factura" value="{{$checkout->nInvoice}}">
+                <input type="text" name="idProduct" value="{{$checkout->keyProduct}}">
               </div>
               <div class="form-group {{ $errors->has('categoria-view') ? 'has-error' : '' }}">
                 <div class="row">
@@ -70,8 +71,8 @@
               </div>
               <div class="form-group {{ $errors->has('precio') ? 'has-error' : '' }}">
                 <label for="precio">Precio de venta:</label>
-                <select name="precio" value="{{ old('precio') }}" class="form-control">
-                  <option value="">{{ $checkout->price_output }}</option>
+                <select name="precio" class="form-control">
+                  <option value="{{ $checkout->price_output }}">{{ $checkout->price_output }}</option>
                   <option id="pv1"></option>
                   <option id="pv2"></option>
                   <option id="pv3"></option>

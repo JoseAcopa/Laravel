@@ -43,14 +43,13 @@
                 <th>Stock</th>
                 <th>Fecha de Salida</th>
                 <th>Cantidad de Salida</th>
-                <th>Precio</th>
+                <th>Precio Salida</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($checkouts as $checkout)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-default" href="#" alt="Ver mas.."><i class="fa fa-print"></i></a>
                     <a class="btn btn-primary" href="{{url('/admin/show-product-output',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info" href="{{url('/admin/edit-product-output',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                     {!! Form::open(['method' => 'DELETE','route' => ['product-output.destroy', $checkout->id]]) !!}
@@ -59,15 +58,16 @@
                   </td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>
-                  <td>{{ $checkout->description }}</td>
+                  <td>{{ str_limit($checkout->description, 50) }}</td>
                   <td>
                     <span  <?php echo (int)$checkout->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
                       {{$checkout->stock}}
                     </span>
+                    {{ $checkout->unit }}
                   </td>
                   <td>{{ $checkout->date_out }}</td>
-                  <td>{{ $checkout->quantity_output }}</td>
-                  <td>{{ $checkout->price_output }}</td>
+                  <td>{{ $checkout->quantity_output }} {{ $checkout->unit }}</td>
+                  <td>{{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
                 </tr>
               @endforeach
             </tbody>

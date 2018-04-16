@@ -40,7 +40,8 @@
                 <th>Proveedor</th>
                 <th>Fecha Entrada</th>
                 <th>Cantidad</th>
-                <th>Unidad</th>
+                <th>Precio Lista</th>
+                <th>Costo</th>
              </tr>
             </thead>
             <tbody>
@@ -62,8 +63,9 @@
                   <td>{{ $invoice->category->categorias }}</td>
                   <td>{{ $invoice->supplier->business }}</td>
                   <td>{{ $invoice->checkin }}</td>
-                  <td>{{ $invoice->quantity }}</td>
-                  <td>{{ $invoice->unit }}</td>
+                  <td>{{ $invoice->quantity }} {{ $invoice->unit }}</td>
+                  <td>{{ $invoice->priceList }}</td>
+                  <td>{{ $invoice->cost }}</td>
                 </tr>
               @endforeach
             </tbody>

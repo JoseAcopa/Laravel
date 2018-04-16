@@ -66,6 +66,7 @@ class CheckoutsController extends Controller
       $checkout->stock = $newStock;
       $checkout->quantity_output = request('cantidad');
       $checkout->price_output = request('precio');
+      $checkout->keyProduct = $id;
 
       $checkout->save();
       return redirect('admin/product-output')->with('success','Salida Guardado correctamente');
@@ -110,20 +111,17 @@ class CheckoutsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // descontando stock del producto
-      // $id = request('idProduct');
-      // $stock = $request->input('stock');
-      // $quantity = $request->input('cantidad');
-      // $newStock = $stock - $quantity;
-      // $product = Products::find($id);
-      // $product->stock = $newStock;
-      // $product->save();
-
+      $keyProduct = $request->input('idProduct');
       $newNInvoice = $request->input('factura');
       $newDate = $request->input('salida');
       $newStock = $request->input('stock');
       $newQuantity = $request->input('cantidad');
       $newPrice = $request->input('precio');
+
+      // editando stock del producto
+      $product = Products::find($keyProduct);
+      $product->stock = $newStock;
+      $product->save();
 
       $checkout = Checkouts::find($id);
 

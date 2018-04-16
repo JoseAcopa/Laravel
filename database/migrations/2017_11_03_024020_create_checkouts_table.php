@@ -28,6 +28,7 @@ class CreateCheckoutsTable extends Migration
           $table->string('stock');
           $table->string('quantity_output');
           $table->string('price_output');
+          $table->string('keyProduct');
           $table->timestamps();
         });
     }
