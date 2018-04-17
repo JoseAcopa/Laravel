@@ -199,7 +199,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total.toFixed(2)+'</td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-times"></i></a></td></tr>'
 
               $('#tabla').append(iter)
             })
@@ -219,7 +219,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total.toFixed(2)+'</td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-times"></i></a></td></tr>'
 
               $('#tabla').append(iter)
             })
@@ -227,6 +227,13 @@
         }else {
           alert('El campo cantidad o precio estan vacios')
         }
+      }
+
+      function deleteProduct(val, i) {
+        var id = val.id
+
+        products.splice(i, i === 0 ? 1 : i)
+        $('#'+id).remove();
       }
     </script>
 
