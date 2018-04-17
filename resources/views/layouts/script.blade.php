@@ -11,6 +11,7 @@
 {{-- <script src="{{ asset('dist/js/demo.js')}}"></script> --}}
 {{-- <script src="{{ url('js/datatable/jQuery-2.1.3.min.js') }}"></script> --}}
 <script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
+<script type="text/javascript" src="{{ url('js/sweetalert2/sweetalert2.js') }}"></script>
 <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
 <script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script type="text/javascript">

@@ -83,7 +83,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Buscar Producto</label>
-                <select id="searchProduct" class="form-control select2" onchange="product(this);">
+                <select id="searchProduct" class="form-control select2" onchange="getProduct(this);">
                   <option selected="selected" value="null">Buscar...</option>
                   @foreach ($products as $product)
                     <option value="{{ $product->id }}">{{ $product->description }}</option>
@@ -101,7 +101,7 @@
             <div class="col-md-1">
               <div class="form-group">
                 <label>Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="0" value="">
+                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="1" value="">
               </div>
             </div>
             <div class="col-md-2">
@@ -155,7 +155,7 @@
       });
     </script>
     <script type="text/javascript">
-      function product(val) {
+      function getProduct(val) {
         var id = val.value
         $.ajax({
           url: '/producto/'+id,
@@ -225,15 +225,44 @@
             })
           }
         }else {
-          alert('El campo cantidad o precio estan vacios')
+          if (precio === '') {
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: '¡El campo precio esta vacio!'
+            })
+          }
+          if (cantidad === '') {
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: '¡El campo cantidad esta vacio!'
+            })
+          }
         }
       }
 
       function deleteProduct(val, i) {
         var id = val.id
+        swal({
+          title: '¿Desea eliminar este producto?',
+          text: "¡El producto se eliminara de la cotización!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          products.splice(i, i === 0 ? 1 : i)
+          $('#'+id).remove();
+          swal(
+            '¡Eliminado!',
+            'El Producto ha sido eliminado.',
+            'success'
+          )
+        })
 
-        products.splice(i, i === 0 ? 1 : i)
-        $('#'+id).remove();
       }
     </script>
 
