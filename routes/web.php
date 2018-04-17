@@ -69,3 +69,4 @@ Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
 
 // crear PDF
 Route::get("factura/{id}","ControllerInvoices@downloadPDF");
+Route::get("cotizacion","QuotationsController@downloadPDF");

@@ -140,7 +140,6 @@
                 </tbody>
               </table>
               <h3 style="text-align: right">Total: <span id="totalAmount">0.00</span> </h3>
-              <a href="#" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
             </div>
           </div>
           <div class="box-footer">
