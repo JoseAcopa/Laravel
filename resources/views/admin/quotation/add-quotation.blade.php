@@ -101,14 +101,14 @@
             <div class="col-md-1">
               <div class="form-group">
                 <label>Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="0">
+                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="0" value="">
               </div>
             </div>
             <div class="col-md-2">
               <div class="form-group">
                 <label>Precios:</label>
                 <select class="form-control" id="precioUnitario">
-                  <option selected="selected" value="null">Selecciona precio</option>
+                  <option selected="selected" value="">Selecciona precio</option>
                   <option id="price1"></option>
                   <option id="price2"></option>
                   <option id="price3"></option>
@@ -180,7 +180,7 @@
     </script>
     <script type="text/javascript">
       var products = []
-      // _.find(products,{ 'id' : id })
+
       function addProduct() {
         var id = $('#searchProduct').val()
         var producto = $('#producto').val()
@@ -188,23 +188,45 @@
         var precio = $('#precioUnitario').val()
         var cantidad = $('#cantidad').val()
 
-        const product = {
-          id: id,
-          product: producto,
-          description: descripcion,
-          price: precio,
-          quantity: cantidad,
-          total: Number(precio) * Number(cantidad)
+        if (precio != '' && cantidad != '') {
+          var findProduct = _.find(products,{ 'id' : id })
+          if (findProduct != undefined && findProduct != null) {
+            findProduct.quantity = Number(findProduct.quantity) + Number(cantidad)
+            findProduct.price = precio
+            findProduct.total = Number(findProduct.price) * Number(findProduct.quantity)
+
+            products.map((item, i)=>{
+              $('#fila'+i).remove();
+
+              var iter = '';
+              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
+
+              $('#tabla').append(iter)
+            })
+          }else {
+            const product = {
+              id: id,
+              product: producto,
+              description: descripcion,
+              price: precio,
+              quantity: cantidad,
+              total: Number(precio) * Number(cantidad)
+            }
+
+            products.push(product)
+
+            products.map((item, i)=>{
+              $('#fila'+i).remove();
+
+              var iter = '';
+              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
+
+              $('#tabla').append(iter)
+            })
+          }
+        }else {
+          alert('El campo cantidad o precio estan vacios')
         }
-
-        products.push(product)
-
-        products.map((item)=>{
-          var iter = '';
-          iter += '<tr><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total+'</td><td><a class="btn btn-danger"><i class="fa fa-times"></i></a></td></tr>'
-          console.log(iter);
-          document.getElementById('tabla').innerHTML = iter;
-        })
       }
     </script>
 
