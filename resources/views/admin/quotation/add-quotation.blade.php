@@ -139,6 +139,7 @@
 
                 </tbody>
               </table>
+              <h3 style="text-align: right">Total: <span id="totalAmount">0.00</span> </h3>
               <a href="#" class="btn btn-default"><i class="fa fa-file-pdf-o"></i> Imprimir PDF</a>
             </div>
           </div>
@@ -203,6 +204,7 @@
 
               $('#tabla').append(iter)
             })
+            totalAmount()
           }else {
             const product = {
               id: id,
@@ -222,6 +224,7 @@
               iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total.toFixed(2)+'</td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-times"></i></a></td></tr>'
 
               $('#tabla').append(iter)
+              totalAmount()
             })
           }
         }else {
@@ -256,6 +259,7 @@
         }).then(() => {
           products.splice(i, i === 0 ? 1 : i)
           $('#'+id).remove();
+          totalAmount()
           swal(
             '¡Eliminado!',
             'El Producto ha sido eliminado.',
@@ -263,6 +267,14 @@
           )
         })
 
+      }
+
+      function totalAmount() {
+        let total = 0;
+        products.map((item)=>{
+          total += Number(item.total)
+        })
+        $('#totalAmount').text(total.toFixed(2))
       }
     </script>
 
