@@ -142,6 +142,9 @@
               <input type="text" name="neto" id="neto" hidden>
               <input type="text" name="iva" id="IVA" hidden>
               <input type="text" name="total" id="totalAmount" hidden>
+              <input type="text" name="nombre" value="{{Auth::user()->name}}">
+              <input type="text" name="correo" value="{{Auth::user()->email}}">
+              <input type="text" name="phone" value="{{Auth::user()->phone}}">
               <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
               <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4>
               <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
