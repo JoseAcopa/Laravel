@@ -28,7 +28,7 @@
               </div>
               <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }}">
                 <label for="date">Fecha:</label>
-                <input type="date" name="fecha" class="form-control">
+                <input type="text" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
               </div>
               <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
                 <label for="company">Nombre de la empresa:</label>
@@ -139,15 +139,18 @@
 
                 </tbody>
               </table>
+              <input type="text" name="neto" id="neto" hidden>
+              <input type="text" name="iva" id="IVA" hidden>
               <input type="text" name="total" id="totalAmount" hidden>
-              <h3 style="text-align: right">Total: <span id="totalAmount1">0.00</span> </h3>
+              <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
+              <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4>
+              <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
-            <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
             <div class="pull-right">
-              <a type="submit" class="btn btn-default" href="{{ url('cotizacion') }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar PDF</a>
+              <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
             </div>
           </div>
         </form>
@@ -156,6 +159,12 @@
     <script type="text/javascript">
       $(document).ready(function() {
         $("#searchProduct").select2();
+        $('#datepicker').datepicker({
+          pickTime: false,
+          autoclose: true,
+          language: 'es',
+          format: 'dd/mm/yyyy'
+        });
       });
     </script>
     <script type="text/javascript">
@@ -272,12 +281,23 @@
       }
 
       function totalAmount() {
-        let total = 0;
+        let neto = 0;
+        let iva = 0
         products.map((item)=>{
-          total += Number(item.total)
+          neto += Number(item.total)
         })
-        $('#totalAmount').val(total.toFixed(2))
+
+
+        iva = neto * .16
+        total = neto + iva
+
+        $('#neto1').text(neto.toFixed(2))
+        $('#IVA1').text(iva.toFixed(2))
         $('#totalAmount1').text(total.toFixed(2))
+
+        $('#neto').val(neto.toFixed(2))
+        $('#IVA').val(iva.toFixed(2))
+        $('#totalAmount').val(total.toFixed(2))
       }
     </script>
 

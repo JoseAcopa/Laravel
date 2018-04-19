@@ -22,4 +22,7 @@
   <link rel="stylesheet" href="{{ asset('js/sweetalert2/sweetalert2.css') }}">
   <link rel="stylesheet" href="{{ asset('js/datatable/dataTables.bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('bower_components/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
+  <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+  <script type="text/javascript" src="{{ asset('bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js')}}"></script>
 </head>
