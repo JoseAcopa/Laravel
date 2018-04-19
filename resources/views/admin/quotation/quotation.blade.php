@@ -67,5 +67,19 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+    var idClient = {{$client}}
+    var idProduct = {{$product}}
+    if (idClient != 0) {
+      window.onload=function onloadPDF() {
+        var a = document.createElement("a");
+    		a.target = "_blank";
+    		a.href = "/cotizacion/"+idClient+'/'+idProduct;
+    		a.click();
+
+        window.location="{{url('/admin/quotation')}}"
+      }
+    }
+    </script>
 
 @endsection

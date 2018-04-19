@@ -20,8 +20,10 @@ class QuotationsController extends Controller
      */
     public function index()
     {
+      $client = 0;
+      $product = 0;
       $quotations = Quotations::all();
-      return view('admin.quotation.quotation', compact('quotations'));
+      return view('admin.quotation.quotation', compact('quotations', 'client', 'product'));
     }
 
     /**
@@ -43,8 +45,7 @@ class QuotationsController extends Controller
      */
     public function store(Request $request)
     {
-      return $request;
-      // $quotation = new Quotations;
+      $quotation = new Quotations;
       // $quotation->folio = request('folio');
       // $quotation->RFC = request('RFC');
       // $quotation->name = request('name');
@@ -60,6 +61,10 @@ class QuotationsController extends Controller
       // $quotation->IVA = request('IVA');
       // $quotation->totalAmount = request('totalAmount');
       // $quotation->save();
+      return $request;
+      // $client = $quotation->id;
+      // $product = 1;
+      // return view('admin.quotation.quotation', compact('quotations', 'client', 'product'));
       // return redirect('admin/quotation')->with('success','Cotizacion '. $quotation->folio .' Guardado correctamente');
     }
 
@@ -110,11 +115,9 @@ class QuotationsController extends Controller
         //
     }
 
-    public function downloadPDF(Request $request)
+    public function downloadPDF($client, $product)
     {
-      $product = $request->products;
-      $total = $request->total;
-    	$pdf = PDF::loadView('admin.PDF.quotations', compact('product', 'total'));
+    	$pdf = PDF::loadView('admin.PDF.quotations', compact('client', 'product'));
 		    return $pdf->stream('cotizacion.pdf');
     }
 }

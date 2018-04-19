@@ -119,7 +119,7 @@
             </div>
             <div class="col-md-1">
               <label>Agregar:</label>
-              <button type="button" class="btn btn-primary" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
+              <button type="button" class="btn btn-block btn-primary btn-flat" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
             </div>
 
             <div class="col-md-12">
@@ -139,12 +139,16 @@
 
                 </tbody>
               </table>
-              <h3 style="text-align: right">Total: <span id="totalAmount">0.00</span> </h3>
+              <input type="text" name="total" id="totalAmount" hidden>
+              <h3 style="text-align: right">Total: <span id="totalAmount1">0.00</span> </h3>
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
             <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+            <div class="pull-right">
+              <a type="submit" class="btn btn-default" href="{{ url('cotizacion') }}" target="_blank"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> Generar PDF</a>
+            </div>
           </div>
         </form>
       </div>
@@ -272,7 +276,8 @@
         products.map((item)=>{
           total += Number(item.total)
         })
-        $('#totalAmount').text(total.toFixed(2))
+        $('#totalAmount').val(total.toFixed(2))
+        $('#totalAmount1').text(total.toFixed(2))
       }
     </script>
 
