@@ -94,14 +94,14 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Producto:</label>
-                <input type="text" name="producto" class="form-control" placeholder="producto" id="producto">
-                <input type="text" name="description" id="description" hidden>
+                <input type="text" class="form-control" placeholder="producto" id="producto">
+                <input type="text" id="description" hidden>
               </div>
             </div>
             <div class="col-md-1">
               <div class="form-group">
                 <label>Cantidad:</label>
-                <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="0" min="1" value="">
+                <input type="number" id="cantidad" class="form-control" placeholder="0" min="1" value="">
               </div>
             </div>
             <div class="col-md-2">
@@ -119,19 +119,19 @@
             </div>
             <div class="col-md-1">
               <label>Agregar:</label>
-              <button type="button" name="button" class="btn btn-primary" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
+              <button type="button" class="btn btn-primary" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
             </div>
 
             <div class="col-md-12">
               <br>
               <table class="table table-bordered table-striped">
                 <thead>
-                  <tr class="info">
+                  <tr style="background-color: #a5b1c2 !important; color: #fff !important;">
                     <th>Producto</th>
                     <th>Cantidad</th>
                     <th>Descripción</th>
                     <th>Precio Unitario</th>
-                    <th>Total</th>
+                    <th>Subtotal</th>
                     <th>Eliminar</th>
                  </tr>
                 </thead>
@@ -199,8 +199,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total.toFixed(2)+'</td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-times"></i></a></td></tr>'
-
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
               $('#tabla').append(iter)
             })
             totalAmount()
@@ -220,7 +219,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td>'+item.product+'</td><td>'+item.quantity+'</td><td>'+item.description+'</td><td>$'+item.price+'</td><td>$'+item.total.toFixed(2)+'</td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-times"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
 
               $('#tabla').append(iter)
               totalAmount()

@@ -43,7 +43,7 @@ class QuotationsController extends Controller
      */
     public function store(Request $request)
     {
-      return $_POST;
+      return $request;
       // $quotation = new Quotations;
       // $quotation->folio = request('folio');
       // $quotation->RFC = request('RFC');
