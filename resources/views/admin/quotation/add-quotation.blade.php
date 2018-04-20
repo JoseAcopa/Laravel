@@ -45,59 +45,70 @@
           <div class="box-body">
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('cotizacion') ? 'has-error' : '' }}">
-                <label for="folio">No. de Cotización:</label>
-                <input type="text" name="cotizacion" class="form-control" placeholder="no. de cotización">
+                <label for="cotizacion">No. de Cotización:</label>
+                <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización">
+                {!! $errors->first('cotizacion','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
                 <label for="RFC">RFC:</label>
-                <input type="text" id="rfc" name="RFC" class="form-control" placeholder="RFC">
+                <input type="text" id="rfc" value="{{ old('RFC') }}" name="RFC" class="form-control" placeholder="RFC">
+                {!! $errors->first('RFC','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
-                <label for="company">Nombre de la empresa:</label>
-                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa">
+                <label for="empresa">Nombre de la empresa:</label>
+                <input type="text" value="{{ old('empresa') }}" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa">
+                {!! $errors->first('empresa','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
-              <div class="">
+              <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }}">
                 <label for="date">Fecha:</label>
-                <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }} input-group">
+                <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                  <input type="text" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
+                  <input type="text" value="{{ old('fecha') }}" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
                 </div>
+                {!! $errors->first('fecha','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
-                <label for="telephone">Teléfono:</label>
-                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="telefono">
+                <label for="telefono">Teléfono:</label>
+                <input type="text" value="{{ old('telefono') }}" id="telefono" name="telefono" class="form-control" placeholder="telefono">
+                {!! $errors->first('telefono','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
-                <label for="name">Nombre Completo:</label>
-                <input type="text" name="nombre" class="form-control" placeholder="nombre completo">
+                <label for="nombre">Nombre Completo:</label>
+                <input type="text" value="{{ old('nombre') }}" name="nombre" class="form-control" placeholder="nombre completo">
+                {!! $errors->first('nombre','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
-                <label for="nBidding">Número de Licitación:</label>
-                <input type="text" name="licitacion" class="form-control" placeholder="numero de licitación">
+                <label for="licitacion">Número de Licitación:</label>
+                <input type="text" value="{{ old('licitacion') }}" name="licitacion" class="form-control" placeholder="numero de licitación">
+                {!! $errors->first('licitacion','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
-                <label for="mail">E-mail:</label>
-                <input type="text" id="correo" name="correo" class="form-control" placeholder="e-mail">
+                <label for="correo">E-mail:</label>
+                <input type="text" value="{{ old('correo') }}" id="correo" name="correo" class="form-control" placeholder="e-mail">
+                {!! $errors->first('correo','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
-                <label for="job">Puesto:</label>
-                <input type="text" name="puesto" class="form-control" placeholder="puesto">
+                <label for="puesto">Puesto:</label>
+                <input type="text" value="{{ old('puesto') }}" name="puesto" class="form-control" placeholder="puesto">
+                {!! $errors->first('puesto','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
                 <label for="direction">Dirección:</label>
-                <textarea type="text" id="direccion" rows="4" name="direccion" class="form-control" placeholder="dirección"></textarea>
+                <textarea type="text" id="direccion" rows="4" name="direccion" class="form-control" placeholder="dirección">{{ old('direccion') }}</textarea>
+                {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('observaciones') ? 'has-error' : '' }}">
-                <label for="observation">Observaciones:</label>
-                <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="observaciones"></textarea>
+                <label for="observaciones">Observaciones:</label>
+                <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="observaciones">{{ old('observaciones') }}</textarea>
+                {!! $errors->first('observaciones','<span class="help-block">:message</span>')!!}
               </div>
             </div>
 
@@ -169,7 +180,8 @@
               <input type="text" name="neto" id="neto" hidden>
               <input type="text" name="iva" id="IVA" hidden>
               <input type="text" name="total" id="totalAmount" hidden>
-              <input type="text" name="nombre" value="{{Auth::user()->id}}" hidden>
+              <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
+              <input type="text" name="usuario" value="{{Auth::user()->id}}" hidden>
               <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
               <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4>
               <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
@@ -217,6 +229,7 @@
           url: '/cliente/'+id,
           type: 'GET',
           success: (res)=>{
+            $('#cliente').val(res.id)
             $('#rfc').val(res.RFC)
             $('#empresa').val(res.business)
             $('#telefono').val(res.phone)

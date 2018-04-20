@@ -12,8 +12,18 @@ class Quotations extends Model
   // public $timestamps = false;
 
   protected $fillable = [
-      'folio', 'RFC', 'name', 'date', 'job', 'nClient',
-      'direction', 'mail', 'company', 'nBidding', 'description',
-       'total', 'IVA', 'totalAmount'
+    'cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto',
+    'observaciones', 'subtotal', 'IVA', 'total',
+    'cliente_id', 'user_id'
   ];
+
+  public function user()
+  {
+    return $this->belongsTo('App\User');
+  }
+
+  public function cliente()
+  {
+    return $this->belongsTo('App\Clients');
+  }
 }

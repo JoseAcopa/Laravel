@@ -37,11 +37,14 @@
             <thead>
               <tr>
                 <th>Acciones</th>
+                <th>No. de Cotización</th>
                 <th>Empleados</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Nombre de la Empresa</th>
+                <th>RFC</th>
                 <th>Subtotal</th>
+                <th>IVA</th>
                 <th>Total</th>
              </tr>
             </thead>
@@ -50,16 +53,21 @@
                 <tr>
                   <td class="row-copasat">
                     <a class="btn btn-primary" href="{{url('/admin/show-product',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['inventary.destroy', $quotation->id]]) !!}
+                    <a class="btn btn-default" href="{{url('/facturas',$quotation->id)}}"><i class="fa fa-file-pdf-o"></i></a>
+                    {{-- <a class="btn btn-info" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o"></i></a> --}}
+                    {!! Form::open(['method' => 'DELETE','route' => ['quotation.destroy', $quotation->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
                     {!! Form::close() !!}
                   </td>
-                  <td>{{$quotation->folio}}</td>
-                  <td>{{$quotation->date}}</td>
-                  <td>{{$quotation->nClient}}</td>
-                  <td>{{$quotation->company}}</td>
-                  <td>{{$quotation->RFC}}</td>
+                  <td>{{$quotation->cotizacion}}</td>
+                  <td>{{$quotation->user->name}}</td>
+                  <td>{{$quotation->fecha}}</td>
+                  <td>{{$quotation->nombre}}</td>
+                  <td>{{$quotation->cliente->business}}</td>
+                  <td>{{$quotation->cliente->RFC}}</td>
+                  <td>${{$quotation->subtotal}}</td>
+                  <td>${{$quotation->IVA}}</td>
+                  <td>${{$quotation->total}}</td>
                 </tr>
               @endforeach
             </tbody>
