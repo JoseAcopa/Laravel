@@ -34,7 +34,7 @@
                     <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
                       <option selected="selected" value="null">Buscar...</option>
                       @foreach ($clients as $client)
-                        <option value="{{ $client->id }}">{{ $client->business }}</option>
+                        <option value="{{ $client->id }}">{{$client->business}} | {{$client->email}} | {{$client->phone}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -44,17 +44,17 @@
           </div>
           <div class="box-body">
             <div class="col-md-4">
-              <div class="form-group {{ $errors->has('folio') ? 'has-error' : '' }}">
+              <div class="form-group {{ $errors->has('cotizacion') ? 'has-error' : '' }}">
                 <label for="folio">No. de Cotización:</label>
-                <input type="text" name="folio" class="form-control" placeholder="no. de cotización">
+                <input type="text" name="cotizacion" class="form-control" placeholder="no. de cotización">
               </div>
               <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
                 <label for="RFC">RFC:</label>
-                <input type="text" name="RFC" class="form-control" placeholder="RFC">
+                <input type="text" id="rfc" name="RFC" class="form-control" placeholder="RFC">
               </div>
               <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
                 <label for="company">Nombre de la empresa:</label>
-                <input type="text" name="empresa" class="form-control" placeholder="nombre de la empresa">
+                <input type="text" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa">
               </div>
             </div>
             <div class="col-md-4">
@@ -67,37 +67,37 @@
               </div>
               <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
                 <label for="telephone">Teléfono:</label>
-                <input type="text" name="telefono" class="form-control" placeholder="telefono">
+                <input type="text" id="telefono" name="telefono" class="form-control" placeholder="telefono">
               </div>
               <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
                 <label for="name">Nombre Completo:</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Nombre Completo">
+                <input type="text" name="nombre" class="form-control" placeholder="nombre completo">
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
                 <label for="nBidding">Número de Licitación:</label>
-                <input type="text" name="licitacion" class="form-control" placeholder="Numero de Licitación">
+                <input type="text" name="licitacion" class="form-control" placeholder="numero de licitación">
               </div>
               <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
                 <label for="mail">E-mail:</label>
-                <input type="text" name="correo" class="form-control" placeholder="E-mail">
+                <input type="text" id="correo" name="correo" class="form-control" placeholder="e-mail">
               </div>
               <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
                 <label for="job">Puesto:</label>
-                <input type="text" name="puesto" class="form-control" placeholder="Puesto">
+                <input type="text" name="puesto" class="form-control" placeholder="puesto">
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
                 <label for="direction">Dirección:</label>
-                <textarea type="text" rows="4" name="direccion" class="form-control" placeholder="dirección"></textarea>
+                <textarea type="text" id="direccion" rows="4" name="direccion" class="form-control" placeholder="dirección"></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('observaciones') ? 'has-error' : '' }}">
                 <label for="observation">Observaciones:</label>
-                <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="Observaciones"></textarea>
+                <textarea type="text" rows="4" name="observaciones" class="form-control" placeholder="observaciones"></textarea>
               </div>
             </div>
 
@@ -108,7 +108,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label>Buscar Producto</label>
-                <select id="searchProduct" class="form-control select2" onchange="getProduct(this);">
+                <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
                   <option selected="selected" value="null">Buscar...</option>
                   @foreach ($products as $product)
                     <option value="{{ $product->id }}">{{ $product->description }}</option>
@@ -212,7 +212,18 @@
 
       function getClient(val) {
         var id = val.value
-        console.log(id);
+
+        $.ajax({
+          url: '/cliente/'+id,
+          type: 'GET',
+          success: (res)=>{
+            $('#rfc').val(res.RFC)
+            $('#empresa').val(res.business)
+            $('#telefono').val(res.phone)
+            $('#correo').val(res.email)
+            $('#direccion').val(res.address)
+          }
+        })
       }
     </script>
     <script type="text/javascript">

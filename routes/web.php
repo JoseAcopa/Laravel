@@ -63,8 +63,9 @@ Route::resource('/admin/facturas', 'ControllerInvoices');
 // ------------------End facturas----------------------------------------
 
 // =======================metodos ajax ==============================================
-Route::get('/producto-catalogo/{id}', 'ProductsControllers@getCatalogtAjax');
-Route::get('/producto/{id}', 'ProductsControllers@getProductAjax');
+Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
+Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
+Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================End metodos ajax ==============================================
 
 // crear PDF
