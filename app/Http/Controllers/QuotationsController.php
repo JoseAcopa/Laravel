@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Quotations;
 use App\Products;
+use App\Clients;
 use PDF;
 
 class QuotationsController extends Controller
@@ -34,7 +35,8 @@ class QuotationsController extends Controller
     public function create()
     {
       $products = Products::all();
-      return view('admin.quotation.add-quotation', compact('products'));
+      $clients = Clients::all();
+      return view('admin.quotation.add-quotation', compact('products', 'clients'));
     }
 
     /**

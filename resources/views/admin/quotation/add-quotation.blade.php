@@ -20,15 +20,37 @@
         </div>
         <form role="form" method="POST" action="/admin/quotation">
           {{ csrf_field() }}
+          <br>
+          <div class="col-md-12">
+            <div class="box box-primary box-solid">
+              <div class="box-header with-border">
+                <h3 class="box-title">Buscar cliente</h3>
+              </div>
+              <div class="box-body" style="">
+                <div class="form-group">
+                  <label>Clientes</label>
+                  <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
+                      <option selected="selected" value="null">Buscar...</option>
+                      @foreach ($clients as $client)
+                        <option value="{{ $client->id }}">{{ $client->business }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="box-body">
             <div class="col-md-4">
               <div class="form-group {{ $errors->has('folio') ? 'has-error' : '' }}">
-                <label for="folio">Folio:</label>
-                <input type="text" name="folio" class="form-control" placeholder="Folio">
+                <label for="folio">No. de Cotización:</label>
+                <input type="text" name="folio" class="form-control" placeholder="no. de cotización">
               </div>
-              <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }}">
-                <label for="date">Fecha:</label>
-                <input type="text" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
+              <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
+                <label for="RFC">RFC:</label>
+                <input type="text" name="RFC" class="form-control" placeholder="RFC">
               </div>
               <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
                 <label for="company">Nombre de la empresa:</label>
@@ -36,9 +58,12 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
-                <label for="RFC">RFC:</label>
-                <input type="text" name="RFC" class="form-control" placeholder="RFC">
+              <div class="">
+                <label for="date">Fecha:</label>
+                <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }} input-group">
+                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                  <input type="text" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
+                </div>
               </div>
               <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
                 <label for="telephone">Teléfono:</label>
@@ -50,17 +75,17 @@
               </div>
             </div>
             <div class="col-md-4">
-              <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
-                <label for="job">Puesto:</label>
-                <input type="text" name="puesto" class="form-control" placeholder="Puesto">
+              <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
+                <label for="nBidding">Número de Licitación:</label>
+                <input type="text" name="licitacion" class="form-control" placeholder="Numero de Licitación">
               </div>
               <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
                 <label for="mail">E-mail:</label>
                 <input type="text" name="correo" class="form-control" placeholder="E-mail">
               </div>
-              <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
-                <label for="nBidding">Número de Licitación:</label>
-                <input type="text" name="licitacion" class="form-control" placeholder="Numero de Licitación">
+              <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
+                <label for="job">Puesto:</label>
+                <input type="text" name="puesto" class="form-control" placeholder="Puesto">
               </div>
             </div>
             <div class="col-md-6">
@@ -96,6 +121,8 @@
                 <label>Producto:</label>
                 <input type="text" class="form-control" placeholder="producto" id="producto">
                 <input type="text" id="description" hidden>
+                <input type="text" id="currency" hidden>
+                <input type="text" id="unit" hidden>
               </div>
             </div>
             <div class="col-md-1">
@@ -142,9 +169,7 @@
               <input type="text" name="neto" id="neto" hidden>
               <input type="text" name="iva" id="IVA" hidden>
               <input type="text" name="total" id="totalAmount" hidden>
-              <input type="text" name="nombre" value="{{Auth::user()->name}}">
-              <input type="text" name="correo" value="{{Auth::user()->email}}">
-              <input type="text" name="phone" value="{{Auth::user()->phone}}">
+              <input type="text" name="nombre" value="{{Auth::user()->id}}" hidden>
               <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
               <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4>
               <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
@@ -159,17 +184,6 @@
         </form>
       </div>
     </section>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchProduct").select2();
-        $('#datepicker').datepicker({
-          pickTime: false,
-          autoclose: true,
-          language: 'es',
-          format: 'dd/mm/yyyy'
-        });
-      });
-    </script>
     <script type="text/javascript">
       function getProduct(val) {
         var id = val.value
@@ -190,8 +204,15 @@
             $('#price3').val(res.priceSales3);
             $('#price4').val(res.priceSales4);
             $('#price5').val(res.priceSales5);
+            $('#currency').val(res.coin.type);
+            $('#unit').val(res.unit);
           }
         })
+      }
+
+      function getClient(val) {
+        var id = val.value
+        console.log(id);
       }
     </script>
     <script type="text/javascript">
@@ -203,6 +224,8 @@
         var descripcion = $('#description').val()
         var precio = $('#precioUnitario').val()
         var cantidad = $('#cantidad').val()
+        var moneda = $('#currency').val()
+        var unidad = $('#unit').val()
 
         if (precio != '' && cantidad != '') {
           var findProduct = _.find(products,{ 'id' : id })
@@ -215,7 +238,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+' '+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
               $('#tabla').append(iter)
             })
             totalAmount()
@@ -226,6 +249,8 @@
               description: descripcion,
               price: precio,
               quantity: cantidad,
+              currency: moneda,
+              unit: unidad,
               total: Number(precio) * Number(cantidad)
             }
 
@@ -235,7 +260,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+' '+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
 
               $('#tabla').append(iter)
               totalAmount()
@@ -290,7 +315,6 @@
           neto += Number(item.total)
         })
 
-
         iva = neto * .16
         total = neto + iva
 
@@ -303,5 +327,4 @@
         $('#totalAmount').val(total.toFixed(2))
       }
     </script>
-
 @endsection

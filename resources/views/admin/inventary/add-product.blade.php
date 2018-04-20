@@ -21,7 +21,7 @@
           <div class="col-md-8">
             <div class="form-group">
               <label>Buscar Producto en Catálogo</label>
-              <select id="searchProduct" class="form-control select2" onchange="catalogo(this)">
+              <select class="form-control select2" onchange="catalogo(this)">
                 <option selected="selected" value="null">Buscar...</option>
                 @foreach ($catalog as $products)
                   <option value="{{ $products->id }}">{{ $products->description }}</option>
@@ -147,11 +147,6 @@
         </form>
       </div>
     </section>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchProduct").select2();
-      });
-    </script>
     <script type="text/javascript">
       function catalogo(val) {
         var id = val.value;

@@ -127,11 +127,6 @@
       </div>
     </section>
     <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchProduct").select2();
-      });
-    </script>
-    <script type="text/javascript">
       function producto(val) {
         var id = val.value;
         $('#idProduct').val(id);
