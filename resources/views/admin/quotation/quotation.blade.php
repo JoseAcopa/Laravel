@@ -53,7 +53,7 @@
                 <tr>
                   <td class="row-copasat">
                     <a class="btn btn-primary" href="{{url('/admin/show-product',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-default" href="{{url('/facturas',$quotation->id)}}"><i class="fa fa-file-pdf-o"></i></a>
+                    <a class="btn btn-default" target="_blank" href="{{url('/cotizacion',$quotation->id)}}"><i class="fa fa-file-pdf-o"></i></a>
                     {{-- <a class="btn btn-info" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o"></i></a> --}}
                     {!! Form::open(['method' => 'DELETE','route' => ['quotation.destroy', $quotation->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

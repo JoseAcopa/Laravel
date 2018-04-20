@@ -10,9 +10,7 @@
     <link rel="stylesheet" href="css/AdminLTE.css">
   </head>
   <body>
-    <!-- Main content -->
     <section class="invoice">
-      <!-- title row -->
       <div class="row">
         <div class="col-xs-12">
           <h2 class="page-header">
@@ -20,88 +18,66 @@
             <small class="pull-right">Fecha: {{ date('d-m-Y') }}</small>
           </h2>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- info row -->
+
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
           Atención:
           <address>
-            <strong>{{Auth::user()->name}}</strong><br>
-            Telefono: {{Auth::user()->phone}}<br>
-            Email: {{Auth::user()->email}}
+            <strong>{{$selectQuotation->nombre}}</strong><br>
+            Telefono: {{$selectQuotation->cliente->phone}}<br>
+            Email: {{$selectQuotation->cliente->email}}
           </address>
         </div>
-        <!-- /.col -->
+
         <div class="col-sm-4 invoice-col">
-          Para:
+          Empresa:
           <address>
-            <strong>Grupo R Perforación S.A. de C.V.</strong><br>
-            Camino a Mata de Pita 7A Bis<br>
+            <strong>{{$selectQuotation->cliente->business}}.</strong><br>
+            {{$selectQuotation->cliente->address}}<br>
             Las Bajadas, Veracruz.<br>
             CP 91726.
           </address>
         </div>
-        <!-- /.col -->
+
         <div class="col-sm-4 invoice-col">
-          <b>Factura RXS-{{$invoice->nInvoice}}</b><br>
+          <b>No. de Cotización RXS-{{$selectQuotation->cotizacion}}</b><br>
           <br>
-          <b>No. de Licitación:</b> 4F3S8J<br>
-          <b>Fecha:</b>{{ date('d-m-Y') }}<br>
+          <b>No. de Licitación:</b> {{$selectQuotation->licitacion}}<br>
+          <b>Fecha:</b>{{$selectQuotation->fecha}}<br>
           <b>Cuenta:</b> 968-34567
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
 
-      <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
           <table class="table table-striped">
             <thead>
             <tr>
-              <th>Cant.</th>
-              <th>Producto</th>
-              <th>U. Medida</th>
-              <th>Descripcion</th>
-              <th>Subtotal</th>
+              <th>PRODUCTO</th>
+              <th>DESCRIPCIÓN</th>
+              <th>CANT.</th>
+              <th>U.MEDIDA </th>
+              <th>P.UNITARIO</th>
+              <th>IMPORTE12.5</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <td>1</td>
-              <td>Call of Duty</td>
-              <td>455-981-221</td>
-              <td>El snort testosterone trophy driving gloves handsome</td>
-              <td>$64.50</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Need for Speed IV</td>
-              <td>247-925-726</td>
-              <td>Wes Anderson umami biodiesel</td>
-              <td>$50.00</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Monsters DVD</td>
-              <td>735-845-642</td>
-              <td>Terry Richardson helvetica tousled street art master</td>
-              <td>$10.70</td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Grown Ups Blue Ray</td>
-              <td>422-568-642</td>
-              <td>Tousled lomo letterpress</td>
-              <td>$25.99</td>
-            </tr>
+              @foreach ($quoteers as $quoteer)
+                <tr>
+                  <td>{{$quoteer->producto}}</td>
+                  <td>{{$quoteer->descripcion}}</td>
+                  <td>{{$quoteer->cantidad}}</td>
+                  <td>Metros</td>
+                  <td>{{$quoteer->precio}}</td>
+                  <td>18000</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
+
       <div class="row">
         <div class="col-xs-12 invoice-col">
           <address>
@@ -111,14 +87,8 @@
       </div>
 
       <div class="row">
-        <!-- accepted payments column -->
         <div class="col-xs-6">
           <p class="lead">Metodos de Pago:</p>
-          {{-- <img src="image/visa.png" alt="Visa">
-          <img src="image/mastercard.png" alt="Mastercard">
-          <img src="image/american-express.png" alt="American Express">
-          <img src="image/paypal2.png" alt="Paypal"> --}}
-
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
             DATOS FISCALES<br>
             Rayos X y Servicios Industriales S.A. de C.V.<br>
@@ -132,10 +102,9 @@
             CUENTA EN USD: 70009669750
           </p>
         </div>
-        <!-- /.col -->
+
         <div class="col-xs-6">
           <p class="lead">Monto adeudado:</p>
-
           <div class="table-responsive">
             <table class="table">
               <tr>
@@ -144,20 +113,19 @@
               </tr>
               <tr>
                 <th>IVA</th>
-                <td>$10.34</td>
+                <td>${{$selectQuotation->IVA}}</td>
               </tr>
               <tr>
-                <th>Envío:</th>
-                <td>$5.80</td>
+                <th>Subtotal:</th>
+                <td>${{$selectQuotation->subtotal}}</td>
               </tr>
               <tr>
                 <th>Total:</th>
-                <td>$265.24</td>
+                <td>${{$selectQuotation->total}}</td>
               </tr>
             </table>
           </div>
         </div>
-        <!-- /.col -->
       </div>
       <div class="row invoice-info">
         <hr>
@@ -166,19 +134,19 @@
           Tabasco 2000 C.P 86035<br>
           Villahermosa, Tabasco
         </div>
-        <!-- /.col -->
+
         <div class="col-sm-4 invoice-col address">
           rayosxyservicios@prodigy.net.mx<br>
           rxysisacv@prodigy.net.mx<br>
           rx@prodigy.net.mx
         </div>
-        <!-- /.col -->
+
         <div class="col-sm-4 invoice-col address">
           Tel. Oficina (993) 3 16 16 76<br>
           Nextel Ventas (993) 2 67 65 05<br>
           ID Nextel 92*976411*5
         </div>
-        <!-- /.col -->
+
       </div>
     </section>
   </body>
