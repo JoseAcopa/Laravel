@@ -59,7 +59,7 @@
                     {!! $errors->first('unidad','<span class="help-block">:message</span>')!!}
                   </div>
                   <div class="col-xs-6 top-copasat">
-                    <input type="text" class="form-control" name="unidad" id="unidad" value="{{$catalog->unit_id}}" readonly>
+                    <input type="text" class="form-control" name="unidad" id="unidad" value="{{$catalog->unit}}" readonly>
                   </div>
                 </div>
               </div>

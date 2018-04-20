@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Quotations;
 use App\Products;
+use App\Clients;
+use App\Quoteers;
+use App\Http\Requests\CreateQuotationRequest;
 
 class QuotationsController extends Controller
 {
@@ -19,8 +23,9 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-      $quotations = Quotations::all();
-      return view('admin.quotation.quotation', compact('quotations'));
+      $quotationPDF = 0;
+      $quotations = Quotations::with(['user', 'cliente'])->get();
+      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'));
     }
 
     /**
@@ -31,7 +36,8 @@ class QuotationsController extends Controller
     public function create()
     {
       $products = Products::all();
-      return view('admin.quotation.add-quotation', compact('products'));
+      $clients = Clients::all();
+      return view('admin.quotation.add-quotation', compact('products', 'clients'));
     }
 
     /**
@@ -40,25 +46,39 @@ class QuotationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateQuotationRequest $request)
     {
       $quotation = new Quotations;
-      $quotation->folio = request('folio');
-      $quotation->RFC = request('RFC');
-      $quotation->name = request('name');
-      $quotation->date = request('date');
-      $quotation->job = request('job');
-      $quotation->nClient = request('nClient');
-      $quotation->direction = request('direction');
-      $quotation->mail = request('mail');
-      $quotation->company = request('company');
-      $quotation->nBidding = request('nBidding');
-      $quotation->description = request('description');
+      $quotation->cotizacion = request('cotizacion');
+      $quotation->fecha = request('fecha');
+      $quotation->licitacion = request('licitacion');
+      $quotation->nombre = request('nombre');
+      $quotation->puesto = request('puesto');
+      $quotation->observaciones = request('observaciones');
+      $quotation->subtotal = request('neto');
+      $quotation->IVA = request('iva');
       $quotation->total = request('total');
-      $quotation->IVA = request('IVA');
-      $quotation->totalAmount = request('totalAmount');
+      $quotation->cliente_id = request('cliente');
+      $quotation->user_id = request('usuario');
       $quotation->save();
-      return redirect('admin/quotation')->with('success','Cotizacion '. $quotation->folio .' Guardado correctamente');
+
+      $count = request('count');
+
+      for ($i=0; $i < $count; $i++) {
+        if (request('producto'.$i)) {
+          $quoteer = new Quoteers;
+          $quoteer->cotizacion_id = $quotation->id;
+          $quoteer->producto = request('producto'.$i);
+          $quoteer->cantidad = request('cantidad'.$i);
+          $quoteer->descripcion = request('descripcion'.$i);
+          $quoteer->precio = request('precio'.$i);
+          $quoteer->save();
+        }
+      }
+
+      $quotationPDF = $quotation->id;
+      $quotations = Quotations::with(['user', 'cliente'])->get();
+      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
     }
 
     /**
@@ -105,6 +125,8 @@ class QuotationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      Quotations::find($id)->delete();
+      DB::table('quoteers')->where('cotizacion_id', $id)->delete();
+      return redirect('admin/quotation')->with('success','La cotizacion ha sido eliminado correctamente');
     }
 }

@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Invoice;
+use PDF;
 
 class ControllerInvoices extends Controller
 {
-    /**
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+      $invoices = Invoice::all();
+      return view('admin.facturas.index', compact('invoices'));
     }
 
     /**
@@ -79,6 +86,14 @@ class ControllerInvoices extends Controller
      */
     public function destroy($id)
     {
-        //
+      Invoice::find($id)->delete();
+      return redirect('admin/facturas')->with('success','Factura eliminado correctamente');
     }
+
+    public function downloadPDF($id)
+      {
+        $invoice = Invoice::find($id);
+      	$pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
+  		    return $pdf->stream('invoice.pdf');
+      }
 }

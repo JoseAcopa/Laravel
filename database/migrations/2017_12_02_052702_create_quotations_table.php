@@ -15,20 +15,17 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('folio');
-            $table->string('RFC');
-            $table->string('name');
-            $table->string('date');
-            $table->string('job');
-            $table->string('nClient');
-            $table->string('direction');
-            $table->string('mail');
-            $table->string('company');
-            $table->string('nBidding');
-            $table->string('description');
-            $table->string('total');
+            $table->string('cotizacion');
+            $table->string('fecha');
+            $table->string('licitacion');
+            $table->string('nombre');
+            $table->string('puesto');
+            $table->string('observaciones');
+            $table->string('subtotal');
             $table->string('IVA');
-            $table->string('totalAmount');
+            $table->string('total');
+            $table->integer('cliente_id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

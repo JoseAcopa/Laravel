@@ -21,10 +21,10 @@
           <div class="col-md-8">
             <div class="form-group">
               <label>Buscar Producto en Catálogo</label>
-              <select id="searchProduct" class="form-control select2" onchange="catalogo(this)">
+              <select class="form-control select2" onchange="catalogo(this)">
                 <option selected="selected" value="null">Buscar...</option>
                 @foreach ($catalog as $products)
-                  <option value="{{ $products->id }}">{{ $products->description }}</option>
+                  <option value="{{ $products->id }}">{{ $products->category->type }} | {{ $products->description }}</option>
                 @endforeach
               </select>
             </div>
@@ -148,11 +148,6 @@
       </div>
     </section>
     <script type="text/javascript">
-      $(document).ready(function() {
-        $("#searchProduct").select2();
-      });
-    </script>
-    <script type="text/javascript">
       function catalogo(val) {
         var id = val.value;
         var priceList = $("#priceList").val()
@@ -163,7 +158,7 @@
         var newRes = []
 
         $.ajax({
-          url: '/producto/'+id,
+          url: '/producto-catalogo/'+id,
           type: 'GET',
           success: (res)=>{
             $('#idProduct').val(res.id);
@@ -230,7 +225,7 @@
         var newRes = []
 
         console.log(categoria);
-        
+
         if (categoria === 'Petrolera | Industrial') {
           var newCost = priceList * .50
           $('#cost').val(newCost)

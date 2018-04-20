@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Checkouts;
-use App\Suppliers;
-use App\Units;
 use App\Products;
+use App\Http\Requests\CreateCheckoutRequest;
 
 class CheckoutsController extends Controller
 {
@@ -21,8 +20,8 @@ class CheckoutsController extends Controller
      */
     public function index()
     {
-      $checkouts = Checkouts::all();
-      return view('admin.inventary.inventary-out', compact('checkouts'));
+      $checkouts = Checkouts::with(['supplier', 'category'])->get();
+      return view('admin.checkout.index', compact('checkouts'));
     }
 
     /**
@@ -33,7 +32,7 @@ class CheckoutsController extends Controller
     public function create()
     {
       $products = Products::all();
-      return view('admin.inventary.add-out', compact('products'));
+      return view('admin.checkout.add', compact('products'));
     }
 
     /**
@@ -42,26 +41,35 @@ class CheckoutsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCheckoutRequest $request)
     {
+      // descontando stock del producto
+      $id = request('idProduct');
+      $stock = $request->input('stock');
+      $quantity = $request->input('cantidad');
+      $newStock = $stock - $quantity;
+      $product = Products::find($id);
+      $product->stock = $newStock;
+      $product->save();
+
       $checkout = new Checkouts;
-      $checkout->nInvoice = request('nInvoice');
-      $checkout->TProduct = request('TProduct');
-      $checkout->NProduct = request('NProduct');
-      $checkout->provider = request('provider');
-      $checkout->checkout = request('checkout');
-      $checkout->quantity = request('quantity');
-      $checkout->merma = request('merma');
-      $checkout->stock = request('stock');
-      $checkout->unit = request('unit');
-      $checkout->priceList = request('priceList');
-      $checkout->cost = request('cost');
-      $checkout->priceSales = request('priceSales');
+      $checkout->nInvoice = request('factura') === null ? '' : request('factura');
+      $checkout->category_id = request('categoria');
+      $checkout->initials = request('iniciales');
+      $checkout->supplier_id = request('proveedor');
+      $checkout->unit = request('unidad');
+      $checkout->date_out = request('salida');
       $checkout->description = request('description');
-      $checkout->totalAmount = request('totalAmount');
+      $checkout->priceList = request('precio_lista');
+      $checkout->cost = request('costo');
+      $checkout->coin_id = request('idMoneda');
+      $checkout->stock = $newStock;
+      $checkout->quantity_output = request('cantidad');
+      $checkout->price_output = request('precio');
+      $checkout->keyProduct = $id;
 
       $checkout->save();
-      return redirect('admin/inventary-out')->with('success','Producto '. $checkout->TProduct .' Guardado correctamente');
+      return redirect('admin/product-output')->with('success','Salida Guardado correctamente');
     }
 
     /**
@@ -73,7 +81,10 @@ class CheckoutsController extends Controller
     public function show($id)
     {
       $checkout = Checkouts::find($id);
-      return view('admin.inventary.show-out', compact('checkout'));
+      $checkout->coin;
+      $checkout->supplier;
+      $checkout->category;
+      return view('admin.checkout.show', compact('checkout'));
     }
 
     /**
@@ -84,11 +95,11 @@ class CheckoutsController extends Controller
      */
     public function edit($id)
     {
-      $suppliers = Suppliers::all();
-      $units = Units::all();
-      $products = Products::all();
       $checkout = Checkouts::find($id);
-      return view('admin.inventary.edit-out', compact('checkout'), compact('suppliers', 'units', 'products'));
+      $checkout->coin;
+      $checkout->supplier;
+      $checkout->category;
+      return view('admin.checkout.edit', compact('checkout'));
     }
 
     /**
@@ -100,40 +111,28 @@ class CheckoutsController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $newNInvoice = $request->input('nInvoice');
-      $newTProduct = $request->input('TProduct');
-      $newNProduct = $request->input('NProduct');
-      $newProvider = $request->input('provider');
-      $newCheckout = $request->input('checkout');
-      $newQuantity = $request->input('quantity');
-      $newMerma = $request->input('merma');
+      $keyProduct = $request->input('idProduct');
+      $newNInvoice = $request->input('factura');
+      $newDate = $request->input('salida');
       $newStock = $request->input('stock');
-      $newUnit = $request->input('unit');
-      $newPriceList = $request->input('priceList');
-      $newCost = $request->input('cost');
-      $newPriceSales = $request->input('priceSales');
-      $newDescription = $request->input('description');
-      $newTotalAmount = $request->input('totalAmount');
+      $newQuantity = $request->input('cantidad');
+      $newPrice = $request->input('precio');
+
+      // editando stock del producto
+      $product = Products::find($keyProduct);
+      $product->stock = $newStock;
+      $product->save();
 
       $checkout = Checkouts::find($id);
 
       $checkout->nInvoice = $newNInvoice;
-      $checkout->TProduct = $newTProduct;
-      $checkout->NProduct = $newNProduct;
-      $checkout->provider = $newProvider;
-      $checkout->checkout = $newCheckout;
-      $checkout->quantity = $newQuantity;
-      $checkout->merma = $newMerma;
+      $checkout->date_out = $newDate;
       $checkout->stock = $newStock;
-      $checkout->unit = $newUnit;
-      $checkout->priceList = $newPriceList;
-      $checkout->cost = $newCost;
-      $checkout->priceSales = $newPriceSales;
-      $checkout->description = $newDescription;
-      $checkout->totalAmount = $newTotalAmount;
+      $checkout->quantity_output = $newQuantity;
+      $checkout->price_output = $newPrice;
       $checkout->save();
 
-      return redirect('admin/inventary-out')->with('success','Producto actualizado correctamente');
+      return redirect('admin/product-output')->with('success','Salida actualizado correctamente');
     }
 
     /**
@@ -145,7 +144,7 @@ class CheckoutsController extends Controller
     public function destroy($id)
     {
       Checkouts::find($id)->delete();
-      return redirect('admin/inventary-out')->with('success','Producto de salida eliminado correctamente');
+      return redirect('admin/product-output')->with('success','Salida eliminado correctamente');
 
     }
 }

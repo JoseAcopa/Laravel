@@ -42,6 +42,8 @@
                 <th>Descripción del Producto</th>
                 <th>Fecha de Entrada</th>
                 <th>Stock</th>
+                <th>Precio Lista</th>
+                <th>Costo</th>
              </tr>
             </thead>
             <tbody>
@@ -60,13 +62,16 @@
                   </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->initials }}-{{ $product->id }}</td>
-                  <td>{{ $product->description }}</td>
+                  <td>{{ str_limit($product->description, 50) }}</td>
                   <td>{{ $product->checkin }}</td>
                   <td>
-                    <span  <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
+                    <span <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
                       {{$product->stock}}
                     </span>
+                    {{$product->unit}}
                   </td>
+                  <td>{{ $product->priceList }} {{ $product->coin->type }}</td>
+                  <td>{{ $product->cost }} {{ $product->coin->type }}</td>
                 </tr>
               @endforeach
             </tbody>

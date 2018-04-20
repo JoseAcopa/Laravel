@@ -46,7 +46,7 @@
                   {!! $errors->first('letters','<span class="help-block">:message</span>')!!}
                 </div>
                 <div class="form-group {{ $errors->has('categorias') ? 'has-error' : '' }}">
-                  <label for="ini">Iniciales:</label>
+                  <label for="ini">Categorias:</label>
                   <select name="categorias" id="name" class="form-control" >
                     <option value="">Seleccione Categoria</option>
                     <option value="Petrolera | Industrial">Petrolera | Industrial</option>

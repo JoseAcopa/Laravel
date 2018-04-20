@@ -25,4 +25,9 @@ class Suppliers extends Model
   {
     return $this->hasMany('App\Invoice');
   }
+
+  public function checkouts()
+  {
+    return $this->hasMany('App\Checkouts');
+  }
 }

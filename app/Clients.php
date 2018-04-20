@@ -10,4 +10,9 @@ class Clients extends Model
   protected $fillable = [
       'RFC', 'business', 'address', 'phone', 'email',
   ];
+
+  public function quotations()
+  {
+    return $this->hasMany('App\Quotations');
+  }
 }

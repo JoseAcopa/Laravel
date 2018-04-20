@@ -61,7 +61,7 @@
                   <td>{{ $product->letter }}</td>
                   <td>{{ $product->supplier->business }}</td>
                   <td>{{ $product->unit }}</td>
-                  <td>{{ $product->description }}</td>
+                  <td>{{ str_limit($product->description, 50) }}</td>
                 </tr>
               @endforeach
             </tbody>

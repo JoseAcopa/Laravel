@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
-use App\Suppliers;
-use App\Units;
-use App\Category;
 use App\Coins;
 use App\Catalog;
 use App\Invoice;
 use App\Http\Requests\CreateProductsRequest;
+use App\Http\Requests\UpdateProductsRequest;
 
 class ProductsControllers extends Controller
 {
@@ -138,11 +136,12 @@ class ProductsControllers extends Controller
      */
     public function edit($id)
     {
-      // $suppliers = Suppliers::all();
-      // $units = Units::all();
       $product = Products::find($id);
-      // $coins = Coins::all();
-      return view('admin.inventary.edit-product', compact('product'));
+      $coins = Coins::all();
+      $product->coin;
+      $product->supplier;
+      $product->category;
+      return view('admin.inventary.edit-product', compact('product', 'coins'));
     }
 
     /**
@@ -152,7 +151,7 @@ class ProductsControllers extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateProductsRequest $request, $id)
     {
       $newCategory = $request->input('category');
       $newInitials = $request->input('initials');
@@ -161,16 +160,32 @@ class ProductsControllers extends Controller
       $newUnit = $request->input('unidad');
       $newDescription = $request->input('description');
       $newStock = $request->input('cantidad_entrada');
+      $newPriceList = $request->input('precio_lista');
+      $newCost = $request->input('costo');
+      $newPriceSales1 = $request->input('priceSales1');
+      $newPriceSales2 = $request->input('priceSales2');
+      $newPriceSales3 = $request->input('priceSales3');
+      $newPriceSales4 = $request->input('priceSales4');
+      $newPriceSales5 = $request->input('priceSales5');
+      $newCoin = $request->input('moneda');
 
       $product = Products::find($id);
 
-      $product->category = $newCategory;
+      $product->category_id = $newCategory;
       $product->initials = $newInitials;
-      $product->supplier = $newSupplier;
+      $product->supplier_id = $newSupplier;
       $product->checkin = $newCheckin;
       $product->unit = $newUnit;
       $product->description = $newDescription;
       $product->stock = $newStock;
+      $product->priceList = $newPriceList;
+      $product->cost = $newCost;
+      $product->priceSales1 = $newPriceSales1;
+      $product->priceSales2 = $newPriceSales2;
+      $product->priceSales3 = $newPriceSales3;
+      $product->priceSales4 = $newPriceSales4;
+      $product->priceSales5 = $newPriceSales5;
+      $product->coin_id = $newCoin;
       $product->save();
 
       return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
@@ -186,14 +201,5 @@ class ProductsControllers extends Controller
     {
       Products::find($id)->delete();
       return redirect('admin/inventary')->with('success','Producto '. $id .' eliminado correctamente');
-    }
-
-    public function getProductAjax($id)
-    {
-      $product = Catalog::find($id);
-      $product->unit;
-      $product->supplier;
-      $product->category;
-      return $product;
     }
 }
