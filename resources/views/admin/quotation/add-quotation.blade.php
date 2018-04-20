@@ -122,7 +122,7 @@
                 <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
                   <option selected="selected" value="null">Buscar...</option>
                   @foreach ($products as $product)
-                    <option value="{{ $product->id }}">{{ $product->description }}</option>
+                    <option value="{{ $product->id }}">{{ $product->category->type }} | {{ $product->description }}</option>
                   @endforeach
                 </select>
               </div>
@@ -130,7 +130,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Producto:</label>
-                <input type="text" class="form-control" placeholder="producto" id="producto">
+                <input type="text" class="form-control" placeholder="producto" id="producto" readonly>
                 <input type="text" id="description" hidden>
                 <input type="text" id="currency" hidden>
                 <input type="text" id="unit" hidden>
@@ -166,8 +166,9 @@
                 <thead>
                   <tr style="background-color: #a5b1c2 !important; color: #fff !important;">
                     <th>Producto</th>
-                    <th>Cantidad</th>
-                    <th>Descripción</th>
+                    <th>Cant.</th>
+                    <th>Unidad</th>
+                    <th>Descripción del producto</th>
                     <th>Precio Unitario</th>
                     <th>Subtotal</th>
                     <th>Eliminar</th>
@@ -204,11 +205,11 @@
           url: '/producto/'+id,
           type: 'GET',
           success: (res)=>{
-            $('#price1').text('$'+res.priceSales1+' '+res.coin.type);
-            $('#price2').text('$'+res.priceSales2+' '+res.coin.type);
-            $('#price3').text('$'+res.priceSales3+' '+res.coin.type);
-            $('#price4').text('$'+res.priceSales4+' '+res.coin.type);
-            $('#price5').text('$'+res.priceSales5+' '+res.coin.type);
+            $('#price1').text('$'+res.priceSales1);
+            $('#price2').text('$'+res.priceSales2);
+            $('#price3').text('$'+res.priceSales3);
+            $('#price4').text('$'+res.priceSales4);
+            $('#price5').text('$'+res.priceSales5);
 
             $('#producto').val(res.category.type);
             $('#description').val(res.description);
@@ -263,7 +264,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+' '+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
               $('#tabla').append(iter)
             })
             totalAmount()
@@ -285,7 +286,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+' '+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
 
               $('#tabla').append(iter)
               totalAmount()

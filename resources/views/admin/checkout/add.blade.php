@@ -24,7 +24,7 @@
               <select id="searchProduct" class="form-control select2" onchange="producto(this)">
                 <option selected="selected" value="null">Buscar...</option>
                 @foreach ($products as $product)
-                  <option value="{{ $product->id }}">{{ $product->description }}</option>
+                  <option value="{{ $product->id }}">{{ $product->category->type }} | {{ $product->description }}</option>
                 @endforeach
               </select>
             </div>

@@ -24,7 +24,7 @@
               <select class="form-control select2" onchange="catalogo(this)">
                 <option selected="selected" value="null">Buscar...</option>
                 @foreach ($catalog as $products)
-                  <option value="{{ $products->id }}">{{ $products->description }}</option>
+                  <option value="{{ $products->id }}">{{ $products->category->type }} | {{ $products->description }}</option>
                 @endforeach
               </select>
             </div>

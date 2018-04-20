@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Quotations;
 use App\Products;
 use App\Clients;
@@ -125,6 +126,7 @@ class QuotationsController extends Controller
     public function destroy($id)
     {
       Quotations::find($id)->delete();
+      DB::table('quoteers')->where('cotizacion_id', $id)->delete();
       return redirect('admin/quotation')->with('success','La cotizacion ha sido eliminado correctamente');
     }
 }
