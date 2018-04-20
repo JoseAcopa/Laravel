@@ -70,4 +70,4 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 
 // crear PDF
 Route::get("factura/{id}","ControllerInvoices@downloadPDF");
-Route::get("cotizacion/{client}/{product}","QuotationsController@downloadPDF");
+Route::get("cotizacion/{quotation}","PDFController@cotizacionPDF");

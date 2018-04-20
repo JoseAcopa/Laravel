@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Quotations;
 use App\Products;
 use App\Clients;
-use PDF;
+use App\Quoteers;
 use App\Http\Requests\CreateQuotationRequest;
 
 class QuotationsController extends Controller
@@ -22,10 +22,9 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-      $client = 0;
-      $product = 0;
+      $quotationPDF = 0;
       $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.quotation', compact('quotations', 'client', 'product'));
+      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'));
     }
 
     /**
@@ -61,10 +60,24 @@ class QuotationsController extends Controller
       $quotation->cliente_id = request('cliente');
       $quotation->user_id = request('usuario');
       $quotation->save();
-      return $quotation;
-      // $client = $quotation->id;
-      // $product = 1;
-      // return view('admin.quotation.quotation', compact('quotations', 'client', 'product'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
+
+      $count = request('count');
+
+      for ($i=0; $i < $count; $i++) {
+        if (request('producto'.$i)) {
+          $quoteer = new Quoteers;
+          $quoteer->cotizacion_id = $quotation->id;
+          $quoteer->producto = request('producto'.$i);
+          $quoteer->cantidad = request('cantidad'.$i);
+          $quoteer->descripcion = request('descripcion'.$i);
+          $quoteer->precio = request('precio'.$i);
+          $quoteer->save();
+        }
+      }
+
+      $quotationPDF = $quotation->id;
+      $quotations = Quotations::with(['user', 'cliente'])->get();
+      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
     }
 
     /**
@@ -113,11 +126,5 @@ class QuotationsController extends Controller
     {
       Quotations::find($id)->delete();
       return redirect('admin/quotation')->with('success','La cotizacion ha sido eliminado correctamente');
-    }
-
-    public function downloadPDF($client, $product)
-    {
-    	$pdf = PDF::loadView('admin.PDF.quotations', compact('client', 'product'));
-		    return $pdf->stream('cotizacion.pdf');
     }
 }

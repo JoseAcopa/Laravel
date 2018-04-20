@@ -180,6 +180,7 @@
               <input type="text" name="neto" id="neto" hidden>
               <input type="text" name="iva" id="IVA" hidden>
               <input type="text" name="total" id="totalAmount" hidden>
+              <input type="text" name="count" id="count" hidden>
               <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
               <input type="text" name="usuario" value="{{Auth::user()->id}}" hidden>
               <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
@@ -289,6 +290,7 @@
               $('#tabla').append(iter)
               totalAmount()
             })
+            $('#count').val(products.length)
           }
         }else {
           if (precio === '') {
@@ -328,6 +330,7 @@
             'El Producto ha sido eliminado.',
             'success'
           )
+          $('#count').val(products.length)
         })
 
       }

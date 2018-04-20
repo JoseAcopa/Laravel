@@ -76,18 +76,18 @@
       </div>
     </section>
     <script type="text/javascript">
-    var idClient = {{$client}}
-    var idProduct = {{$product}}
-    if (idClient != 0) {
+    var idQuotation = {{$quotationPDF}}
+    if (idQuotation != 0) {
       window.onload=function onloadPDF() {
         var a = document.createElement("a");
     		a.target = "_blank";
-    		a.href = "/cotizacion/"+idClient+'/'+idProduct;
+    		a.href = "/cotizacion/"+idQuotation;
     		a.click();
 
         window.location="{{url('/admin/quotation')}}"
       }
     }
+
     </script>
 
 @endsection
