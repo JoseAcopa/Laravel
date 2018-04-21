@@ -27,9 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @if (auth()->user()->create === 1)
-            <a href="{{ url('admin/add-employee') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
-          @endif
+          <a href="{{ url('admin/add-employee') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
         </div>
 
         <div class="box-body">
@@ -49,14 +47,11 @@
               @foreach ($employees as $employee)
                 <tr>
                   <td class="row-copasat">
-                    @if (auth()->user()->update === 1)
-                      <a class="btn btn-info" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endif
-                    @if (auth()->user()->delete === 1)
-                      {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
-                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                      {!! Form::close() !!}
-                    @endif
+                    <a class="btn btn-info" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy', $employee->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
+                      <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    {!! Form::close() !!} --}}
                   </td>
                   <td>RX-{{ $employee->id }}</td>
                   <td>{{ $employee->name }}</td>
@@ -71,5 +66,33 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar este empleado?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
+      }
+    </script>
 
 @endsection

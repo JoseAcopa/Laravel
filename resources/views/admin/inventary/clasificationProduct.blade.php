@@ -75,10 +75,10 @@
                 @foreach ($categories as $key)
                   <tr>
                     <td class="row-copasat">
-                      {{-- <a href="{{url('/admin/edit-out',$key->id_Producto)}}" class="btn-green"><i class="fa fa-pencil-square-o fa-lg"></i></a> --}}
-                      {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id]]) !!}
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('clasificationProduct.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      {{-- {!! Form::open(['method' => 'DELETE','route' => ['clasificationProduct.destroy', $key->id]]) !!}
                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                      {!! Form::close() !!}
+                      {!! Form::close() !!} --}}
                     </td>
                     <td>{{$key->type}}</td>
                     <td>{{$key->letters}}</td>
@@ -91,5 +91,33 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar esta categoria?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
+      }
+    </script>
 
 @endsection

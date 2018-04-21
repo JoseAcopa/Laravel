@@ -27,9 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @if (auth()->user()->create === 1)
-            <a href="{{ url('/admin/add-client') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
-          @endif
+          <a href="{{ url('/admin/add-client') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
         </div>
 
         <div class="box-body">
@@ -49,14 +47,11 @@
                 @foreach ($clients as $client)
                   <tr>
                     <td class="row-copasat">
-                      @if (auth()->user()->update === 1)
-                        <a class="btn btn-info" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                      @endif
-                      @if (auth()->user()->delete === 1)
-                        {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
-                          <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                        {!! Form::close() !!}
-                      @endif
+                      <a class="btn btn-info" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      {{-- {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
+                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                      {!! Form::close() !!} --}}
                     </td>
                     <td>{{ $client->RFC }}</td>
                     <td>{{ str_limit($client->business, 30) }}</td>
@@ -71,5 +66,33 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar este cliente?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
+      }
+    </script>
 
 @endsection

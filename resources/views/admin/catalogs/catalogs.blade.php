@@ -27,9 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @if (auth()->user()->create === 1)
-            <a href="{{url('admin/alta-producto-catalogo')}}" class="btn btn-success" ><i class="fa fa-pencil "></i> Alta de Productos</a>
-          @endif
+          <a href="{{url('admin/alta-producto-catalogo')}}" class="btn btn-success" ><i class="fa fa-pencil "></i> Alta de Productos</a>
         </div>
 
         <div class="box-body">
@@ -48,14 +46,11 @@
               @foreach ($catalog as $product)
                 <tr>
                   <td class="row-copasat">
-                    @if (auth()->user()->update === 1)
-                      <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endif
-                    @if (auth()->user()->delete === 1)
-                      {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
-                        <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                      {!! Form::close() !!}
-                    @endif
+                    <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
+                      <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                    {!! Form::close() !!} --}}
                   </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>
@@ -69,5 +64,33 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar este producto?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
+      }
+    </script>
 
 @endsection

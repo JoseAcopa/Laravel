@@ -83,17 +83,41 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
-              {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', 2]]) !!}
+              <a type="submit" class="btn btn-danger" onclick="destroy('{{route('facturas.destroy', 2)}}');"><i class="fa fa-trash-o"></i></a>
+              {{-- {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', 2]]) !!}
                 <button type="submit" class="btn btn-danger">Confirmar</button>
-              {!! Form::close() !!}
+              {!! Form::close() !!} --}}
             </div>
           </div>
         </div>
       </div>
     </section>
-    <script>
-      function destroy(){
-        return 1
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar esta factura?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
       }
     </script>
 
