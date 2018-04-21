@@ -68,29 +68,6 @@
           </table>
         </div>
       </div>
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header has-warning">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3 class="modal-title control-label"> <i class="fa fa-bell-o"></i> Eliminar Registro</h3>
-            </div>
-            <div class="modal-body has-error">
-              <h4 class="help-block">¿Está seguro que desea eliminar permanentemente este registro de la base de datos?</h4>
-              <span class="help-block">¡No podrá recuperar este registro!</span>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
-              <a type="submit" class="btn btn-danger" onclick="destroy('{{route('facturas.destroy', 2)}}');"><i class="fa fa-trash-o"></i></a>
-              {{-- {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', 2]]) !!}
-                <button type="submit" class="btn btn-danger">Confirmar</button>
-              {!! Form::close() !!} --}}
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
     <script type="text/javascript">
       function destroy(url){
