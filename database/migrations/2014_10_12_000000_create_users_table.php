@@ -21,15 +21,6 @@ class CreateUsersTable extends Migration
             $table->bigInteger('phone');
             $table->string('password');
             $table->string('tipo');
-            $table->boolean('cliente');
-            $table->boolean('proveedores');
-            $table->boolean('empleados');
-            $table->boolean('inventario');
-            $table->boolean('cotizacion');
-            $table->boolean('create');
-            $table->boolean('read');
-            $table->boolean('update');
-            $table->boolean('delete');
             $table->rememberToken();
             $table->timestamps();
         });

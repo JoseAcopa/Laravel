@@ -55,7 +55,7 @@
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
                 <label for="user">Tipo de Usuario:</label>
-                <select name="tipo" class="form-control" onchange="tipoUser(this);">
+                <select name="tipo" class="form-control">
                   <option value=""> Seleccione tipo de usuario</option>
                   <option value="admin">Administrador</option>
                   <option value="user">Usuario</option>
@@ -63,69 +63,6 @@
                 {!! $errors->first('tipo','<span class="help-block">:message</span>')!!}
               </div>
             </div>
-            <div class="col-md-6" id="permisos-accesos">
-              <h3>Acceso al sistema</h3>
-              <hr>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="clientes">
-                  Clientes
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="proveedores">
-                  Proveedores
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="empleados">
-                  Empleados
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="inventario">
-                  Inventario
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="cotizacion">
-                  Cotización
-                </label>
-              </div>
-            </div>
-            <div class="col-md-6" id="accesos-permisos">
-              <h3>Permisos</h3>
-              <hr>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="create">
-                  Crear
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="read">
-                  Leer
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="update">
-                  Editar
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="delete">
-                  Eliminar
-                </label>
-              </div>
-            </div>
-          </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
             <a href="{{ url('/admin/usuario') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
@@ -133,16 +70,5 @@
         </form>
       </div>
     </section>
-
-    <script type="text/javascript">
-      function tipoUser(val) {
-        if (val.value === 'user') {
-          document.getElementById('permisos-accesos').style.display = "block"
-          document.getElementById('accesos-permisos').style.display = "block"
-        }else {
-          document.getElementById('permisos-accesos').style.display = "none"
-          document.getElementById('accesos-permisos').style.display = "none"
-        }
-      }
-    </script>
+    
 @endsection

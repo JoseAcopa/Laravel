@@ -8,6 +8,15 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/admin/admin-welcome', 'AdminControllers@index');
 // ------------------End Admin-----------------------------------------
 
+// ------------------Roles-----------------------------------------
+Route::get('admin/roles','RolesController@index')->name('roles.index');
+// Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
+// Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:employee.create');
+// Route::get('/admin/edit-usuario/{usuario}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.update');
+// Route::put('/admin/{usuario}/update', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.update');
+// Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');
+// ------------------End Roles------------------------------------
+
 // ------------------Usuarios-----------------------------------------
 Route::get('admin/usuario','EmployeeController@index')->name('employee.index');
 Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
