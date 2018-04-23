@@ -8,6 +8,15 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 Route::get('/admin/admin-welcome', 'AdminControllers@index');
 // ------------------End Admin-----------------------------------------
 
+// ------------------Usuarios-----------------------------------------
+Route::get('admin/usuario','EmployeeController@index')->name('employee.index');
+Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
+Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:employee.create');
+Route::get('/admin/edit-usuario/{usuario}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.update');
+Route::put('/admin/{usuario}/update', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.update');
+Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');
+// ------------------End Usuarios------------------------------------
+
 // ------------------Clients-----------------------------------------
 Route::get('/admin/add-client', 'ClientsController@create');
 Route::get('/admin/edit-client/{clients}', 'ClientsController@edit');
@@ -19,12 +28,6 @@ Route::get('/admin/add-suppliers', 'SuppliersController@create');
 Route::get('/admin/edit-suppliers/{suppliers}', 'SuppliersController@edit');
 Route::resource('admin/suppliers','SuppliersController');
 // ------------------End Suppliers-----------------------------------
-
-// ------------------Employee-----------------------------------------
-Route::get('/admin/add-employee', 'EmployeeController@create');
-Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
-Route::resource('admin/employee','EmployeeController');
-// ------------------End Employee------------------------------------
 
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');

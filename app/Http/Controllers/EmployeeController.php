@@ -86,7 +86,7 @@ class EmployeeController extends Controller
      }
 
      $employee->save();
-     return redirect('admin/employee')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
+     return redirect('admin/usuario')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
    }
 
    /**
@@ -177,7 +177,7 @@ class EmployeeController extends Controller
        }
      }
      $employee->save();
-     return redirect('admin/employee')->with('success','Empleado RX-'. $id .' actualizado correctamente');
+     return redirect('admin/usuario')->with('success','Empleado RX-'. $id .' actualizado correctamente');
    }
 
    /**
@@ -189,6 +189,6 @@ class EmployeeController extends Controller
    public function destroy($id)
    {
      User::find($id)->delete();
-     return redirect('admin/employee')->with('success','Empleado RX-'. $id .' eliminado correctamente');
+     return redirect('admin/usuario')->with('success','Empleado RX-'. $id .' eliminado correctamente');
    }
 }

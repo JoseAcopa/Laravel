@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{ url('admin/add-employee') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
+          <a href="{{ url('/admin/create-usuario') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
         </div>
 
         <div class="box-body">
@@ -47,7 +47,7 @@
               @foreach ($employees as $employee)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-info" href="{{ url('admin/edit-employee',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a class="btn btn-info" href="{{ url('/admin/edit-usuario',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
                     <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy', $employee->id)}}');"><i class="fa fa-trash-o"></i></a>
                     {{-- {!! Form::open(['method' => 'DELETE','route' => ['employee.destroy', $employee->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

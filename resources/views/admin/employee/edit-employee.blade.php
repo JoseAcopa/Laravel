@@ -18,7 +18,7 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-edit"></i> Editar Empleado</h3>
         </div>
-        {!! Form::model($employee, ['method' => 'PATCH','route' => ['employee.update', $employee->id], 'role' => 'form']) !!}
+        {!! Form::model($employee, ['method' => 'PUT','route' => ['employee.update', $employee->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-6">
@@ -133,7 +133,7 @@
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{ url('/admin/employee') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <a href="{{ url('/admin/usuario') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
           </div>
         {!! Form::close() !!}
       </div>

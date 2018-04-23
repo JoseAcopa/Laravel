@@ -183,6 +183,8 @@ return [
 
         //generador de pdf
         Barryvdh\DomPDF\ServiceProvider::class,
+        //Shinobi
+        Caffeinated\Shinobi\ShinobiServiceProvider::class
     ],
 
     /*

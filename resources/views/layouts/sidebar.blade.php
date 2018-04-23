@@ -28,7 +28,7 @@ function current_page($url = '/'){
         <li <?php echo current_page('admin/admin-welcome') ? "class='active'" : "";?>><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
         <li <?php echo current_page('admin/client') ? "class='active'" : "";?>><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
         <li <?php echo current_page('admin/suppliers') ? "class='active'" : "";?>><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
-        <li <?php echo current_page('admin/employee') ? "class='active'" : "";?>><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
+        <li <?php echo current_page('admin/usuario') ? "class='active'" : "";?>><a href="{{ url('/admin/usuario') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
         <li class="header">INVENTARIO</li>
         <li class="treeview <?php echo current_page('admin/catalogo') || current_page('admin/clasificationProduct') || current_page('admin/inventary') || current_page('admin/product-output') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>
