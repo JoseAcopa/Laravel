@@ -48,12 +48,11 @@
               @foreach ($invoices as $invoice)
                 <tr>
                   <td class="row-copasat">
-                    {{-- <a class="btn btn-info" href="{{ url('admin/edit-employee',$invoice->id) }}"><i class="fa fa-pencil-square-o"></i></a> --}}
                     <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-print"></i></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', $invoice->id]]) !!}
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('facturas.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', $invoice->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    {!! Form::close() !!}
-                    {{-- <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o" aria-hidden="true"></i></a> --}}
+                    {!! Form::close() !!} --}}
                   </td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
