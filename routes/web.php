@@ -10,8 +10,8 @@ Route::get('/admin/admin-welcome', 'AdminControllers@index');
 
 // ------------------Roles-----------------------------------------
 Route::get('admin/roles','RolesController@index')->name('roles.index');
-// Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
-// Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:employee.create');
+Route::get('/admin/create-rol', 'RolesController@create')->name('roles.create')->middleware('permission:roles.create');
+Route::post('admin/store-rol','RolesController@store')->name('roles.store')->middleware('permission:roles.create');
 // Route::get('/admin/edit-usuario/{usuario}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.update');
 // Route::put('/admin/{usuario}/update', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.update');
 // Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');

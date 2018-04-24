@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Permissions;
+use App\Roles;
+use App\Permissions_Roles;
 
 class RolesController extends Controller
 {
@@ -23,7 +26,8 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+      $permissions = Permissions::all();
+      return view('admin.roles.create', compact('permissions'));
     }
 
     /**
@@ -34,7 +38,23 @@ class RolesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $roles = new Roles;
+      $roles->name = request('nombre');
+      $roles->slug = request('url');
+
+      $permission_roleLength = request('permission_role');
+      if (count($permission_roleLength) != 0) {
+        for ($i=0; $i < count($roles); $i++) {
+          $permission_role = new Permissions_Roles;
+          $permission_role->permission_id = request('permission_role')[$i];
+          $permission_role->user_id = request('permission_role')[$i];
+        }
+      }else {
+        $roles->special = request('special')[0];
+      }
+
+      // $roles->save();
+      return count($roles);
     }
 
     /**
