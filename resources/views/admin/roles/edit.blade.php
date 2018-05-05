@@ -9,23 +9,23 @@
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Registrar Roles</li>
+        <li class="active">Editar Rol</li>
       </ol>
     </section>
 
     <section class="content container-fluid">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-pencil"></i> Registrar Roles</h3>
+          <h3 class="box-title"><i class="fa fa-edit"></i> Editar Rol</h3>
         </div>
         <form role="form" method="POST" action="{{route('roles.store')}}">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-6">
-              <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                <label for="name">Nombre del rol:</label>
-                <input type="text" value="{{ old('name') }}" name="name" class="form-control" placeholder="rol">
-                {!! $errors->first('name','<span class="help-block">:message</span>')!!}
+              <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
+                <label for="nombre">Nombre del rol:</label>
+                <input type="text" value="{{ old('nombre') }}" name="nombre" class="form-control" placeholder="rol">
+                {!! $errors->first('nombre','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-6">

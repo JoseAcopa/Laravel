@@ -24,7 +24,9 @@ function current_page($url = '/'){
         <li <?php echo current_page('admin/suppliers') ? "class='active'" : "";?>><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
         <li class="header">ROLES Y PERMISOS</li>
         <li <?php echo current_page('admin/roles') ? "class='active'" : "";?>><a href="{{ url('/admin/roles') }}"><i class="fa fa-list"></i> <span>Roles</span></a></li>
-        <li <?php echo current_page('admin/usuario') ? "class='active'" : "";?>><a href="{{ url('/admin/usuario') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
+        @can ('employee.index')
+          <li <?php echo current_page('admin/usuario') ? "class='active'" : "";?>><a href="{{ url('/admin/usuario') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
+        @endcan
         <li class="header">INVENTARIO  COTIZACIONES</li>
         <li class="treeview <?php echo current_page('admin/catalogo') || current_page('admin/clasificationProduct') || current_page('admin/inventary') || current_page('admin/product-output') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>

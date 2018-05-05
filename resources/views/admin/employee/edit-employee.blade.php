@@ -56,79 +56,18 @@
             </div>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
-                <label for="user">Tipo de Usuario:</label>
-                <select name="tipo" class="form-control" onchange="tipoUser(this);">
+                <label for="tipo">Tipo de Usuario:</label>
+                <select name="tipo" class="form-control select2">
                   <option value="{{ $employee->tipo }}">{{ $employee->tipo }}</option>
-                  <option value="admin">admin</option>
-                  <option value="user">user</option>
+                  @foreach ($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                  @endforeach
                 </select>
                 {!! $errors->first('tipo','<span class="help-block">:message</span>')!!}
               </div>
             </div>
             <div class="col-md-12" id="btn-cancel">
               <button type="button" name="button" class="btn btn-default" onclick="changePass('cancel');">Cancelar</button>
-            </div>
-            <div class="col-md-6" id="permisos-accesos">
-              <h3>Acceso al sistema</h3>
-              <hr>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="clientes" {{$employee->cliente ? "checked" : ""}}>
-                  Clientes
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="proveedores" {{$employee->proveedores ? "checked" : ""}}>
-                  Proveedores
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="empleados" {{$employee->empleados ? "checked" : ""}}>
-                  Empleados
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="inventario" {{$employee->inventario ? "checked" : ""}}>
-                  Inventario
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="accesos[]" value="cotizacion" {{$employee->cotizacion ? "checked" : ""}}>
-                  Cotización
-                </label>
-              </div>
-            </div>
-            <div class="col-md-6" id="accesos-permisos">
-              <h3>Permisos</h3>
-              <hr>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="create" {{$employee->create ? "checked" : ""}}>
-                  Crear
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="read" {{$employee->read ? "checked" : ""}}>
-                  Leer
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="update" {{$employee->update ? "checked" : ""}}>
-                  Editar
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="permisos[]" value="delete" {{$employee->delete ? "checked" : ""}}>
-                  Eliminar
-                </label>
-              </div>
             </div>
           </div>
           <div class="box-footer">
@@ -138,30 +77,5 @@
         {!! Form::close() !!}
       </div>
     </section>
-    <script type="text/javascript">
-      function tipoUser(val) {
-        if (val.value === 'user') {
-          document.getElementById('permisos-accesos').style.display = "block"
-          document.getElementById('accesos-permisos').style.display = "block"
-        }else {
-          document.getElementById('permisos-accesos').style.display = "none"
-          document.getElementById('accesos-permisos').style.display = "none"
-        }
-      }
-    </script>
-    <script type="text/javascript">
-      function changePass(value) {
-        if (value === "change") {
-          console.log(value);
-          document.getElementById('btn-password').style.display = "block"
-          document.getElementById('btn-cancel').style.display = "block"
-          document.getElementById('btn-change').style.display = "none"
-        }else {
-          document.getElementById('btn-password').style.display = "none"
-          document.getElementById('btn-cancel').style.display = "none"
-          document.getElementById('btn-change').style.display = "block"
-        }
-      }
-    </script>
 
 @endsection

@@ -55,10 +55,11 @@
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('tipo') ? 'has-error' : '' }}">
                 <label for="user">Tipo de Usuario:</label>
-                <select name="tipo" class="form-control">
+                <select name="tipo" class="form-control select2">
                   <option value=""> Seleccione tipo de usuario</option>
-                  <option value="admin">Administrador</option>
-                  <option value="user">Usuario</option>
+                  @foreach ($roles as $rol)
+                    <option value="{{$rol->id}}">{{$rol->name}}</option>
+                  @endforeach
                 </select>
                 {!! $errors->first('tipo','<span class="help-block">:message</span>')!!}
               </div>
@@ -70,5 +71,5 @@
         </form>
       </div>
     </section>
-    
+
 @endsection

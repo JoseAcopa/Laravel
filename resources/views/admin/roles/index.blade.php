@@ -9,7 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Empleados</li>
+        <li class="active">Roles</li>
       </ol>
     </section>
 
@@ -34,20 +34,26 @@
           <table id="Jtabla" class="table table-bordered table-striped">
             <thead>
               <tr class="success">
-                <th>Acciones</th>
                 <th>#</th>
+                <th>Acciones</th>
                 <th>Nombre</th>
+                <th>Slug</th>
+                <th>Fecha</th>
              </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="row-copasat">
-                    <a class="btn btn-info" href="{{ url('/admin/edit-rol',1) }}"><i class="fa fa-pencil-square-o"></i> Editar</a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy',1)}}');"><i class="fa fa-trash-o"></i> Eliminar</a>
-                </td>
-                <td>$employee->id</td>
-                <td>$employee->name</td>
-              </tr>
+              @foreach ($roles as $rol)
+                <tr>
+                  <td>{{$rol->id}}</td>
+                  <td class="row-copasat">
+                      <a class="btn btn-info" href="{{ url('/admin/edit-rol',$rol->id) }}"><i class="fa fa-pencil-square-o"></i> Editar</a>
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('roles.destroy',$rol->id)}}');"><i class="fa fa-trash-o"></i> Eliminar</a>
+                  </td>
+                  <td>{{$rol->name}}</td>
+                  <td>{{$rol->slug}}</td>
+                  <td>{{str_limit($rol->created_at, 10)}}</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Employee;
+use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Roles_Users;
+use App\Roles;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 
@@ -31,7 +33,8 @@ class EmployeeController extends Controller
     */
    public function create()
    {
-     return view('admin.employee.add-employee');
+     $roles = Roles::all();
+     return view('admin.employee.add-employee', compact('roles'));
    }
 
    /**
@@ -48,44 +51,13 @@ class EmployeeController extends Controller
      $employee->phone = request('phone');
      $employee->password = bcrypt(request('password'));
      $employee->tipo = request('tipo');
-     if (request('tipo') === 'admin') {
-       $employee->cliente = true;
-       $employee->proveedores = true;
-       $employee->empleados = true;
-       $employee->inventario = true;
-       $employee->cotizacion = true;
-       $employee->create = true;
-       $employee->read = true;
-       $employee->update = true;
-       $employee->delete = true;
-     }else {
-       if (count(request()->accesos) > 0) {
-         $employee->cliente = in_array("clientes", request()->accesos) ? true : false;
-         $employee->proveedores = in_array("proveedores", request()->accesos) ? true : false;
-         $employee->empleados = in_array("empleados", request()->accesos) ? true : false;
-         $employee->inventario = in_array("inventario", request()->accesos) ? true : false;
-         $employee->cotizacion = in_array("cotizacion", request()->accesos) ? true : false;
-       }else {
-         $employee->cliente = false;
-         $employee->proveedores = false;
-         $employee->empleados = false;
-         $employee->inventario = false;
-         $employee->cotizacion = false;
-       }
-       if (count(request()->permisos) > 0) {
-         $employee->create = in_array("create", request()->permisos) ? true : false;
-         $employee->read = in_array("read", request()->permisos) ? true : false;
-         $employee->update = in_array("update", request()->permisos) ? true : false;
-         $employee->delete = in_array("delete", request()->permisos) ? true : false;
-       }else {
-         $employee->create = false;
-         $employee->read = false;
-         $employee->update = false;
-         $employee->delete = false;
-       }
-     }
-
      $employee->save();
+
+     $roleUser = new Roles_Users;
+     $roleUser->role_id = request('tipo');
+     $roleUser->user_id = $employee->id;
+     $roleUser->save();
+
      return redirect('admin/usuario')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
    }
 
@@ -109,7 +81,8 @@ class EmployeeController extends Controller
    public function edit($id)
    {
      $employee = User::find($id);
-     return view('admin.employee.edit-employee', compact('employee'));
+     $roles = Roles::all();
+     return view('admin.employee.edit-employee', compact('employee', 'roles'));
    }
 
    /**
@@ -126,8 +99,6 @@ class EmployeeController extends Controller
      $newPhone = $request->input('phone');
      $newPassword = $request->input('password');
      $newTipo = $request->input('tipo');
-     $newAccesso = $request->input('accesos');
-     $newPermisos = $request->input('permisos');
 
 
      $employee = User::find($id);
@@ -136,47 +107,18 @@ class EmployeeController extends Controller
      $employee->user = $newUser;
      $employee->email = $newEmail;
      $employee->phone = $newPhone;
+     $employee->tipo = $newTipo;
      if ($newPassword != null) {
        $employee->password = bcrypt($newPassword);
      }
-     $employee->tipo = $newTipo;
-     if ($newTipo === 'admin') {
-       $employee->cliente = true;
-       $employee->proveedores = true;
-       $employee->empleados = true;
-       $employee->inventario = true;
-       $employee->cotizacion = true;
-       $employee->create = true;
-       $employee->read = true;
-       $employee->update = true;
-       $employee->delete = true;
-     }else {
-       if (count($newAccesso) > 0) {
-         $employee->cliente = in_array("clientes", $newAccesso) ? true : false;
-         $employee->proveedores = in_array("proveedores", $newAccesso) ? true : false;
-         $employee->empleados = in_array("empleados", $newAccesso) ? true : false;
-         $employee->inventario = in_array("inventario", $newAccesso) ? true : false;
-         $employee->cotizacion = in_array("cotizacion", $newAccesso) ? true : false;
-       }else {
-         $employee->cliente = false;
-         $employee->proveedores = false;
-         $employee->empleados = false;
-         $employee->inventario = false;
-         $employee->cotizacion = false;
-       }
-       if (count($newPermisos) > 0) {
-         $employee->create = in_array("create", $newPermisos) ? true : false;
-         $employee->read = in_array("read", $newPermisos) ? true : false;
-         $employee->update = in_array("update", $newPermisos) ? true : false;
-         $employee->delete = in_array("delete", $newPermisos) ? true : false;
-       }else {
-         $employee->create = false;
-         $employee->read = false;
-         $employee->update = false;
-         $employee->delete = false;
-       }
-     }
+
      $employee->save();
+
+     $roleUser = Roles_Users::where('user_id', $id)->first();
+     $roleUser->role_id = $newTipo;
+     $roleUser->user_id = $id;
+     $roleUser->save();
+
      return redirect('admin/usuario')->with('success','Empleado RX-'. $id .' actualizado correctamente');
    }
 
@@ -189,6 +131,7 @@ class EmployeeController extends Controller
    public function destroy($id)
    {
      User::find($id)->delete();
+     Roles_Users::where('user_id', $id)->delete();
      return redirect('admin/usuario')->with('success','Empleado RX-'. $id .' eliminado correctamente');
    }
 }

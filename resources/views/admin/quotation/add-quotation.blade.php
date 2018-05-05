@@ -48,7 +48,7 @@
                 <label for="cotizacion">No. de Cotización:</label>
                 <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización">
                 {!! $errors->first('cotizacion','<span class="help-block">:message</span>')!!}
-              </div>
+              </div>3
               <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
                 <label for="RFC">RFC:</label>
                 <input type="text" id="rfc" value="{{ old('RFC') }}" name="RFC" class="form-control" placeholder="RFC">
