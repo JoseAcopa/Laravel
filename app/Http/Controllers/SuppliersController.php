@@ -50,7 +50,7 @@ class SuppliersController extends Controller
       $suppliers->email = request('email');
 
       $suppliers->save();
-      return redirect('admin/suppliers')->with('success','Proveedor '. $suppliers->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
+      return redirect('admin/proveedores')->with('success','Proveedor '. $suppliers->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'phone', 'email', 'address']));
     }
 
     /**
@@ -100,7 +100,7 @@ class SuppliersController extends Controller
       $supplier->email = $newEmail;
       $supplier->save();
 
-      return redirect('admin/suppliers')->with('success','Proveedor '. $supplier->business .' actualizado correctamente');
+      return redirect('admin/proveedores')->with('success','Proveedor '. $supplier->business .' actualizado correctamente');
     }
 
     /**
@@ -112,6 +112,6 @@ class SuppliersController extends Controller
     public function destroy($id)
     {
       Suppliers::find($id)->delete();
-      return redirect('admin/suppliers')->with('success','Proveedor RX-'. $id .' eliminado correctamente');
+      return redirect('admin/proveedores')->with('success','Proveedor RX-'. $id .' eliminado correctamente');
     }
 }

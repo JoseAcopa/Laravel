@@ -48,12 +48,11 @@
               @foreach ($invoices as $invoice)
                 <tr>
                   <td class="row-copasat">
-                    {{-- <a class="btn btn-info" href="{{ url('admin/edit-employee',$invoice->id) }}"><i class="fa fa-pencil-square-o"></i></a> --}}
                     <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-print"></i></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', $invoice->id]]) !!}
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('facturas.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', $invoice->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    {!! Form::close() !!}
-                    {{-- <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fa fa-trash-o" aria-hidden="true"></i></a> --}}
+                    {!! Form::close() !!} --}}
                   </td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
@@ -68,32 +67,33 @@
           </table>
         </div>
       </div>
-      <!-- Modal -->
-      <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header has-warning">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3 class="modal-title control-label"> <i class="fa fa-bell-o"></i> Eliminar Registro</h3>
-            </div>
-            <div class="modal-body has-error">
-              <h4 class="help-block">¿Está seguro que desea eliminar permanentemente este registro de la base de datos?</h4>
-              <span class="help-block">¡No podrá recuperar este registro!</span>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Close</button>
-              {!! Form::open(['method' => 'DELETE','route' => ['facturas.destroy', 2]]) !!}
-                <button type="submit" class="btn btn-danger">Confirmar</button>
-              {!! Form::close() !!}
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
-    <script>
-      function destroy(){
-        return 1
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar esta factura?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
       }
     </script>
 

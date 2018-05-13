@@ -27,9 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @if (auth()->user()->create === 1)
-            <a href="{{url('admin/add-quotation')}}" class="btn btn-success" ><i class="fa fa-book"></i> Cotizar</a>
-          @endif
+          <a href="{{url('admin/add-quotation')}}" class="btn btn-success" ><i class="fa fa-book"></i> Cotizar</a>
         </div>
 
         <div class="box-body">

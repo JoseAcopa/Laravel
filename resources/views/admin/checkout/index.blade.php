@@ -27,9 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @if (auth()->user()->create === 1)
-            <a href="{{url('admin/add-product-output')}}" class="btn btn-success" ><i class="fa fa-pencil "></i> Registrar Salida Productos</a>
-          @endif
+          <a href="{{url('admin/add-product-output')}}" class="btn btn-success" ><i class="fa fa-pencil "></i> Registrar Salida Productos</a>
         </div>
 
         <div class="box-body">
@@ -52,9 +50,10 @@
                   <td class="row-copasat">
                     <a class="btn btn-primary" href="{{url('/admin/show-product-output',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
                     <a class="btn btn-info" href="{{url('/admin/edit-product-output',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    {!! Form::open(['method' => 'DELETE','route' => ['product-output.destroy', $checkout->id]]) !!}
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('product-output.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['product-output.destroy', $checkout->id]]) !!}
                       <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    {!! Form::close() !!}
+                    {!! Form::close() !!} --}}
                   </td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>
@@ -75,5 +74,33 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar este producto?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then(() => {
+          $.ajax({
+            url: url,
+            method: "POST",
+            data: {
+                _token: "{{csrf_token()}}",
+                _method: "DELETE"
+            },
+            success: function(data){
+              location.reload();
+            }
+          })
+        })
+
+      }
+    </script>
 
 @endsection

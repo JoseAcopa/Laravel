@@ -1,30 +1,50 @@
 <?php
 
+// ------------------Start Login-----------------------------------------
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+// ------------------End Login-----------------------------------------
 
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', 'AdminControllers@index');
 // ------------------End Admin-----------------------------------------
 
 // ------------------Clients-----------------------------------------
-Route::get('/admin/add-client', 'ClientsController@create');
-Route::get('/admin/edit-client/{clients}', 'ClientsController@edit');
-Route::resource('admin/client','ClientsController');
+Route::get('admin/clientes','ClientsController@index')->name('client.index')->middleware('permission:client.index');
+Route::get('/admin/create-cliente', 'ClientsController@create')->name('client.create')->middleware('permission:client.create');
+Route::post('admin/store-cliente','ClientsController@store')->name('client.store')->middleware('permission:client.create');
+Route::get('/admin/edit-cliente/{cliente}', 'ClientsController@edit')->name('client.edit')->middleware('permission:client.edit');
+Route::put('/admin/{cliente}/update', 'ClientsController@update')->name('client.update')->middleware('permission:client.edit');
+Route::delete('admin/delete-cliente/{id}','ClientsController@destroy')->name('client.destroy')->middleware('permission:client.destroy');
 // ------------------End Clients-----------------------------------
 
 // ------------------Suppliers-----------------------------------------
-Route::get('/admin/add-suppliers', 'SuppliersController@create');
-Route::get('/admin/edit-suppliers/{suppliers}', 'SuppliersController@edit');
-Route::resource('admin/suppliers','SuppliersController');
+Route::get('admin/proveedores','SuppliersController@index')->name('suppliers.index')->middleware('permission:suppliers.index');
+Route::get('/admin/create-proveedor', 'SuppliersController@create')->name('suppliers.create')->middleware('permission:suppliers.create');
+Route::post('admin/store-proveedor','SuppliersController@store')->name('suppliers.store')->middleware('permission:suppliers.create');
+Route::get('/admin/edit-proveedor/{proveedor}', 'SuppliersController@edit')->name('suppliers.edit')->middleware('permission:suppliers.edit');
+Route::put('/admin/{proveedor}/update', 'SuppliersController@update')->name('supplier.update')->middleware('permission:suppliers.edit');
+Route::delete('admin/delete-proveedor/{id}','SuppliersController@destroy')->name('suppliers.destroy')->middleware('permission:suppliers.destroy');
 // ------------------End Suppliers-----------------------------------
 
-// ------------------Employee-----------------------------------------
-Route::get('/admin/add-employee', 'EmployeeController@create');
-Route::get('/admin/edit-employee/{employee}', 'EmployeeController@edit');
-Route::resource('admin/employee','EmployeeController');
-// ------------------End Employee------------------------------------
+// ------------------Roles-----------------------------------------
+Route::get('admin/roles','RolesController@index')->name('roles.index')->middleware('permission:roles.index');
+Route::get('/admin/create-rol', 'RolesController@create')->name('roles.create')->middleware('permission:roles.create');
+Route::post('admin/store-rol','RolesController@store')->name('roles.store')->middleware('permission:roles.create');
+Route::get('/admin/edit-rol/{rol}', 'RolesController@edit')->name('roles.edit')->middleware('permission:roles.update');
+Route::put('/admin/{usuario}/update', 'RolesController@update')->name('roles.update')->middleware('permission:roles.update');
+Route::delete('admin/delete-rol/{id}','RolesController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
+// ------------------End Roles------------------------------------
+
+// ------------------Usuarios-----------------------------------------
+Route::get('admin/usuario','EmployeeController@index')->name('employee.index')->middleware('permission:employee.index');
+Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
+Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:employee.create');
+Route::get('/admin/edit-usuario/{usuario}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.update');
+Route::put('/admin/{usuario}/update', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.update');
+Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');
+// ------------------End Usuarios------------------------------------
 
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');

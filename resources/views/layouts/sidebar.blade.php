@@ -4,11 +4,7 @@ function current_page($url = '/'){
 }
 ?>
   <aside class="main-sidebar">
-
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-
-      <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
         @if (Auth::user()->avatar == null)
@@ -21,15 +17,17 @@ function current_page($url = '/'){
           <a href="#"><i class="fa fa-circle text-success"></i> Online </a>
         </div>
       </div>
-      <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree"><br>
         <li class="header">MENU DE NAVEGACION</li>
-        <!-- Optionally, you can add icons to the links -->
         <li <?php echo current_page('admin/admin-welcome') ? "class='active'" : "";?>><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-        <li <?php echo current_page('admin/client') ? "class='active'" : "";?>><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
-        <li <?php echo current_page('admin/suppliers') ? "class='active'" : "";?>><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
-        <li <?php echo current_page('admin/employee') ? "class='active'" : "";?>><a href="{{ url('/admin/employee') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
-        <li class="header">INVENTARIO</li>
+        <li <?php echo current_page('admin/clientes') ? "class='active'" : "";?>><a href="{{ url('/admin/clientes') }}"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
+        <li <?php echo current_page('admin/proveedores') ? "class='active'" : "";?>><a href="{{ url('/admin/proveedores') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
+        <li class="header">ROLES Y PERMISOS</li>
+        <li <?php echo current_page('admin/roles') ? "class='active'" : "";?>><a href="{{ url('/admin/roles') }}"><i class="fa fa-list"></i> <span>Roles</span></a></li>
+        @can ('employee.index')
+          <li <?php echo current_page('admin/usuario') ? "class='active'" : "";?>><a href="{{ url('/admin/usuario') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span></a></li>
+        @endcan
+        <li class="header">INVENTARIO  COTIZACIONES</li>
         <li class="treeview <?php echo current_page('admin/catalogo') || current_page('admin/clasificationProduct') || current_page('admin/inventary') || current_page('admin/product-output') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>
             <span class="pull-right-container">
@@ -64,7 +62,6 @@ function current_page($url = '/'){
                 </span>
               </a>
             </li>
-            {{-- <li><a href="{{url('admin/inventary-out')}}">Salidas de Productos</a></li> --}}
             <li <?php echo current_page('admin/product-output') ? "class='active'" : "";?>>
               <a href="{{url('admin/product-output')}}">
                 <i class="fa fa-circle-o text-aqua"></i>
@@ -76,11 +73,9 @@ function current_page($url = '/'){
             </li>
           </ul>
         </li>
-        <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>><a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span></a></li>
-        <li class="header">COTIZACION</li>
         <li <?php echo current_page('admin/quotation') ? "class='active'" : "";?>><a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i> <span>Cotización</span></a></li>
+        <li class="header">REPORTES</li>
+        <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>><a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span></a></li>
       </ul>
-      <!-- /.sidebar-menu -->
     </section>
-    <!-- /.sidebar -->
   </aside>
