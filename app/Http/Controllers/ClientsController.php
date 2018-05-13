@@ -50,7 +50,7 @@ class ClientsController extends Controller
       $clients->email = request('email') === null ? '' : request('email');
       $clients->siglas = request('siglas');
       $clients->save();
-      return redirect('admin/client')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'siglas', 'address', 'phone', 'email']));
+      return redirect('admin/clientes')->with('success','Cliente '. $clients->business .' guardado correctamente')->withInput(request(['business', 'RFC', 'siglas', 'address', 'phone', 'email']));
     }
 
     /**
@@ -102,7 +102,7 @@ class ClientsController extends Controller
       $client->siglas = $newSiglas;
       $client->save();
 
-      return redirect('admin/client')->with('success','Cliente '. $client->business .' actualizado correctamente');
+      return redirect('admin/clientes')->with('success','Cliente '. $client->business .' actualizado correctamente');
     }
 
     /**
@@ -114,6 +114,6 @@ class ClientsController extends Controller
     public function destroy($id)
     {
       Clients::find($id)->delete();
-      return redirect('admin/client')->with('success','Cliente eliminado correctamente');
+      return redirect('admin/clientes')->with('success','Cliente eliminado correctamente');
     }
 }

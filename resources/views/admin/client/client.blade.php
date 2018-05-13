@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{ url('/admin/add-client') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
+          <a href="{{ url('/admin/create-cliente') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Clientes</a>
         </div>
 
         <div class="box-body">
@@ -47,7 +47,7 @@
                 @foreach ($clients as $client)
                   <tr>
                     <td class="row-copasat">
-                      <a class="btn btn-info" href="{{ url('admin/edit-client',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                      <a class="btn btn-info" href="{{ url('admin/edit-cliente',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
                       {{-- {!! Form::open(['method' => 'DELETE','route' => ['client.destroy', $client->id]]) !!}
                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

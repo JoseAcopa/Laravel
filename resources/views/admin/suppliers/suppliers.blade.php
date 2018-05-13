@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{ url('/admin/add-suppliers') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
+          <a href="{{ url('/admin/create-proveedor') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
         </div>
 
         <div class="box-body">
@@ -46,7 +46,7 @@
                 @foreach ($suppliers as $supplier)
                   <tr>
                     <td class="row-copasat">
-                      <a class="btn btn-info" href="{{ url('admin/edit-suppliers',$supplier->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                      <a class="btn btn-info" href="{{ url('admin/edit-proveedor',$supplier->id) }}"><i class="fa fa-pencil-square-o"></i></a>
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('suppliers.destroy', $supplier->id)}}');"><i class="fa fa-trash-o"></i></a>
                       {{-- {!! Form::open(['method' => 'DELETE','route' => ['suppliers.destroy', $supplier->id]]) !!}
                         <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

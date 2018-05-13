@@ -20,8 +20,8 @@ function current_page($url = '/'){
       <ul class="sidebar-menu" data-widget="tree"><br>
         <li class="header">MENU DE NAVEGACION</li>
         <li <?php echo current_page('admin/admin-welcome') ? "class='active'" : "";?>><a href="{{ url('/admin/admin-welcome') }}"><i class="fa fa-home"></i> <span>Inicio</span></a></li>
-        <li <?php echo current_page('admin/client') ? "class='active'" : "";?>><a href="{{ url('/admin/client') }}"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
-        <li <?php echo current_page('admin/suppliers') ? "class='active'" : "";?>><a href="{{ url('/admin/suppliers') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
+        <li <?php echo current_page('admin/clientes') ? "class='active'" : "";?>><a href="{{ url('/admin/clientes') }}"><i class="fa fa-users"></i> <span>Clientes</span></a></li>
+        <li <?php echo current_page('admin/proveedores') ? "class='active'" : "";?>><a href="{{ url('/admin/proveedores') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span></a></li>
         <li class="header">ROLES Y PERMISOS</li>
         <li <?php echo current_page('admin/roles') ? "class='active'" : "";?>><a href="{{ url('/admin/roles') }}"><i class="fa fa-list"></i> <span>Roles</span></a></li>
         @can ('employee.index')
