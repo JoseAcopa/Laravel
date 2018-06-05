@@ -4,7 +4,7 @@
 
     <section class="content-header">
       <h1>
-        Administrador
+        Roles y Permisos
         <small></small>
       </h1>
       <ol class="breadcrumb">

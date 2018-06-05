@@ -5,7 +5,7 @@
 
     <section class="content-header">
       <h1>
-        Administrador
+        Productos
         <small></small>
       </h1>
       <ol class="breadcrumb">

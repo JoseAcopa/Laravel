@@ -4,7 +4,7 @@
 
     <section class="content-header">
       <h1>
-        Administrador
+        Salidas
         <small></small>
       </h1>
       <ol class="breadcrumb">
