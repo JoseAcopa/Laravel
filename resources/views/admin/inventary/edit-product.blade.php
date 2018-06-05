@@ -19,7 +19,7 @@
             <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto</h3>
           </div>
         </div>
-        {!! Form::model($product, ['method' => 'PATCH','route' => ['inventary.update', $product->id], 'role' => 'form']) !!}
+        {!! Form::model($product, ['method' => 'POST','route' => ['producto.update', $product->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
@@ -131,7 +131,7 @@
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/inventary')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <a href="{{url('admin/productos')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
           </div>
         {!! Form::close() !!}
       </div>

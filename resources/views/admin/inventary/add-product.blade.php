@@ -30,7 +30,7 @@
             </div>
           </div>
         </div>
-        <form role="form" method="POST" action="/admin/inventary">
+        <form role="form" method="POST" action="{{route('producto.store')}}">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
@@ -145,7 +145,7 @@
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/inventary')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <a href="{{url('admin/productos')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
           </div>
         </form>
       </div>

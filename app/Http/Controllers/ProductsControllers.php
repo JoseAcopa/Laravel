@@ -107,7 +107,7 @@ class ProductsControllers extends Controller
       $invoice->coin_id = request('moneda');
       $invoice->save();
 
-      return redirect('admin/inventary')->with('success','Producto '. $product->category->type .' Guardado correctamente')
+      return redirect('admin/productos')->with('success','Producto '. $product->category->type .' Guardado correctamente')
       ->withInput(request(['tipo_producto' , 'proveedor', 'fecha_entrada', 'cantidad_entrada',
       'unidad', 'precio_lista', 'costo', 'moneda', 'description', 'priceSales1',
       'priceSales2', 'priceSales3', 'priceSales4', 'priceSales5', 'initials']));
@@ -188,7 +188,7 @@ class ProductsControllers extends Controller
       $product->coin_id = $newCoin;
       $product->save();
 
-      return redirect('admin/inventary')->with('success','Producto actualizado correctamente');
+      return redirect('admin/productos')->with('success','Producto actualizado correctamente');
     }
 
     /**
@@ -200,6 +200,6 @@ class ProductsControllers extends Controller
     public function destroy($id)
     {
       Products::find($id)->delete();
-      return redirect('admin/inventary')->with('success','Producto '. $id .' eliminado correctamente');
+      return redirect('admin/productos')->with('success','Producto '. $id .' eliminado correctamente');
     }
 }

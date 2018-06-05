@@ -62,20 +62,25 @@ Route::post('/admin/producto-catalogo/{producto}', 'CatalogsController@update')-
 Route::delete('admin/delete-producto-catalogo/{id}','CatalogsController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
 // ------------------End Alta de Catalogo----------------------------------------
 
+// ------------------inventary----------------------------------------
+Route::get('/admin/productos','ProductsControllers@index')->name('producto.index')->middleware('permission:inventary.index');
+Route::get('/admin/crear-producto', 'ProductsControllers@create')->name('producto.create')->middleware('permission:inventary.create');
+Route::post('admin/store-producto','ProductsControllers@store')->name('producto.store')->middleware('permission:inventary.create');
+Route::get('/admin/edita-producto/{producto}', 'ProductsControllers@edit')->name('producto.edit')->middleware('permission:inventary.edit');
+Route::post('/admin/producto/{producto}', 'ProductsControllers@update')->name('producto.update')->middleware('permission:inventary.edit');
+Route::delete('admin/delete-producto/{id}','ProductsControllers@destroy')->name('producto.destroy')->middleware('permission:inventary.destroy');
+Route::get('admin/ver-producto/{id}','ProductsControllers@show')->name('producto.show')->middleware('permission:inventary.show');
+// Route::get('/admin/add-product', 'ProductsControllers@create');
+// Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
+// Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
+// Route::resource('admin/inventary','ProductsControllers');
+// ------------------End inventary----------------------------------------
+
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');
 Route::get('/admin/add-quotation', 'QuotationsController@create');
 Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
 // ------------------end quotations----------------------------------------
-
-// ------------------inventary----------------------------------------
-Route::get('/admin/add-product', 'ProductsControllers@create');
-Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
-Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
-Route::resource('admin/inventary','ProductsControllers');
-// ------------------End inventary----------------------------------------
-
-
 
 // ------------------checkout----------------------------------------
 Route::get('/admin/add-product-output', 'CheckoutsController@create');
