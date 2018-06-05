@@ -47,7 +47,9 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/crear-cotizacion')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nuevo</a>
+          @can ('quotation.create')
+            <a href="{{url('admin/crear-cotizacion')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nuevo</a>
+          @endcan
         </div>
 
         <div class="box-body">
@@ -70,10 +72,14 @@
               @foreach ($quotations as $quotation)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-primary" href="{{url('/admin/ver-cotizacion',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @can ('quotation.show')
+                      <a class="btn btn-primary" href="{{url('/admin/ver-cotizacion',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @endcan
                     <a class="btn btn-default" target="_blank" href="{{url('/cotizacion',$quotation->id)}}"><i class="fa fa-file-pdf-o"></i></a>
                     {{-- <a class="btn btn-info" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o"></i></a> --}}
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $quotation->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @can ('quotation.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $quotation->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
                   </td>
                   <td>{{$quotation->cotizacion}}</td>
                   <td>{{$quotation->user->name}}</td>

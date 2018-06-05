@@ -27,7 +27,9 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/create-producto-catalogo')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Alta de Productos</a>
+          @can ('catalogo.create')
+            <a href="{{url('admin/create-producto-catalogo')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Alta de Productos</a>
+          @endcan
         </div>
 
         <div class="box-body">
@@ -46,8 +48,12 @@
               @foreach ($catalog as $product)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @can ('catalogo.edit')
+                      <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('catalogo.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
                   </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>

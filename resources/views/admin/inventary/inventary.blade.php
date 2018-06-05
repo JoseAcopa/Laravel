@@ -27,7 +27,9 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/crear-producto')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Productos</a>
+          @can ('inventary.create')
+            <a href="{{url('admin/crear-producto')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Productos</a>
+          @endcan
         </div>
 
         <div class="box-body">
@@ -48,9 +50,15 @@
               @foreach ($products as $product)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('producto.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @can ('inventary.show')
+                      <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @endcan
+                    @can ('inventary.edit')
+                      <a class="btn btn-info" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('inventary.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('producto.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
                   </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->initials }}-{{ $product->id }}</td>

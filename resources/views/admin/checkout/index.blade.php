@@ -27,7 +27,9 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/crear-salida')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Salida Productos</a>
+          @can ('product-output.create')
+            <a href="{{url('admin/crear-salida')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Salida Productos</a>
+          @endcan
         </div>
 
         <div class="box-body">
@@ -48,9 +50,15 @@
               @foreach ($checkouts as $checkout)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @can ('product-output.show')
+                      <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @endcan
+                    @can ('product-output.edit')
+                      <a class="btn btn-info" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('product-output.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
                   </td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>

@@ -57,7 +57,9 @@
                 </div>
               </div>
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
+                @can ('clasificationProduct.create')
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
+                @endcan
               </div>
             </form>
           </div>
@@ -75,7 +77,9 @@
                 @foreach ($categories as $key)
                   <tr>
                     <td class="row-copasat">
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('categoria.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      @can ('clasificationProduct.destroy')
+                        <a type="submit" class="btn btn-danger" onclick="destroy('{{route('categoria.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      @endcan
                     </td>
                     <td>{{$key->type}}</td>
                     <td>{{$key->letters}}</td>

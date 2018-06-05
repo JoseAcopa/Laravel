@@ -49,7 +49,9 @@
                 <tr>
                   <td class="row-copasat">
                     <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-file-pdf-o"></i></a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('factura.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @can ('facturas.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('factura.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
                   </td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
