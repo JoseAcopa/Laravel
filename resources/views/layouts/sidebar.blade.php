@@ -124,7 +124,7 @@ function current_page($url = '/'){
             @endcan
           </ul>
         </li>
-        @can ('question.index')
+        @can ('quotation.index')
           <li <?php echo current_page('admin/cotizacion') || current_page('admin/crear-cotizacion') || strpos(request()->path(), 'ver-cotizacion') ? "class='active'" : "";?>>
             <a href="{{url('/admin/cotizacion')}}"><i class="fa fa-book"></i> <span>Cotización</span>
               <?php echo current_page('admin/cotizacion') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
