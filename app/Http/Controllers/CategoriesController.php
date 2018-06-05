@@ -42,7 +42,7 @@ class CategoriesController extends Controller
       $category->letters = request('letters');
       $category->categorias = request('categorias');
       $category->save();
-      return redirect('admin/clasificationProduct')->with('success', $category->type.' Guardado correctamente');
+      return redirect('admin/categoria')->with('success', $category->type.' Guardado correctamente');
     }
 
     /**
@@ -88,6 +88,6 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
       Category::find($id)->delete();
-      return redirect('admin/clasificationProduct')->with('success', 'Tipo de producto eliminado correctamente');
+      return redirect('admin/categoria')->with('success', 'Tipo de producto eliminado correctamente');
     }
 }

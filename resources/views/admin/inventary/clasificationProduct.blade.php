@@ -32,7 +32,7 @@
 
         <div class="box-body">
           <div class="col-md-4">
-            <form rol="form" method="POST" action="/admin/clasificationProduct">
+            <form rol="form" method="POST" action="{{route('categoria.store')}}">
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group {{ $errors->has('type') ? 'has-error' : '' }}">
@@ -75,7 +75,7 @@
                 @foreach ($categories as $key)
                   <tr>
                     <td class="row-copasat">
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('clasificationProduct.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('categoria.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
                     </td>
                     <td>{{$key->type}}</td>
                     <td>{{$key->letters}}</td>

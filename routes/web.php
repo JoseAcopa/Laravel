@@ -46,6 +46,13 @@ Route::post('/admin/update/{usuario}', 'EmployeeController@update')->name('emplo
 Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');
 // ------------------End Usuarios------------------------------------
 
+// ------------------clasificationProduct---------------------------------------
+Route::get('admin/categoria','CategoriesController@index')->name('categoria.index')->middleware('permission:clasificationProduct.index');
+Route::get('/admin/create-categoria', 'CategoriesController@create')->name('categoria.create')->middleware('permission:clasificationProduct.create');
+Route::post('admin/store-categoria','CategoriesController@store')->name('categoria.store')->middleware('permission:clasificationProduct.create');
+Route::delete('admin/delete-categoria/{id}','CategoriesController@destroy')->name('categoria.destroy')->middleware('permission:clasificationProduct.destroy');
+// ------------------End clasificationProduct----------------------------------------
+
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');
 Route::get('/admin/add-quotation', 'QuotationsController@create');
@@ -59,11 +66,7 @@ Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
 Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
 
-// ------------------clasificationProduct---------------------------------------
-Route::get('/admin/clasificationProduct', 'CategoriesController@create');
-Route::get('/admin/edit-checkin/{checkin}', 'CategoriesController@edit');
-Route::resource('admin/clasificationProduct','CategoriesController');
-// ------------------End clasificationProduct----------------------------------------
+
 
 // ------------------checkout----------------------------------------
 Route::get('/admin/add-product-output', 'CheckoutsController@create');
