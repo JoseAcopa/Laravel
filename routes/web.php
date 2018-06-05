@@ -53,6 +53,15 @@ Route::post('admin/store-categoria','CategoriesController@store')->name('categor
 Route::delete('admin/delete-categoria/{id}','CategoriesController@destroy')->name('categoria.destroy')->middleware('permission:clasificationProduct.destroy');
 // ------------------End clasificationProduct----------------------------------------
 
+// ------------------Alta de Catalogo----------------------------------------
+Route::get('/admin/catalogo','CatalogsController@index')->name('catalogo.index')->middleware('permission:catalogo.index');
+Route::get('/admin/create-producto-catalogo', 'CatalogsController@create')->name('catalogo.create')->middleware('permission:catalogo.create');
+Route::post('admin/store-producto-catalogo','CatalogsController@store')->name('catalogo.store')->middleware('permission:catalogo.create');
+Route::get('/admin/editar-producto-catalogo/{producto}', 'CatalogsController@edit')->name('catalogo.edit')->middleware('permission:catalogo.edit');
+Route::post('/admin/producto-catalogo/{producto}', 'CatalogsController@update')->name('catalogo.update')->middleware('permission:catalogo.edit');
+Route::delete('admin/delete-producto-catalogo/{id}','CatalogsController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
+// ------------------End Alta de Catalogo----------------------------------------
+
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');
 Route::get('/admin/add-quotation', 'QuotationsController@create');
@@ -74,12 +83,6 @@ Route::get('/admin/edit-product-output/{checkout}', 'CheckoutsController@edit');
 Route::get('/admin/show-product-output/{checkout}', 'CheckoutsController@show');
 Route::resource('/admin/product-output','CheckoutsController');
 // ------------------End checkout----------------------------------------
-
-// ------------------Alta de Catalogo----------------------------------------
-Route::get('/admin/alta-producto-catalogo', 'CatalogsController@create');
-Route::get('/admin/editar-producto-catalogo/{catalog}', 'CatalogsController@edit');
-Route::resource('/admin/catalogo','CatalogsController');
-// ------------------End Alta de Catalogo----------------------------------------
 
 // ------------------facturas----------------------------------------
 Route::resource('/admin/facturas', 'ControllerInvoices');

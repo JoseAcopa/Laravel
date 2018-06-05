@@ -81,17 +81,19 @@ function current_page($url = '/'){
                 </a>
               </li>
             @endcan
-            <li <?php echo current_page('admin/catalogo') || current_page('admin/alta-producto-catalogo') || strpos(request()->path(), 'editar-producto-catalogo') ? "class='active'" : "";?>>
-              <a href="{{url('admin/catalogo')}}">
-                <i class="fa fa-circle-o <?php echo current_page('admin/catalogo') || current_page('admin/alta-producto-catalogo') || strpos(request()->path(), 'editar-producto-catalogo') ? "text-aqua" : "";?>"></i>
-                <span>Catálogo</span>
-                <span class="pull-right-container">
-                  <?php echo current_page('admin/catalogo') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-                  <?php echo current_page('admin/alta-producto-catalogo') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-                  <?php echo strpos(request()->path(), 'editar-producto-catalogo') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
-                </span>
-              </a>
-            </li>
+            @can ('catalogo.index')
+              <li <?php echo current_page('admin/catalogo') || current_page('admin/alta-producto-catalogo') || strpos(request()->path(), 'editar-producto-catalogo') ? "class='active'" : "";?>>
+                <a href="{{url('admin/catalogo')}}">
+                  <i class="fa fa-circle-o <?php echo current_page('admin/catalogo') || current_page('admin/alta-producto-catalogo') || strpos(request()->path(), 'editar-producto-catalogo') ? "text-aqua" : "";?>"></i>
+                  <span>Catálogo</span>
+                  <span class="pull-right-container">
+                    <?php echo current_page('admin/catalogo') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+                    <?php echo current_page('admin/alta-producto-catalogo') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+                    <?php echo strpos(request()->path(), 'editar-producto-catalogo') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
+                  </span>
+                </a>
+              </li>
+            @endcan
             <li <?php echo current_page('admin/inventary') || current_page('admin/add-product') || strpos(request()->path(), 'edit-product') || strpos(request()->path(), 'show-product') ? "class='active'" : "";?>>
               <a href="{{url('admin/inventary')}}">
                 <i class="fa fa-circle-o <?php echo current_page('admin/inventary') || current_page('admin/add-product') || strpos(request()->path(), 'edit-product') || strpos(request()->path(), 'show-product') ? "text-aqua" : "";?>"></i>

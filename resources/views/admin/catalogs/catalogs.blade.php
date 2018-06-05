@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/alta-producto-catalogo')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Alta de Productos</a>
+          <a href="{{url('admin/create-producto-catalogo')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Alta de Productos</a>
         </div>
 
         <div class="box-body">
@@ -48,9 +48,6 @@
                   <td class="row-copasat">
                     <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                     <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['catalogo.destroy', $product->id]]) !!}
-                      <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    {!! Form::close() !!} --}}
                   </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>

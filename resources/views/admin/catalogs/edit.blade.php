@@ -18,7 +18,7 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto en Catálogo</h3>
         </div>
-        {!! Form::model($catalog, ['method' => 'PATCH','route' => ['catalogo.update', $catalog->id], 'role' => 'form']) !!}
+        {!! Form::model($catalog, ['method' => 'POST','route' => ['catalogo.update', $catalog->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-6">

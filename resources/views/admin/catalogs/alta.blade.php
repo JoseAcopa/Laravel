@@ -18,7 +18,7 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-plus"></i> Registrar Producto en Catálogo</h3>
         </div>
-        <form role="form" method="POST" action="/admin/catalogo">
+        <form role="form" method="POST" action="{{route('catalogo.store')}}">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-6">
