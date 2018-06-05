@@ -4,7 +4,7 @@
 
     <section class="content-header">
       <h1>
-        Administrador
+        Cotización
         <small></small>
       </h1>
       <ol class="breadcrumb">
@@ -18,7 +18,7 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
         </div>
-        <form role="form" method="POST" action="/admin/quotation">
+        <form role="form" method="POST" action="{{route('cotizacion.store')}}">
           {{ csrf_field() }}
           <br>
           <div class="col-md-12">
@@ -201,7 +201,7 @@
           </div>
           <div class="box-footer">
             <div class="pull-right">
-              <a href="{{ url('/admin/quotation') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
+              <a href="{{ url('/admin/cotizacion') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
               <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
             </div>
           </div>

@@ -90,8 +90,8 @@ class QuotationsController extends Controller
     public function show($id)
     {
       $product = Products::find($id);
-      $quotations = Quotations::all();
-      return view('admin.inventary.show-product', compact('product'));
+      $quotation = Quotations::all();
+      return view('admin.quotation.show', compact('product', 'quotations'));
     }
 
     /**
@@ -127,6 +127,6 @@ class QuotationsController extends Controller
     {
       Quotations::find($id)->delete();
       DB::table('quoteers')->where('cotizacion_id', $id)->delete();
-      return redirect('admin/quotation')->with('success','La cotizacion ha sido eliminado correctamente');
+      return redirect('admin/cotizacion')->with('success','La cotizacion ha sido eliminado correctamente');
     }
 }

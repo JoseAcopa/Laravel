@@ -80,24 +80,20 @@ Route::get('/admin/editar-salida/{salida}', 'CheckoutsController@edit')->name('s
 Route::post('/admin/salida/{salida}', 'CheckoutsController@update')->name('salida.update')->middleware('permission:product-output.edit');
 Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('salida.destroy')->middleware('permission:product-output.destroy');
 Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:product-output.show');
-// Route::get('/admin/add-product-output', 'CheckoutsController@create');
-// Route::get('/admin/edit-product-output/{checkout}', 'CheckoutsController@edit');
-// Route::get('/admin/show-product-output/{checkout}', 'CheckoutsController@show');
-// Route::resource('/admin/product-output','CheckoutsController');
 // ------------------End checkout----------------------------------------
 
 // ------------------quotations----------------------------------------
-Route::resource('/admin/quotation', 'QuotationsController');
-Route::get('/admin/add-quotation', 'QuotationsController@create');
-Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
+Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.index')->middleware('permission:quotation.index');
+Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:quotation.create');
+Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:quotation.create');
+Route::get('/admin/editar-cotizacion/{cotizacion}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:quotation.edit');
+Route::post('/admin/cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:quotation.edit');
+Route::delete('admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:quotation.destroy');
+Route::get('admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:quotation.show');
+// Route::resource('/admin/quotation', 'QuotationsController');
+// Route::get('/admin/add-quotation', 'QuotationsController@create');
+// Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
 // ------------------end quotations----------------------------------------
-
-// ------------------checkout----------------------------------------
-Route::get('/admin/add-product-output', 'CheckoutsController@create');
-Route::get('/admin/edit-product-output/{checkout}', 'CheckoutsController@edit');
-Route::get('/admin/show-product-output/{checkout}', 'CheckoutsController@show');
-Route::resource('/admin/product-output','CheckoutsController');
-// ------------------End checkout----------------------------------------
 
 // ------------------facturas----------------------------------------
 Route::resource('/admin/facturas', 'ControllerInvoices');

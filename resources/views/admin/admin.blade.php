@@ -57,7 +57,7 @@
           <div class="icon">
             <i class="fa fa-list"></i>
           </div>
-          <a href="{{ url('/admin/quotation') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/admin/cotizacion') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div class="col-lg-3 col-xs-6">

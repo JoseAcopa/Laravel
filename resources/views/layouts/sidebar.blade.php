@@ -124,13 +124,15 @@ function current_page($url = '/'){
             @endcan
           </ul>
         </li>
-        <li <?php echo current_page('admin/quotation') || current_page('admin/add-quotation') || strpos(request()->path(), 'edit-quotation') ? "class='active'" : "";?>>
-          <a href="{{url('/admin/quotation')}}"><i class="fa fa-book"></i> <span>Cotización</span>
-            <?php echo current_page('admin/quotation') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-            <?php echo current_page('admin/add-quotation') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-            <?php echo strpos(request()->path(), 'edit-quotation') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
-          </a>
-        </li>
+        @can ('question.index')
+          <li <?php echo current_page('admin/cotizacion') || current_page('admin/crear-cotizacion') || strpos(request()->path(), 'ver-cotizacion') ? "class='active'" : "";?>>
+            <a href="{{url('/admin/cotizacion')}}"><i class="fa fa-book"></i> <span>Cotización</span>
+              <?php echo current_page('admin/cotizacion') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+              <?php echo current_page('admin/crear-cotizacion') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+              <?php echo strpos(request()->path(), 'ver-cotizacion') ? '<small class="label pull-right bg-green">ver</small>' : "";?>
+            </a>
+          </li>
+        @endcan
         <li class="header">REPORTES</li>
         <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
           <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span>
