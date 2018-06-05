@@ -4,6 +4,8 @@
 <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 <script src="{{ asset('bower_components/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{ asset('bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{ asset('bower_components/moment/min/moment.min.js')}}"></script>
+<script src="{{ asset('bower_components/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js')}}"></script>
 <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
@@ -28,6 +30,43 @@
 </script>
 <script type="text/javascript">
   $(document).ready(function() {
+    //Date range picker
+    $('#reservation').daterangepicker({
+      "locale": {
+        "format": "DD/MM/YYYY",
+        "separator": " - ",
+        "applyLabel": "Aplicar",
+        "cancelLabel": "Cancelar",
+        "fromLabel": "desde",
+        "toLabel": "hasta",
+        "customRangeLabel": "Personalizar",
+        "daysOfWeek": [
+          "Dom",
+          "Lun",
+          "Mar",
+          "Mie",
+          "Jue",
+          "Vie",
+          "Sáb"
+        ],
+        "monthNames": [
+          "Enero",
+          "Febrero",
+          "Marzo",
+          "Abril",
+          "Mayo",
+          "Junio",
+          "Julio",
+          "Agosto",
+          "Septiembre",
+          "Octubre",
+          "Noviembre",
+          "Diciembre"
+        ],
+        "firstDay": 1
+      }
+    })
+
     $('.select2').select2()
     $('#datepicker').datepicker({
       todayHighlight: true,

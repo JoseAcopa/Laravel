@@ -117,7 +117,7 @@
             </div>
           </div>
           <div class="btn-show">
-            <a href="{{url('admin/inventary-out')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
+            <a href="{{url('admin/quotation')}}"  class="btn-green"><i class="fa fa-chevron-circle-left"></i> Atras</a>
           </div>
         </div>
       </div>
