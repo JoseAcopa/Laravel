@@ -16,7 +16,7 @@
       <div class="box box-primary">
         <div class="box-header with-border">
           <div class="col-md-4">
-            <h3 class="box-title"><i class="fa fa-pencil"></i> Salida de Producto</h3>
+            <h3 class="box-title"><i class="fa fa-plus"></i> Salida de Producto</h3>
           </div>
           <div class="col-md-8">
             <div class="form-group">

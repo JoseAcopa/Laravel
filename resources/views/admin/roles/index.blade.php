@@ -28,15 +28,15 @@
       <div class="box">
         <div class="box-header">
           @can ('roles.create')
-            <a href="{{ url('/admin/create-rol') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Crear Rol</a>
+            <a href="{{ url('/admin/create-rol') }}" class="btn btn-default" ><i class="fa fa-plus"></i> Crear Rol</a>
           @endcan
         </div>
 
         <div class="box-body">
           <div class="col-md-10">
-            <table id="Jtabla" class="table table-bordered table-striped">
+            <table id="Jtabla" class="table table-bordered table-hover dataTable">
               <thead>
-                <tr class="success">
+                <tr class="active">
                   <th>#</th>
                   <th>Acciones</th>
                   <th>Nombre</th>

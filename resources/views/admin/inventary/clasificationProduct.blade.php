@@ -62,9 +62,9 @@
             </form>
           </div>
           <div class="col-md-8">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-hover dataTable">
               <thead>
-                <tr class="success">
+                <tr class="active">
                   <th>Acciones</th>
                   <th>Tipo de Producto</th>
                   <th>Letra Inicial</th>

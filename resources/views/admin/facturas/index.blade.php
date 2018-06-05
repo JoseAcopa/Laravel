@@ -31,9 +31,9 @@
         </div>
 
         <div class="box-body">
-          <table id="Jtabla" class="table table-bordered table-striped">
+          <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="success">
+              <tr class="active">
                 <th>Acciones</th>
                 <th>N° de Factura</th>
                 <th>Categoria</th>

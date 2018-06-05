@@ -16,7 +16,7 @@
     <section class="content container-fluid">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-pencil"></i> Editar Producto en Catálogo</h3>
+          <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto en Catálogo</h3>
         </div>
         {!! Form::model($catalog, ['method' => 'PATCH','route' => ['catalogo.update', $catalog->id], 'role' => 'form']) !!}
           {{ csrf_field() }}

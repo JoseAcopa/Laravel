@@ -28,14 +28,14 @@
       <div class="box">
         <div class="box-header">
           @can ('employee.create')
-            <a href="{{ url('/admin/create-usuario') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
+            <a href="{{ url('/admin/create-usuario') }}" class="btn btn-default" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
           @endcan
         </div>
 
         <div class="box-body">
-          <table id="Jtabla" class="table table-bordered table-striped">
+          <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="success">
+              <tr class="active">
                 <th>#</th>
                 <th>Acciones</th>
                 <th>Nombre completo</th>

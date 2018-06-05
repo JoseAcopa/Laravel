@@ -16,7 +16,7 @@
     <section class="content container-fluid">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-pencil"></i> Registrar Producto en Catálogo</h3>
+          <h3 class="box-title"><i class="fa fa-plus"></i> Registrar Producto en Catálogo</h3>
         </div>
         <form role="form" method="POST" action="/admin/catalogo">
           {{ csrf_field() }}

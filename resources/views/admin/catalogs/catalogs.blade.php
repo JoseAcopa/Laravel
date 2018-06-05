@@ -27,13 +27,13 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/alta-producto-catalogo')}}" class="btn btn-success" ><i class="fa fa-pencil "></i> Alta de Productos</a>
+          <a href="{{url('admin/alta-producto-catalogo')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Alta de Productos</a>
         </div>
 
         <div class="box-body">
-          <table id="Jtabla" class="table table-bordered table-striped">
+          <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="success">
+              <tr class="active">
                 <th>Acciones</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>

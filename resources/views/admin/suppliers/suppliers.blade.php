@@ -27,13 +27,13 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{ url('/admin/create-proveedor') }}" class="btn btn-success" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
+          <a href="{{ url('/admin/create-proveedor') }}" class="btn btn-default" ><i class="fa fa-user-plus"></i> Registrar Proveedores</a>
         </div>
 
         <div class="box-body">
-          <table id="Jtabla" class="table table-bordered table-striped">
+          <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="success">
+              <tr class="active">
                 <th>Acciones</th>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>

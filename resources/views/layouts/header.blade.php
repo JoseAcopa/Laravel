@@ -184,9 +184,9 @@
           {{ csrf_field() }}
           </form>
 
-          <li>
+          {{-- <li>
             <a href="#"><i class="fa fa-gears"></i></a>
-          </li>
+          </li> --}}
         </ul>
       </div>
     </nav>
