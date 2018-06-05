@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          <a href="{{url('admin/add-product-output')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Salida Productos</a>
+          <a href="{{url('admin/crear-salida')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Salida Productos</a>
         </div>
 
         <div class="box-body">
@@ -48,12 +48,9 @@
               @foreach ($checkouts as $checkout)
                 <tr>
                   <td class="row-copasat">
-                    <a class="btn btn-primary" href="{{url('/admin/show-product-output',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    <a class="btn btn-info" href="{{url('/admin/edit-product-output',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('product-output.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    {{-- {!! Form::open(['method' => 'DELETE','route' => ['product-output.destroy', $checkout->id]]) !!}
-                      <button type="submit" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                    {!! Form::close() !!} --}}
+                    <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-info" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
                   </td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>

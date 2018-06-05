@@ -69,7 +69,7 @@ class CheckoutsController extends Controller
       $checkout->keyProduct = $id;
 
       $checkout->save();
-      return redirect('admin/product-output')->with('success','Salida Guardado correctamente');
+      return redirect('admin/salidas')->with('success','Salida Guardado correctamente');
     }
 
     /**
@@ -132,7 +132,7 @@ class CheckoutsController extends Controller
       $checkout->price_output = $newPrice;
       $checkout->save();
 
-      return redirect('admin/product-output')->with('success','Salida actualizado correctamente');
+      return redirect('admin/salidas')->with('success','Salida actualizado correctamente');
     }
 
     /**
@@ -144,7 +144,7 @@ class CheckoutsController extends Controller
     public function destroy($id)
     {
       Checkouts::find($id)->delete();
-      return redirect('admin/product-output')->with('success','Salida eliminado correctamente');
+      return redirect('admin/salidas')->with('success','Salida eliminado correctamente');
 
     }
 }

@@ -19,7 +19,7 @@
             <h3 class="box-title"><i class="fa fa-edit"></i>Editar Salida de Producto</h3>
           </div>
         </div>
-        {!! Form::model($checkout, ['method' => 'PATCH','route' => ['product-output.update', $checkout->id], 'role' => 'form']) !!}
+        {!! Form::model($checkout, ['method' => 'POST','route' => ['salida.update', $checkout->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
@@ -113,7 +113,7 @@
           </div>
           <div class="box-footer">
             <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/product-output')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <a href="{{url('admin/salidas')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
           </div>
         {!! Form::close() !!}
       </div>

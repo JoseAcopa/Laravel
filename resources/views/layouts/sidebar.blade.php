@@ -62,7 +62,7 @@ function current_page($url = '/'){
         @endcan
         <li class="header">INVENTARIO Y COTIZACIONES</li>
         <li class="treeview <?php echo current_page('admin/catalogo') || current_page('admin/categoria') || current_page('admin/create-producto-catalogo') || strpos(request()->path(), 'editar-producto-catalogo') || current_page('admin/productos') || current_page('admin/crear-producto')
-                                  || strpos(request()->path(), 'edita-producto') || strpos(request()->path(), 'ver-producto') || current_page('admin/product-output') || current_page('admin/add-product-output') || strpos(request()->path(), 'edit-product-output') || strpos(request()->path(), 'show-product')
+                                  || strpos(request()->path(), 'edita-producto') || strpos(request()->path(), 'ver-producto') || current_page('admin/salidas') || current_page('admin/crear-salida') || strpos(request()->path(), 'editar-salida') || strpos(request()->path(), 'ver-salida')
                                   || strpos(request()->path(), 'show-product-output') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>
             <span class="pull-right-container">
@@ -108,17 +108,20 @@ function current_page($url = '/'){
                 </a>
               </li>
             @endcan
-            <li <?php echo current_page('admin/product-output') || current_page('admin/add-product-output') || strpos(request()->path(), 'edit-product-output') || strpos(request()->path(), 'show-product-output') ? "class='active'" : "";?>>
-              <a href="{{url('admin/product-output')}}">
-                <i class="fa fa-circle-o <?php echo current_page('admin/product-output') || current_page('admin/add-product-output') || strpos(request()->path(), 'edit-product-output') || strpos(request()->path(), 'show-product-output') ? "text-aqua" : "";?>"></i>
-                <span>Salidas de Productos</span>
-                <span class="pull-right-container">
-                  <?php echo current_page('admin/product-output') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-                  <?php echo current_page('admin/add-product-output') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-                  <?php echo strpos(request()->path(), 'edit-product-output') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
-                </span>
-              </a>
-            </li>
+            @can ('inventary.index')
+              <li <?php echo current_page('admin/salidas') || current_page('admin/crear-salida') || strpos(request()->path(), 'editar-salida') || strpos(request()->path(), 'ver-salida') ? "class='active'" : "";?>>
+                <a href="{{url('admin/salidas')}}">
+                  <i class="fa fa-circle-o <?php echo current_page('admin/salidas') || current_page('admin/crear-salida') || strpos(request()->path(), 'editar-salida') || strpos(request()->path(), 'ver-salida') ? "text-aqua" : "";?>"></i>
+                  <span>Salidas de Productos</span>
+                  <span class="pull-right-container">
+                    <?php echo current_page('admin/salidas') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+                    <?php echo current_page('admin/crear-salida') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+                    <?php echo strpos(request()->path(), 'editar-salida') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
+                    <?php echo strpos(request()->path(), 'ver-salida') ? '<small class="label pull-right bg-green">ver</small>' : "";?>
+                  </span>
+                </a>
+              </li>
+            @endcan
           </ul>
         </li>
         <li <?php echo current_page('admin/quotation') || current_page('admin/add-quotation') || strpos(request()->path(), 'edit-quotation') ? "class='active'" : "";?>>

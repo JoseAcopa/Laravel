@@ -132,7 +132,7 @@
             </ul>
           </div>
           <div class="box-footer clearfix no-border">
-            <a href="{{url('admin/product-output')}}" class="btn btn-info pull-right"><i class="fa fa-mail-reply"></i> Atras</a>
+            <a href="{{url('admin/salidas')}}" class="btn btn-info pull-right"><i class="fa fa-mail-reply"></i> Atras</a>
           </div>
         </div>
       </div>

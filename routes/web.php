@@ -70,11 +70,21 @@ Route::get('/admin/edita-producto/{producto}', 'ProductsControllers@edit')->name
 Route::post('/admin/producto/{producto}', 'ProductsControllers@update')->name('producto.update')->middleware('permission:inventary.edit');
 Route::delete('admin/delete-producto/{id}','ProductsControllers@destroy')->name('producto.destroy')->middleware('permission:inventary.destroy');
 Route::get('admin/ver-producto/{id}','ProductsControllers@show')->name('producto.show')->middleware('permission:inventary.show');
-// Route::get('/admin/add-product', 'ProductsControllers@create');
-// Route::get('/admin/edit-product/{product}', 'ProductsControllers@edit');
-// Route::get('/admin/show-product/{product}', 'ProductsControllers@show');
-// Route::resource('admin/inventary','ProductsControllers');
 // ------------------End inventary----------------------------------------
+
+// ------------------checkout----------------------------------------
+Route::get('/admin/salidas','CheckoutsController@index')->name('salida.index')->middleware('permission:product-output.index');
+Route::get('/admin/crear-salida', 'CheckoutsController@create')->name('salida.create')->middleware('permission:product-output.create');
+Route::post('admin/store-salida','CheckoutsController@store')->name('salida.store')->middleware('permission:product-output.create');
+Route::get('/admin/editar-salida/{salida}', 'CheckoutsController@edit')->name('salida.edit')->middleware('permission:product-output.edit');
+Route::post('/admin/salida/{salida}', 'CheckoutsController@update')->name('salida.update')->middleware('permission:product-output.edit');
+Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('salida.destroy')->middleware('permission:product-output.destroy');
+Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:product-output.show');
+// Route::get('/admin/add-product-output', 'CheckoutsController@create');
+// Route::get('/admin/edit-product-output/{checkout}', 'CheckoutsController@edit');
+// Route::get('/admin/show-product-output/{checkout}', 'CheckoutsController@show');
+// Route::resource('/admin/product-output','CheckoutsController');
+// ------------------End checkout----------------------------------------
 
 // ------------------quotations----------------------------------------
 Route::resource('/admin/quotation', 'QuotationsController');
