@@ -90,13 +90,13 @@ Route::get('/admin/editar-cotizacion/{cotizacion}', 'QuotationsController@edit')
 Route::post('/admin/cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:quotation.edit');
 Route::delete('admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:quotation.destroy');
 Route::get('admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:quotation.show');
-// Route::resource('/admin/quotation', 'QuotationsController');
-// Route::get('/admin/add-quotation', 'QuotationsController@create');
-// Route::get('/admin/edit-quotation/{quotation}', 'EmployeeController@edit');
 // ------------------end quotations----------------------------------------
 
 // ------------------facturas----------------------------------------
-Route::resource('/admin/facturas', 'ControllerInvoices');
+Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
+Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:facturas.destroy');
+Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:facturas.show');
+// Route::resource('/admin/facturas', 'ControllerInvoices');
 // ------------------End facturas----------------------------------------
 
 // =======================metodos ajax ==============================================

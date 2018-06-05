@@ -134,11 +134,13 @@ function current_page($url = '/'){
           </li>
         @endcan
         <li class="header">REPORTES</li>
-        <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
-          <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span>
-            <?php echo current_page('admin/facturas') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-          </a>
-        </li>
+        @can ('facturas.index')
+          <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
+            <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span>
+              <?php echo current_page('admin/facturas') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+            </a>
+          </li>
+        @endcan
       </ul>
     </section>
   </aside>

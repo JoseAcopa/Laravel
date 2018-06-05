@@ -204,6 +204,11 @@ class PermissionsTableSeeder extends Seeder
         'slug' => 'facturas.destroy',
         'description' => 'Eliminar reporte'
       ]);
+      Permission::create([
+        'name' => 'Ver reporte',
+        'slug' => 'facturas.show',
+        'description' => 'Ver reporte'
+      ]);
 
       // cotizacion
       Permission::create([
