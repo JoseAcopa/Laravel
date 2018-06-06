@@ -35,7 +35,7 @@
                 {!! $errors->first('url','<span class="help-block">:message</span>')!!}
               </div>
             </div>
-            <div class="col-md-12">
+            {{-- <div class="col-md-12">
               <h4>Permiso Especial</h4>
               <div class="checkbox">
                 <label>
@@ -49,7 +49,7 @@
                   Ningun acceso
                 </label>
               </div>
-            </div>
+            </div> --}}
             <div class="col-md-12">
               <h4>Lista Permisos</h4>
               @foreach ($permissions as $permission)
