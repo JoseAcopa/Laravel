@@ -13,8 +13,8 @@
       </ol>
 
       <div style="margin-top: 10px;">
-        <form style="width:80%; display: flex; flex-direction: row; justify-content: space-between;">
-          <div class="form-group" style="width:70%;">
+        <form style="width:70%; display: flex; flex-direction: row; justify-content: space-between;">
+          <div class="form-group" style="width:80%;">
             <label>Buscar cotización por rango de fechas:</label>
             <div class="input-group">
               <div class="input-group-addon">
@@ -22,9 +22,6 @@
               </div>
               <input type="text" class="form-control pull-right" id="reservation">
             </div>
-          </div>
-          <div style="margin-top: 25px;">
-            <button type="button" class="btn btn-default"><i class="fa fa-print"></i> Imprimir</button>
           </div>
           <div style="margin-top: 25px;">
             <button type="button" class="btn btn-primary"><i class="fa fa-download"></i> Generar PDF</button>

@@ -140,7 +140,7 @@ function current_page($url = '/'){
         @endcan
         @can ('facturas.index')
           <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
-            <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span>
+            <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Reportes de ingreso</span>
               <?php echo current_page('admin/facturas') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
             </a>
           </li>

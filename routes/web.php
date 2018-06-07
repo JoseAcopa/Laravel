@@ -106,6 +106,14 @@ Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edi
 Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
 // =======================End metodos ajax ==============================================
 
+// =======================reportes ==============================================
+Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
+Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('reportes.show');
+// Route::delete('/actividad/{id}', 'AdminControllers@destroy')->name('actividad.destroy');
+// Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edit');
+// Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
+// =======================reportes ==============================================
+
 // =======================metodos ajax ==============================================
 Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
 Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');

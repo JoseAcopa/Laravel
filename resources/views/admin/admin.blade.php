@@ -7,19 +7,6 @@
         <small>{{Auth::user()->name}}</small>
         <small>({{Auth::user()->user}})</small>
       </h1>
-      {{-- <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="info-box">
-          <span class="info-box-icon bg-green"><i class="fa fa-user"></i></span>
-
-          <div class="info-box-content">
-            <span class="info-box-text">Usuario:</span>
-            <span class="info-box-number">{{Auth::user()->name}} ({{Auth::user()->user}})</span>
-            <span>{{Auth::user()->email}}</span>
-          </div>
-          <!-- /.info-box-content -->
-        </div>
-        <!-- /.info-box -->
-      </div> --}}
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
         <li class="active">Inicio</li>
@@ -90,7 +77,7 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-5">
         <div class="box box-success">
           <div class="box-header with-border">
             <h3 class="box-title">Misión</h3>
@@ -116,7 +103,7 @@
         </div>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="box box-primary">
             <div class="box-header ui-sortable-handle">
               <i class="ion ion-clipboard"></i>
@@ -151,11 +138,11 @@
               <ul class="todo-list ui-sortable">
               @foreach ($activities as $activity)
                 <li <?php echo $activity->status == "1" ? 'class="done"' : ''?>>
-                  <span class="handle ui-sortable-handle">
+                  <span class="handle ui-sortable-handle" style="cursor: default !important;">
                     <i class="fa fa-ellipsis-v"></i>
                     <i class="fa fa-ellipsis-v"></i>
                   </span>
-                  <input type="checkbox" disabled <?php echo $activity->status == "1" ? 'checked' : ''?>>
+                  <input type="checkbox" disabled <?php echo $activity->status == "1" ? 'checked' : ''?> style="cursor: default !important;">
                   <span class="text">{{$activity->titulo}}</span>
                   <small class="label <?php echo Carbon\Carbon::parse($activity->created_at)->diffForHumans() === "hace 1 dia" ? "label-danger" : "label-success";?>"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
                   <div class="tools">
@@ -194,6 +181,78 @@
             </div>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="box box-widget widget-user-2">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-yellow">
+              <div class="widget-user-image">
+                <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+              </div>
+              <!-- /.widget-user-image -->
+              <h3 class="widget-user-username">{{Auth::user()->name}}</h3>
+              <h5 class="widget-user-desc">{{Auth::user()->email}}</h5>
+            </div>
+            <div class="box-footer no-padding">
+              <ul class="nav nav-stacked">
+                <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
+                <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
+                <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
+                <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
+              </ul>
+            </div>
+          </div>
+          </div>
+          <div class="col-md-8">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">Application Buttons</h3>
+              </div>
+              <div class="box-body">
+                <p>Add the classes <code>.btn.btn-app</code> to an <code>&lt;a&gt;</code> tag to achieve the following:</p>
+                <a class="btn btn-app">
+                  <i class="fa fa-edit"></i> Edit
+                </a>
+                <a class="btn btn-app">
+                  <i class="fa fa-play"></i> Play
+                </a>
+                <a class="btn btn-app">
+                  <i class="fa fa-repeat"></i> Repeat
+                </a>
+                <a class="btn btn-app">
+                  <i class="fa fa-pause"></i> Pause
+                </a>
+                <a class="btn btn-app">
+                  <i class="fa fa-save"></i> Save
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-yellow">3</span>
+                  <i class="fa fa-bullhorn"></i> Notifications
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-green">300</span>
+                  <i class="fa fa-barcode"></i> Products
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-purple">891</span>
+                  <i class="fa fa-users"></i> Users
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-teal">67</span>
+                  <i class="fa fa-inbox"></i> Orders
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-aqua">12</span>
+                  <i class="fa fa-envelope"></i> Inbox
+                </a>
+                <a class="btn btn-app">
+                  <span class="badge bg-red">531</span>
+                  <i class="fa fa-heart-o"></i> Likes
+                </a>
+              </div>
+              <!-- /.box-body -->
+            </div>
+          </div>
+
           <!-- Modal -->
           <div class="modal fade" id="myModalEdit" role="dialog">
             <div class="modal-dialog">

@@ -29,7 +29,7 @@ class AdminControllers extends Controller
     $date = $date->format('d/m/Y');
     $user = Auth::user();
     $quotations = count(DB::table('quotations')->where('fecha', $date)->get());
-    $activities = DB::table('activities')->where('nombre', $user->name)->paginate(8);
+    $activities = DB::table('activities')->where('nombre', $user->name)->paginate(6);
     return view('admin.admin', compact('users', 'quotations', 'customers', 'providers', 'activities'));
   }
 
