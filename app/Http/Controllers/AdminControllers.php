@@ -21,6 +21,7 @@ class AdminControllers extends Controller
 
   public function index()
   {
+    Carbon::setLocale('es');
     $users = count(User::all());
     $customers = count(Clients::all());
     $providers = count(Suppliers::all());

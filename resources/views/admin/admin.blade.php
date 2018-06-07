@@ -139,7 +139,7 @@
                   </span>
                   <input type="checkbox" value="">
                   <span class="text">{{$activity->titulo}}</span>
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> {{$activity->created_at->diffForHumans()}}</small>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o" onclick="destroy('{{route('actividad.destroy', $activity->id)}}');"></i>
