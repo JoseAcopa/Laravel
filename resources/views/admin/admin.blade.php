@@ -118,13 +118,31 @@
 
       <div class="col-md-6">
         <div class="box box-primary">
-            <div class="box-header ui-sortable-handle" style="margin-bottom: 15px !important;">
+            <div class="box-header ui-sortable-handle">
               <i class="ion ion-clipboard"></i>
 
               <h3 class="box-title">Lista por hacer</h3>
-
               <div class="box-tools pull-right">
-                {{ $activities->links() }}
+                <ul class="pagination pagination-sm inline">
+                  @for ($i = 1; $i < $activities->lastPage()+1; $i++)
+                    @if ($i == 1)
+                      @if ($activities->currentPage() == 1)
+                        <li class="disabled" ><a>«</a></li>
+                      @else
+                        <li><a href="{{$activities->url($activities->currentPage()-1)}}">«</a></li>
+                      @endif
+                    @endif
+                    <li <?php echo $activities->currentPage() == $i ? 'class="active"': ''?>><a href="{{$activities->url($i)}}">{{$i}}</a></li>
+                    @if ($i == $activities->lastPage())
+                      @if ($activities->lastPage() == $activities->currentPage())
+                        <li class="disabled"><a>»</a></li>
+                      @else
+                        <li><a href="{{$activities->nextPageUrl()}}">»</a></li>
+                      @endif
+                    @endif
+                  @endfor
+                </ul>
+                {{-- {{ $activities->links() }} --}}
               </div>
             </div>
             <!-- /.box-header -->

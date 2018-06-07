@@ -14,6 +14,7 @@
 <script type="text/javascript" src="{{ url('js/sweetalert2/sweetalert2.js') }}"></script>
 <script type="text/javascript" src="{{ url('js/sweetalert2/sweetalert2.all.min.js') }}"></script>
 <script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+<script src="{{ asset('/dist/js/pages/dashboard.js')}}"></script>
 <script src="{{ asset('/dist/js/demo.js')}}"></script>
 <script type="text/javascript">
   $(function () {
