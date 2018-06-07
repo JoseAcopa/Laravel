@@ -102,7 +102,8 @@ Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.sh
 // =======================metodos ajax ==============================================
 Route::post('/crear-actividad', 'AdminControllers@store')->name('actividad.store');
 Route::delete('/actividad/{id}', 'AdminControllers@destroy')->name('actividad.destroy');
-// Route::get('/cliente/{id}', 'AdminControllers@getClientAjax');
+Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edit');
+Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
 // =======================End metodos ajax ==============================================
 
 // =======================metodos ajax ==============================================

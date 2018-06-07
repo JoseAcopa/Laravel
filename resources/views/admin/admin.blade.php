@@ -150,16 +150,16 @@
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <ul class="todo-list ui-sortable">
               @foreach ($activities as $activity)
-                <li style="" class="">
+                <li <?php echo $activity->status == "1" ? 'class="done"' : ''?>>
                   <span class="handle ui-sortable-handle">
                     <i class="fa fa-ellipsis-v"></i>
                     <i class="fa fa-ellipsis-v"></i>
                   </span>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" disabled <?php echo $activity->status == "1" ? 'checked' : ''?>>
                   <span class="text">{{$activity->titulo}}</span>
                   <small class="label <?php echo Carbon\Carbon::parse($activity->created_at)->diffForHumans() === "hace 1 dia" ? "label-danger" : "label-success";?>"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
                   <div class="tools">
-                    <i class="fa fa-edit"></i>
+                    <i class="fa fa-edit" data-toggle="modal" data-target="#myModalEdit" onclick="edit('{{route('actividad.edit', $activity->id)}}');"></i>
                     <i class="fa fa-trash-o" onclick="destroy('{{route('actividad.destroy', $activity->id)}}');"></i>
                   </div>
                 </li>
@@ -176,7 +176,7 @@
                     {{ csrf_field() }}
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Agregar actividad</h4>
+                      <h4 class="modal-title">Editar actividad</h4>
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
@@ -192,6 +192,33 @@
                 </div>
               </div>
             </div>
+            </div>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog">
+              <form class="modal-content" method="POST" action="{{route('actividad.update')}}">
+                {{ csrf_field() }}
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Agregar actividad</h4>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" class="form-control" id="tituloEdit" name="tituloEdit" placeholder="titulo">
+                    <input type="text" name="idActividad" id="idActividad" hidden>
+                  </div>
+                  <div class="">
+                    <input type="checkbox" value="false" id="check" name="check">
+                    <label for="check">Desactivar</label>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
             </div>
           </div>
         {{-- <img src="{{ url('img/MV1.jpg')}}" width="100%"> --}}
@@ -234,6 +261,24 @@
               'La accion fue cancelada.',
               'error'
             )
+          }
+        })
+      }
+
+      function edit(url){
+        event.preventDefault();
+        $.ajax({
+          url: url,
+          method: "GET",
+          data: {
+              _token: "{{csrf_token()}}",
+              _method: "GET"
+          },
+          success: function(data){
+            console.log(data.status);
+            $('#tituloEdit').val(data.titulo)
+            $('#idActividad').val(data.id)
+            document.getElementById('check').checked = data.status === "0" ? false : true
           }
         })
       }

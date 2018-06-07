@@ -29,7 +29,7 @@ class AdminControllers extends Controller
     $date = $date->format('d/m/Y');
     $user = Auth::user();
     $quotations = count(DB::table('quotations')->where('fecha', $date)->get());
-    $activities = DB::table('activities')->where('nombre', $user->name)->paginate(1);
+    $activities = DB::table('activities')->where('nombre', $user->name)->paginate(8);
     return view('admin.admin', compact('users', 'quotations', 'customers', 'providers', 'activities'));
   }
 
@@ -48,6 +48,28 @@ class AdminControllers extends Controller
   public function destroy($id)
   {
     Activities::find($id)->delete();
+    return redirect('/admin/admin-welcome');
+  }
+
+  public function edit($id)
+  {
+    $activity = Activities::find($id);
+    return $activity;
+  }
+
+  public function update(Request $request)
+  {
+    $user = Auth::user();
+    $id = $request->idActividad;
+    $newTitulo = $request->tituloEdit;
+    $newStatus = $request->check == "false" ? true : false;
+
+    $activity = Activities::find($id);
+
+    $activity->nombre = $user->name;;
+    $activity->titulo = $newTitulo;
+    $activity->status = $newStatus;
+    $activity->save();
     return redirect('/admin/admin-welcome');
   }
 
