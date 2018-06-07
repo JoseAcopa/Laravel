@@ -50,7 +50,7 @@
                 <tr>
                   <td>{{ $employee->id }}</td>
                   <td class="row-copasat">
-                    @can ('employee.update')
+                    @can ('employee.edit')
                       <a class="btn btn-info" href="{{ route('employee.edit',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
                     @endcan
                     @can ('employee.destroy')

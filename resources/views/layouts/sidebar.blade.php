@@ -42,7 +42,9 @@ function current_page($url = '/'){
             </a>
           </li>
         @endcan
-        <li class="header">ROLES Y PERMISOS</li>
+        @can ('roles.index')
+          <li class="header">ROLES Y PERMISOS</li>
+        @endcan
         @can ('roles.index')
           <li <?php echo current_page('admin/roles') || current_page('admin/create-rol') || strpos(request()->path(), 'edit-rol') ? "class='active'" : "";?>>
             <a href="{{ url('/admin/roles') }}"><i class="fa fa-list"></i> <span>Roles</span>
@@ -133,7 +135,9 @@ function current_page($url = '/'){
             </a>
           </li>
         @endcan
-        <li class="header">REPORTES</li>
+        @can ('facturas.index')
+          <li class="header">REPORTES</li>
+        @endcan
         @can ('facturas.index')
           <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
             <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Facturas</span>

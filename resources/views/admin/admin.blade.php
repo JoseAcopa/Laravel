@@ -176,7 +176,7 @@
                     {{ csrf_field() }}
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Editar actividad</h4>
+                      <h4 class="modal-title">Agregar actividad</h4>
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
@@ -201,7 +201,7 @@
                 {{ csrf_field() }}
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Agregar actividad</h4>
+                  <h4 class="modal-title">Editar actividad</h4>
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
