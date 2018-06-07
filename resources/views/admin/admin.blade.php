@@ -118,49 +118,62 @@
 
       <div class="col-md-6">
         <div class="box box-primary">
-            <div class="box-header ui-sortable-handle">
+            <div class="box-header ui-sortable-handle" style="margin-bottom: 15px !important;">
               <i class="ion ion-clipboard"></i>
 
               <h3 class="box-title">Lista por hacer</h3>
 
               <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a href="#">«</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">»</a></li>
-                </ul>
+                {{ $activities->links() }}
               </div>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
               <ul class="todo-list ui-sortable">
-
+              @foreach ($activities as $activity)
                 <li style="" class="">
-                  <!-- drag handle -->
                   <span class="handle ui-sortable-handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
                   <input type="checkbox" value="">
-                  <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                  <!-- General tools such as edit or delete-->
+                  <span class="text">{{$activity->titulo}}</span>
+                  <small class="label label-danger"><i class="fa fa-clock-o"></i> {{$activity->created_at->diffForHumans()}}</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
                     <i class="fa fa-trash-o"></i>
                   </div>
                 </li>
+              @endforeach
               </ul>
             </div>
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nuevo</button>
+              <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
+              <!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+                  <form class="modal-content" method="POST" action="{{route('actividad.store')}}">
+                    {{ csrf_field() }}
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Agregar actividad</h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <label for="titulo">Titulo</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo">
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+                      <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
             </div>
           </div>
         {{-- <img src="{{ url('img/MV1.jpg')}}" width="100%"> --}}

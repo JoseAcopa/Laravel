@@ -100,11 +100,17 @@ Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.sh
 // ------------------End facturas----------------------------------------
 
 // =======================metodos ajax ==============================================
+Route::post('/crear-actividad', 'AdminControllers@store')->name('actividad.store');
+// Route::get('/producto/{id}', 'AdminControllers@getProductAjax');
+// Route::get('/cliente/{id}', 'AdminControllers@getClientAjax');
+// =======================End metodos ajax ==============================================
+
+// =======================metodos ajax ==============================================
 Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
 Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
 Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================End metodos ajax ==============================================
 
-// crear PDF
+// =======================crear PDF ==============================================
 Route::get("factura/{id}","ControllerInvoices@downloadPDF");
 Route::get("cotizacion/{quotation}","PDFController@cotizacionPDF");
