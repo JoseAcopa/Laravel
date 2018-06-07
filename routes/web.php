@@ -108,10 +108,8 @@ Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.upd
 
 // =======================reportes ==============================================
 Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
-Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('reportes.show');
-// Route::delete('/actividad/{id}', 'AdminControllers@destroy')->name('actividad.destroy');
-// Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edit');
-// Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
+Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
+Route::post('admin/generar-facturas', 'ReportesController@generarFacturas')->name('facturas.generar');
 // =======================reportes ==============================================
 
 // =======================metodos ajax ==============================================

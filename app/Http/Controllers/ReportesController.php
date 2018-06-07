@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Invoice;
 
 class ReportesController extends Controller
 {
@@ -19,6 +20,15 @@ class ReportesController extends Controller
     public function factura()
     {
       return view('admin.reportes.facturas');
+    }
+
+    public function generarFacturas(Request $request)
+    {
+      $rango = $request->rango;
+      $max = substr($rango, -10);
+      $min = substr($rango, 0, -13);
+      $reportes = Invoice::where('created_at','>=',$min)->where('created_at','<=',$max)->paginate(10);
+      return $reportes;
     }
 
     /**
