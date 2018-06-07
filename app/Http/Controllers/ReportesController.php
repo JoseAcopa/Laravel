@@ -27,7 +27,7 @@ class ReportesController extends Controller
       $rango = $request->rango;
       $max = substr($rango, -10);
       $min = substr($rango, 0, -13);
-      $reportes = Invoice::where('created_at','>=',$min)->where('created_at','<=',$max)->paginate(10);
+      $reportes = Invoice::where('checkin','>=',$min)->where('checkin','<=',$max)->paginate(10);
       return $reportes;
     }
 
