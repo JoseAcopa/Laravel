@@ -142,7 +142,7 @@
                   <small class="label label-danger"><i class="fa fa-clock-o"></i> {{$activity->created_at->diffForHumans()}}</small>
                   <div class="tools">
                     <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
+                    <i class="fa fa-trash-o" onclick="destroy('{{route('actividad.destroy', $activity->id)}}');"></i>
                   </div>
                 </li>
               @endforeach
@@ -179,5 +179,46 @@
         {{-- <img src="{{ url('img/MV1.jpg')}}" width="100%"> --}}
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar esta actividad?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminarlo!',
+          cancelButtonText: 'No, cancelar!'
+        }).then((res) => {
+          if (res.value) {
+            $.ajax({
+              url: url,
+              method: "POST",
+              data: {
+                  _token: "{{csrf_token()}}",
+                  _method: "DELETE"
+              },
+              success: function(data){
+                swal(
+                  '¡Eliminado!',
+                  'El registro ha sido eliminado.',
+                  'success'
+                ).then(()=>{
+                  location.reload();
+                })
+              }
+            })
+          }else if (res.dismiss === "cancel") {
+            swal(
+              '¡Cancelado!',
+              'La accion fue cancelada.',
+              'error'
+            )
+          }
+        })
+      }
+    </script>
 
 @endsection

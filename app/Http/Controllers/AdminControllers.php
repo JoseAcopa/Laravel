@@ -45,4 +45,10 @@ class AdminControllers extends Controller
     return redirect('/admin/admin-welcome');
   }
 
+  public function destroy($id)
+  {
+    Activities::find($id)->delete();
+    return redirect('/admin/admin-welcome');
+  }
+
 }
