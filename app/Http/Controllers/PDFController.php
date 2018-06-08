@@ -46,8 +46,18 @@ class PDFController extends Controller
 
   public function descargarPDF($id)
   {
-    $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
-    $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
-      return $pdf->download($invoice->category->type.'.pdf');
+    // $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
+    // $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
+    // Introducimos HTML de prueba
+    // return $pdf->strem($invoice->category->type.'.pdf');
+
+    $pdf = PDF::loadView('admin.PDF.test')->setPaper('a4', 'landscape');
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(750, 560, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->stream('test.pdf');
   }
 }
