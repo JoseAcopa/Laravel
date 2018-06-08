@@ -119,5 +119,6 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================End metodos ajax ==============================================
 
 // =======================crear PDF ==============================================
-Route::get("factura/{id}","ControllerInvoices@downloadPDF");
+Route::get("factura/{id}","PDFController@downloadPDF");
+Route::get("descargar/{id}","PDFController@descargarPDF");
 Route::get("cotizacion/{quotation}","PDFController@cotizacionPDF");

@@ -168,7 +168,7 @@
                     <div class="modal-body">
                       <div class="form-group">
                         <label for="titulo">Titulo</label>
-                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo">
+                        <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" required>
                       </div>
                     </div>
                     <div class="modal-footer">

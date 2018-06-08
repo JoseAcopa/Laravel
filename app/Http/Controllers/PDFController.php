@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use App\Quotations;
 use App\Quoteers;
+use App\Invoice;
 
 class PDFController extends Controller
 {
@@ -21,5 +22,19 @@ class PDFController extends Controller
 
     $pdf = PDF::loadView('admin.PDF.quotations', compact('selectQuotation', 'quoteers'));
       return $pdf->stream('cotizacion.pdf');
+  }
+
+  public function downloadPDF($id)
+  {
+    $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
+    $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
+      return $pdf->stream($invoice->category->type.'.pdf');
+  }
+
+  public function descargarPDF($id)
+  {
+    $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
+    $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
+      return $pdf->download($invoice->category->type.'.pdf');
   }
 }

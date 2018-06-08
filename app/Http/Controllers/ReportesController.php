@@ -27,8 +27,8 @@ class ReportesController extends Controller
       $rango = $request->rango;
       $max = substr($rango, -10);
       $min = substr($rango, 0, -13);
-      $reportes = Invoice::where('checkin','>=',$min)->where('checkin','<=',$max)->paginate(10);
-      return $reportes;
+      $reportes = Invoice::where('checkin','>=',$min)->where('checkin','<=',$max)->with(['coin', 'category', 'supplier'])->paginate(10);
+      return view('admin.reportes.facturas', compact('reportes'));
     }
 
     /**

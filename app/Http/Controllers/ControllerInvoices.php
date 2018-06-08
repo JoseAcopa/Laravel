@@ -89,11 +89,4 @@ class ControllerInvoices extends Controller
       Invoice::find($id)->delete();
       return redirect('admin/facturas')->with('success','Factura eliminado correctamente');
     }
-
-    public function downloadPDF($id)
-      {
-        $invoice = Invoice::find($id);
-      	$pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
-  		    return $pdf->stream('invoice.pdf');
-      }
 }
