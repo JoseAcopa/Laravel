@@ -110,6 +110,7 @@ Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.upd
 Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
 Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
 Route::post('admin/generar-facturas', 'ReportesController@generarFacturas')->name('facturas.generar');
+Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
 // =======================reportes ==============================================
 
 // =======================metodos ajax ==============================================
@@ -122,3 +123,4 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 Route::get("factura/{id}","PDFController@downloadPDF");
 Route::get("descargar/{id}","PDFController@descargarPDF");
 Route::get("cotizacion/{quotation}","PDFController@cotizacionPDF");
+Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");

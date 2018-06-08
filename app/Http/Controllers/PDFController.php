@@ -21,7 +21,20 @@ class PDFController extends Controller
     $quoteers = DB::table('quoteers')->where('cotizacion_id', $id)->get();
 
     $pdf = PDF::loadView('admin.PDF.quotations', compact('selectQuotation', 'quoteers'));
-      return $pdf->stream('cotizacion.pdf');
+      return $pdf->stream($selectQuotation->cotizacion.'.pdf');
+  }
+
+  public function descargarCotizacionPDF($quotation)
+  {
+    $id = $quotation;
+    $selectQuotation = Quotations::find($id);
+    $selectQuotation->user;
+    $selectQuotation->cliente;
+
+    $quoteers = DB::table('quoteers')->where('cotizacion_id', $id)->get();
+
+    $pdf = PDF::loadView('admin.PDF.quotations', compact('selectQuotation', 'quoteers'));
+      return $pdf->download($selectQuotation->cotizacion.'.pdf');
   }
 
   public function downloadPDF($id)
