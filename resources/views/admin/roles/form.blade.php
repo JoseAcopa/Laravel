@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div class="form-group {{ $errors->has('url') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('slug') ? 'has-error' : '' }}">
       {{ Form::label('slug', 'Descripcion') }}
       {{ Form::text('slug', null, ['class' => 'form-control']) }}
       {!! $errors->first('slug','<span class="help-block">:message</span>')!!}
@@ -32,5 +32,5 @@
 </div>
 <div class="box-footer">
   <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-  <a href="{{url('admin/roles')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+  <a href="{{url('admin/roles')}}" class="btn btn-default"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>
