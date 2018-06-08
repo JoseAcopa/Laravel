@@ -50,7 +50,7 @@
                     <td>{{$rol->id}}</td>
                     <td class="row-copasat">
                       @can ('roles.edit')
-                        <a class="btn btn-info" href="{{ url('/admin/edit-rol',$rol->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                        <a class="btn btn-info" href="{{route('roles.edit',$rol->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                       @endcan
                       @can ('roles.destroy')
                         <a type="submit" class="btn btn-danger" onclick="destroy('{{route('roles.destroy',$rol->id)}}');"><i class="fa fa-trash-o"></i></a>
@@ -70,6 +70,7 @@
     <script type="text/javascript">
       function destroy(url){
         event.preventDefault();
+        console.log(url);
         swal({
           title: '¿Desea eliminar este Rol?',
           text: "¡No podra revertir esto!",
@@ -89,6 +90,7 @@
                   _method: "DELETE"
               },
               success: function(data){
+                console.log(data);
                 swal(
                   '¡Eliminado!',
                   'El registro ha sido eliminado.',

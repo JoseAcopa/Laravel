@@ -24,7 +24,7 @@ Route::get('admin/proveedores','SuppliersController@index')->name('suppliers.ind
 Route::get('/admin/create-proveedor', 'SuppliersController@create')->name('suppliers.create')->middleware('permission:suppliers.create');
 Route::post('admin/store-proveedor','SuppliersController@store')->name('suppliers.store')->middleware('permission:suppliers.create');
 Route::get('/admin/edit-proveedor/{proveedor}', 'SuppliersController@edit')->name('suppliers.edit')->middleware('permission:suppliers.edit');
-Route::put('/admin/update/{proveedor}', 'SuppliersController@update')->name('supplier.update')->middleware('permission:suppliers.edit');
+Route::put('/admin/update-proveedor/{proveedor}', 'SuppliersController@update')->name('supplier.update')->middleware('permission:suppliers.edit');
 Route::delete('admin/delete-proveedor/{id}','SuppliersController@destroy')->name('suppliers.destroy')->middleware('permission:suppliers.destroy');
 // ------------------End Suppliers-----------------------------------
 
@@ -32,8 +32,8 @@ Route::delete('admin/delete-proveedor/{id}','SuppliersController@destroy')->name
 Route::get('admin/roles','RolesController@index')->name('roles.index')->middleware('permission:roles.index');
 Route::get('/admin/create-rol', 'RolesController@create')->name('roles.create')->middleware('permission:roles.create');
 Route::post('admin/store-rol','RolesController@store')->name('roles.store')->middleware('permission:roles.create');
-Route::get('/admin/edit-rol/{rol}', 'RolesController@edit')->name('roles.edit')->middleware('permission:roles.edit');
-Route::put('/admin/update/{rol}', 'RolesController@update')->name('roles.update')->middleware('permission:roles.edit');
+Route::get('/admin/edit-rol/{role}', 'RolesController@edit')->name('roles.edit')->middleware('permission:roles.edit');
+Route::post('/admin/update/{role}', 'RolesController@update')->name('roles.update')->middleware('permission:roles.edit');
 Route::delete('admin/delete-rol/{id}','RolesController@destroy')->name('roles.destroy')->middleware('permission:roles.destroy');
 // ------------------End Roles------------------------------------
 
@@ -41,8 +41,8 @@ Route::delete('admin/delete-rol/{id}','RolesController@destroy')->name('roles.de
 Route::get('admin/usuario','EmployeeController@index')->name('employee.index')->middleware('permission:employee.index');
 Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:employee.create');
 Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:employee.create');
-Route::get('/admin/edit-usuario/{usuario}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.edit');
-Route::post('/admin/update/{usuario}', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.edit');
+Route::get('/admin/edit-usuario/{id}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:employee.edit');
+Route::post('/admin/update-user/{id}', 'EmployeeController@update')->name('employee.update')->middleware('permission:employee.edit');
 Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:employee.destroy');
 // ------------------End Usuarios------------------------------------
 

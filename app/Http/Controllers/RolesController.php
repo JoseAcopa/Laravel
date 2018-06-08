@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Caffeinated\Shinobi\Models\Role;
+use Caffeinated\Shinobi\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Permissions;
-use App\Roles;
-use App\Permissions_Roles;
+// use App\Roles;
+// use App\Permissions_Roles;
 use App\Http\Requests\CreateRolesRequest;
 
 class RolesController extends Controller
@@ -22,7 +24,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-      $roles = Roles::all();
+      $roles = Role::all();
       return view('admin.roles.index', compact('roles'));
     }
 
@@ -33,7 +35,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-      $permissions = Permissions::all();
+      $permissions = Permission::all();
       return view('admin.roles.create', compact('permissions'));
     }
 
@@ -45,24 +47,26 @@ class RolesController extends Controller
      */
     public function store(CreateRolesRequest $request)
     {
-      $roles = new Roles;
-      $roles->name = request('name');
-      $roles->slug = request('url');
-      $special = request('special');
-      $roles->special = count($special) > 0 ? request('special') : null;
-      $roles->save();
-
-      if (count($special) === 0) {
-        $permission = request('permission_role');
-        for ($i=0; $i < count($permission); $i++) {
-          $permissionRoles = new Permissions_Roles;
-          $permissionRoles->permission_id = $permission[$i];
-          $permissionRoles->role_id = $roles->id;
-          $permissionRoles->save();
-        }
-      }
-
-      return redirect('admin/roles')->with('success','Rol guardado correctamente.')->withInput(request(['name', 'url']));
+      // $roles = new Roles;
+      // $roles->name = request('name');
+      // $roles->slug = request('url');
+      // $special = request('special');
+      // $roles->special = count($special) > 0 ? request('special') : null;
+      // $roles->save();
+      //
+      // if (count($special) === 0) {
+      //   $permission = request('permission_role');
+      //   for ($i=0; $i < count($permission); $i++) {
+      //     $permissionRoles = new Permissions_Roles;
+      //     $permissionRoles->permission_id = $permission[$i];
+      //     $permissionRoles->role_id = $roles->id;
+      //     $permissionRoles->save();
+      //   }
+      // }
+      $role = Role::create($request->all());
+      $role->permissions()->sync($request->get('permissions'));
+      return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
+      // return redirect('admin/roles')->with('success','Rol guardado correctamente.')->withInput(request(['name']));
     }
 
     /**
@@ -82,10 +86,10 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-      $permissions = Permissions::all();
-      return view('admin.roles.edit', compact('permissions'));
+      $permissions = Permission::get();
+      return view('admin.roles.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -95,9 +99,15 @@ class RolesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+      // actuaizamos rol
+      $role->update($request->all());
+
+      // actual actuaizamos permisos
+      $role->permissions()->sync($request->get('permissions'));
+      return redirect()->route('roles.edit', $role->id)->with('success','El role ha sido editado correctamente');
+      // return redirect('admin/roles')->with('success','El rol ha sido editado correctamente');
     }
 
     /**
@@ -108,8 +118,8 @@ class RolesController extends Controller
      */
     public function destroy($id)
     {
-      Roles::find($id)->delete();
-      DB::table('permission_role')->where('role_id', $id)->delete();
+      Role::find($id)->delete();
+      // DB::table('permission_role')->where('role_id', $id)->delete();
       return redirect('admin/roles')->with('success','El rol ha sido eliminado correctamente');
     }
 }
