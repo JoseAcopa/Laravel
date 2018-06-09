@@ -20,8 +20,14 @@ class PDFController extends Controller
 
     $quoteers = DB::table('quoteers')->where('cotizacion_id', $id)->get();
 
-    $pdf = PDF::loadView('admin.PDF.quotations', compact('selectQuotation', 'quoteers'));
-      return $pdf->stream($selectQuotation->cotizacion.'.pdf');
+    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers'));
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->stream($selectQuotation->cotizacion.'.pdf');
   }
 
   public function descargarCotizacionPDF($quotation)
@@ -33,31 +39,41 @@ class PDFController extends Controller
 
     $quoteers = DB::table('quoteers')->where('cotizacion_id', $id)->get();
 
-    $pdf = PDF::loadView('admin.PDF.quotations', compact('selectQuotation', 'quoteers'));
-      return $pdf->download($selectQuotation->cotizacion.'.pdf');
+    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers'));
+
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->download($selectQuotation->cotizacion.'.pdf');
   }
 
   public function downloadPDF($id)
   {
     $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
-    $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
-      return $pdf->stream($invoice->category->type.'.pdf');
-  }
+    $pdf = PDF::loadView('admin.PDF.cotizacion', compact('invoice'));
 
-  public function descargarPDF($id)
-  {
-    // $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
-    // $pdf = PDF::loadView('admin.PDF.invoice', compact('invoice'));
-    // Introducimos HTML de prueba
-    // return $pdf->strem($invoice->category->type.'.pdf');
-
-    $pdf = PDF::loadView('admin.PDF.test')->setPaper('a4', 'landscape');
     $pdf->output();
     $dom_pdf = $pdf->getDomPDF();
 
     $canvas = $dom_pdf ->get_canvas();
-    $canvas->page_text(750, 560, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
 
-    return $pdf->stream('test.pdf');
+    return $pdf->stream($invoice->category->type.'.pdf');
+  }
+
+  public function descargarPDF($id)
+  {
+    $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
+    $pdf = PDF::loadView('admin.PDF.cotizacion', compact('invoice'));
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->download($invoice->category->type.'.pdf');
   }
 }

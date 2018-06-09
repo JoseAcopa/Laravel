@@ -144,7 +144,7 @@
                   </span>
                   <input type="checkbox" disabled <?php echo $activity->status == "1" ? 'checked' : ''?> style="cursor: default !important;">
                   <span class="text">{{$activity->titulo}}</span>
-                  <small class="label <?php echo Carbon\Carbon::parse($activity->created_at)->diffForHumans() === "hace 1 dia" ? "label-danger" : "label-success";?>"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
+                  <small class="label <?php echo Carbon\Carbon::parse($activity->created_at)->diffForHumans() === "hace 1 día" || Carbon\Carbon::parse($activity->created_at)->diffForHumans() === "hace 2 días" ? "label-warning" : "label-success";?>"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($activity->created_at)->diffForHumans()}}</small>
                   <div class="tools">
                     <i class="fa fa-edit" data-toggle="modal" data-target="#myModalEdit" onclick="edit('{{route('actividad.edit', $activity->id)}}');"></i>
                     <i class="fa fa-trash-o" onclick="destroy('{{route('actividad.destroy', $activity->id)}}');"></i>

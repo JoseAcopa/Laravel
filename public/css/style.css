@@ -120,18 +120,18 @@
 
 /******************* Login***************************/
 .nav-login{
-  background-color: #fffff0;
+  background-color: #3c8dbc;
   height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 2px solid #f2f2f2;
+  border-bottom: 2px solid #3c8dbc;
 }
 
 .nav-login .ul{
   list-style: none;
-  color: #2C3E50;
+  color: #fff;
   font-family: Montserrat;
   font-weight: bold;
   font-size: 22px;
@@ -140,11 +140,11 @@
 .login{
   background: #f0f0f0;
   color: #2C3E50;
-  width: 20%;
+  width: 340px;
   margin: auto;
   display: flex;
   flex-direction: column;
-  margin-top: 15vh;
+  margin-top: 5vh;
   padding: 15px;
   border-radius: 2px;
   font-family: Montserrat;
@@ -180,7 +180,7 @@
 }
 
 .login input{
-  width: 85%;
+  width: 100%;
   padding: 8px 27px 8px 8px;
   margin: 3px 0px 10px 0px;
   border: 1px solid #03A678;
@@ -201,12 +201,12 @@
 }
 
 .btn-login{
-  background: #0d7561;
+  background: #3c8dbc;
   color: #e4ece0;
   font-family:Montserrat;
   font-weight: bold;
   padding: 10px 20px 10px 20px;
-  border-radius: 6px;
+  border-radius: 4px !important;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   text-decoration: none;
@@ -216,11 +216,12 @@
 }
 
 .login-button-lost .lost {
-  color: #0d7561;
+  color: #456;
   font-size: 12px;
   margin-top: 5px;
   font-family: Montserrat;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .login-button-lost .fa-sign-in{
@@ -1194,15 +1195,15 @@ select{
 
 #footer-login{
   background-color: #222d32;
-  width: 100%;
-  height: 36px;
+  width: 100% !important;
+  height: 36px !important;
   display: flex;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 20px !important;
   font-family: Montserrat;
   color:#fff;
-  font-size: 16px;
-  bottom:0px;
+  font-size: 16px !important;
+  bottom: 0px !important;
   position: absolute;
 }
 

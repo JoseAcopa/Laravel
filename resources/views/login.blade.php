@@ -3,9 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Rayos X y Servicios Induxtriales</title>
+    <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <link rel="stylesheet" href="{{ url('css/style.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   </head>
   <body class="fondo">
     <header>
@@ -16,18 +18,18 @@
       </nav>
     </header>
     @if ($message = Session::get('error'))
-      <div class="login-errors">
-        <p>{{ $message }}</p>
+      <div class="panel panel-info" style="width: 30%; margin-top: 20px !important; margin: 0 auto; background: #d9edf7;">
+        <div class="panel-body" style="color: #31708f; text-align: center; font-size: 20px;">{{ $message }}</div>
       </div>
     @endif
     @if ($message = Session::get('flash'))
-      <div class="login-errors">
-        <p>{{ $message }}</p>
+      <div class="panel panel-danger" style="width: 30%; margin-top: 20px !important; margin: 0 auto; background: #f2dede;">
+        <div class="panel-body" style="color: #a94442; text-align: center; font-size: 20px;">{{ $message }}</div>
       </div>
     @endif
     @if ($message = Session::get('success'))
-      <div class="login-success">
-        <p>{{ $message }}</p>
+      <div class="panel panel-success" style="width: 30%; margin-top: 20px !important; margin: 0 auto; background: #dff0d8;">
+        <div class="panel-body" style="color: #3c763d; text-align: center; font-size: 20px;">{{ $message }}</div>
       </div>
     @endif
     <main class="wrapper">
@@ -53,12 +55,33 @@
         </div>
         <div class="login-button-lost">
           <button type="submit" class="btn-login">Login</button>
-          <a href="#" class="lost"><p>Olvidaste tu contraseña?</p></a>
+          <a data-toggle="modal" data-target="#myModal" class="lost"><p>Olvidaste tu contraseña?</p></a>
         </div>
       </form>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <form class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Enviar correo</h4>
+            </div>
+            <div class="modal-body">
+              <p>Has olvidado tu contraseña?, solo envia tu nombre de usuario o correo.</p>
+              <div class="form-group">
+                <input type="text" name="correo" value="" class="form-control" placeholder="usuario o correo">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">cerrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </main>
-    <footer id="footer-login">
-      <p>© 2018 Todos Los Derechos Reservados</p>
-    </footer>
+    <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
+    <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
   </body>
 </html>
