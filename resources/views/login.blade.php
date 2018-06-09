@@ -18,8 +18,8 @@
       </nav>
     </header>
     @if ($message = Session::get('error'))
-      <div class="panel panel-info" style="width: 30%; margin-top: 20px !important; margin: 0 auto; background: #d9edf7;">
-        <div class="panel-body" style="color: #31708f; text-align: center; font-size: 20px;">{{ $message }}</div>
+      <div class="panel panel-danger" style="width: 30%; margin-top: 20px !important; margin: 0 auto; background: #f2dede;">
+        <div class="panel-body" style="color: #a94442; text-align: center; font-size: 20px;">{{ $message }}</div>
       </div>
     @endif
     @if ($message = Session::get('flash'))
