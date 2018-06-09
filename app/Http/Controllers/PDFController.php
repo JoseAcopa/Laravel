@@ -51,12 +51,12 @@ class PDFController extends Controller
     // Introducimos HTML de prueba
     // return $pdf->strem($invoice->category->type.'.pdf');
 
-    $pdf = PDF::loadView('admin.PDF.test')->setPaper('a4', 'landscape');
+    $pdf = PDF::loadView('admin.PDF.cotizacion');
     $pdf->output();
     $dom_pdf = $pdf->getDomPDF();
 
     $canvas = $dom_pdf ->get_canvas();
-    $canvas->page_text(750, 560, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
 
     return $pdf->stream('test.pdf');
   }
