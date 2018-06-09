@@ -67,7 +67,7 @@
         </div>
         <div class="box-footer">
           <div class="pull-right">
-            <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> ir a cotizaciones</button>
+            <a href="{{ route('cotizacion.index') }}" type="button" class="btn btn-default"><i class="fa fa-reply"></i> ir a cotizaciones</a>
           </div>
         </div>
       </div>

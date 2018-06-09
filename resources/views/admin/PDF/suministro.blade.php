@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{$selectQuotation->cotizacion}}</title>
+    <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
         margin: 0cm 0cm;
@@ -151,23 +155,24 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">PEMEX EXPLORACION Y PRODUCCION</h2>
-          <p class="title-bussines">Calle 25, No 48, ENTRE 6 y 38, COL. GPE, CP 24130, EDIF. CORP. CANTAREL, CD DEL CARMEN CAMPECHE</p>
+          <h2 class="title-bussines">{{$selectQuotation->cliente->business}}</h2>
+          <p class="title-bussines">{{$selectQuotation->cliente->address}}</p>
         </div>
         <div class="table">
           <ul class="ul-table">
             <li class="li-active">Fecha</li>
-            <li>{{ date('d/m/Y') }}</li>
+            <li>{{$selectQuotation->fecha}}</li>
+            {{-- <li>{{ date('d/m/Y') }}</li> --}}
             <li class="li-active">No. de Cotización</li>
-            <li>RXS-001-2018-FMV-SEAP</li>
+            <li>{{$selectQuotation->cotizacion}}</li>
             <li class="li-active">No. de Licitacón</li>
-            <li>N/A</li>
+            <li>{{$selectQuotation->licitacion}}</li>
           </ul>
         </div>
         <div class="usuario">
           <h2>Atención:</h2>
-          <p>Ing. {{Auth::user()->name}}</p>
-          <p>{{Auth::user()->email}}</p>
+          <p>{{$selectQuotation->puesto}} {{$selectQuotation->nombre}}</p>
+          <p>{{$selectQuotation->cliente->email}}</p>
         </div>
         <div class="container-table">
           <table>
