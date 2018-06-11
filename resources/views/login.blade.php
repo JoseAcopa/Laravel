@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Rayos X y Servicios Induxtriales</title>
+    <title>SIYC RayosX</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     {{-- <link rel="stylesheet" href="{{ url('css/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
@@ -12,7 +13,7 @@
 
 
   </head>
-  <body class="hold-transition login-page">
+  <body class="hold-transition login-page" style="height: 50vh !important;">
     <div class="login-box">
       @if ($message = Session::get('error'))
         <div class="alert alert-danger alert-dismissible">
