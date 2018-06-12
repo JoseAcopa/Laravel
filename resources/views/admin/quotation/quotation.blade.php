@@ -105,7 +105,7 @@
     		a.href = "/cotizacion/"+idQuotation;
     		a.click();
 
-        window.location="{{url('/admin/quotation')}}"
+        window.location="{{url('/admin/cotizacion')}}"
       }
     }
 
