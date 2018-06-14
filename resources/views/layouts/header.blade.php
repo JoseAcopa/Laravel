@@ -43,7 +43,7 @@
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">Ver todos los mensajes</a></li>
+              <li class="footer"><a href="{{ route('correo.index') }}">Ver todos los mensajes</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->

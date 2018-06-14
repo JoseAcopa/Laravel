@@ -36,7 +36,7 @@ class ControllerResetPass extends Controller
 
         //Content
         $mail->isHTML(true);
-        $mail->Subject = 'Reestablecer contrasena';
+        $mail->Subject = 'Restablecer contrasena';
         $mail->Body = '
         <h2 style="color: #000;">Informacion del Contacto<h2>
         <h3 style="color: #456;">Nombre: '.$user[0]->name.'<h3>
@@ -50,9 +50,9 @@ class ControllerResetPass extends Controller
         ';
 
         $mail->send();
-        return redirect('/')->with('success','En un momento le enviaremos a su correo la contrasena');
+        return redirect('/')->with('success','En un momento le enviaremos a su correo la contraseña');
       } catch (Exception $e) {
-        return redirect('/')->with('flash','Error al enviar correo, intente de nuevo or favor.');
+        return redirect('/')->with('flash','Error al enviar correo, intente de nuevo por favor.');
       }
     } else {
       return redirect('/')->with('error','El correo que ingreso no esta registrado, contacte con el proveedor');
