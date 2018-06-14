@@ -68,15 +68,16 @@
     <div class="modal fade" id="myModal" role="dialog">
       <div class="modal-dialog">
         <!-- Modal content-->
-        <form class="modal-content">
+        <form class="modal-content" method="POST" action="{{route('password.new')}}">
+          {{ csrf_field() }}
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             <h4 class="modal-title">Enviar correo</h4>
           </div>
           <div class="modal-body">
-            <p>Has olvidado tu contraseña?, solo envia tu nombre de usuario o correo.</p>
+            <p>Ingresa tu correo electrónico.</p>
             <div class="form-group">
-              <input type="text" name="correo" value="" class="form-control" placeholder="usuario o correo">
+              <input type="email" name="correo" class="form-control" placeholder="correo" required>
             </div>
           </div>
           <div class="modal-footer">

@@ -119,6 +119,10 @@ Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
 Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================End metodos ajax ==============================================
 
+// =======================recuperar contrasena ==============================================
+Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
+// =======================recuperar contrasena ==============================================
+
 // =======================crear PDF ==============================================
 Route::get("factura/{id}","PDFController@downloadPDF");
 Route::get("descargar/{id}","PDFController@descargarPDF");
