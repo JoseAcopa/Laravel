@@ -29,6 +29,12 @@ class ControllerCorreos extends Controller
     return view('admin.correos.send', compact('user'));
   }
 
+  public function destroy($id)
+  {
+    Correo::find($id)->delete();
+    return redirect('admin/correos')->with('success','El correo fue eliminado correctamente de la base de datos');
+  }
+
   public function sendEmail()
   {
     // try {

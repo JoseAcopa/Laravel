@@ -123,6 +123,7 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
 Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index');
 Route::get('/admin/enviar-correo/{id}', 'ControllerCorreos@send')->name('correo.send');
+Route::get('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy');
 // =======================recuperar contrasena ==============================================
 
 // =======================crear PDF ==============================================

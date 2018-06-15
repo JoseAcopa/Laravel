@@ -14,6 +14,17 @@
     </section>
 
     <section class="content container-fluid">
+      @if ($message = Session::get('success'))
+        <div class="box box-success box-solid">
+          <div class="box-header">
+            <h3 class="box-title">{{ $message }}</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+        </div>
+      @endif
+
       <div class="col-md-9">
         <div class="box">
           <div class="box-header with-border">
@@ -41,7 +52,7 @@
                     </td>
                     <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
                     <td class="mailbox-date"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($correo->created_at)->diffForHumans() }}</td>
-                    <td class="mailbox-date"><a href="#"><i class="fa fa-trash-o" style="color: #dd4b39;"></i></a></td>
+                    <td class="mailbox-date"><a href="{!! route('correo.destroy', $correo->id) !!}"><i class="fa fa-trash-o" style="color: #dd4b39;"></i></a></td>
                   </tr>
                 @endforeach
                 {{-- <tr>
