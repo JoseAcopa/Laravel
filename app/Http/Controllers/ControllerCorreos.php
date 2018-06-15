@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Carbon\Carbon;
+use App\Correo;
+use App\User;
 
 class ControllerCorreos extends Controller
 {
@@ -15,7 +18,15 @@ class ControllerCorreos extends Controller
 
   public function index()
   {
-    return view('admin.correos.index');
+    Carbon::setLocale('es');
+    $correos = Correo::all();
+    return view('admin.correos.index', compact('correos'));
+  }
+
+  public function send($id)
+  {
+    $user = User::find($id);
+    return view('admin.correos.send', compact('user'));
   }
 
   public function sendEmail()

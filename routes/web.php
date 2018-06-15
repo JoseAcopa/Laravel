@@ -122,6 +122,7 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================recuperar contrasena ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
 Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index');
+Route::get('/admin/enviar-correo/{id}', 'ControllerCorreos@send')->name('correo.send');
 // =======================recuperar contrasena ==============================================
 
 // =======================crear PDF ==============================================

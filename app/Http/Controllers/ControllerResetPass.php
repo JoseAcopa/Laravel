@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use App\User;
+use App\Correo;
 
 class ControllerResetPass extends Controller
 {
@@ -15,6 +16,16 @@ class ControllerResetPass extends Controller
 
     $user = User::where('email', $emailUser)->get();
     if (count($user) != 0) {
+
+      // guardando correo en la base de datos
+      $correo = new Correo;
+      $correo->idUsuario = $user[0]->id;
+      $correo->correo = $user[0]->email;
+      $correo->nombre = $user[0]->name;
+      $correo->status = "activo";
+      $correo->save();
+
+      // enviando correo
       $mail = new PHPMailer(true);
       try {
         //Server settings
