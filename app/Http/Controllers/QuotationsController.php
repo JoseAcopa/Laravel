@@ -90,7 +90,7 @@ class QuotationsController extends Controller
     public function show($id)
     {
       $product = Products::find($id);
-      $quotation = Quotations::all();
+      $quotations = Quotations::all();
       return view('admin.quotation.show', compact('product', 'quotations'));
     }
 

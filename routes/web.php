@@ -119,6 +119,13 @@ Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
 Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 // =======================End metodos ajax ==============================================
 
+// =======================recuperar contrasena ==============================================
+Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
+Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index');
+Route::get('/admin/enviar-correo/{id}', 'ControllerCorreos@send')->name('correo.send');
+Route::get('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy');
+// =======================recuperar contrasena ==============================================
+
 // =======================crear PDF ==============================================
 Route::get("factura/{id}","PDFController@downloadPDF");
 Route::get("descargar/{id}","PDFController@descargarPDF");

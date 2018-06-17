@@ -70,8 +70,8 @@
                     </span>
                     {{$product->unit}}
                   </td>
-                  <td>{{ $product->priceList }} {{ $product->coin->type }}</td>
-                  <td>{{ $product->cost }} {{ $product->coin->type }}</td>
+                  <td>${{ $product->priceList }} {{ $product->coin->type }}</td>
+                  <td>${{ $product->cost }} {{ $product->coin->type }}</td>
                 </tr>
               @endforeach
             </tbody>

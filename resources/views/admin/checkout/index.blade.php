@@ -71,7 +71,7 @@
                   </td>
                   <td>{{ $checkout->date_out }}</td>
                   <td>{{ $checkout->quantity_output }} {{ $checkout->unit }}</td>
-                  <td>{{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
+                  <td>${{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
                 </tr>
               @endforeach
             </tbody>

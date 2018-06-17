@@ -26,6 +26,16 @@
       "bAutoWidth": true,
       "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]]
     });
+
+    $('#correos').dataTable({
+      "bPaginate": true,
+      "bLengthChange": true,
+      "bFilter": true,
+      "bSort": true,
+      "bInfo": true,
+      "bAutoWidth": true,
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]]
+    });
   });
 </script>
 <script type="text/javascript">
