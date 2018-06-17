@@ -67,7 +67,7 @@
         </div>
         <div class="box-footer">
           <div class="pull-right">
-            <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> ir a facturas</button>
+            <a href="{{ route('factura.index') }}" type="button" class="btn btn-default"><i class="fa fa-reply"></i> ir a facturas</a>
           </div>
         </div>
       </div>
