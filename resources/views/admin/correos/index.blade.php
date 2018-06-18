@@ -46,7 +46,12 @@
                 @foreach ($correos as $correo)
                   <tr>
                     <td class="mailbox-star"><?php echo $correo->status == "activo" ? '<i class="fa fa-star text-yellow"></i>' : '<i class="fa fa-star-o text-yellow"></i>'; ?></td>
-                    <td class="mailbox-name"><a data-toggle="modal" data-target="#myModalEdit" onclick="edit('{{route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id])}}');">{{$correo->nombre}}</a></td>
+                    <td class="mailbox-name">
+                      <?php
+                        $url = route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]);
+                        echo $correo->status == "activo" ? '<a data-toggle="modal" data-target="#myModalEdit" onclick="edit('.$url.');">'.$correo->nombre.'</a>' : $correo->nombre ;
+                      ?>
+                    </td>
                     <td class="mailbox-subject">
                       <?php echo $correo->status == "activo" ? '<b>Restablecer Contraseña</b>' : 'Restablecer Contraseña'; ?>
                     </td>

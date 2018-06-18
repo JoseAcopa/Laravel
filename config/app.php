@@ -184,7 +184,9 @@ return [
         //generador de pdf
         Barryvdh\DomPDF\ServiceProvider::class,
         //Shinobi
-        Caffeinated\Shinobi\ShinobiServiceProvider::class
+        Caffeinated\Shinobi\ShinobiServiceProvider::class,
+        //enviando variables a las vistas
+        App\Providers\ComposerServiceProvider::class
     ],
 
     /*

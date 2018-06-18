@@ -22,25 +22,27 @@
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">{{$count}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Tienes 4 mensajes</li>
+              <li class="header">Tienes {{$count}} mensajes</li>
               <li>
                 <ul class="menu">
                   {{-- mensajes nuevos --}}
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Nombre del usuario
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Recuperar contrasena</p>
-                    </a>
-                  </li>
+                  @foreach ($users as $user)
+                    <li>
+                      <a href="{{ route('employee.edit', $user->idUsuario) }}">
+                        <div class="pull-left">
+                          <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
+                        </div>
+                        <h4>
+                          {{$user->nombre}}
+                          <small><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</small>
+                        </h4>
+                        <p>{{$user->correo}}</p>
+                      </a>
+                    </li>
+                  @endforeach
                 </ul>
               </li>
               <li class="footer"><a href="{{ route('correo.index') }}">Ver todos los mensajes</a></li>
