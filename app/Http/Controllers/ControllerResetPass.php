@@ -66,7 +66,7 @@ class ControllerResetPass extends Controller
         return redirect('/')->with('flash','Error al enviar correo, intente de nuevo por favor.');
       }
     } else {
-      return redirect('/')->with('error','El correo que ingreso no esta registrado, contacte con el proveedor');
+      return redirect('/')->with('error','El correo que ingreso no esta registrado, contacte con el administrador');
     }
   }
 }
