@@ -1,46 +1,31 @@
-@extends('layouts.app')
-
-@section('content')
-
-    <section class="content-header">
-      <h1>
-        Redactar mensaje
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Redactar mensaje</li>
-      </ol>
-    </section>
-
-    <section class="content container-fluid">
-      <div class="col-md-9">
-        <form class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">Redactar nuevo mensaje</h3>
-          </div>
-          <div class="box-body">
-            <div class="form-group">
-              <label for="">Para:</label>
-              <input type="text" class="form-control" placeholder="para" value="{{$user->name}}" required>
-            </div>
-            <div class="form-group">
-              <label for="">Correo:</label>
-              <input type="text" class="form-control" placeholder="correo" value="{{$user->email}}" required>
-            </div>
-            <div class="form-group">
-              <label for="">Nueva Contraseña:</label>
-              <input type="text" class="form-control" placeholder="contraseña" required>
-            </div>
-          </div>
-          <div class="box-footer">
-            <div class="pull-right">
-              <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
-            </div>
-            <a href="{!! route('correo.index') !!}" class="btn btn-default"><i class="fa fa-times"></i> cancelar</a>
-          </div>
-        </form>
+<div class="modal fade" id="myModalEdit" role="dialog">
+  <div class="modal-dialog">
+    <form class="modal-content" method="POST" action="{{route('correo.update')}}">
+      {{ csrf_field() }}
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Enviar correo</h4>
       </div>
-    </section>
-
-@endsection
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="para">Para:</label>
+          <input id="para" type="text" name="nombre" class="form-control" placeholder="para" readonly>
+        </div>
+        <div class="form-group">
+          <label for="">Correo:</label>
+          <input id="correo" type="text" name="correo" class="form-control" placeholder="correo" readonly>
+        </div>
+        <div class="form-group">
+          <label for="">Nueva Contraseña:</label>
+          <input type="text" class="form-control" name="contrasena" placeholder="contraseña" required>
+          <input type="text" value="no-activo" name="status" hidden>
+          <input type="text" id="id" name="id" hidden>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -56,7 +56,7 @@ class ControllerResetPass extends Controller
         <br/><br/>
         <hr style="color: #456;"></hr>
         <h1 style="color: #000;">RAYOS X Y SERVICIOS INDUSTRIALES S. A. DE C. V.<h1>
-        <h4 style="color: #456;">Cumpliendo con las normas de calidad y seguridad que el ambito petrolero exige.</h4>
+        <h4 style="color: #456;">RX EL EQUIPO QUE SE MUEVE A DONDE TU LO NECESITES!</h4>
         <img src="http://siycrx.rayosxyservicios.com.mx/img/LogoRX.png" width="180px" height="120px"/>
         ';
 

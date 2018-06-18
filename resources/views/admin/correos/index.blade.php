@@ -45,28 +45,19 @@
               <tbody>
                 @foreach ($correos as $correo)
                   <tr>
-                    <td class="mailbox-star"><i class="fa fa-star text-yellow"></i></td>
-                    <td class="mailbox-name"><a href="{!! route('correo.send', $correo->idUsuario) !!}">{{$correo->nombre}}</a></td>
+                    <td class="mailbox-star"><?php echo $correo->status == "activo" ? '<i class="fa fa-star text-yellow"></i>' : '<i class="fa fa-star-o text-yellow"></i>'; ?></td>
+                    <td class="mailbox-name"><a data-toggle="modal" data-target="#myModalEdit" onclick="edit('{{route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id])}}');">{{$correo->nombre}}</a></td>
                     <td class="mailbox-subject">
-                      <b>Restablecer Contraseña</b>
+                      <?php echo $correo->status == "activo" ? '<b>Restablecer Contraseña</b>' : 'Restablecer Contraseña'; ?>
                     </td>
-                    <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                    <td class="mailbox-attachment"><?php echo $correo->status == "activo" ? '<i class="fa fa-paperclip"></i>' : ''; ?></td>
                     <td class="mailbox-date"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($correo->created_at)->diffForHumans() }}</td>
-                    <td class="mailbox-date"><a href="{!! route('correo.destroy', $correo->id) !!}"><i class="fa fa-trash-o" style="color: #dd4b39;"></i></a></td>
+                    <td class="mailbox-date"><i class="fa fa-trash-o" onclick="destroy('{{route('correo.destroy', $correo->id)}}');" style="color: #dd4b39; cursor: pointer;" ></i></td>
                   </tr>
                 @endforeach
-                {{-- <tr>
-                  <td class="mailbox-star"><i class="fa fa-star-o text-yellow"></i></td>
-                  <td class="mailbox-name">Nirandelli Patricio Mayo</td>
-                  <td class="mailbox-subject">
-                    Restablecer Contraseña
-                  </td>
-                  <td class="mailbox-attachment"></td>
-                  <td class="mailbox-date">28 mins ago</td>
-                  <td class="mailbox-date"><a href="#"><i class="fa fa-trash-o" style="color: #dd4b39;"></i></a></td>
-                </tr> --}}
               </tbody>
             </table>
+            @include('admin.correos.send')
           </div>
           <div class="box-footer">
             <button type="button" class="btn btn-default btn-sm pull-right"><i class="fa fa-refresh"></i></button>
@@ -74,5 +65,64 @@
         </div>
       </div>
     </section>
+    <script type="text/javascript">
+      function destroy(url){
+        event.preventDefault();
+        swal({
+          title: '¿Desea eliminar este registro?',
+          text: "¡No podra revertir esto!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3c8dbc',
+          cancelButtonColor: '#dd4b39',
+          confirmButtonText: 'Sí, eliminar!',
+          cancelButtonText: 'No, cancelar!'
+        }).then((res) => {
+          if (res.value) {
+            $.ajax({
+              url: url,
+              method: "POST",
+              data: {
+                  _token: "{{csrf_token()}}",
+                  _method: "DELETE"
+              },
+              success: function(data){
+                swal(
+                  '¡Eliminado!',
+                  'El registro ha sido eliminado.',
+                  'success'
+                ).then(()=>{
+                  location.reload();
+                })
+              }
+            })
+          }else if (res.dismiss === "cancel") {
+            swal(
+              '¡Cancelado!',
+              'La accion fue cancelada.',
+              'error'
+            )
+          }
+        })
+      }
+
+      function edit(url){
+        event.preventDefault();
+        $.ajax({
+          url: url,
+          method: "GET",
+          data: {
+              _token: "{{csrf_token()}}",
+              _method: "GET"
+          },
+          success: function(data){
+            console.log(data);
+            $('#para').val(data.user.name)
+            $('#correo').val(data.user.email)
+            $('#id').val(data.correo.id)
+          }
+        })
+      }
+    </script>
 
 @endsection
