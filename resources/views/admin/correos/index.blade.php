@@ -48,16 +48,15 @@
                     <td class="mailbox-star"><?php echo $correo->status == "activo" ? '<i class="fa fa-star text-yellow"></i>' : '<i class="fa fa-star-o text-yellow"></i>'; ?></td>
                     <td class="mailbox-name">
                       <?php
-                        $url = route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]);
-                        echo $correo->status == "activo" ? '<a data-toggle="modal" data-target="#myModalEdit" onclick="edit('.$url.');">'.$correo->nombre.'</a>' : $correo->nombre ;
-                      ?>
+                        $url = json_encode(route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]));
+                        echo $correo->status == "activo" ? "<a data-toggle='modal' data-target='#myModalEdit' onclick='edit($url);' style='cursor: pointer;'>$correo->nombre</a>" : $correo->nombre;?>
                     </td>
                     <td class="mailbox-subject">
                       <?php echo $correo->status == "activo" ? '<b>Restablecer Contraseña</b>' : 'Restablecer Contraseña'; ?>
                     </td>
                     <td class="mailbox-attachment"><?php echo $correo->status == "activo" ? '<i class="fa fa-paperclip"></i>' : ''; ?></td>
                     <td class="mailbox-date"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($correo->created_at)->diffForHumans() }}</td>
-                    <td class="mailbox-date"><i class="fa fa-trash-o" onclick="destroy('{{route('correo.destroy', $correo->id)}}');" style="color: #dd4b39; cursor: pointer;" ></i></td>
+                    <td class="mailbox-date"><i class="fa fa-trash-o" onclick="destroy('{{route('correo.destroy', $correo->id)}}');" style="color: #dd4b39; cursor: pointer;"></i></td>
                   </tr>
                 @endforeach
               </tbody>
@@ -121,7 +120,6 @@
               _method: "GET"
           },
           success: function(data){
-            console.log(data);
             $('#para').val(data.user.name)
             $('#correo').val(data.user.email)
             $('#id').val(data.correo.id)
