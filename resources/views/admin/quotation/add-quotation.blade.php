@@ -126,7 +126,7 @@
               <hr>
               <h3><i class="fa fa-plus"></i> Agregar Producto</h3>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
                 <label>Buscar Producto</label>
                 <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
@@ -155,7 +155,7 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Precios:</label>
-                <select class="form-control" id="precioUnitario">
+                <select class="form-control" id="precioUnitario" onchange="cambiarPrecio5(this);" >
                   <option selected="selected" value="">Selecciona precio</option>
                   <option id="price1"></option>
                   <option id="price2"></option>
@@ -164,6 +164,9 @@
                   <option id="price5"></option>
                 </select>
               </div>
+            </div>
+            <div class="col-md-2" style="margin-top:25px;">
+              <input type="text" name="" class="form-control"  value="" >
             </div>
             <div class="col-md-1">
               <label>Agregar:</label>
@@ -417,6 +420,12 @@
         $('#neto').val(neto.toFixed(2))
         $('#IVA').val(iva.toFixed(2))
         $('#totalAmount').val(total.toFixed(2))
+      }
+
+      function carmbiarPrecio(price) {
+
+        
+
       }
     </script>
 @endsection

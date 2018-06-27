@@ -16,7 +16,7 @@
   </div>
   <div class="col-md-12 form-group">
     <label>{{ Form::radio('special', 'all-access') }} Accesso total</label>
-    <label>{{ Form::radio('special', 'no-access') }} Ningùn accesol</label>
+    <label>{{ Form::radio('special', 'no-access') }} Ningùn acceso</label>
   </div>
   <div class="col-md-12">
     <h4>Lista Permisos</h4>
