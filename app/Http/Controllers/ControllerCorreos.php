@@ -20,7 +20,7 @@ class ControllerCorreos extends Controller
   public function index()
   {
     Carbon::setLocale('es');
-    $correos = Correo::all();
+    $correos = Correo::all()->sortByDesc('created_at');
     return view('admin.correos.index', compact('correos'));
   }
 

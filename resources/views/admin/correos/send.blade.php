@@ -1,6 +1,6 @@
 <div class="modal fade" id="myModalEdit" role="dialog">
   <div class="modal-dialog">
-    <form class="modal-content" method="POST" action="{{route('correo.update')}}">
+    <form class="modal-content" method="POST" action="{{route('correo.update')}}" onsubmit="changeButton()">
       {{ csrf_field() }}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -24,7 +24,8 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Enviar</button>
+        <button type="button" class="btn btn-primary pull-right disabled" style="display: none;" id="loading"><i class="fa fa-spinner fa-spin"></i> Enviando</button>
+        <button type="submit" class="btn btn-primary" id="submit"><i class="fa fa-envelope-o"></i> Enviar</button>
       </div>
     </form>
   </div>

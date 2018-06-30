@@ -25,7 +25,7 @@
               <span class="label label-success">{{$count}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Tienes {{$count}} mensajes</li>
+              <li class="header">Tiene {{$count}} mensajes</li>
               <li>
                 <ul class="menu">
                   {{-- mensajes nuevos --}}

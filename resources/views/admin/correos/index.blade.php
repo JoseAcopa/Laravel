@@ -127,5 +127,11 @@
         })
       }
     </script>
+    <script type="text/javascript">
+      function changeButton() {
+        document.getElementById('submit').style.display = 'none'
+        document.getElementById('loading').style.display = 'block'
+      }
+    </script>
 
 @endsection

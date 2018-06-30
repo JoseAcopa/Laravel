@@ -155,18 +155,18 @@
             <div class="col-md-2">
               <div class="form-group">
                 <label>Precios:</label>
-                <select class="form-control" id="precioUnitario" onchange="cambiarPrecio5(this);" >
+                <select class="form-control" id="" onchange="cambiarPrecio(this.value);" >
                   <option selected="selected" value="">Selecciona precio</option>
                   <option id="price1"></option>
                   <option id="price2"></option>
                   <option id="price3"></option>
                   <option id="price4"></option>
-                  <option id="price5"></option>
+                  <option id="price5" value="price5"></option>
                 </select>
               </div>
             </div>
-            <div class="col-md-2" style="margin-top:25px;">
-              <input type="text" name="" class="form-control"  value="" >
+            <div class="col-md-2" style="margin-top: 25px;">
+              <input type="text" name="" class="form-control" id="precioUnitario" readonly>
             </div>
             <div class="col-md-1">
               <label>Agregar:</label>
@@ -191,14 +191,14 @@
 
                 </tbody>
               </table>
-              <input type="text" name="neto" id="neto" hidden>
-              <input type="text" name="iva" id="IVA" hidden>
-              <input type="text" name="total" id="totalAmount" hidden>
-              <input type="text" name="count" id="count" hidden>
+              {{-- <input type="text" name="neto" id="neto"> --}}
+              {{-- <input type="text" name="iva" id="IVA"> --}}
+              {{-- <input type="text" name="total" id="totalAmount"> --}}
+              {{-- <input type="text" name="count" id="count"> --}}
               <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
               <input type="text" name="usuario" value="{{Auth::user()->id}}" hidden>
-              <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4>
-              <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4>
+              {{-- <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4> --}}
+              {{-- <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4> --}}
               <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
             </div>
           </div>
@@ -405,27 +405,31 @@
 
       function totalAmount() {
         let neto = 0;
-        let iva = 0
+        // let iva = 0
         products.map((item)=>{
           neto += Number(item.total)
         })
 
-        iva = neto * .16
-        total = neto + iva
+        // iva = neto * .16
+        // total = neto + iva
 
-        $('#neto1').text(neto.toFixed(2))
-        $('#IVA1').text(iva.toFixed(2))
-        $('#totalAmount1').text(total.toFixed(2))
+        // $('#neto1').text(neto.toFixed(2))
+        // $('#IVA1').text(iva.toFixed(2))
+        $('#totalAmount1').text(neto.toFixed(2))
 
-        $('#neto').val(neto.toFixed(2))
-        $('#IVA').val(iva.toFixed(2))
-        $('#totalAmount').val(total.toFixed(2))
+        // $('#neto').val(neto.toFixed(2))
+        // $('#IVA').val(iva.toFixed(2))
+        $('#totalAmount').val(neto.toFixed(2))
       }
 
-      function carmbiarPrecio(price) {
-
-        
-
+      function cambiarPrecio(val) {
+        var price = Number(val)
+        $('#precioUnitario').val(val)
+        if (price === 0) {
+          $('#precioUnitario').removeAttr('readonly')
+          return
+        }
+        $('#precioUnitario').attr('readonly', 'readonly')
       }
     </script>
 @endsection
