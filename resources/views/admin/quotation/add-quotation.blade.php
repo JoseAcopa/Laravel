@@ -277,13 +277,14 @@
           url: '/cliente/'+id,
           type: 'GET',
           success: (res)=>{
-            $('#cliente').val(res.id)
-            $('#rfc').val(res.RFC)
-            $('#empresa').val(res.business)
-            $('#telefono').val(res.phone)
-            $('#correo').val(res.email)
-            $('#direccion').val(res.address)
-            $('#noCotizacion').val('RXS-001-2018-'+'{{ Auth::user()->user}}'+'-'+res.siglas)
+            var count = res.count.length + 1
+            $('#cliente').val(res.client.id)
+            $('#rfc').val(res.client.RFC)
+            $('#empresa').val(res.client.business)
+            $('#telefono').val(res.client.phone)
+            $('#correo').val(res.client.email)
+            $('#direccion').val(res.client.address)
+            $('#noCotizacion').val('RXS-0'+count+'-'+res.year+'-'+'{{ Auth::user()->user}}'+'-'+res.client.siglas)
           }
         })
       }

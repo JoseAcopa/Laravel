@@ -20,9 +20,7 @@ class CreateQuotationsTable extends Migration
             $table->string('licitacion');
             $table->string('nombre');
             $table->string('puesto');
-            $table->string('observaciones', 1500);
-            $table->string('subtotal');
-            $table->string('IVA');
+            $table->string('observaciones', 2500);
             $table->string('total');
             $table->integer('cliente_id');
             $table->integer('user_id');

@@ -30,8 +30,6 @@ class CreateQuotationRequest extends FormRequest
           'nombre' => 'max:255|required',
           'puesto' => 'max:255|required',
           'observaciones' => 'max:1500||required',
-          'neto' => 'max:255|required',
-          'iva' => 'max:255|required',
           'total' => 'max:255|required',
           'cliente' => 'max:255|required',
           'usuario' => 'max:255|required',

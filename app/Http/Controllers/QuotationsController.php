@@ -48,37 +48,36 @@ class QuotationsController extends Controller
      */
     public function store(CreateQuotationRequest $request)
     {
-      $quotation = new Quotations;
-      $quotation->cotizacion = request('cotizacion');
-      $quotation->fecha = request('fecha');
-      $quotation->licitacion = request('licitacion');
-      $quotation->nombre = request('nombre');
-      $quotation->puesto = request('puesto');
-      $quotation->observaciones = request('observaciones');
-      $quotation->subtotal = request('neto');
-      $quotation->IVA = request('iva');
-      $quotation->total = request('total');
-      $quotation->cliente_id = request('cliente');
-      $quotation->user_id = request('usuario');
-      $quotation->save();
-
-      $count = request('count');
-
-      for ($i=0; $i < $count; $i++) {
-        if (request('producto'.$i)) {
-          $quoteer = new Quoteers;
-          $quoteer->cotizacion_id = $quotation->id;
-          $quoteer->producto = request('producto'.$i);
-          $quoteer->cantidad = request('cantidad'.$i);
-          $quoteer->descripcion = request('descripcion'.$i);
-          $quoteer->precio = request('precio'.$i);
-          $quoteer->save();
-        }
-      }
-
-      $quotationPDF = $quotation->id;
-      $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
+      return $request;
+      // $quotation = new Quotations;
+      // $quotation->cotizacion = request('cotizacion');
+      // $quotation->fecha = request('fecha');
+      // $quotation->licitacion = request('licitacion');
+      // $quotation->nombre = request('nombre');
+      // $quotation->puesto = request('puesto');
+      // $quotation->observaciones = request('observaciones');
+      // $quotation->total = request('total');
+      // $quotation->cliente_id = request('cliente');
+      // $quotation->user_id = request('usuario');
+      // $quotation->save();
+      //
+      // $count = request('count');
+      //
+      // for ($i=0; $i < $count; $i++) {
+      //   if (request('producto'.$i)) {
+      //     $quoteer = new Quoteers;
+      //     $quoteer->cotizacion_id = $quotation->id;
+      //     $quoteer->producto = request('producto'.$i);
+      //     $quoteer->cantidad = request('cantidad'.$i);
+      //     $quoteer->descripcion = request('descripcion'.$i);
+      //     $quoteer->precio = request('precio'.$i);
+      //     $quoteer->save();
+      //   }
+      // }
+      //
+      // $quotationPDF = $quotation->id;
+      // $quotations = Quotations::with(['user', 'cliente'])->get();
+      // return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
     }
 
     /**

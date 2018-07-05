@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Products;
 use App\Catalog;
 use App\Clients;
+use App\Count;
 
 class ControllersAjax extends Controller
 {
@@ -29,7 +30,11 @@ class ControllersAjax extends Controller
 
   public function getClientAjax($id)
   {
+    $now = new \DateTime();
+    $year = $now->format('Y');
+    $count = Count::where('fecha', $year)->get();
     $client = Clients::find($id);
-    return $client;
+    $array = compact('year', 'count', 'client');
+    return $array;
   }
 }

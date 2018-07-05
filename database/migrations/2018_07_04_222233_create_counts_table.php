@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateQuoteersTable extends Migration
+class CreateCountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateQuoteersTable extends Migration
      */
     public function up()
     {
-        Schema::create('quoteers', function (Blueprint $table) {
+        Schema::create('counts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cotizacion_id');
-            $table->integer('producto_id');
-            $table->string('cantidad');
-            $table->string('precio');
-            $table->string('subtotal');
+            $table->string('count');
+            $table->string('fecha');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateQuoteersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('quoteers');
+        Schema::dropIfExists('counts');
     }
 }
