@@ -61,8 +61,6 @@
                 <th>Cliente</th>
                 <th>Nombre de la Empresa</th>
                 <th>RFC</th>
-                <th>Subtotal</th>
-                <th>IVA</th>
                 <th>Total</th>
              </tr>
             </thead>
@@ -85,8 +83,6 @@
                   <td>{{$quotation->nombre}}</td>
                   <td>{{$quotation->cliente->business}}</td>
                   <td>{{$quotation->cliente->RFC}}</td>
-                  <td>${{$quotation->subtotal}}</td>
-                  <td>${{$quotation->IVA}}</td>
                   <td>${{$quotation->total}}</td>
                 </tr>
               @endforeach

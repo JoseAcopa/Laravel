@@ -44,19 +44,22 @@
           </div>
           <div class="box-body">
             <div class="col-md-4">
+              <input type="text" name="total" id="totalAmount" hidden>
+              <input type="text" name="count" id="count" hidden>
+              <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
               <div class="form-group {{ $errors->has('cotizacion') ? 'has-error' : '' }}">
                 <label for="cotizacion">No. de Cotización:</label>
-                <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización" id="noCotizacion">
+                <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización" id="noCotizacion" readonly>
                 {!! $errors->first('cotizacion','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
                 <label for="RFC">RFC:</label>
-                <input type="text" id="rfc" value="{{ old('RFC') }}" name="RFC" class="form-control" placeholder="RFC">
+                <input type="text" id="rfc" value="{{ old('RFC') }}" name="RFC" class="form-control" placeholder="RFC" readonly>
                 {!! $errors->first('RFC','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
                 <label for="empresa">Nombre de la empresa:</label>
-                <input type="text" value="{{ old('empresa') }}" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa">
+                <input type="text" value="{{ old('empresa') }}" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa" readonly>
                 {!! $errors->first('empresa','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -71,7 +74,7 @@
               </div>
               <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
                 <label for="telefono">Teléfono:</label>
-                <input type="text" value="{{ old('telefono') }}" id="telefono" name="telefono" class="form-control" placeholder="telefono">
+                <input type="text" value="{{ old('telefono') }}" id="telefono" name="telefono" class="form-control" placeholder="telefono" readonly>
                 {!! $errors->first('telefono','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
@@ -88,7 +91,7 @@
               </div>
               <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
                 <label for="correo">E-mail:</label>
-                <input type="text" value="{{ old('correo') }}" id="correo" name="correo" class="form-control" placeholder="e-mail">
+                <input type="text" value="{{ old('correo') }}" id="correo" name="correo" class="form-control" placeholder="e-mail" readonly>
                 {!! $errors->first('correo','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
@@ -100,7 +103,7 @@
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
                 <label for="direction">Dirección:</label>
-                <textarea type="text" id="direccion" rows="3" name="direccion" class="form-control" placeholder="dirección">{{ old('direccion') }}</textarea>
+                <textarea type="text" id="direccion" rows="3" name="direccion" class="form-control" placeholder="dirección" readonly>{{ old('direccion') }}</textarea>
                 {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
               </div>
             </div>
@@ -191,14 +194,6 @@
 
                 </tbody>
               </table>
-              {{-- <input type="text" name="neto" id="neto"> --}}
-              {{-- <input type="text" name="iva" id="IVA"> --}}
-              {{-- <input type="text" name="total" id="totalAmount"> --}}
-              {{-- <input type="text" name="count" id="count"> --}}
-              <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
-              <input type="text" name="usuario" value="{{Auth::user()->id}}" hidden>
-              {{-- <h4 style="text-align: right">Neto: $<span id="neto1">0.00</span> </h4> --}}
-              {{-- <h4 style="text-align: right">IVA: $<span id="IVA1">0.00</span> </h4> --}}
               <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
             </div>
           </div>
@@ -294,9 +289,10 @@
       if (products.length != 0) {
         products.map((item, i)=>{
           var iter = '';
-          iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+          iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td><td style="display: none;"><input name="idProduct'+i+'" class="form-control" value="'+item.id+'" readonly></td></tr>'
 
           setTimeout(()=>{
+            $('#count').val(products.length)
             $('#tabla').append(iter)
             totalAmount()
           },500)
@@ -322,7 +318,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td><td style="display: none;"><input name="idProduct'+i+'" class="form-control" value="'+item.id+'" readonly></td></tr>'
               $('#tabla').append(iter)
             })
             sessionStorage.setItem('products',JSON.stringify(products))
@@ -346,7 +342,7 @@
               $('#fila'+i).remove();
 
               var iter = '';
-              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td></tr>'
+              iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td><td style="display: none;"><input name="idProduct'+i+'" class="form-control" value="'+item.id+'" readonly></td></tr>'
 
               $('#tabla').append(iter)
               totalAmount()

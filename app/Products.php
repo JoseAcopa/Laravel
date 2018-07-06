@@ -30,4 +30,9 @@ class Products extends Model
   {
     return $this->belongsTo('App\Suppliers');
   }
+
+  public function quoteers()
+  {
+    return $this->hasMany('App\Quoteers');
+  }
 }

@@ -7,8 +7,6 @@ use Caffeinated\Shinobi\Models\Role;
 use Caffeinated\Shinobi\Models\Permission;
 use Illuminate\Support\Facades\DB;
 use App\Permissions;
-// use App\Roles;
-// use App\Permissions_Roles;
 use App\Http\Requests\CreateRolesRequest;
 
 class RolesController extends Controller

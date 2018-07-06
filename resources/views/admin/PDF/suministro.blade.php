@@ -114,6 +114,10 @@
         font-size: 12px;
       }
 
+      .defaulttr{
+        width: 405px !important;
+      }
+
       .tbody{
         color: #456;
         font-family: sans-serif;
@@ -171,7 +175,8 @@
         </div>
         <div class="usuario">
           <h2>Atención:</h2>
-          <p>{{$selectQuotation->puesto}} {{$selectQuotation->nombre}}</p>
+          <p>{{$selectQuotation->puesto}}</p>
+          <p>{{$selectQuotation->nombre}}</p>
           <p>{{$selectQuotation->cliente->email}}</p>
         </div>
         <div class="container-table">
@@ -179,7 +184,7 @@
             <thead class="default">
               <tr>
                 <th>PARTIDA</th>
-                <th>DESCRIPCIÓN</th>
+                <th class="defaulttr">DESCRIPCIÓN</th>
                 <th>CANTIDAD</th>
                 <th>U.MEDIDA</th>
                 <th>P.UNITARIO</th>
@@ -187,7 +192,19 @@
               </tr>
             </thead>
             <tbody class="tbody">
-              <tr>
+              @foreach ($quoteers as $i=>$quoteer)
+                <tr>
+                  <td>{{$i+1}}</td>
+                  <td class="tjustify">
+                    {{strtoupper($quoteer->producto->description)}}
+                  </td>
+                  <td>{{$quoteer->cantidad}}</td>
+                  <td>Pieza</td>
+                  <td>${{substr($quoteer->precio, 1, -3)}}</td>
+                  <td>${{substr($quoteer->subtotal, 1, -3)}}</td>
+                </tr>
+              @endforeach
+              {{-- <tr>
                 <td>1</td>
                 <td class="tjustify">
                   ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
@@ -198,36 +215,12 @@
                 <td>Pieza</td>
                 <td>$7060.19</td>
                 <td>$7060.19</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
-                </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$7785.58</td>
-                <td>$7785.58</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
-                </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$4320.48</td>
-                <td>$4320.48</td>
-              </tr>
+              </tr> --}}
             </tbody>
           </table>
         </div>
         <p class="sub-condiciones">
-          SUBTOTAL = $19166.25 (DIECINUEVE MIL CIENTO SESENTA SEIS USD 25/100) + IVA
+          SUBTOTAL = ${{$selectQuotation->total}} (DIECINUEVE MIL CIENTO SESENTA SEIS USD {{substr($selectQuotation->total, -2)}}/100) + IVA
         </p>
 
         <p class="sub-condiciones">
