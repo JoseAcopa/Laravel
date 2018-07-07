@@ -66,27 +66,38 @@
           <div class="col-md-8">
             <table class="table table-bordered table-hover dataTable">
               <thead>
-                <tr class="active">
-                  <th>Acciones</th>
+                <tr>
+                  <th>#</th>
                   <th>Tipo de Producto</th>
                   <th>Letra Inicial</th>
                   <th>Categoria</th>
+                  <th>Acciones</th>
                </tr>
               </thead>
               <tbody>
                 @foreach ($categories as $key)
                   <tr>
+                    <td>{{$key->id}}</td>
+                    <td>{{$key->type}}</td>
+                    <td>{{$key->letters}}</td>
+                    <td>{{$key->categorias}}</td>
                     <td class="row-copasat">
                       @can ('clasificationProduct.destroy')
                         <a type="submit" class="btn btn-danger" onclick="destroy('{{route('categoria.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
                       @endcan
                     </td>
-                    <td>{{$key->type}}</td>
-                    <td>{{$key->letters}}</td>
-                    <td>{{$key->categorias}}</td>
                   </tr>
                 @endforeach
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>Tipo de Producto</th>
+                  <th>Letra Inicial</th>
+                  <th>Categoria</th>
+                  <th>Acciones</th>
+               </tr>
+              </tfoot>
             </table>
           </div>
         </div>

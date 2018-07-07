@@ -36,32 +36,41 @@
           <div class="col-md-10">
             <table id="Jtabla" class="table table-bordered table-hover dataTable">
               <thead>
-                <tr class="active">
+                <tr>
                   <th>#</th>
-                  <th>Acciones</th>
                   <th>Nombre</th>
                   <th>Descripcion</th>
                   <th>Fecha</th>
+                  <th>Acciones</th>
                </tr>
               </thead>
               <tbody>
                 @foreach ($roles as $rol)
                   <tr>
                     <td>{{$rol->id}}</td>
+                    <td>{{$rol->name}}</td>
+                    <td>{{$rol->slug}}</td>
+                    <td>{{str_limit($rol->created_at, 10)}}</td>
                     <td class="row-copasat">
                       @can ('roles.edit')
-                        <a class="btn btn-info" href="{{route('roles.edit',$rol->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                        <a class="btn bg-navy" href="{{route('roles.edit',$rol->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                       @endcan
                       @can ('roles.destroy')
                         <a type="submit" class="btn btn-danger" onclick="destroy('{{route('roles.destroy',$rol->id)}}');"><i class="fa fa-trash-o"></i></a>
                       @endcan
                     </td>
-                    <td>{{$rol->name}}</td>
-                    <td>{{$rol->slug}}</td>
-                    <td>{{str_limit($rol->created_at, 10)}}</td>
                   </tr>
                 @endforeach
               </tbody>
+              <tfoot>
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Descripcion</th>
+                  <th>Fecha</th>
+                  <th>Acciones</th>
+               </tr>
+              </tfoot>
             </table>
           </div>
         </div>

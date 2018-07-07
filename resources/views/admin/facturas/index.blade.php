@@ -51,8 +51,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
-                <th>Acciones</th>
+              <tr>
                 <th>N° de Factura</th>
                 <th>Categoria</th>
                 <th>Proveedor</th>
@@ -60,17 +59,12 @@
                 <th>Cantidad</th>
                 <th>Precio Lista</th>
                 <th>Costo</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($invoices as $invoice)
                 <tr>
-                  <td class="row-copasat">
-                    <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-file-pdf-o"></i></a>
-                    @can ('facturas.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('factura.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    @endcan
-                  </td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
                   <td>{{ $invoice->supplier->business }}</td>
@@ -78,9 +72,27 @@
                   <td>{{ $invoice->quantity }} {{ $invoice->unit }}</td>
                   <td>{{ $invoice->priceList }}</td>
                   <td>{{ $invoice->cost }}</td>
+                  <td class="row-copasat">
+                    <a class="btn btn-primary" target="_blank" href="{{ url('factura',$invoice->id) }}"><i class="fa fa-file-pdf-o"></i></a>
+                    @can ('facturas.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('factura.destroy', $invoice->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>N° de Factura</th>
+                <th>Categoria</th>
+                <th>Proveedor</th>
+                <th>Fecha Entrada</th>
+                <th>Cantidad</th>
+                <th>Precio Lista</th>
+                <th>Costo</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

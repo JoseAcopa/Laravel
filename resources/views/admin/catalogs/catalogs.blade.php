@@ -36,30 +36,32 @@
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
               <tr class="active">
-                <th>Acciones</th>
+                <th>#</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>
                 <th>Proveedor</th>
                 <th>Unidad</th>
                 <th>Descripción</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($catalog as $product)
                 <tr>
-                  <td class="row-copasat">
-                    @can ('catalogo.edit')
-                      <a class="btn btn-info" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endcan
-                    @can ('catalogo.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    @endcan
-                  </td>
+                  <td>{{ $product->id }}</td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>
                   <td>{{ $product->supplier->business }}</td>
                   <td>{{ $product->unit }}</td>
                   <td>{{ str_limit($product->description, 50) }}</td>
+                  <td class="row-copasat">
+                    @can ('catalogo.edit')
+                      <a class="btn bg-navy" href="{{url('/admin/editar-producto-catalogo',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('catalogo.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('catalogo.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
                 </tr>
               @endforeach
             </tbody>

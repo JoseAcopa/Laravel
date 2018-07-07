@@ -35,8 +35,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
-                <th>Acciones</th>
+              <tr>
                 <th>Tipo Producto</th>
                 <th>N° de Producto</th>
                 <th>Descripción del Producto</th>
@@ -44,22 +43,12 @@
                 <th>Stock</th>
                 <th>Precio Lista</th>
                 <th>Costo</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($products as $product)
                 <tr>
-                  <td class="row-copasat">
-                    @can ('inventary.show')
-                      <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    @endcan
-                    @can ('inventary.edit')
-                      <a class="btn btn-info" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endcan
-                    @can ('inventary.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('producto.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    @endcan
-                  </td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->initials }}-{{ $product->id }}</td>
                   <td>{{ str_limit($product->description, 50) }}</td>
@@ -72,9 +61,32 @@
                   </td>
                   <td>${{ $product->priceList }} {{ $product->coin->type }}</td>
                   <td>${{ $product->cost }} {{ $product->coin->type }}</td>
+                  <td class="row-copasat">
+                    @can ('inventary.show')
+                      <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @endcan
+                    @can ('inventary.edit')
+                      <a class="btn bg-navy" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('inventary.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('producto.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>Tipo Producto</th>
+                <th>N° de Producto</th>
+                <th>Descripción del Producto</th>
+                <th>Fecha de Entrada</th>
+                <th>Stock</th>
+                <th>Precio Lista</th>
+                <th>Costo</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

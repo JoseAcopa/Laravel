@@ -77,7 +77,7 @@
         </div>
       </div>
 
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div class="box box-success">
           <div class="box-header with-border">
             <h3 class="box-title">Misión</h3>
@@ -89,7 +89,9 @@
             la economía tanto del Estado como del País.
           </div>
         </div>
+      </div>
 
+      <div class="col-md-6">
         <div class="box box-success">
           <div class="box-header with-border">
             <h3 class="box-title">Visión</h3>
@@ -103,12 +105,12 @@
         </div>
       </div>
 
-      <div class="col-md-7">
+      <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header ui-sortable-handle">
               <i class="ion ion-clipboard"></i>
 
-              <h3 class="box-title">Lista por hacer</h3>
+              <h3 class="box-title">Actividades</h3>
               <div class="box-tools pull-right">
                 <ul class="pagination pagination-sm inline">
                   @for ($i = 1; $i < $activities->lastPage()+1; $i++)
@@ -156,7 +158,7 @@
             <!-- /.box-body -->
             <div class="box-footer clearfix no-border">
               <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Nuevo</button>
-              <!-- Modal -->
+              <!-- Modal agregar actividad -->
               <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">
                   <form class="modal-content" method="POST" action="{{route('actividad.store')}}">
@@ -167,7 +169,7 @@
                     </div>
                     <div class="modal-body">
                       <div class="form-group">
-                        <label for="titulo">Titulo</label>
+                        <label for="titulo">Actividad</label>
                         <input type="text" class="form-control" id="titulo" name="titulo" placeholder="titulo" required>
                       </div>
                     </div>
@@ -181,79 +183,42 @@
             </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="box box-widget widget-user-2">
-            <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-yellow">
-              <div class="widget-user-image">
-                <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
-              </div>
-              <!-- /.widget-user-image -->
-              <h3 class="widget-user-username">{{Auth::user()->name}}</h3>
-              <h5 class="widget-user-desc">{{Auth::user()->email}}</h5>
-            </div>
-            <div class="box-footer no-padding">
-              <ul class="nav nav-stacked">
-                <li><a href="#">Projects <span class="pull-right badge bg-blue">31</span></a></li>
-                <li><a href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li>
-                <li><a href="#">Completed Projects <span class="pull-right badge bg-green">12</span></a></li>
-                <li><a href="#">Followers <span class="pull-right badge bg-red">842</span></a></li>
-              </ul>
-            </div>
-          </div>
-          </div>
-          <div class="col-md-8">
-            <div class="box">
+          <div class="col-md-6">
+            <div class="box box-info">
               <div class="box-header">
-                <h3 class="box-title">Application Buttons</h3>
+                <i class="fa fa-envelope"></i>
+
+                <h3 class="box-title">Correo electrónico rápido</h3>
+                <!-- tools box -->
+                <div class="pull-right box-tools">
+                  <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                          title="Remove">
+                    <i class="fa fa-times"></i></button>
+                </div>
+                <!-- /. tools -->
               </div>
               <div class="box-body">
-                <p>Add the classes <code>.btn.btn-app</code> to an <code>&lt;a&gt;</code> tag to achieve the following:</p>
-                <a class="btn btn-app">
-                  <i class="fa fa-edit"></i> Edit
-                </a>
-                <a class="btn btn-app">
-                  <i class="fa fa-play"></i> Play
-                </a>
-                <a class="btn btn-app">
-                  <i class="fa fa-repeat"></i> Repeat
-                </a>
-                <a class="btn btn-app">
-                  <i class="fa fa-pause"></i> Pause
-                </a>
-                <a class="btn btn-app">
-                  <i class="fa fa-save"></i> Save
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-yellow">3</span>
-                  <i class="fa fa-bullhorn"></i> Notifications
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-green">300</span>
-                  <i class="fa fa-barcode"></i> Products
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-purple">891</span>
-                  <i class="fa fa-users"></i> Users
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-teal">67</span>
-                  <i class="fa fa-inbox"></i> Orders
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-aqua">12</span>
-                  <i class="fa fa-envelope"></i> Inbox
-                </a>
-                <a class="btn btn-app">
-                  <span class="badge bg-red">531</span>
-                  <i class="fa fa-heart-o"></i> Likes
-                </a>
+                <form action="#" method="post">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="emailto" placeholder="Para:">
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="subject" placeholder="Asunto">
+                  </div>
+                  <div>
+                    <textarea class="form-control" placeholder="Mensaje" rows="8"></textarea>
+                  </div>
+                </form>
               </div>
-              <!-- /.box-body -->
+              <div class="box-footer clearfix">
+                <div class="form-group">
+                <button type="button" class="pull-right btn btn-default" id="sendEmail">Enviar
+                  <i class="fa fa-arrow-circle-right"></i></button>
+              </div>
             </div>
           </div>
 
-          <!-- Modal -->
+          <!-- Modal editar actividad -->
           <div class="modal fade" id="myModalEdit" role="dialog">
             <div class="modal-dialog">
               <form class="modal-content" method="POST" action="{{route('actividad.update')}}">
@@ -264,7 +229,7 @@
                 </div>
                 <div class="modal-body">
                   <div class="form-group">
-                    <label for="titulo">Titulo</label>
+                    <label for="titulo">Actividad</label>
                     <input type="text" class="form-control" id="tituloEdit" name="tituloEdit" placeholder="titulo">
                     <input type="text" name="idActividad" id="idActividad" hidden>
                   </div>

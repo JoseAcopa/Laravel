@@ -35,8 +35,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
-                <th>Acciones</th>
+              <tr>
                 <th>Tipo Producto</th>
                 <th>N° de Producto</th>
                 <th>Descripción del Producto</th>
@@ -44,22 +43,12 @@
                 <th>Fecha de Salida</th>
                 <th>Cantidad de Salida</th>
                 <th>Precio Salida</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($checkouts as $checkout)
                 <tr>
-                  <td class="row-copasat">
-                    @can ('product-output.show')
-                      <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
-                    @endcan
-                    @can ('product-output.edit')
-                      <a class="btn btn-info" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endcan
-                    @can ('product-output.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    @endcan
-                  </td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>
                   <td>{{ str_limit($checkout->description, 50) }}</td>
@@ -72,9 +61,32 @@
                   <td>{{ $checkout->date_out }}</td>
                   <td>{{ $checkout->quantity_output }} {{ $checkout->unit }}</td>
                   <td>${{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
+                  <td class="row-copasat">
+                    @can ('product-output.show')
+                      <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    @endcan
+                    @can ('product-output.edit')
+                      <a class="btn bg-navy" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('product-output.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>Tipo Producto</th>
+                <th>N° de Producto</th>
+                <th>Descripción del Producto</th>
+                <th>Stock</th>
+                <th>Fecha de Salida</th>
+                <th>Cantidad de Salida</th>
+                <th>Precio Salida</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

@@ -35,36 +35,47 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
-                <th>Acciones</th>
+              <tr>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>
                 <th>Siglas</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
                 <th>E-mail</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
                 @foreach ($clients as $client)
                   <tr>
-                    <td class="row-copasat">
-                      @can ('client.edit')
-                        <a class="btn btn-info" href="{{ url('admin/edit-cliente',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                      @endcan
-                      @can ('client.destroy')
-                        <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
-                      @endcan
-                    </td>
                     <td>{{ $client->RFC }}</td>
                     <td>{{ str_limit($client->business, 30) }}</td>
                     <td>{{ $client->siglas }}</td>
                     <td>{{ str_limit($client->address, 50) }}</td>
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->email }}</td>
+                    <td class="row-copasat">
+                      @can ('client.edit')
+                        <a class="btn bg-navy" href="{{ url('admin/edit-cliente',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                      @endcan
+                      @can ('client.destroy')
+                        <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      @endcan
+                    </td>
                   </tr>
                 @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>RFC</th>
+                <th>Nombre de la Empresa</th>
+                <th>Siglas</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>E-mail</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

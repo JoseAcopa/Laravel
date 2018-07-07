@@ -35,36 +35,47 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
+              <tr>
                 <th>#</th>
-                <th>Acciones</th>
                 <th>Nombre completo</th>
                 <th>Correo</th>
                 <th>Teléfono</th>
                 <th>Iniciales</th>
                 <th>Tipo de Usuario</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($employees as $employee)
                 <tr>
                   <td>{{ $employee->id }}</td>
-                  <td class="row-copasat">
-                    @can ('employee.edit')
-                      <a class="btn btn-info" href="{{ route('employee.edit',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                    @endcan
-                    @can ('employee.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy', $employee->id)}}');"><i class="fa fa-trash-o"></i></a>
-                    @endcan
-                  </td>
                   <td>{{ $employee->name }}</td>
                   <td>{{ $employee->email }}</td>
                   <td>{{ $employee->phone }}</td>
                   <td>{{ $employee->user }}</td>
                   <td><?php echo isset($employee->role->name) == 1 ? $employee->role->name : 'No asignado'; ?></td>
+                  <td class="row-copasat">
+                    @can ('employee.edit')
+                      <a class="btn bg-navy" href="{{ route('employee.edit',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('employee.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy', $employee->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>#</th>
+                <th>Nombre completo</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Iniciales</th>
+                <th>Tipo de Usuario</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

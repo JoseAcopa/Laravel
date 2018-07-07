@@ -54,7 +54,6 @@
           <table id="Jtabla" class="table table-bordered table-striped">
             <thead>
               <tr>
-                <th>Acciones</th>
                 <th>No. de Cotización</th>
                 <th>Empleados</th>
                 <th>Fecha</th>
@@ -62,11 +61,19 @@
                 <th>Nombre de la Empresa</th>
                 <th>RFC</th>
                 <th>Total</th>
+                <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
               @foreach ($quotations as $quotation)
                 <tr>
+                  <td>{{$quotation->cotizacion}}</td>
+                  <td>{{$quotation->user->name}}</td>
+                  <td>{{$quotation->fecha}}</td>
+                  <td>{{$quotation->nombre}}</td>
+                  <td>{{$quotation->cliente->business}}</td>
+                  <td>{{$quotation->cliente->RFC}}</td>
+                  <td>${{$quotation->total}}</td>
                   <td class="row-copasat">
                     @can ('quotation.show')
                       <a class="btn btn-primary" href="{{url('/admin/ver-cotizacion',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
@@ -77,16 +84,21 @@
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $quotation->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>
-                  <td>{{$quotation->cotizacion}}</td>
-                  <td>{{$quotation->user->name}}</td>
-                  <td>{{$quotation->fecha}}</td>
-                  <td>{{$quotation->nombre}}</td>
-                  <td>{{$quotation->cliente->business}}</td>
-                  <td>{{$quotation->cliente->RFC}}</td>
-                  <td>${{$quotation->total}}</td>
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr>
+                <th>No. de Cotización</th>
+                <th>Empleados</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Nombre de la Empresa</th>
+                <th>RFC</th>
+                <th>Total</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>
