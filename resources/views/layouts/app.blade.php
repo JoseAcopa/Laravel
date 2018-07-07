@@ -16,8 +16,6 @@
     </div>
 
     @include('layouts.footer')
-    @include('layouts.sidebarL')
-
 
   @section('script')
       @include('layouts.script')
