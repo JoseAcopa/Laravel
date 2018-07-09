@@ -100,9 +100,11 @@ class QuotationsController extends Controller
      */
     public function show($id)
     {
-      $product = Products::find($id);
-      $quotations = Quotations::all();
-      return view('admin.quotation.show', compact('product', 'quotations'));
+      $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
+      $quotations = Quotations::find($id);
+      $quotations->user;
+      $quotations->cliente;
+      return view('admin.quotation.show', compact('quoteers', 'quotations'));
     }
 
     /**
