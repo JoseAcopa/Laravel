@@ -35,7 +35,7 @@
         <div class="box-body">
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
-              <tr class="active">
+              <tr>
                 <th>#</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>
@@ -65,6 +65,17 @@
                 </tr>
               @endforeach
             </tbody>
+            <tfoot>
+              <tr class="active">
+                <th>#</th>
+                <th>Tipo de Producto</th>
+                <th>Iniciales</th>
+                <th>Proveedor</th>
+                <th>Unidad</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+             </tr>
+            </tfoot>
           </table>
         </div>
       </div>

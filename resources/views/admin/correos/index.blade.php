@@ -56,7 +56,9 @@
                     </td>
                     <td class="mailbox-attachment"><?php echo $correo->status == "activo" ? '<i class="fa fa-paperclip"></i>' : ''; ?></td>
                     <td class="mailbox-date"><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($correo->created_at)->diffForHumans() }}</td>
-                    <td class="mailbox-date"><i class="fa fa-trash-o" onclick="destroy('{{route('correo.destroy', $correo->id)}}');" style="color: #dd4b39; cursor: pointer;"></i></td>
+                    @can ('correo.destroy')
+                      <td class="mailbox-date"><i class="fa fa-trash-o" onclick="destroy('{{route('correo.destroy', $correo->id)}}');" style="color: #dd4b39; cursor: pointer;"></i></td>
+                    @endcan
                   </tr>
                 @endforeach
               </tbody>

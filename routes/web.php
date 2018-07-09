@@ -121,10 +121,10 @@ Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
 
 // =======================recuperar contrasena ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
-Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index');
+Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
 Route::get('/admin/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
-Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy');
-Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update');
+Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
+Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
 // =======================recuperar contrasena ==============================================
 
 // =======================crear PDF ==============================================

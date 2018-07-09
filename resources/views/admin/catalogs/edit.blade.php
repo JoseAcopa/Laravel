@@ -51,7 +51,7 @@
                   <div class="col-xs-6">
                     <label for="unidad">Unidad de Medida:</label>
                     <select class="form-control" onchange="getUnidad(this);">
-                      <option value="">Seleccione Unidad de Medida</option>
+                      <option value="{{$catalog->unit}}">{{$catalog->unit}}</option>
                       @foreach ($units as $unit)
                         <option value="{{$unit->type}}">{{$unit->type}}</option>
                       @endforeach

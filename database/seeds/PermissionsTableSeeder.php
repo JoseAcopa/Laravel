@@ -236,5 +236,22 @@ class PermissionsTableSeeder extends Seeder
         'slug' => 'quotation.destroy',
         'description' => 'Eliminar cotizacion'
       ]);
+
+      // correos
+      Permission::create([
+        'name' => 'Navegar correos',
+        'slug' => 'correos.index',
+        'description' => 'Listar correos'
+      ]);
+      Permission::create([
+        'name' => 'Editar correos',
+        'slug' => 'correo.edit',
+        'description' => 'Editar correo'
+      ]);
+      Permission::create([
+        'name' => 'Eliminar correo',
+        'slug' => 'correo.destroy',
+        'description' => 'Eliminar correo'
+      ]);
     }
 }
