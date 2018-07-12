@@ -119,6 +119,7 @@
       </div>
     </section>
     <script type="text/javascript">
+      // funcion se ejecuta al hacer cambio con clic
       function quantity(val) {
         var stock = {{$checkout->stock}}
         var quantity = {{$checkout->quantity_output}}
@@ -137,9 +138,42 @@
         }else {
           document.getElementById('stock').value = stock
           document.getElementById('cantidad').value = quantity
-          alert('Stock es menor a la cantidad de salida')
+          swal({
+            type: 'error',
+            title: 'Producto en stock',
+            text: '¡Solo hay {{ $checkout->stock }} productos en existencia!'
+          })
         }
       }
+
+      // funcion se ejecuta al hacer cambio manual
+      setTimeout(function() {
+        $("#cantidad").keyup(function() {
+          var stock = {{$checkout->stock}}
+          var quantity = {{$checkout->quantity_output}}
+          var value = document.getElementById('cantidad').value
+          var newStock
+
+          if (Number(value) <= (Number(stock) + Number(quantity))) {
+            if (value > quantity) {
+              var newQuantity = quantity - value
+              newStock = stock + newQuantity
+            }else {
+              var newQuantity = quantity - value
+              newStock = stock + newQuantity
+            }
+            document.getElementById('stock').value = newStock
+          }else {
+            document.getElementById('stock').value = stock
+            document.getElementById('cantidad').value = quantity
+            swal({
+              type: 'error',
+              title: 'Producto en stock',
+              text: '¡Solo hay {{ $checkout->stock }} productos en existencia!'
+            })
+          }
+        });
+      },1000)
     </script>
 
 @endsection

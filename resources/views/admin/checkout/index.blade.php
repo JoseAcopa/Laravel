@@ -59,11 +59,11 @@
                     {{ $checkout->unit }}
                   </td>
                   <td>{{ $checkout->date_out }}</td>
-                  <td>{{ $checkout->quantity_output }} {{ $checkout->unit }}</td>
+                  <td><span class="badge bg-yellow">{{ $checkout->quantity_output }}</span> {{ $checkout->unit }}</td>
                   <td>${{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
                   <td class="row-copasat">
                     @can ('product-output.show')
-                      <a class="btn btn-primary" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                      <a class="btn btn-default" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
                     @endcan
                     @can ('product-output.edit')
                       <a class="btn bg-navy" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
