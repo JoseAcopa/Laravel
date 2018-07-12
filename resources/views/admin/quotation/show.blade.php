@@ -9,7 +9,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Clientes</li>
+        <li class="active">Ver Cotización</li>
       </ol>
     </section>
 

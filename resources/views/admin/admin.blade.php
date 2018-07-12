@@ -235,7 +235,7 @@
                   </div>
                   <div class="">
                     <input type="checkbox" value="false" id="check" name="check">
-                    <label for="check">Desactivar</label>
+                    <label for="check">Hecho</label>
                   </div>
                 </div>
                 <div class="modal-footer">

@@ -66,7 +66,7 @@
               @endforeach
             </tbody>
             <tfoot>
-              <tr class="active">
+              <tr>
                 <th>#</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>
