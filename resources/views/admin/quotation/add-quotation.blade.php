@@ -299,6 +299,7 @@
         })
       }
       function addProduct() {
+
         var id = $('#searchProduct').val()
         var producto = $('#producto').val()
         var descripcion = $('#description').val()
@@ -308,7 +309,19 @@
         var unidad = $('#unit').val()
 
         if (precio != '' && cantidad != '') {
+          // validando que sean del mismo tipo de moneda
+          if (products.length != 0) {
+            if (products[0].currency != moneda) {
+              swal({
+                type: 'error',
+                title: 'Error al cotizar',
+                text: '¡Los productos cotizados deben ser del mismo tipo de moneda!'
+              })
+              return
+            }
+          }
           var findProduct = _.find(products,{ 'id' : id })
+          // si el producto existe lo editamos
           if (findProduct != undefined && findProduct != null) {
             findProduct.quantity = Number(findProduct.quantity) + Number(cantidad)
             findProduct.price = precio
@@ -324,6 +337,7 @@
             sessionStorage.setItem('products',JSON.stringify(products))
             totalAmount()
           }else {
+            // si no existe el producto lo creamos
             const product = {
               id: id,
               product: producto,
@@ -402,20 +416,12 @@
 
       function totalAmount() {
         let neto = 0;
-        // let iva = 0
+
         products.map((item)=>{
           neto += Number(item.total)
         })
 
-        // iva = neto * .16
-        // total = neto + iva
-
-        // $('#neto1').text(neto.toFixed(2))
-        // $('#IVA1').text(iva.toFixed(2))
         $('#totalAmount1').text(neto.toFixed(2))
-
-        // $('#neto').val(neto.toFixed(2))
-        // $('#IVA').val(iva.toFixed(2))
         $('#totalAmount').val(neto.toFixed(2))
       }
 
