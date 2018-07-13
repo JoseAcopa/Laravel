@@ -99,7 +99,8 @@ class CheckoutsController extends Controller
       $checkout->coin;
       $checkout->supplier;
       $checkout->category;
-      return view('admin.checkout.edit', compact('checkout'));
+      $product = Products::where('description', $checkout->description)->get();
+      return view('admin.checkout.edit', compact('checkout', 'product'));
     }
 
     /**

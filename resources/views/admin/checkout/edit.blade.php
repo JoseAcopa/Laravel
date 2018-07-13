@@ -64,7 +64,7 @@
               </div>
               <div class="form-group {{ $errors->has('stock') ? 'has-error' : '' }}">
                 <label for="stock">Existencia:</label>
-                <input type="number" name="stock" id="stock" value="{{ $checkout->stock }}" class="form-control" readonly>
+                <input type="number" name="stock" id="stock" value="{{$product[0]->stock}}" class="form-control" readonly>
                 {!! $errors->first('stock','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('cantidad') ? 'has-error' : '' }}">
@@ -76,11 +76,11 @@
                 <label for="precio">Precio de venta:</label>
                 <select name="precio" class="form-control">
                   <option value="{{ $checkout->price_output }}">{{ $checkout->price_output }}</option>
-                  <option id="pv1"></option>
-                  <option id="pv2"></option>
-                  <option id="pv3"></option>
-                  <option id="pv4"></option>
-                  <option id="pv5"></option>
+                  <option id="pv1">{{$product[0]->priceSales1}}</option>
+                  <option id="pv2">{{$product[0]->priceSales2}}</option>
+                  <option id="pv3">{{$product[0]->priceSales3}}</option>
+                  <option id="pv4">{{$product[0]->priceSales4}}</option>
+                  <option id="pv5">{{$product[0]->priceSales5}}</option>
                 </select>
                 {!! $errors->first('precio','<span class="help-block">:message</span>')!!}
               </div>
@@ -121,7 +121,7 @@
     <script type="text/javascript">
       // funcion se ejecuta al hacer cambio con clic
       function quantity(val) {
-        var stock = {{$checkout->stock}}
+        var stock = {{$product[0]->stock}}
         var quantity = {{$checkout->quantity_output}}
         var value = val.value
         var newStock
@@ -141,7 +141,7 @@
           swal({
             type: 'error',
             title: 'Producto en stock',
-            text: '¡Solo hay {{ $checkout->stock }} productos en existencia!'
+            text: '¡Solo hay {{$product[0]->stock}} productos en existencia!'
           })
         }
       }
@@ -149,7 +149,7 @@
       // funcion se ejecuta al hacer cambio manual
       setTimeout(function() {
         $("#cantidad").keyup(function() {
-          var stock = {{$checkout->stock}}
+          var stock = {{$product[0]->stock}}
           var quantity = {{$checkout->quantity_output}}
           var value = document.getElementById('cantidad').value
           var newStock
@@ -169,7 +169,7 @@
             swal({
               type: 'error',
               title: 'Producto en stock',
-              text: '¡Solo hay {{ $checkout->stock }} productos en existencia!'
+              text: '¡Solo hay {{$product[0]->stock}} productos en existencia!'
             })
           }
         });
