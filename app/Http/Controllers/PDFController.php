@@ -8,6 +8,7 @@ use PDF;
 use App\Quotations;
 use App\Quoteers;
 use App\Invoice;
+use NumerosEnLetras;
 
 class PDFController extends Controller
 {
@@ -19,8 +20,10 @@ class PDFController extends Controller
     $selectQuotation->cliente;
 
     $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
-
-    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers'));
+    $total = intval($selectQuotation->total);
+    $letras = NumerosEnLetras::convertir($total);
+    // $letras = NumeroALetras::convertir(12345.67, 'colones', 'centimos');
+    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers', 'letras'));
     $pdf->output();
     $dom_pdf = $pdf->getDomPDF();
 

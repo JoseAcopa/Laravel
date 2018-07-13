@@ -220,15 +220,16 @@
           </table>
         </div>
         <p class="sub-condiciones">
-          SUBTOTAL = ${{$selectQuotation->total}} (DIECINUEVE MIL CIENTO SESENTA SEIS USD {{substr($selectQuotation->total, -2)}}/100) + IVA
+          SUBTOTAL = ${{$selectQuotation->total}} ({{strtoupper($letras)}} {{substr($selectQuotation->total, -2)}}/100) + IVA
         </p>
 
         <p class="sub-condiciones">
-          FAVOR DE RAVISAR TODAS LAS CONDICIONES DE VENTA, GRACIAS!!!
+          FAVOR DE REVISAR TODAS LAS CONDICIONES DE VENTA, GRACIAS!!!
         </p>
 
         <p class="title-bussines">
-          RESUMEN DE CONDICIONES DE VENTA <br>
+          {{$selectQuotation->observaciones}}
+          {{-- RESUMEN DE CONDICIONES DE VENTA <br>
           CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
           Precios Sin I.V.A.: Se agrega al Facturar <br>
           VIGENCIA DE PRECIOS: 15 días <br>
@@ -248,7 +249,7 @@
 
           No. de Cuenta BANAMEX: 8004175 SUC: 820 <br>
           CLABE INTERBANCARIA: 002790082080041755 <br>
-          Cuenta en USD: 7000 / 9669750
+          Cuenta en USD: 7000 / 9669750 --}}
         </p>
       </div>
       <div class="firma">
