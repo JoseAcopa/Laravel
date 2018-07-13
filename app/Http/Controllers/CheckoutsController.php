@@ -45,11 +45,11 @@ class CheckoutsController extends Controller
     {
       // descontando stock del producto
       $id = request('idProduct');
-      $stock = $request->input('stock');
-      $quantity = $request->input('cantidad');
-      $newStock = $stock - $quantity;
+      // $stock = $request->input('stock');
+      // $quantity = $request->input('cantidad');
+      // $newStock = $stock - $quantity;
       $product = Products::find($id);
-      $product->stock = $newStock;
+      $product->stock = $request->input('stock');
       $product->save();
 
       $checkout = new Checkouts;
@@ -63,7 +63,7 @@ class CheckoutsController extends Controller
       $checkout->priceList = request('precio_lista');
       $checkout->cost = request('costo');
       $checkout->coin_id = request('idMoneda');
-      $checkout->stock = $newStock;
+      $checkout->stock = $request->input('stock');
       $checkout->quantity_output = request('cantidad');
       $checkout->price_output = request('precio');
       $checkout->keyProduct = $id;

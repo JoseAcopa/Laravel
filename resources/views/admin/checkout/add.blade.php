@@ -76,11 +76,12 @@
               <div class="form-group {{ $errors->has('stock') ? 'has-error' : '' }}">
                 <label for="stock">Existencia:</label>
                 <input type="number" name="stock" id="stock" value="{{ old('stock') }}" class="form-control" readonly>
+                <input type="text" value="" id="existencia" hidden>
                 {!! $errors->first('stock','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('cantidad') ? 'has-error' : '' }}">
                 <label for="cantidad">Cantidad de Salida:</label>
-                <input type="number" name="cantidad" id="cantidad" value="{{ old('cantidad') }}" class="form-control" placeholder="cantidad">
+                <input onchange="quantity(this)" type="number" name="cantidad" id="cantidad" value="{{ old('cantidad') }}" min="1" class="form-control" placeholder="cantidad">
                 {!! $errors->first('cantidad','<span class="help-block">:message</span>')!!}
               </div>
               <div class="form-group {{ $errors->has('precio') ? 'has-error' : '' }}">
@@ -151,6 +152,7 @@
             $('#proveedor').val(res.supplier.id);
             $('#unidad').val(res.unit);
             $('#stock').val(res.stock);
+            $('#existencia').val(res.stock);
             $('#pv1').text(res.priceSales1);
             $('#pv2').text(res.priceSales2);
             $('#pv3').text(res.priceSales3);
@@ -161,6 +163,9 @@
             $('#moneda').val(res.coin.type);
             $('#idMoneda').val(res.coin.id);
             $('#description').val(res.description);
+            // limpiando los precios y cantidad cada que se cambia el producto
+            $('#cantidad').val("");
+            $('#precio').val("");
           }
         })
       }
@@ -176,6 +181,45 @@
           $('#precio').attr('readonly', 'readonly')
         }
       }
+    </script>
+    <script type="text/javascript">
+      // funcion se ejecuta al hacer cambio con clic
+      function quantity(val) {
+        var existencia = document.getElementById('existencia').value
+        var value = val.value
+
+        if (Number(value) <= Number(existencia)) {
+          var newStock = existencia - value
+          document.getElementById('stock').value = newStock
+        }else {
+          document.getElementById('cantidad').value = 1
+          swal({
+            type: 'error',
+            title: 'Producto en stock',
+            text: '¡Solo hay '+existencia+' productos en existencia!'
+          })
+        }
+      }
+
+      // funcion se ejecuta al hacer cambio manual
+      setTimeout(function() {
+        $("#cantidad").keyup(function() {
+          var existencia = document.getElementById('existencia').value
+          var value = document.getElementById('cantidad').value
+
+          if (Number(value) <= Number(existencia)) {
+            var newStock = existencia - value
+            document.getElementById('stock').value = newStock
+          }else {
+            document.getElementById('cantidad').value = 1
+            swal({
+              type: 'error',
+              title: 'Producto en stock',
+              text: '¡Solo hay '+existencia+' productos en existencia!'
+            })
+          }
+        });
+      },1000)
     </script>
 
 @endsection
