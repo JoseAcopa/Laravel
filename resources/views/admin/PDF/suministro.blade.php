@@ -10,7 +10,7 @@
         margin: 0cm 0cm;
       }
       body {
-        margin-top:    150px;
+        margin-top:    235px;
         margin-bottom: 130px;
         margin-left:   1cm;
         margin-right:  1cm;
@@ -48,9 +48,14 @@
       }
 
       .bussines {
+        position: fixed;
+        bottom: 0px;
+        left: 40px;
+        top: 140px;
         width: 470px;
         height: auto;
         padding-bottom: 10px;
+        z-index: -100;
       }
 
       .title-bussines {
@@ -61,10 +66,11 @@
       }
 
       .table {
-        position: absolute;
-        width:180px;
-        right:10px;
-        top: -5px;
+        position: fixed;
+        width: 180px;
+        right: 45px;
+        top: 140px;
+        z-index: -100;
       }
 
       .ul-table {
@@ -80,6 +86,9 @@
       }
 
       .usuario {
+        position: fixed;
+        top: 173px;
+        z-index: -100;
         width: 100%;
         text-align: center;
       }
@@ -156,29 +165,30 @@
       <img src="img/PIE_DE_PAGINA.jpg" height="100%" width="100%" />
     </div>
 
+    <div class="bussines">
+      <h2 class="title-bussines">{{$selectQuotation->cliente->business}}</h2>
+      <p class="title-bussines">{{$selectQuotation->cliente->address}}</p>
+    </div>
+    <div class="table">
+      <ul class="ul-table">
+        <li class="li-active">Fecha</li>
+        <li>{{$selectQuotation->fecha}}</li>
+        {{-- <li>{{ date('d/m/Y') }}</li> --}}
+        <li class="li-active">No. de Cotización</li>
+        <li>{{$selectQuotation->cotizacion}}</li>
+        <li class="li-active">No. de Licitacón</li>
+        <li>{{$selectQuotation->licitacion}}</li>
+      </ul>
+    </div>
+    <div class="usuario">
+      <h2>Atención:</h2>
+      <p>{{$selectQuotation->puesto}}</p>
+      <p>{{$selectQuotation->nombre}}</p>
+      <p>{{$selectQuotation->cliente->email}}</p>
+    </div>
+
     <main>
       <div class="row">
-        <div class="bussines">
-          <h2 class="title-bussines">{{$selectQuotation->cliente->business}}</h2>
-          <p class="title-bussines">{{$selectQuotation->cliente->address}}</p>
-        </div>
-        <div class="table">
-          <ul class="ul-table">
-            <li class="li-active">Fecha</li>
-            <li>{{$selectQuotation->fecha}}</li>
-            {{-- <li>{{ date('d/m/Y') }}</li> --}}
-            <li class="li-active">No. de Cotización</li>
-            <li>{{$selectQuotation->cotizacion}}</li>
-            <li class="li-active">No. de Licitacón</li>
-            <li>{{$selectQuotation->licitacion}}</li>
-          </ul>
-        </div>
-        <div class="usuario">
-          <h2>Atención:</h2>
-          <p>{{$selectQuotation->puesto}}</p>
-          <p>{{$selectQuotation->nombre}}</p>
-          <p>{{$selectQuotation->cliente->email}}</p>
-        </div>
         <div class="container-table">
           <table>
             <thead class="default">
@@ -204,18 +214,6 @@
                   <td>${{substr($quoteer->subtotal, 1, -3)}}</td>
                 </tr>
               @endforeach
-              {{-- <tr>
-                <td>1</td>
-                <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
-                </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$7060.19</td>
-                <td>$7060.19</td>
-              </tr> --}}
             </tbody>
           </table>
         </div>
@@ -228,8 +226,8 @@
         </p>
 
         <p class="title-bussines">
-          {{$selectQuotation->observaciones}}
-          {{-- RESUMEN DE CONDICIONES DE VENTA <br>
+          {{-- {{$selectQuotation->observaciones}} --}}
+          RESUMEN DE CONDICIONES DE VENTA <br>
           CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
           Precios Sin I.V.A.: Se agrega al Facturar <br>
           VIGENCIA DE PRECIOS: 15 días <br>
@@ -249,7 +247,7 @@
 
           No. de Cuenta BANAMEX: 8004175 SUC: 820 <br>
           CLABE INTERBANCARIA: 002790082080041755 <br>
-          Cuenta en USD: 7000 / 9669750 --}}
+          Cuenta en USD: 7000 / 9669750
         </p>
       </div>
       <div class="firma">
