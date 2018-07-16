@@ -40,9 +40,11 @@ class PDFController extends Controller
     $selectQuotation->user;
     $selectQuotation->cliente;
 
-    $quoteers = DB::table('quoteers')->where('cotizacion_id', $id)->get();
+    $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
+    $total = intval($selectQuotation->total);
+    $letras = NumerosEnLetras::convertir($total);
 
-    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers'));
+    $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers', 'letras'));
 
     $pdf->output();
     $dom_pdf = $pdf->getDomPDF();
