@@ -226,13 +226,8 @@
         </p>
 
         <p class="title-bussines">
-<<<<<<< HEAD
           {!! nl2br($selectQuotation->observaciones) !!}
           {{-- RESUMEN DE CONDICIONES DE VENTA <br>
-=======
-          {{-- {{$selectQuotation->observaciones}} --}}
-          RESUMEN DE CONDICIONES DE VENTA <br>
->>>>>>> c507d229c515316cbef43c926548e299d1948883
           CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
           Precios Sin I.V.A.: Se agrega al Facturar <br>
           VIGENCIA DE PRECIOS: 15 días <br>
@@ -252,7 +247,7 @@
 
           No. de Cuenta BANAMEX: 8004175 SUC: 820 <br>
           CLABE INTERBANCARIA: 002790082080041755 <br>
-          Cuenta en USD: 7000 / 9669750
+          Cuenta en USD: 7000 / 9669750 --}}
         </p>
       </div>
       <div class="firma">

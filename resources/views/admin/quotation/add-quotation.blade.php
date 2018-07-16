@@ -127,7 +127,9 @@
 
             <div class="col-md-12">
               <hr>
-              <h3><i class="fa fa-plus"></i> Agregar Producto</h3>
+              <h4><i class="fa fa-book"></i> Cotizar Producto</h4>
+              <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i> Nuevo Producto</a>
+              <br><br>
             </div>
             <div class="col-md-4">
               <div class="form-group">
@@ -205,6 +207,7 @@
           </div>
         </form>
       </div>
+      @include('admin.quotation.formModal')
     </section>
     <script type="text/javascript">
       function changeObservacion(val) {
@@ -261,6 +264,8 @@
             $('#price5').val(res.priceSales5);
             $('#currency').val(res.coin.type);
             $('#unit').val(res.unit);
+            $('#precioUnitario').val("");
+            $('#cantidad').val(1);
           }
         })
       }

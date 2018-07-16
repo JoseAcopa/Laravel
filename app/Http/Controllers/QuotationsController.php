@@ -9,6 +9,8 @@ use App\Products;
 use App\Clients;
 use App\Quoteers;
 use App\Count;
+use App\Units;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateQuotationRequest;
 
@@ -39,7 +41,9 @@ class QuotationsController extends Controller
     {
       $products = Products::all();
       $clients = Clients::all();
-      return view('admin.quotation.add-quotation', compact('products', 'clients'));
+      $units = Units::all();
+      $categories = Category::all();
+      return view('admin.quotation.add-quotation', compact('products', 'clients', 'units', 'categories'));
     }
 
     /**
