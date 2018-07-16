@@ -228,7 +228,7 @@
         </p>
 
         <p class="title-bussines">
-          {{$selectQuotation->observaciones}}
+          {!! nl2br($selectQuotation->observaciones) !!}
           {{-- RESUMEN DE CONDICIONES DE VENTA <br>
           CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
           Precios Sin I.V.A.: Se agrega al Facturar <br>
