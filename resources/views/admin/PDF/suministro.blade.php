@@ -227,27 +227,6 @@
 
         <p class="title-bussines">
           {!! nl2br($selectQuotation->observaciones) !!}
-          {{-- RESUMEN DE CONDICIONES DE VENTA <br>
-          CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
-          Precios Sin I.V.A.: Se agrega al Facturar <br>
-          VIGENCIA DE PRECIOS: 15 días <br>
-          LUGAR DE ENTREGA: LAB su almacén <br>
-          TIEMPO DE ENTREGA: <br>
-          Partida 1 y 2: 15 días hábiles una vez recibida su orden de compra. <br>
-          Partida 3: 3 a 5 días hábiles una vez recibida su orden de compra, salvo previa venta. <br>
-          MONEDA: USD Americanos pagaderosal tipo de cambio DOF vigente del dia de su pago ó directamente a nuestra cuenta en USD. <br><br>
-
-          DATOS FISCALES <br>
-          Rayos X y Servicios Industriales S.A. de C.V. <br>
-          Calle Júpiter No. 115 <br>
-          Fracc. Galaxia <br>
-          Villahermosa, Tab. <br>
-          CP 86035 <br>
-          RFC: RXS050608SY3 <br><br>
-
-          No. de Cuenta BANAMEX: 8004175 SUC: 820 <br>
-          CLABE INTERBANCARIA: 002790082080041755 <br>
-          Cuenta en USD: 7000 / 9669750 --}}
         </p>
       </div>
       <div class="firma">
