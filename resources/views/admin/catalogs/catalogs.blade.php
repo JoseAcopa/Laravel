@@ -46,9 +46,9 @@
              </tr>
             </thead>
             <tbody>
-              @foreach ($catalog as $product)
+              @foreach ($catalog as $i => $product)
                 <tr>
-                  <td>{{ $product->id }}</td>
+                  <td>{{ $i+1 }}</td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>
                   <td>{{ $product->supplier->business }}</td>

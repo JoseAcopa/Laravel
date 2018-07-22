@@ -36,6 +36,7 @@
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
               <tr>
+                <th>#</th>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>
                 <th>Siglas</th>
@@ -46,27 +47,29 @@
              </tr>
             </thead>
             <tbody>
-                @foreach ($clients as $client)
-                  <tr>
-                    <td>{{ $client->RFC }}</td>
-                    <td>{{ str_limit($client->business, 30) }}</td>
-                    <td>{{ $client->siglas }}</td>
-                    <td>{{ str_limit($client->address, 50) }}</td>
-                    <td>{{ $client->phone }}</td>
-                    <td>{{ $client->email }}</td>
-                    <td class="row-copasat">
-                      @can ('client.edit')
-                        <a class="btn bg-navy" href="{{ url('admin/edit-cliente',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-                      @endcan
-                      @can ('client.destroy')
-                        <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
-                      @endcan
-                    </td>
-                  </tr>
-                @endforeach
+              @foreach ($clients as $i => $client)
+                <tr>
+                  <td>{{ $i+1 }}</td>
+                  <td>{{ $client->RFC }}</td>
+                  <td>{{ str_limit($client->business, 30) }}</td>
+                  <td>{{ $client->siglas }}</td>
+                  <td>{{ str_limit($client->address, 50) }}</td>
+                  <td>{{ $client->phone }}</td>
+                  <td>{{ $client->email }}</td>
+                  <td class="row-copasat">
+                    @can ('client.edit')
+                      <a class="btn bg-navy" href="{{ url('admin/edit-cliente',$client->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+                    @endcan
+                    @can ('client.destroy')
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('client.destroy', $client->id)}}');"><i class="fa fa-trash-o"></i></a>
+                    @endcan
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
             <tfoot>
               <tr>
+                <th>#</th>
                 <th>RFC</th>
                 <th>Nombre de la Empresa</th>
                 <th>Siglas</th>

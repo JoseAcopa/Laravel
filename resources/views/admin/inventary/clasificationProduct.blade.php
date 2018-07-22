@@ -75,9 +75,9 @@
                </tr>
               </thead>
               <tbody>
-                @foreach ($categories as $key)
+                @foreach ($categories as $i => $key)
                   <tr>
-                    <td>{{$key->id}}</td>
+                    <td>{{$i+1}}</td>
                     <td>{{$key->type}}</td>
                     <td>{{$key->letters}}</td>
                     <td>{{$key->categorias}}</td>

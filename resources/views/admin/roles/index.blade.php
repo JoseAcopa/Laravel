@@ -45,9 +45,9 @@
                </tr>
               </thead>
               <tbody>
-                @foreach ($roles as $rol)
+                @foreach ($roles as $i => $rol)
                   <tr>
-                    <td>{{$rol->id}}</td>
+                    <td>{{$i+1}}</td>
                     <td>{{$rol->name}}</td>
                     <td>{{$rol->slug}}</td>
                     <td>{{str_limit($rol->created_at, 10)}}</td>

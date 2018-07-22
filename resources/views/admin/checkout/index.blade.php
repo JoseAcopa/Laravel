@@ -36,6 +36,7 @@
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
               <tr>
+                <th>#</th>
                 <th>Tipo Producto</th>
                 <th>N° de Producto</th>
                 <th>Descripción del Producto</th>
@@ -47,8 +48,9 @@
              </tr>
             </thead>
             <tbody>
-              @foreach ($checkouts as $checkout)
+              @foreach ($checkouts as $i => $checkout)
                 <tr>
+                  <td>{{ $i+1 }}</td>
                   <td>{{ $checkout->category->type }}</td>
                   <td>{{ $checkout->initials }}</td>
                   <td>{{ str_limit($checkout->description, 50) }}</td>
@@ -77,6 +79,7 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>#</th>
                 <th>Tipo Producto</th>
                 <th>N° de Producto</th>
                 <th>Descripción del Producto</th>

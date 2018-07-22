@@ -54,6 +54,7 @@
           <table id="Jtabla" class="table table-bordered table-striped">
             <thead>
               <tr>
+                <th>#</th>
                 <th>No. de Cotización</th>
                 <th>Empleados</th>
                 <th>Fecha</th>
@@ -65,8 +66,9 @@
              </tr>
             </thead>
             <tbody>
-              @foreach ($quotations as $quotation)
+              @foreach ($quotations as $i=> $quotation)
                 <tr>
+                  <td>{{$i+1}}</td>
                   <td>{{$quotation->cotizacion}}</td>
                   <td>{{$quotation->user->name}}</td>
                   <td>{{$quotation->fecha}}</td>
@@ -89,6 +91,7 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>#</th>
                 <th>No. de Cotización</th>
                 <th>Empleados</th>
                 <th>Fecha</th>

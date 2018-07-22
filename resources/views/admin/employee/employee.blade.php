@@ -46,9 +46,9 @@
              </tr>
             </thead>
             <tbody>
-              @foreach ($employees as $employee)
+              @foreach ($employees as $i => $employee)
                 <tr>
-                  <td>{{ $employee->id }}</td>
+                  <td>{{ $i+1}}</td>
                   <td>{{ $employee->name }}</td>
                   <td>{{ $employee->email }}</td>
                   <td>{{ $employee->phone }}</td>
