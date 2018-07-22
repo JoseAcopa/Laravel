@@ -120,7 +120,7 @@
             </div>
             <div class="col-md-12">
               <div class="form-group {{ $errors->has('observaciones') ? 'has-error' : '' }}">
-                <textarea type="text" rows="8" id="observacion" name="observaciones" class="form-control" placeholder="observaciones">{{ old('observaciones') }}</textarea>
+                <textarea type="text" rows="16" id="observacion" name="observaciones" class="form-control" placeholder="observaciones">{{ old('observaciones') }}</textarea>
                 {!! $errors->first('observaciones','<span class="help-block">:message</span>')!!}
               </div>
             </div>
