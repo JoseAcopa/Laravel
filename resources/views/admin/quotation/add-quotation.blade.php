@@ -14,6 +14,17 @@
     </section>
 
     <section class="content container-fluid">
+      @if ($message = Session::get('success'))
+        <div class="box box-success box-solid">
+          <div class="box-header">
+            <h3 class="box-title"><i class="icon fa fa-check"></i> {{ $message }}</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+        </div>
+      @endif
+
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
@@ -211,6 +222,56 @@
     </section>
     <script type="text/javascript" src="{{ asset('js/queryCotizacion.js') }}"></script>
     <script type="text/javascript">
+      // agregando cliente
+      function getClient(val) {
+        var id = val.value
+
+        $.ajax({
+          url: '/cliente/'+id,
+          type: 'GET',
+          success: (res)=>{
+            var count = res.count.length + 1
+            $('#cliente').val(res.client.id)
+            $('#rfc').val(res.client.RFC)
+            $('#empresa').val(res.client.business)
+            $('#telefono').val(res.client.phone)
+            $('#correo').val(res.client.email)
+            $('#direccion').val(res.client.address)
+            $('#noCotizacion').val('RXS-0'+count+'-'+res.year+'-'+'{{ Auth::user()->user}}'+'-'+res.client.siglas)
+          }
+        })
+      }
+
+      // guardando nuevo producto
+      setTimeout(function() {
+        $(document).ready(function() {
+          $("#save-new-product").click(function(){
+            console.log(find('input[name="description"]').val());
+            return
+            var data = {
+
+            }
+            $.ajax({
+              url: '/guardar-producto-cotizacion',
+              method: "POST",
+              data: {
+                  _token: "{{csrf_token()}}",
+                  _method: "POST",
+                  data: {data:'data'}
+              },
+              success: function(data){
+                console.log(data);
+                // swal(
+                //   '¡Eliminado!',
+                //   'El registro ha sido eliminado.',
+                //   'success'
+                // )
+              }
+            })
+          });
+        })
+      },500)
+
       // funciones para agregar datos del formulario
       function typeProduct(val){
         var priceList = $("#priceList").val()

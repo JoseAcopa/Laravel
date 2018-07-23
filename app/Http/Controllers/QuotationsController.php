@@ -97,7 +97,7 @@ class QuotationsController extends Controller
 
       $quotationPDF = $quotation->id;
       $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));;
+      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));
     }
 
     /**

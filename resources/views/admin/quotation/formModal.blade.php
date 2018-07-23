@@ -1,6 +1,6 @@
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    <form class="modal-content" method="POST" action="{{route('producto.newProducto')}}">
+    <form class="modal-content" method="POST" onsubmit="return false;"<>
       {{ csrf_field() }}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -113,7 +113,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">cerrar</button>
-        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="submit" id="save-new-product" class="btn btn-primary">Guardar</button>
       </div>
     </form>
   </div>

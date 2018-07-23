@@ -57,8 +57,8 @@ class ControllerNewProductQuotation extends Controller
     $invoice->priceSales4 = $request->priceSales4;
     $invoice->priceSales5 = $request->priceSales5 === null ? 0 : $request->priceSales5;
     $invoice->coin_id = $request->moneda;
-    $invoice->save();
+    $invoice->save()
 
-    return redirect('admin/crear-cotizacion')->with('success','La cotizacion ha sido eliminado correctamente');
+    return ["status" => "ok", "message" => "Datos insertados correctamente"];
   }
 }

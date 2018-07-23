@@ -114,25 +114,6 @@ function getProduct(val) {
   })
 }
 
-function getClient(val) {
-  var id = val.value
-
-  $.ajax({
-    url: '/cliente/'+id,
-    type: 'GET',
-    success: (res)=>{
-      var count = res.count.length + 1
-      $('#cliente').val(res.client.id)
-      $('#rfc').val(res.client.RFC)
-      $('#empresa').val(res.client.business)
-      $('#telefono').val(res.client.phone)
-      $('#correo').val(res.client.email)
-      $('#direccion').val(res.client.address)
-      $('#noCotizacion').val('RXS-0'+count+'-'+res.year+'-'+'{{ Auth::user()->user}}'+'-'+res.client.siglas)
-    }
-  })
-}
-
 var products = (JSON.parse(sessionStorage.getItem('products')) != null) ? JSON.parse(sessionStorage.getItem('products')) : []
 if (products.length != 0) {
   products.map((item, i)=>{
