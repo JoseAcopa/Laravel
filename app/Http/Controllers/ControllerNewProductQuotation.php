@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Catalog;
 use App\Products;
 use App\Invoice;
+use App\Clients;
 
 class ControllerNewProductQuotation extends Controller
 {
@@ -63,4 +64,19 @@ class ControllerNewProductQuotation extends Controller
 
     return ["status" => "ok", "message" => "Datos insertados correctamente"];
   }
+
+  public function store(Request $request)
+  {
+    $clients = new Clients;
+    $clients->RFC = $request->RFC;
+    $clients->business = $request->business;
+    $clients->address = $request->address;
+    $clients->phone = $request->phone === null ? '' : $request->phone;
+    $clients->email = $request->email === null ? '' : $request->email;
+    $clients->siglas = $request->siglas;
+    $clients->save();
+    
+    return redirect('admin/crear-cotizacion')->with('success','Cliente guardado correctamente');
+  }
+
 }

@@ -39,15 +39,16 @@
               </div>
               <div class="box-body" style="">
                 <div class="form-group">
+                  <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
                   <label>Clientes</label>
                   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
                       <option selected="selected" value="null">Buscar...</option>
                       @foreach ($clients as $client)
                         <option value="{{ $client->id }}">{{$client->business}} | {{$client->email}} | {{$client->phone}}</option>
                       @endforeach
                     </select>
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
                   </div>
                 </div>
               </div>
@@ -219,6 +220,7 @@
         </form>
       </div>
       @include('admin.quotation.formModal')
+      @include('admin.quotation.FormClient')
     </section>
     <script type="text/javascript" src="{{ asset('js/queryCotizacion.js') }}"></script>
     <script type="text/javascript">

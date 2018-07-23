@@ -130,6 +130,7 @@ Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo
 
 // =======================guardar producto nuevo desde cotizacion==============================================
 Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
+Route::post('/guardar-cliente-cotizacion', 'ControllerNewProductQuotation@store')->name('cliente.cotizacion');
 // =======================guardar producto nuevo desde cotizacion==============================================
 
 // =======================crear PDF ==============================================
