@@ -52,6 +52,7 @@
           <table id="Jtabla" class="table table-bordered table-hover dataTable">
             <thead>
               <tr>
+                <th>#</th>
                 <th>N° de Factura</th>
                 <th>Categoria</th>
                 <th>Proveedor</th>
@@ -63,8 +64,9 @@
              </tr>
             </thead>
             <tbody>
-              @foreach ($invoices as $invoice)
+              @foreach ($invoices as $i => $invoice)
                 <tr>
+                  <td>{{ $i+1 }}</td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
                   <td>{{ $invoice->supplier->business }}</td>
@@ -83,6 +85,7 @@
             </tbody>
             <tfoot>
               <tr>
+                <th>#</th>
                 <th>N° de Factura</th>
                 <th>Categoria</th>
                 <th>Proveedor</th>
