@@ -12,6 +12,7 @@ use App\Count;
 use App\Units;
 use App\Category;
 use App\Suppliers;
+use App\Coins;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateQuotationRequest;
 
@@ -45,7 +46,8 @@ class QuotationsController extends Controller
       $units = Units::all();
       $categories = Category::all();
       $proveedores = Suppliers::all();
-      return view('admin.quotation.add-quotation', compact('products', 'clients', 'units', 'categories', 'proveedores'));
+      $coins = Coins::all();
+      return view('admin.quotation.add-quotation', compact('products', 'clients', 'units', 'categories', 'proveedores', 'coins'));
     }
 
     /**

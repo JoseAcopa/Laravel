@@ -161,7 +161,7 @@
               <div class="form-group">
                 <label>Precios:</label>
                 <select class="form-control" id="" onchange="cambiarPrecio(this.value);" >
-                  <option selected="selected" value="">Selecciona precio</option>
+                  <option selected="selected" value="">Selecciona</option>
                   <option id="price1"></option>
                   <option id="price2"></option>
                   <option id="price3"></option>
@@ -213,6 +213,12 @@
     <script type="text/javascript">
       // funciones para agregar datos del formulario
       function typeProduct(val){
+        var priceList = $("#priceList").val()
+        var cost = $("#cost").val()
+        var cat1 = [.70, .65, .60, .57]
+        var cat2 = [.40, .37, .36, .35]
+        var cat3 = [.70, .75, .80, .85]
+        var newRes = []
         var categories = <?php echo$categories;?>;
         var newVal = {};
 
@@ -220,8 +226,55 @@
           newVal[item.id] = item
         })
 
-        var category = newVal[val.value]
-        document.getElementById('letter').value = category.letters;
+        if (val.value != '') {
+          var category = newVal[val.value]
+          document.getElementById('letter').value = category.letters;
+
+          document.getElementById('mostrar-form').style.display = 'block'
+          document.getElementById('categoria-view').value = category.categorias
+
+          if (category.categorias === 'Petrolera | Industrial') {
+            $('#cost').attr('readonly', 'readonly');
+            $('#priceList').removeAttr('readonly');
+            for (var i = 0; i < cat1.length; i++) {
+              var res = cat1[i] * priceList
+              newRes.push(res)
+              $('#pv1').text("(x0.70)")
+              $('#pv2').text("(x0.65)")
+              $('#pv3').text("(x0.60)")
+              $('#pv4').text("(x0.57)")
+            }
+          }else if (category.categorias === 'Hidraulica') {
+            $('#cost').attr('readonly', 'readonly');
+            $('#priceList').removeAttr('readonly');
+            for (var i = 0; i < cat2.length; i++) {
+              var res = cat2[i] * cost
+              newRes.push(res)
+              $('#pv1').text("(x0.40)")
+              $('#pv2').text("(x0.37)")
+              $('#pv3').text("(x0.36)")
+              $('#pv4').text("(x0.35)")
+            }
+          }else if (category.categorias === 'Otro') {
+            $('#cost').removeAttr('readonly');
+            $('#priceList').attr('readonly', 'readonly');
+            for (var i = 0; i < cat3.length; i++) {
+              var res = cost / cat3[i]
+              newRes.push(res)
+              $('#pv1').text("(/ 0.70)")
+              $('#pv2').text("(/ 0.75)")
+              $('#pv3').text("(/ 0.80)")
+              $('#pv4').text("(/ 0.85)")
+            }
+          }
+
+          $('#priceSales1').val(newRes[0].toFixed(2))
+          $('#priceSales2').val(newRes[1].toFixed(2))
+          $('#priceSales3').val(newRes[2].toFixed(2))
+          $('#priceSales4').val(newRes[3].toFixed(2))
+        }else {
+          document.getElementById('mostrar-form').style.display = 'none'
+        }
       }
     </script>
 @endsection

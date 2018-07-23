@@ -227,8 +227,6 @@
         var cat3 = [.70, .75, .80, .85]
         var newRes = []
 
-        console.log(categoria);
-
         if (categoria === 'Petrolera | Industrial') {
           var newCost = priceList * .50
           $('#cost').val(newCost)
@@ -244,7 +242,7 @@
           var newCost = priceList * .29
           $('#cost').val(newCost)
           for (var i = 0; i < cat2.length; i++) {
-            var res = cat2[i] * cost
+            var res = cat2[i] * newCost
             newRes.push(res)
             $('#pv1').text("(x0.40)")
             $('#pv2').text("(x0.37)")

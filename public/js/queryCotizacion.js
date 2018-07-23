@@ -294,3 +294,54 @@ function getUnidad(val) {
     $('#unidad').attr('readonly', 'readonly');
   }
 }
+
+function priceSales() {
+  var categoria = $("#categoria-view").val()
+  var priceList = $("#priceList").val()
+  var cost = $("#cost").val()
+  var cat1 = [.70, .65, .60, .57]
+  var cat2 = [.40, .37, .36, .35]
+  var cat3 = [.70, .75, .80, .85]
+  var newRes = []
+
+  if (categoria === 'Petrolera | Industrial') {
+    var newCost = priceList * .50
+    $('#cost').val(newCost)
+    for (var i = 0; i < cat1.length; i++) {
+      var res = cat1[i] * priceList
+      newRes.push(res)
+      $('#pv1').text("(x0.70)")
+      $('#pv2').text("(x0.65)")
+      $('#pv3').text("(x0.60)")
+      $('#pv4').text("(x0.57)")
+    }
+  }else if (categoria === 'Hidraulica') {
+    var newCost = priceList * .29
+    console.log(newCost);
+    $('#cost').val(newCost)
+    for (var i = 0; i < cat2.length; i++) {
+      var res = cat2[i] * newCost
+      newRes.push(res)
+      $('#pv1').text("(x0.40)")
+      $('#pv2').text("(x0.37)")
+      $('#pv3').text("(x0.36)")
+      $('#pv4').text("(x0.35)")
+    }
+  }else if (categoria === 'Otro') {
+    for (var i = 0; i < cat3.length; i++) {
+      var res = cost / cat3[i]
+      newRes.push(res)
+      $('#pv1').text("(/ 0.70)")
+      $('#pv2').text("(/ 0.75)")
+      $('#pv3').text("(/ 0.80)")
+      $('#pv4').text("(/ 0.85)")
+    }
+  }
+
+  if (categoria.length > 0) {
+    $('#priceSales1').val(newRes[0].toFixed(2))
+    $('#priceSales2').val(newRes[1].toFixed(2))
+    $('#priceSales3').val(newRes[2].toFixed(2))
+    $('#priceSales4').val(newRes[3].toFixed(2))
+  }
+}

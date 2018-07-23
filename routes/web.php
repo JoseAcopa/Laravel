@@ -127,6 +127,10 @@ Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('c
 Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
 // =======================recuperar contrasena ==============================================
 
+// =======================guardar producto nuevo desde cotizacion==============================================
+Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
+// =======================guardar producto nuevo desde cotizacion==============================================
+
 // =======================crear PDF ==============================================
 Route::get("factura/{id}","PDFController@downloadPDF");
 Route::get("descargar/{id}","PDFController@descargarPDF");
