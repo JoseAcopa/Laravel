@@ -37,4 +37,10 @@ class ControllersAjax extends Controller
     $array = compact('year', 'count', 'client');
     return $array;
   }
+
+  public function getProductsAjax()
+  {
+    $products = Products::with(['category'])->get();
+    return $products;
+  }
 }

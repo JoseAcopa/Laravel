@@ -99,12 +99,12 @@ Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.sh
 // Route::resource('/admin/facturas', 'ControllerInvoices');
 // ------------------End facturas----------------------------------------
 
-// =======================metodos ajax ==============================================
+// =======================actividades ==============================================
 Route::post('/crear-actividad', 'AdminControllers@store')->name('actividad.store');
 Route::delete('/actividad/{id}', 'AdminControllers@destroy')->name('actividad.destroy');
 Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edit');
 Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
-// =======================End metodos ajax ==============================================
+// =======================actividades ==============================================
 
 // =======================reportes ==============================================
 Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
@@ -117,6 +117,7 @@ Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')-
 Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
 Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
 Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
+Route::get('/productos', 'ControllersAjax@getProductsAjax');
 // =======================End metodos ajax ==============================================
 
 // =======================recuperar contrasena ==============================================

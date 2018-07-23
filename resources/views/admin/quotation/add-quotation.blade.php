@@ -146,10 +146,10 @@
               <div class="form-group">
                 <label>Buscar Producto</label>
                 <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
-                  <option selected="selected" value="null">Buscar...</option>
+                  {{-- <option selected="selected" value="null">Buscar...</option>
                   @foreach ($products as $product)
                     <option value="{{ $product->id }}">{{ $product->category->type }} | {{ $product->description }}</option>
-                  @endforeach
+                  @endforeach --}}
                 </select>
               </div>
             </div>
@@ -245,6 +245,18 @@
       // guardando nuevo producto
       setTimeout(function() {
         $(document).ready(function() {
+          // obteniendo los productos para rellenar el select
+          $.ajax({
+            url: '/productos',
+            type: 'GET',
+            success: (res)=>{
+              $('#searchProduct').append('<option class="options" selected="selected">Selecciona</option>')
+              for (var i = 0; i < res.length; i++) {
+                $('#searchProduct').append('<option class="options" value="'+res[i].id+'">'+res[i].category.type+' | '+res[i].description+'</option>')
+              }
+            }
+          })
+
           $("#save-new-product").click(function(){
 
             var data = {
@@ -276,7 +288,6 @@
                   data: data
               },
               success: function(res){
-                console.log(res);
                 swal(
                   'Datos Guardados!',
                   'ELos datos se guardaron correctamente.',
@@ -285,6 +296,21 @@
                 $('#formProducto')[0].reset();
                 $('.bd-example-modal-lg').modal('hide');
                 document.getElementById('mostrar-form').style.display = 'none'
+
+                // limpiamos el select
+                $('.options').remove();
+                // cargamos los productos actualizados
+                $.ajax({
+                  url: '/productos',
+                  type: 'GET',
+                  success: (res)=>{
+                    $('#searchProduct').append('<option class="options" selected="selected">Selecciona</option>')
+                    for (var i = 0; i < res.length; i++) {
+                      $('#searchProduct').append('<option class="options" value="'+res[i].id+'">'+res[i].category.type+' | '+res[i].description+'</option>')
+                    }
+                  }
+                })
+
               }
             })
           });
