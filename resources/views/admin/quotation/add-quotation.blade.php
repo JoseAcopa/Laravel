@@ -246,26 +246,45 @@
       setTimeout(function() {
         $(document).ready(function() {
           $("#save-new-product").click(function(){
-            console.log(find('input[name="description"]').val());
-            return
-            var data = {
 
+            var data = {
+              "category": document.getElementById('category').value,
+              "letter": document.getElementById('letter').value,
+              "proveedor": document.getElementById('proveedor').value,
+              "unidad": document.getElementById('unidad').value,
+              "description": $('textarea[id="description"]').val(),
+              "nInvoice": document.getElementById('nInvoice').value ? document.getElementById('nInvoice').value : null,
+              "fecha_entrada": document.getElementById('datepickerProduct').value,
+              "cantidad_entrada": document.getElementById('cantidad_entrada').value,
+              "precio_lista": document.getElementById('priceList').value ? document.getElementById('priceList').value : null,
+              "costo": document.getElementById('cost').value ? document.getElementById('cost').value : null,
+              "moneda": document.getElementById('moneda').value,
+              "categoria-view": document.getElementById('categoria-view').value,
+              "priceSales1": document.getElementById('priceSales1').value,
+              "priceSales2": document.getElementById('priceSales2').value,
+              "priceSales3": document.getElementById('priceSales3').value,
+              "priceSales4": document.getElementById('priceSales4').value,
+              "priceSales5": document.getElementById('priceSales5').value ? document.getElementById('priceSales5').value : null
             }
+
             $.ajax({
               url: '/guardar-producto-cotizacion',
               method: "POST",
               data: {
                   _token: "{{csrf_token()}}",
                   _method: "POST",
-                  data: {data:'data'}
+                  data: data
               },
-              success: function(data){
-                console.log(data);
-                // swal(
-                //   '¡Eliminado!',
-                //   'El registro ha sido eliminado.',
-                //   'success'
-                // )
+              success: function(res){
+                console.log(res);
+                swal(
+                  'Datos Guardados!',
+                  'ELos datos se guardaron correctamente.',
+                  'success'
+                )
+                $('#formProducto')[0].reset();
+                $('.bd-example-modal-lg').modal('hide');
+                document.getElementById('mostrar-form').style.display = 'none'
               }
             })
           });

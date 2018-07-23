@@ -11,53 +11,55 @@ class ControllerNewProductQuotation extends Controller
 {
   public function saveNewProduct(Request $request)
   {
+    $data = $request->data;
+
     // guardando en catalogo
-    $product = new Catalog;
-    $product->category_id = $request->category;
-    $product->letter = $request->letter;
-    $product->supplier_id = $request->proveedor;
-    $product->unit = $request->unidad;
-    $product->description = $request->description;
-    $product->save();
+    $catalogo = new Catalog;
+    $catalogo->category_id = $data['category'];
+    $catalogo->letter = $data['letter'];
+    $catalogo->supplier_id = $data['proveedor'];
+    $catalogo->unit = $data['unidad'];
+    $catalogo->description = $data['description'];
+    $catalogo->save();
 
     // guardando en producto
     $product = new Products;
-    $product->category_id = $request->category;
-    $product->initials = $request->letter;
-    $product->supplier_id = $request->proveedor;
-    $product->checkin = $request->fecha_entrada;
-    $product->unit = $request->unidad;
-    $product->description = $request->description;
-    $product->priceList = $request->precio_lista === null ? 0 : $request->precio_lista;
-    $product->cost = $request->costo === null ? 0 : $request->costo;
-    $product->stock = $request->cantidad_entrada;
-    $product->priceSales1 = $request->priceSales1;
-    $product->priceSales2 = $request->priceSales2;
-    $product->priceSales3 = $request->priceSales3;
-    $product->priceSales4 = $request->priceSales4;
-    $product->priceSales5 = $request->priceSales5 === null ? 0 : $request->priceSales5;
-    $product->coin_id = $request->moneda;
+    $product->category_id = $data['category'];
+    $product->initials = $data['letter'];
+    $product->supplier_id = $data['proveedor'];
+    $product->checkin = $data['fecha_entrada'];
+    $product->unit = $data['unidad'];
+    $product->description = $data['description'];
+    $product->priceList = $data['precio_lista'] === null ? 0 : $data['precio_lista'];
+    $product->cost = $data['costo'] === null ? 0 : $data['costo'];
+    $product->stock = $data['cantidad_entrada'];
+    $product->priceSales1 = $data['priceSales1'];
+    $product->priceSales2 = $data['priceSales2'];
+    $product->priceSales3 = $data['priceSales3'];
+    $product->priceSales4 = $data['priceSales4'];
+    $product->priceSales5 = $data['priceSales5'] === null ? 0 : $data['priceSales5'];
+    $product->coin_id = $data['moneda'];
     $product->save();
 
     // guardando en cotizaciones de productos de entrada
     $invoice = new Invoice;
-    $invoice->nInvoice = $request->nInvoice === null ? '' : $request->nInvoice;
-    $invoice->category_id = $request->category;
-    $invoice->initials = $request->letter;
-    $invoice->supplier_id = $request->proveedor;
-    $invoice->checkin = $request->fecha_entrada;
-    $invoice->quantity = $request->cantidad_entrada;
-    $invoice->unit = $request->unidad;
-    $invoice->priceList = $request->precio_lista === null ? 0 : $request->precio_lista;
-    $invoice->cost = $request->costo === null ? 0 : $request->costo;
-    $invoice->description = $request->description;
-    $invoice->priceSales1 = $request->priceSales1;
-    $invoice->priceSales2 = $request->priceSales2;
-    $invoice->priceSales3 = $request->priceSales3;
-    $invoice->priceSales4 = $request->priceSales4;
-    $invoice->priceSales5 = $request->priceSales5 === null ? 0 : $request->priceSales5;
-    $invoice->coin_id = $request->moneda;
-    $invoice->save()
+    $invoice->nInvoice = $data['nInvoice'] === null ? '' : $data['nInvoice'];
+    $invoice->category_id = $data['category'];
+    $invoice->initials = $data['letter'];
+    $invoice->supplier_id = $data['proveedor'];
+    $invoice->checkin = $data['fecha_entrada'];
+    $invoice->quantity = $data['cantidad_entrada'];
+    $invoice->unit = $data['unidad'];
+    $invoice->priceList = $data['precio_lista'] === null ? 0 : $data['precio_lista'];
+    $invoice->cost = $data['costo'] === null ? 0 : $data['costo'];
+    $invoice->description = $data['description'];
+    $invoice->priceSales1 = $data['priceSales1'];
+    $invoice->priceSales2 = $data['priceSales2'];
+    $invoice->priceSales3 = $data['priceSales3'];
+    $invoice->priceSales4 = $data['priceSales4'];
+    $invoice->priceSales5 = $data['priceSales5'] === null ? 0 : $data['priceSales5'];
+    $invoice->coin_id = $data['moneda'];
+    $invoice->save();
 
     return ["status" => "ok", "message" => "Datos insertados correctamente"];
   }
