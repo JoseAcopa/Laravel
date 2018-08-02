@@ -29,7 +29,7 @@ class CreateQuotationRequest extends FormRequest
           'licitacion' => 'max:255|required',
           'nombre' => 'max:255|required',
           'puesto' => 'max:255|required',
-          'observaciones' => 'max:1500||required',
+          'observaciones' => 'max:10000||required',
           'total' => 'max:255|required',
           'cliente' => 'max:255|required',
           'RFC' => 'max:255|required',
