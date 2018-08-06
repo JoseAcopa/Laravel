@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{$invoice->supplier->business}}</title>
+    <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
         margin: 0cm 0cm;
       }
       body {
-        margin-top:    150px;
+        margin-top:    235px;
         margin-bottom: 130px;
         margin-left:   1cm;
         margin-right:  1cm;
@@ -44,9 +48,14 @@
       }
 
       .bussines {
+        position: fixed;
+        bottom: 0px;
+        left: 40px;
+        top: 140px;
         width: 470px;
         height: auto;
         padding-bottom: 10px;
+        z-index: -100;
       }
 
       .title-bussines {
@@ -57,10 +66,11 @@
       }
 
       .table {
-        position: absolute;
-        width:180px;
-        right:10px;
-        top: -5px;
+        position: fixed;
+        width: 180px;
+        right: 45px;
+        top: 140px;
+        z-index: -100;
       }
 
       .ul-table {
@@ -76,6 +86,9 @@
       }
 
       .usuario {
+        position: fixed;
+        top: 173px;
+        z-index: -100;
         width: 100%;
         text-align: center;
       }
@@ -108,6 +121,10 @@
         background: #456;
         width: 100%;
         font-size: 12px;
+      }
+
+      .defaulttr{
+        width: 405px !important;
       }
 
       .tbody{
@@ -151,78 +168,53 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">PEMEX EXPLORACION Y PRODUCCION</h2>
-          <p class="title-bussines">Calle 25, No 48, ENTRE 6 y 38, COL. GPE, CP 24130, EDIF. CORP. CANTAREL, CD DEL CARMEN CAMPECHE</p>
+          <h2 class="title-bussines">{{$invoice->supplier->business}}</h2>
+          <p class="title-bussines">{{$invoice->supplier->address}}</p>
         </div>
         <div class="table">
           <ul class="ul-table">
-            <li class="li-active">Fecha</li>
-            <li>{{ date('d/m/Y') }}</li>
-            <li class="li-active">No. de Cotización</li>
-            <li>RXS-001-2018-FMV-SEAP</li>
-            <li class="li-active">No. de Licitacón</li>
-            <li>N/A</li>
+            <li class="li-active">Fecha de entrada</li>
+            <li>{{$invoice->checkin}}</li>
+            <li class="li-active">No. de Factura</li>
+            <li>{{$invoice->nInvoice}}</li>
+            {{-- <li class="li-active">No. de Licitacón</li>
+            <li>N/A</li> --}}
           </ul>
         </div>
         <div class="usuario">
-          <h2>Atención:</h2>
-          <p>Ing. {{Auth::user()->name}}</p>
-          <p>{{Auth::user()->email}}</p>
+          <h2>Tipo:</h2>
+          <p>{{$invoice->category->type}}</p>
+          <h2>Categoria:</h2>
+          <p>{{$invoice->category->categorias}}</p>
         </div>
         <div class="container-table">
           <table>
             <thead class="default">
               <tr>
-                <th>PARTIDA</th>
+                <th>#</th>
                 <th>DESCRIPCIÓN</th>
                 <th>CANTIDAD</th>
                 <th>U.MEDIDA</th>
-                <th>P.UNITARIO</th>
-                <th>IMPORTE</th>
+                <th>P. LISTA</th>
+                <th>COSTO</th>
               </tr>
             </thead>
             <tbody class="tbody">
               <tr>
                 <td>1</td>
                 <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
+                  {{strtoupper($invoice->description)}}
                 </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$7060.19</td>
-                <td>$7060.19</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
-                </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$7785.58</td>
-                <td>$7785.58</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="tjustify">
-                  ENSAMBLE DE MNGUERA DE 4" x 196 FT, MARCA GATES, MODELO
-                  BLACK GOLD OILFIELD SERVICE 400SD C/C 4" NPT MXM INCLUYE:
-                  HAMMER UNION 4" FIGURA 200 ROSCABLE, CON CERTIFICADO DE PRUEBA.
-                </td>
-                <td>1</td>
-                <td>Pieza</td>
-                <td>$4320.48</td>
-                <td>$4320.48</td>
+                <td>{{$invoice->quantity}}</td>
+                <td>{{$invoice->unit}}</td>
+                <td>${{$invoice->priceList}} {{$invoice->coin->type}}</td>
+                <td>${{$invoice->cost}} {{$invoice->coin->type}}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="sub-condiciones">
-          SUBTOTAL = $19166.25 (DIECINUEVE MIL CIENTO SESENTA SEIS USD 25/100) + IVA
+        {{-- <p class="sub-condiciones">
+          TOTAL = $19166.25 (DIECINUEVE MIL CIENTO SESENTA SEIS USD 25/100)
         </p>
 
         <p class="sub-condiciones">
@@ -258,7 +250,7 @@
         <p class="title-bussines">_____________________</p>
         <p class="title-bussines">M. en A. Francisco Mar Velazquez</p>
         <p class="title-bussines">Gerencia</p>
-      </div>
+      </div> --}}
     </main>
   </body>
 </html>

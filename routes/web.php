@@ -96,7 +96,6 @@ Route::get('admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotiz
 Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
 Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:facturas.destroy');
 Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:facturas.show');
-// Route::resource('/admin/facturas', 'ControllerInvoices');
 // ------------------End facturas----------------------------------------
 
 // =======================actividades ==============================================
