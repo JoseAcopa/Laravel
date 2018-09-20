@@ -15,15 +15,17 @@
     </div>
   </div>
   <div class="col-md-12 form-group">
-    <label>{{ Form::radio('special', 'all-access') }} Accesso total</label>
-    <label>{{ Form::radio('special', 'no-access') }} Ningùn acceso</label>
+    <div class="radio">
+      <label>{{ Form::radio('special', 'all-access', false, ['onclick' => 'activateRadio(this)']) }} Accesso total</label>
+      <label>{{ Form::radio('special', 'no-access', false, ['onclick' => 'activateRadio(this)']) }} Ningùn acceso</label>
+    </div>
   </div>
   <div class="col-md-12">
     <h4>Lista Permisos</h4>
     @foreach ($permissions as $permission)
       <div class="checkbox">
         <label>
-          {{ Form::checkbox('permissions[]', $permission->id, null) }}
+          {{ Form::checkbox('permissions[]', $permission->id, null, ['onclick' => 'activateCheckbox()']) }}
           {{$permission->description}}
         </label>
       </div>
