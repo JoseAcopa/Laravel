@@ -10,31 +10,77 @@
 <script src="{{ asset('bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js')}}"></script>
 <script src="{{ asset('bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{ asset('dist/js/adminlte.min.js')}}"></script>
-<script src="{{ url('js/datatable/jquery.dataTables.js') }}" type="text/javascript"></script>
+<script src="{{ url('bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{ url('js/sweetalert2/sweetalert2.js') }}"></script>
 <script type="text/javascript" src="{{ url('js/sweetalert2/sweetalert2.all.min.js') }}"></script>
-<script src="{{ url('js/datatable/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+<script src="{{ url('bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{ asset('/dist/js/demo.js')}}"></script>
 <script type="text/javascript">
   $(function () {
     $('#Jtabla').dataTable({
-      "bPaginate": true,
       "bLengthChange": true,
       "bFilter": true,
       "bSort": true,
       "bInfo": true,
       "bAutoWidth": true,
-      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]]
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]],
+      "language": {
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún registro disponible.",
+        "sInfo": "Mostrando de _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+          "sFirst": "Primero",
+          "sLast": "Último",
+          "sNext": "Siguiente",
+          "sPrevious": "Anterior"
+        },
+        "oAria": {
+          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+      },
     });
 
     $('#correos').dataTable({
-      "bPaginate": true,
       "bLengthChange": true,
       "bFilter": true,
       "bSort": true,
       "bInfo": true,
       "bAutoWidth": true,
-      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]]
+      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]],
+      "language": {
+        "sProcessing": "Procesando...",
+        "sLengthMenu": "Mostrar _MENU_ registros",
+        "sZeroRecords": "No se encontraron resultados",
+        "sEmptyTable": "Ningún registro disponible.",
+        "sInfo": "Mostrando de _START_ al _END_ de un total de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
+        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sSearch": "Buscar:",
+        "sUrl": "",
+        "sInfoThousands": ",",
+        "sLoadingRecords": "Cargando...",
+        "oPaginate": {
+          "sFirst": "Primero",
+          "sLast": "Último",
+          "sNext": "Siguiente",
+          "sPrevious": "Anterior"
+        },
+        "oAria": {
+          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+        }
+      },
     });
   });
 </script>
