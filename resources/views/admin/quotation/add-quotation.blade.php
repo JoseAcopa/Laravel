@@ -29,7 +29,8 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
         </div>
-        <form class="" action="index.html" method="post">
+        <form class="" action={{route('cotizacion.get')}} method="POST">
+          {{ csrf_field() }}
           <div class="col-md-5 pull-right">
             <label for="">Buscar cotización:</label>
             <div class="input-group">

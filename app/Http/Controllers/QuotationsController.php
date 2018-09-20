@@ -150,4 +150,9 @@ class QuotationsController extends Controller
       DB::table('quoteers')->where('cotizacion_id', $id)->delete();
       return redirect('admin/cotizacion')->with('success','La cotizacion ha sido eliminado correctamente');
     }
+
+    public function get()
+    {
+      return 'test';
+    }
 }

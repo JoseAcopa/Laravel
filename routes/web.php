@@ -90,6 +90,7 @@ Route::get('/admin/editar-cotizacion/{cotizacion}', 'QuotationsController@edit')
 Route::post('/admin/cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:quotation.edit');
 Route::delete('admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:quotation.destroy');
 Route::get('admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:quotation.show');
+Route::post('/obtener-cotizacion-existente', 'QuotationsController@get')->name('cotizacion.get');
 // ------------------end quotations----------------------------------------
 
 // ------------------facturas----------------------------------------
