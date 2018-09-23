@@ -231,7 +231,7 @@
       </div>
       <div class="firma">
         <p class="title-bussines">ATENTAMENTE</p>
-        <p class="title-bussines">_____________________</p>
+        {{-- <p class="title-bussines">_____________________</p> --}}
         <p class="title-bussines">M. en A. Francisco Mar Velazquez</p>
         <p class="title-bussines">Gerencia</p>
       </div>

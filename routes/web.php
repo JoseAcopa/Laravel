@@ -82,16 +82,16 @@ Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('s
 Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:product-output.show');
 // ------------------End checkout----------------------------------------
 
-// ------------------quotations----------------------------------------
+// ------------------cotizacion----------------------------------------
 Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.index')->middleware('permission:quotation.index');
 Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:quotation.create');
 Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:quotation.create');
 Route::get('/admin/editar-cotizacion/{cotizacion}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:quotation.edit');
 Route::post('/admin/cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:quotation.edit');
-Route::delete('admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:quotation.destroy');
-Route::get('admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:quotation.show');
+Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:quotation.destroy');
+Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:quotation.show');
 Route::post('/obtener-cotizacion-existente', 'QuotationsController@get')->name('cotizacion.get');
-// ------------------end quotations----------------------------------------
+// ------------------fin cotizacion----------------------------------------
 
 // ------------------facturas----------------------------------------
 Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
@@ -136,5 +136,5 @@ Route::post('/guardar-cliente-cotizacion', 'ControllerNewProductQuotation@store'
 // =======================crear PDF ==============================================
 Route::get("factura/{id}","PDFController@downloadPDF");
 Route::get("descargar/{id}","PDFController@descargarPDF");
-Route::get("cotizacion/{quotation}","PDFController@cotizacionPDF");
+Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
 Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");

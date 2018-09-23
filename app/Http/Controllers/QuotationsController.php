@@ -30,8 +30,8 @@ class QuotationsController extends Controller
     public function index()
     {
       $quotationPDF = 0;
-      $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'));
+      $cotizaciones = Quotations::with(['user', 'cliente'])->get();
+      return view('admin.quotation.index', compact('cotizaciones', 'quotationPDF'));
     }
 
     /**

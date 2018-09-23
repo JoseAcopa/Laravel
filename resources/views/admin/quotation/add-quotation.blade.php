@@ -159,10 +159,6 @@
               <div class="form-group">
                 <label>Buscar Producto</label>
                 <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
-                  {{-- <option selected="selected" value="null">Buscar...</option>
-                  @foreach ($products as $product)
-                    <option value="{{ $product->id }}">{{ $product->category->type }} | {{ $product->description }}</option>
-                  @endforeach --}}
                 </select>
               </div>
             </div>
@@ -251,7 +247,7 @@
             $('#telefono').val(res.client.phone)
             $('#correo').val(res.client.email)
             $('#direccion').val(res.client.address)
-            $('#noCotizacion').val('RXS-0'+count+'-'+res.year+'-'+'{{ Auth::user()->user}}'+'-'+res.client.siglas)
+            $('#noCotizacion').val('RXS-'+("000" + count).substr(-3,3)+'-'+res.year+'-'+'{{ Auth::user()->user}}'+'-'+res.client.siglas)
           }
         })
       }

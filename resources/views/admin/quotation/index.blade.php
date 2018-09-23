@@ -46,7 +46,7 @@
       <div class="box">
         <div class="box-header">
           @can ('quotation.create')
-            <a href="{{url('admin/crear-cotizacion')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nuevo</a>
+            <a href="{{route('cotizacion.create')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nuevo</a>
           @endcan
         </div>
 
@@ -59,31 +59,30 @@
                 <th>Empleados</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
-                <th>Nombre de la Empresa</th>
+                <th>Empresa</th>
                 <th>RFC</th>
                 <th>Total</th>
                 <th>Acciones</th>
              </tr>
             </thead>
             <tbody>
-              @foreach ($quotations as $i=> $quotation)
+              @foreach ($cotizaciones as $key => $cotizacion)
                 <tr>
-                  <td>{{$i+1}}</td>
-                  <td>{{$quotation->cotizacion}}</td>
-                  <td>{{$quotation->user->name}}</td>
-                  <td>{{$quotation->fecha}}</td>
-                  <td>{{$quotation->nombre}}</td>
-                  <td>{{$quotation->cliente->business}}</td>
-                  <td>{{$quotation->cliente->RFC}}</td>
-                  <td>${{$quotation->total}}</td>
+                  <td>{{$key + 1}}</td>
+                  <td>{{$cotizacion->cotizacion}}</td>
+                  <td>{{$cotizacion->user->name}}</td>
+                  <td>{{$cotizacion->fecha}}</td>
+                  <td>{{$cotizacion->nombre}}</td>
+                  <td>{{$cotizacion->cliente->business}}</td>
+                  <td>{{$cotizacion->cliente->RFC}}</td>
+                  <td>${{$cotizacion->total}}</td>
                   <td class="row-copasat">
                     @can ('quotation.show')
-                      <a class="btn btn-primary" href="{{url('/admin/ver-cotizacion',$quotation->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                      <a class="btn btn-primary" href="{{route('cotizacion.show',$cotizacion->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
                     @endcan
-                    <a class="btn btn-default" target="_blank" href="{{url('/cotizacion',$quotation->id)}}"><i class="fa fa-file-pdf-o"></i></a>
-                    {{-- <a class="btn btn-info" href="{{url('/admin/edit-product',$quotation->id)}}"><i class="fa fa-pencil-square-o"></i></a> --}}
+                    <a class="btn btn-default" target="_blank" href="{{url('/cotizacion',$cotizacion->id)}}"><i class="fa fa-file-pdf-o"></i></a>
                     @can ('quotation.destroy')
-                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $quotation->id)}}');"><i class="fa fa-trash-o"></i></a>
+                      <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $cotizacion->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>
                 </tr>
@@ -96,7 +95,7 @@
                 <th>Empleados</th>
                 <th>Fecha</th>
                 <th>Cliente</th>
-                <th>Nombre de la Empresa</th>
+                <th>Empresa</th>
                 <th>RFC</th>
                 <th>Total</th>
                 <th>Acciones</th>
