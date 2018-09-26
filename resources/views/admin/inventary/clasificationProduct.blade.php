@@ -51,6 +51,7 @@
                     <option value="">Seleccione Categoria</option>
                     <option value="Petrolera | Industrial">Petrolera | Industrial</option>
                     <option value="Hidraulica">Hidraulica</option>
+                    <option value="Servicios">Servicios</option>
                     <option value="Otro">Otro</option>
                   </select>
                   {!! $errors->first('categorias','<span class="help-block">:message</span>')!!}
