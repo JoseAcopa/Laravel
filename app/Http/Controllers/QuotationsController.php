@@ -47,7 +47,7 @@ class QuotationsController extends Controller
       $categories = Category::all();
       $proveedores = Suppliers::all();
       $coins = Coins::all();
-      return view('admin.quotation.add-quotation', compact('products', 'clients', 'units', 'categories', 'proveedores', 'coins'));
+      return view('admin.quotation.create', compact('products', 'clients', 'units', 'categories', 'proveedores', 'coins'));
     }
 
     /**
