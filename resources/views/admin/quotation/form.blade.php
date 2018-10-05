@@ -23,12 +23,14 @@
 </div>
 <div class="box-body">
   <div class="col-md-4">
-    <input type="text" name="total" id="totalAmount" hidden>
-    <input type="text" name="count" id="count" hidden>
-    <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente" hidden>
+    <input type="text" name="total" id="totalAmount">
+    <input type="text" name="count" id="count">
+    <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente">
     <div class="form-group {{ $errors->has('cotizacion') ? 'has-error' : '' }}">
-      <label for="cotizacion">No. de Cotización:</label>
-      <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización" id="noCotizacion" readonly>
+      {{-- <label for="cotizacion">No. de Cotización:</label>
+      <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización" id="noCotizacion" readonly> --}}
+      {{ Form::label('cotizacion', 'No. de Cotización:') }}
+      {{ Form::text('cotizacion', null, ['class' => 'form-control', 'placeholder' => 'no. de cotización', 'id' => 'noCotizacion', 'readonly']) }}
       {!! $errors->first('cotizacion','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
