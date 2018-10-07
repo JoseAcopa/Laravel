@@ -15,15 +15,15 @@ class CreateQuotationsTable extends Migration
     {
         Schema::create('quotations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cotizacion');
+            $table->string('numero_cotizacion');
             $table->string('fecha');
             $table->string('licitacion');
-            $table->string('nombre');
+            $table->string('nombre_cotizar');
             $table->string('puesto');
             $table->string('observaciones',10000);
-            $table->string('total');
             $table->integer('cliente_id');
             $table->integer('user_id');
+            $table->string('total');
             $table->timestamps();
         });
     }

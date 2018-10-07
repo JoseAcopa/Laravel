@@ -41,8 +41,9 @@ class QuotationsController extends Controller
      */
     public function create()
     {
+      // $clients = Clients::all();
+      $clients = Clients::all()->pluck('business', 'id');
       $products = Products::all();
-      $clients = Clients::all();
       $units = Units::all();
       $categories = Category::all();
       $proveedores = Suppliers::all();
@@ -60,44 +61,49 @@ class QuotationsController extends Controller
     {
       // guardando cotizacion
       $user = Auth::user();
-      $quotation = new Quotations;
-      $quotation->cotizacion = $request->cotizacion;
-      $quotation->fecha = $request->fecha;
-      $quotation->licitacion = $request->licitacion;
-      $quotation->nombre = $request->nombre;
-      $quotation->puesto = $request->puesto;
-      $quotation->observaciones = $request->observaciones;
-      $quotation->total = $request->total;
-      $quotation->cliente_id = (int) $request->cliente;
-      $quotation->user_id = $user->id;
-      $quotation->save();
-
-      // guardando productos cotizados
-      $count = request('count');
-      for ($i=0; $i < $count; $i++) {
-        if (request('producto'.$i)) {
-          $quoteer = new Quoteers;
-          $quoteer->cotizacion_id = $quotation->id;
-          $quoteer->producto_id = (int) request('idProduct'.$i);
-          $quoteer->cantidad = request('cantidad'.$i);
-          $quoteer->precio = request('precio'.$i);
-          $quoteer->subtotal = request('subtotal'.$i);
-          $quoteer->save();
-        }
-      }
+      $request['user_id'] =  $user->id;
+      $quotation = Quotations::create($request->all());
 
       // guardando contador del cotizdor
-      $now = new \DateTime();
-      $year = $now->format('Y');
-      $newCount = Count::where('fecha', $year)->get();
+      $now = new \DateTime(); //obteniendo la fecha actual
+      $year = $now->format('Y'); //obteniendo solo el anio
+      $newCount = Count::where('fecha', $year)->get(); //obteniendo todas als fechas guardadas en este anio
       $count = new Count;
-      $count->count = count($newCount)+1;
+      $count->count = count($newCount)+1; //obteniendoel resultado y le sumo uno para agregar uno nuevo
       $count->fecha = $year;
       $count->save();
+      // return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
+      // $quotation = new Quotations;
+      // $quotation->cotizacion = $request->cotizacion;
+      // $quotation->fecha = $request->fecha;
+      // $quotation->licitacion = $request->licitacion;
+      // $quotation->nombre = $request->nombre;
+      // $quotation->puesto = $request->puesto;
+      // $quotation->observaciones = $request->observaciones;
+      // $quotation->total = $request->total;
+      // $quotation->cliente_id = (int) $request->cliente;
+      // $quotation->user_id = $user->id;
+      // $quotation->save();
+      //
+      // // guardando productos cotizados
+      // $count = request('count');
+      // for ($i=0; $i < $count; $i++) {
+      //   if (request('producto'.$i)) {
+      //     $quoteer = new Quoteers;
+      //     $quoteer->cotizacion_id = $quotation->id;
+      //     $quoteer->producto_id = (int) request('idProduct'.$i);
+      //     $quoteer->cantidad = request('cantidad'.$i);
+      //     $quoteer->precio = request('precio'.$i);
+      //     $quoteer->subtotal = request('subtotal'.$i);
+      //     $quoteer->save();
+      //   }
+      // }
+      //
 
-      $quotationPDF = $quotation->id;
-      $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.quotation', compact('quotations', 'quotationPDF'))->withInput(request(['cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto', 'observaciones', 'neto', 'IVA', 'total']));
+      //
+      // $quotationPDF = $quotation->id;
+      // $quotations = Quotations::with(['user', 'cliente'])->get();
+      return view('admin.quotation.index', compact('quotations', 'quotationPDF'));
     }
 
     /**

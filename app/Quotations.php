@@ -12,9 +12,8 @@ class Quotations extends Model
   // public $timestamps = false;
 
   protected $fillable = [
-    'cotizacion', 'fecha', 'licitacion', 'nombre', 'puesto',
-    'observaciones', 'subtotal', 'IVA', 'total',
-    'cliente_id', 'user_id'
+    'numero_cotizacion', 'fecha', 'licitacion', 'nombre_cotizar', 'puesto',
+    'observaciones', 'total', 'cliente_id', 'user_id'
   ];
 
   public function user()
