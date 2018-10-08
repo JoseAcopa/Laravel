@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateSupplierRequest extends FormRequest
+class ProveedoresRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class CreateSupplierRequest extends FormRequest
     public function rules()
     {
         return [
-          'business' => 'max:255|required|unique:suppliers',
-          'RFC' => 'max:255|required',
-          'address' => 'max:255|required',
-          'phone' => 'digits:10|required',
-          'email' => 'max:255|required|unique:suppliers',
+          'nombre_empresa' => 'max:255|required|unique:suppliers',
+          'rfc' => 'max:255|required',
+          'direccion' => 'max:255|required',
+          'telefono' => 'digits:10|required',
+          'correo' => 'max:255|required|unique:suppliers',
         ];
     }
 }

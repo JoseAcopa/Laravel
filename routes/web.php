@@ -13,16 +13,16 @@ Route::get('/clientes','ClientesController@index')->name('cliente.index')->middl
 Route::get('/crear-cliente', 'ClientesController@create')->name('cliente.create')->middleware('permission:cliente.create');
 Route::post('/guardar-cliente','ClientesController@store')->name('cliente.store')->middleware('permission:cliente.create');
 Route::get('/editar-cliente/{id}', 'ClientesController@edit')->name('cliente.edit')->middleware('permission:cliente.edit');
-Route::put('/actualizar/{cliente}', 'ClientesController@update')->name('cliente.update')->middleware('permission:cliente.edit');
+Route::put('/actualizar-cliente/{cliente}', 'ClientesController@update')->name('cliente.update')->middleware('permission:cliente.edit');
 Route::delete('/eliminar-cliente/{id}','ClientesController@destroy')->name('cliente.destroy')->middleware('permission:cliente.destroy');
 
 // ------------------proveedores------------------------------------------
-Route::get('admin/proveedores','SuppliersController@index')->name('suppliers.index')->middleware('permission:suppliers.index');
-Route::get('/admin/create-proveedor', 'SuppliersController@create')->name('suppliers.create')->middleware('permission:suppliers.create');
-Route::post('admin/store-proveedor','SuppliersController@store')->name('suppliers.store')->middleware('permission:suppliers.create');
-Route::get('/admin/edit-proveedor/{proveedor}', 'SuppliersController@edit')->name('suppliers.edit')->middleware('permission:suppliers.edit');
-Route::put('/admin/update-proveedor/{proveedor}', 'SuppliersController@update')->name('supplier.update')->middleware('permission:suppliers.edit');
-Route::delete('admin/delete-proveedor/{id}','SuppliersController@destroy')->name('suppliers.destroy')->middleware('permission:suppliers.destroy');
+Route::get('/proveedores','ProveedoresController@index')->name('proveedor.index')->middleware('permission:proveedor.index');
+Route::get('/crear-proveedor', 'ProveedoresController@create')->name('proveedor.create')->middleware('permission:proveedor.create');
+Route::post('/guardar-proveedor','ProveedoresController@store')->name('proveedor.store')->middleware('permission:proveedor.create');
+Route::get('/editar-proveedor/{id}', 'ProveedoresController@edit')->name('proveedor.edit')->middleware('permission:proveedor.edit');
+Route::put('/actualizar-proveedor/{proveedor}', 'ProveedoresController@update')->name('proveedor.update')->middleware('permission:proveedor.edit');
+Route::delete('/eliminar-proveedor/{id}','ProveedoresController@destroy')->name('proveedor.destroy')->middleware('permission:proveedor.destroy');
 
 // ------------------Roles-----------------------------------------
 Route::get('admin/roles','RolesController@index')->name('roles.index')->middleware('permission:roles.index');

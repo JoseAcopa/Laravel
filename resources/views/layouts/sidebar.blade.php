@@ -33,12 +33,12 @@ function current_page($url = '/'){
             </a>
           </li>
         @endcan
-        @can ('suppliers.index')
-          <li <?php echo current_page('admin/proveedores') || current_page('admin/create-proveedor') || strpos(request()->path(), 'edit-proveedor') ? "class='active'" : "";?>>
-            <a href="{{ url('/admin/proveedores') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span>
-              <?php echo current_page('admin/proveedores') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-              <?php echo current_page('admin/create-proveedor') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-              <?php echo strpos(request()->path(), 'edit-proveedor') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
+        @can ('proveedor.index')
+          <li <?php echo current_page('proveedores') || current_page('crear-proveedor') || isset($editarProveedor) ? "class='active'" : "";?>>
+            <a href="{{ url('/proveedores') }}"><i class="fa fa-address-card-o"></i> <span>Proveedores</span>
+              <?php echo current_page('proveedores') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+              <?php echo current_page('crear-proveedor') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+              <?php echo isset($editarProveedor)  ? '<small class="label pull-right bg-green">editar</small>' : "";?>
             </a>
           </li>
         @endcan

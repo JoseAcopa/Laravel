@@ -4,20 +4,20 @@
 
   <section class="content-header">
     <h1>
-      Clientes
+      Proveedores
       <small></small>
     </h1>
     <ol class="breadcrumb">
       <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-      <li class="active">Clientes</li>
+      <li class="active">Proveedores</li>
     </ol>
   </section>
 
   <section class="content container-fluid">
     <div class="box">
       <div class="box-header">
-        @can ('cliente.create')
-          <a href="{{route('cliente.create')}}" class="btn btn-default" ><i class="fa fa-user-plus"></i> Nuevo Cliente</a>
+        @can ('proveedor.create')
+          <a href="{{route('proveedor.create')}}" class="btn btn-default" ><i class="fa fa-user-plus"></i> Nuevo Proveedor</a>
         @endcan
       </div>
 
@@ -28,7 +28,6 @@
               <th>#</th>
               <th>RFC</th>
               <th>Nombre de la Empresa</th>
-              <th>Siglas</th>
               <th>Dirección</th>
               <th>Teléfono</th>
               <th>E-mail</th>
@@ -36,21 +35,20 @@
            </tr>
           </thead>
           <tbody>
-            @foreach ($clientes as $key => $cliente)
+            @foreach ($proveedores as $key => $proveedor)
               <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $cliente->rfc }}</td>
-                <td>{{ str_limit($cliente->nombre_empresa, 30) }}</td>
-                <td>{{ $cliente->siglas }}</td>
-                <td>{{ str_limit($cliente->direccion, 50) }}</td>
-                <td>{{ $cliente->telefono }}</td>
-                <td>{{ $cliente->correo }}</td>
+                <td>{{ $proveedor->rfc }}</td>
+                <td>{{ str_limit($proveedor->nombre_empresa, 30) }}</td>
+                <td>{{ str_limit($proveedor->direccion, 50) }}</td>
+                <td>{{ $proveedor->telefono }}</td>
+                <td>{{ $proveedor->correo }}</td>
                 <td class="row-copasat">
-                  @can ('cliente.edit')
-                    <a class="btn bg-navy" href="{{route('cliente.edit', $cliente->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                  @can ('proveedor.edit')
+                    <a class="btn bg-navy" href="{{route('proveedor.edit', $proveedor->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                   @endcan
-                  @can ('cliente.destroy')
-                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cliente.destroy', $cliente->id)}}');"><i class="fa fa-trash-o"></i></a>
+                  @can ('proveedor.destroy')
+                    <a type="submit" class="btn btn-danger" onclick="destroy('{{route('proveedor.destroy', $proveedor->id)}}');"><i class="fa fa-trash-o"></i></a>
                   @endcan
                 </td>
               </tr>
@@ -61,7 +59,6 @@
               <th>#</th>
               <th>RFC</th>
               <th>Nombre de la Empresa</th>
-              <th>Siglas</th>
               <th>Dirección</th>
               <th>Teléfono</th>
               <th>E-mail</th>
