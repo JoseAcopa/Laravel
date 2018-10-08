@@ -24,15 +24,15 @@ class CreateQuotationRequest extends FormRequest
     public function rules()
     {
         return [
-          'cotizacion' => 'max:255|required',
+          'numero_cotizacion' => 'max:255|required',
           'fecha' => 'max:255|required',
           'licitacion' => 'max:255|required',
-          'nombre' => 'max:255|required',
+          'nombre_cotizar' => 'max:255|required',
           'puesto' => 'max:255|required',
           'observaciones' => 'max:10000||required',
           'total' => 'max:255|required',
-          'cliente' => 'max:255|required',
-          'RFC' => 'max:255|required',
+          'cliente_id' => 'max:255|required',
+          'rfc' => 'max:255|required',
           'empresa' => 'max:255|required',
           'telefono' => 'digits:10|required',
           'correo' => 'max:255|required',

@@ -42,7 +42,7 @@
                 @endforeach
               </select>
             </div>
-            <div class="col-xs-6 top-copasat">
+            <div class="col-xs-6" style="margin-top: 25px;">
               <input type="text" class="form-control" id="unidad" readonly>
             </div>
           </div>

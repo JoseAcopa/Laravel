@@ -69,7 +69,7 @@
               @foreach ($cotizaciones as $key => $cotizacion)
                 <tr>
                   <td>{{$key + 1}}</td>
-                  <td>{{$cotizacion->cotizacion}}</td>
+                  <td>{{$cotizacion->numero_cotizacion}}</td>
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
                   <td>{{$cotizacion->nombre}}</td>

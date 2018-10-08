@@ -7,105 +7,98 @@
     <div class="box-body" style="">
       <div class="form-group">
         <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
-        <label>Clientes</label>
+        {{ Form::label('cliente_id', 'Clientes') }}
         <div class="input-group">
-          <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
+          {!! Form::select('cliente_id', $clients, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+          {{-- <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
             <option selected="selected" value="null">Buscar...</option>
             @foreach ($clients as $client)
               <option value="{{ $client->id }}">{{$client->business}} | {{$client->email}} | {{$client->phone}}</option>
             @endforeach
-          </select>
+          </select> --}}
           <span class="input-group-addon"><i class="fa fa-search"></i></span>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <div class="box-body">
   <div class="col-md-4">
-    <input type="text" name="total" id="totalAmount">
-    <input type="text" name="count" id="count">
-    <input type="text" name="cliente" value="{{ old('cliente') }}" id="cliente">
-    <div class="form-group {{ $errors->has('cotizacion') ? 'has-error' : '' }}">
-      {{-- <label for="cotizacion">No. de Cotización:</label>
-      <input type="text" value="{{ old('cotizacion') }}" name="cotizacion" class="form-control" placeholder="no. de cotización" id="noCotizacion" readonly> --}}
-      {{ Form::label('cotizacion', 'No. de Cotización:') }}
-      {{ Form::text('cotizacion', null, ['class' => 'form-control', 'placeholder' => 'no. de cotización', 'id' => 'noCotizacion', 'readonly']) }}
-      {!! $errors->first('cotizacion','<span class="help-block">:message</span>')!!}
+    <div class="form-group {{ $errors->has('numero_cotizacion') ? 'has-error' : '' }}">
+      {{ Form::label('numero_cotizacion', 'No. de Cotización:') }}
+      {{ Form::text('numero_cotizacion', null, ['class' => 'form-control', 'placeholder' => 'no. de cotización', 'id' => 'numero_cotizacion', 'readonly']) }}
+      {!! $errors->first('numero_cotizacion','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('RFC') ? 'has-error' : '' }}">
-      <label for="RFC">RFC:</label>
-      <input type="text" id="rfc" value="{{ old('RFC') }}" name="RFC" class="form-control" placeholder="RFC" readonly>
-      {!! $errors->first('RFC','<span class="help-block">:message</span>')!!}
+    <div class="form-group {{ $errors->has('rfc') ? 'has-error' : '' }}">
+      {{ Form::label('rfc', 'RFC:') }}
+      {{ Form::text('rfc', null, ['class' => 'form-control', 'placeholder' => 'RFC', 'id' => 'rfc', 'readonly']) }}
+      {!! $errors->first('rfc','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
-      <label for="empresa">Nombre de la empresa:</label>
-      <input type="text" value="{{ old('empresa') }}" id="empresa" name="empresa" class="form-control" placeholder="nombre de la empresa" readonly>
+      {{ Form::label('empresa', 'Nombre de la empresa:') }}
+      {{ Form::text('empresa', null, ['class' => 'form-control', 'placeholder' => 'nombre de la empresa', 'id' => 'empresa', 'readonly']) }}
       {!! $errors->first('empresa','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('fecha') ? 'has-error' : '' }}">
-      <label for="date">Fecha:</label>
+      {{ Form::label('fecha', 'Fecha:') }}
       <div class="input-group">
         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-        <input type="text" value="{{ old('fecha') }}" name="fecha" class="form-control" id="datepicker" placeholder="dd/mm/aaaa">
+        {{ Form::text('fecha', null, ['class' => 'form-control', 'placeholder' => 'dd/mm/aaaa', 'id' => 'datepicker']) }}
       </div>
       {!! $errors->first('fecha','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
-      <label for="telefono">Teléfono:</label>
-      <input type="text" value="{{ old('telefono') }}" id="telefono" name="telefono" class="form-control" placeholder="telefono" readonly>
+      {{ Form::label('telefono', 'Teléfono:') }}
+      {{ Form::text('telefono', null, ['class' => 'form-control', 'placeholder' => 'teléfono', 'id' => 'telefono', 'readonly']) }}
       {!! $errors->first('telefono','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('nombre') ? 'has-error' : '' }}">
-      <label for="nombre">Nombre Completo:</label>
-      <input type="text" value="{{ old('nombre') }}" name="nombre" class="form-control" placeholder="nombre completo">
-      {!! $errors->first('nombre','<span class="help-block">:message</span>')!!}
+    <div class="form-group {{ $errors->has('nombre_cotizar') ? 'has-error' : '' }}">
+      {{ Form::label('nombre_cotizar', 'Nombre Completo:') }}
+      {{ Form::text('nombre_cotizar', null, ['class' => 'form-control', 'placeholder' => 'nombre completo']) }}
+      {!! $errors->first('nombre_cotizar','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
-      <label for="licitacion">Número de Licitación:</label>
-      <input type="text" value="{{ old('licitacion') }}" name="licitacion" class="form-control" placeholder="numero de licitación">
+      {{ Form::label('licitacion', 'Número de Licitación:') }}
+      {{ Form::text('licitacion', null, ['class' => 'form-control', 'placeholder' => 'número de licitación']) }}
       {!! $errors->first('licitacion','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
-      <label for="correo">E-mail:</label>
-      <input type="text" value="{{ old('correo') }}" id="correo" name="correo" class="form-control" placeholder="e-mail">
+      {{ Form::label('correo', 'E-mail:') }}
+      {{ Form::email('correo', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'id' => 'correo']) }}
       {!! $errors->first('correo','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
-      <label for="puesto">Puesto:</label>
-      <input type="text" value="{{ old('puesto') }}" name="puesto" class="form-control" placeholder="puesto">
+      {{ Form::label('puesto', 'Puesto:') }}
+      {{ Form::text('puesto', null, ['class' => 'form-control', 'placeholder' => 'puesto']) }}
       {!! $errors->first('puesto','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
-      <label for="direction">Dirección:</label>
-      <textarea type="text" id="direccion" rows="3" name="direccion" class="form-control" placeholder="dirección" readonly>{{ old('direccion') }}</textarea>
+      {{ Form::label('direccion', 'Dirección:') }}
+      {{ Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'dirección', 'id' => 'direccion', 'readonly']) }}
       {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-6">
     <div class="form-group">
-      <label for="observaciones">Observaciones:</label>
-      <select class="form-control" onchange="changeObservacion(this)">
-        <option value="null"> seleccione</option>
-        <option value="obs1">Suministro</option>
-        <option value="obs2">Plataforma</option>
-        <option value="obs3">Trabajos en tierra</option>
-      </select>
+      {{ Form::label('observaciones', 'Observaciones:') }}
+      {!! Form::select('observaciones', ['obs1' => 'Suministro', 'obs2' => 'Plataforma', 'obs3' => 'Trabajos en tierra'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione', 'onchange' => 'changeObservacion(this)']); !!}
     </div>
   </div>
   <div class="col-md-12">
     <div class="form-group {{ $errors->has('observaciones') ? 'has-error' : '' }}">
-      <textarea type="text" rows="16" id="observacion" name="observaciones" class="form-control" placeholder="observaciones">{{ old('observaciones') }}</textarea>
+      {{ Form::textarea('observaciones', null, ['class' => 'form-control', 'rows' => '14', 'placeholder' => 'observaciones', 'id' => 'observacion']) }}
       {!! $errors->first('observaciones','<span class="help-block">:message</span>')!!}
     </div>
   </div>
 
+{{-- cotizador de los productos --}}
   <div class="col-md-12">
     <hr>
     <h4><i class="fa fa-book"></i> Cotizar Producto</h4>
@@ -123,9 +116,6 @@
     <div class="form-group">
       <label>Producto:</label>
       <input type="text" class="form-control" placeholder="producto" id="producto" readonly>
-      <input type="text" id="description" hidden>
-      <input type="text" id="currency" hidden>
-      <input type="text" id="unit" hidden>
     </div>
   </div>
   <div class="col-md-1">
@@ -182,3 +172,9 @@
     <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
   </div>
 </div>
+
+<input type="text" name="total" id="totalAmount">
+<input type="text" id="currency">
+<input type="text" id="unit">
+{{-- <input type="text" name="count" id="count"> --}}
+{{-- <input type="text" id="description"> --}}
