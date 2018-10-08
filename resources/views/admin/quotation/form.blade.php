@@ -174,7 +174,7 @@
 </div>
 
 <input type="text" name="total" id="totalAmount">
-{{-- <input type="text" name="count" id="count" hidden>
-<input type="text" id="description" hidden>
-<input type="text" id="currency" hidden>
-<input type="text" id="unit" hidden> --}}
+<input type="text" id="currency">
+<input type="text" id="unit">
+{{-- <input type="text" name="count" id="count"> --}}
+{{-- <input type="text" id="description"> --}}

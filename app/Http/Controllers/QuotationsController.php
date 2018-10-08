@@ -73,19 +73,8 @@ class QuotationsController extends Controller
       $count->fecha = $year;
       $count->save();
       // return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
-      // $quotation = new Quotations;
-      // $quotation->cotizacion = $request->cotizacion;
-      // $quotation->fecha = $request->fecha;
-      // $quotation->licitacion = $request->licitacion;
-      // $quotation->nombre = $request->nombre;
-      // $quotation->puesto = $request->puesto;
-      // $quotation->observaciones = $request->observaciones;
-      // $quotation->total = $request->total;
-      // $quotation->cliente_id = (int) $request->cliente;
-      // $quotation->user_id = $user->id;
-      // $quotation->save();
-      //
-      // // guardando productos cotizados
+
+      // guardando productos cotizados
       // $count = request('count');
       // for ($i=0; $i < $count; $i++) {
       //   if (request('producto'.$i)) {
