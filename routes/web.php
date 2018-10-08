@@ -4,29 +4,25 @@
 Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-// ------------------End Login-----------------------------------------
 
 // ------------------Start Admin-----------------------------------------
 Route::get('/admin/admin-welcome', 'AdminControllers@index');
-// ------------------End Admin-----------------------------------------
 
-// ------------------Clients-----------------------------------------
-Route::get('admin/clientes','ClientsController@index')->name('client.index')->middleware('permission:client.index');
-Route::get('/admin/create-cliente', 'ClientsController@create')->name('client.create')->middleware('permission:client.create');
-Route::post('admin/store-cliente','ClientsController@store')->name('client.store')->middleware('permission:client.create');
-Route::get('/admin/edit-cliente/{cliente}', 'ClientsController@edit')->name('client.edit')->middleware('permission:client.edit');
-Route::put('/admin/{cliente}/update', 'ClientsController@update')->name('client.update')->middleware('permission:client.edit');
-Route::delete('admin/delete-cliente/{id}','ClientsController@destroy')->name('client.destroy')->middleware('permission:client.destroy');
-// ------------------End Clients-----------------------------------
+// ------------------Clientes--------------------------------------------
+Route::get('/clientes','ClientesController@index')->name('cliente.index')->middleware('permission:cliente.index');
+Route::get('/crear-cliente', 'ClientesController@create')->name('cliente.create')->middleware('permission:cliente.create');
+Route::post('/guardar-cliente','ClientesController@store')->name('cliente.store')->middleware('permission:cliente.create');
+Route::get('/editar-cliente/{id}', 'ClientesController@edit')->name('cliente.edit')->middleware('permission:cliente.edit');
+Route::put('/actualizar/{cliente}', 'ClientesController@update')->name('cliente.update')->middleware('permission:cliente.edit');
+Route::delete('/eliminar-cliente/{id}','ClientesController@destroy')->name('cliente.destroy')->middleware('permission:cliente.destroy');
 
-// ------------------Suppliers-----------------------------------------
+// ------------------proveedores------------------------------------------
 Route::get('admin/proveedores','SuppliersController@index')->name('suppliers.index')->middleware('permission:suppliers.index');
 Route::get('/admin/create-proveedor', 'SuppliersController@create')->name('suppliers.create')->middleware('permission:suppliers.create');
 Route::post('admin/store-proveedor','SuppliersController@store')->name('suppliers.store')->middleware('permission:suppliers.create');
 Route::get('/admin/edit-proveedor/{proveedor}', 'SuppliersController@edit')->name('suppliers.edit')->middleware('permission:suppliers.edit');
 Route::put('/admin/update-proveedor/{proveedor}', 'SuppliersController@update')->name('supplier.update')->middleware('permission:suppliers.edit');
 Route::delete('admin/delete-proveedor/{id}','SuppliersController@destroy')->name('suppliers.destroy')->middleware('permission:suppliers.destroy');
-// ------------------End Suppliers-----------------------------------
 
 // ------------------Roles-----------------------------------------
 Route::get('admin/roles','RolesController@index')->name('roles.index')->middleware('permission:roles.index');

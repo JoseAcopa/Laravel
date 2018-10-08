@@ -24,12 +24,12 @@ function current_page($url = '/'){
             <?php echo current_page('admin/admin-welcome') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
           </a>
         </li>
-        @can ('client.index')
-          <li <?php echo current_page('admin/clientes') || current_page('admin/create-cliente') || strpos(request()->path(), 'edit-cliente') ? "class='active'" : "";?>>
-            <a href="{{ url('/admin/clientes') }}"><i class="fa fa-users"></i> <span>Clientes</span>
-              <?php echo current_page('admin/clientes') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-              <?php echo current_page('admin/create-cliente') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-              <?php echo strpos(request()->path(), 'edit-cliente') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
+        @can ('cliente.index')
+          <li <?php echo current_page('clientes') || current_page('crear-cliente') || isset($editarCliente) ? "class='active'" : "";?>>
+            <a href="{{ url('/clientes') }}"><i class="fa fa-users"></i> <span>Clientes</span>
+              <?php echo current_page('clientes') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+              <?php echo current_page('crear-cliente') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+              <?php echo isset($editarCliente) ? '<small class="label pull-right bg-green">editar</small>' : "";?>
             </a>
           </li>
         @endcan
