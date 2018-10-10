@@ -73,7 +73,7 @@
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
                   <td>{{$cotizacion->nombre}}</td>
-                  <td>{{$cotizacion->cliente->business}}</td>
+                  <td>{{$cotizacion->cliente->nombre_empresa}}</td>
                   <td>{{$cotizacion->cliente->RFC}}</td>
                   <td>${{$cotizacion->total}}</td>
                   <td class="row-copasat">
@@ -106,58 +106,7 @@
       </div>
     </section>
     <script type="text/javascript">
-    sessionStorage.clear();
-    var idQuotation = {{$quotationPDF}}
-    if (idQuotation != 0) {
-      window.onload=function onloadPDF() {
-        var a = document.createElement("a");
-    		a.target = "_blank";
-    		a.href = "/cotizacion/"+idQuotation;
-    		a.click();
-
-        window.location="{{url('/admin/cotizacion')}}"
-      }
-    }
-
-    function destroy(url){
-      event.preventDefault();
-      swal({
-        title: '¿Desea eliminar esta cotización?',
-        text: "¡No podra revertir esto!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3c8dbc',
-        cancelButtonColor: '#dd4b39',
-        confirmButtonText: 'Sí, eliminar!',
-        cancelButtonText: 'No, cancelar!'
-      }).then((res) => {
-        if (res.value) {
-          $.ajax({
-            url: url,
-            method: "POST",
-            data: {
-                _token: "{{csrf_token()}}",
-                _method: "DELETE"
-            },
-            success: function(data){
-              swal(
-                '¡Eliminado!',
-                'El registro ha sido eliminado.',
-                'success'
-              ).then(()=>{
-                location.reload();
-              })
-            }
-          })
-        }else if (res.dismiss === "cancel") {
-          swal(
-            '¡Cancelado!',
-            'La accion fue cancelada.',
-            'error'
-          )
-        }
-      })
-    }
+      sessionStorage.clear();
     </script>
 
 @endsection

@@ -47,7 +47,7 @@
                     <input type="text" name="categoria" id="categoria" value="{{ old('categoria') }}" hidden>
                     {!! $errors->first('categoria-view','<span class="help-block">:message</span>')!!}
                   </div>
-                  <div class="col-xs-4 top-copasat">
+                  <div class="col-xs-4" style="margin-top: 25px;">
                     <input type="text" id="letter" class="form-control" name="iniciales" value="{{ old('iniciales') }}" readonly>
                   </div>
                 </div>
@@ -97,7 +97,7 @@
                       <option id="pv5" value="precioVenta5"></option>
                     </select>
                   </div>
-                  <div class="col-xs-5 top-copasat">
+                  <div class="col-xs-5" style="margin-top: 25px;">
                     <input type="number" class="form-control" name="precio" id="precio" value="{{ old('precio') }}" readonly step=".01">
                   </div>
                 </div>
@@ -148,7 +148,7 @@
             $('#categoria-view').val(res.category.type);
             $('#categoria').val(res.category.id);
             $('#letter').val(res.category.letters);
-            $('#proveedor-view').val(res.supplier.business);
+            $('#proveedor-view').val(res.supplier.nombre_empresa);
             $('#proveedor').val(res.supplier.id);
             $('#unidad').val(res.unit);
             $('#stock').val(res.stock);

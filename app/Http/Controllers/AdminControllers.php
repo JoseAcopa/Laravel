@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Catalog;
-use App\Clients;
+use App\Clientes;
 use App\Suppliers;
 use Carbon\Carbon;
 use App\Activities;
@@ -23,7 +23,7 @@ class AdminControllers extends Controller
   {
     Carbon::setLocale('es');
     $users = count(User::all());
-    $customers = count(Clients::all());
+    $customers = count(Clientes::all());
     $providers = count(Suppliers::all());
     $date = Carbon::now();
     $date = $date->format('d/m/Y');

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Quotations;
 use App\Products;
-use App\Clients;
+use App\Clientes;
 use App\Quoteers;
 use App\Count;
 use App\Units;
@@ -29,9 +29,8 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-      $quotationPDF = 0;
       $cotizaciones = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.index', compact('cotizaciones', 'quotationPDF'));
+      return view('admin.quotation.index', compact('cotizaciones'));
     }
 
     /**
@@ -42,7 +41,7 @@ class QuotationsController extends Controller
     public function create()
     {
       // $clients = Clients::all();
-      $clientes = Clients::all()->pluck('business', 'id');
+      $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
       $products = Products::all();
       $units = Units::all();
       $categories = Category::all();

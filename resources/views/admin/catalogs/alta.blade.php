@@ -42,8 +42,8 @@
                 <label for="proveedor">Proveedor:</label>
                 <select class="form-control" name="proveedor">
                   <option value="">Seleccione Proveedor</option>
-                  @foreach ($suppliers as $supplier)
-                    <option value="{{$supplier->id}}">{{$supplier->business}}</option>
+                  @foreach ($proveedores as $proveedor)
+                    <option value="{{$proveedor->id}}">{{$proveedor->nombre_empresa}}</option>
                   @endforeach
                 </select>
                 {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
@@ -60,7 +60,7 @@
                     </select>
                     {!! $errors->first('unidad','<span class="help-block">:message</span>')!!}
                   </div>
-                  <div class="col-xs-6 top-copasat">
+                  <div class="col-xs-6" style="margin-top: 25px;">
                     <input type="text" class="form-control" name="unidad" id="unidad" value="{{ old('unidad') }}" readonly>
                   </div>
                 </div>

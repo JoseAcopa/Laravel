@@ -46,7 +46,7 @@
                     {!! $errors->first('category','<span class="help-block">:message</span>')!!}
                     <input type="text" name="idProduct" id="idProduct" hidden>
                   </div>
-                  <div class="col-xs-4 top-copasat">
+                  <div class="col-xs-4" style="margin-top: 25px;">
                     <input type="text" id="letter" class="form-control" name="initials" value="{{ old('initials') }}" readonly>
                   </div>
                 </div>
@@ -169,7 +169,7 @@
             $('#TProduct').val(res.category.type);
             $('#categoria').val(res.category.id);
             $('#categoria-view').val(res.category.categorias);
-            $('#proveedor-view').val(res.supplier.business);
+            $('#proveedor-view').val(res.supplier.nombre_empresa);
             $('#proveedor').val(res.supplier.id);
             $('#unidad').val(res.unit);
             $('#description').val(res.description);

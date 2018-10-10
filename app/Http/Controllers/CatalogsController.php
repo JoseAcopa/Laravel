@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Catalog;
-use App\Suppliers;
+use App\Proveedores;
 use App\Units;
 use App\Category;
 use App\Http\Requests\CreateCatalogs;
@@ -34,10 +34,10 @@ class CatalogsController extends Controller
      */
     public function create()
     {
-      $suppliers = Suppliers::all();
+      $proveedores = Proveedores::all();
       $units = Units::all();
       $categories = Category::all();
-      return view('admin.catalogs.alta', compact('suppliers', 'units', 'categories'));
+      return view('admin.catalogs.alta', compact('proveedores', 'units', 'categories'));
     }
 
     /**
@@ -77,13 +77,13 @@ class CatalogsController extends Controller
      */
     public function edit($id)
     {
-      $suppliers = Suppliers::all();
+      $proveedores = Proveedores::all();
       $units = Units::all();
       $categories = Category::all();
       $catalog = Catalog::find($id);
       $catalog->supplier;
       $catalog->category;
-      return view('admin.catalogs.edit', compact('suppliers', 'units', 'categories', 'catalog'));
+      return view('admin.catalogs.edit', compact('proveedores', 'units', 'categories', 'catalog'));
     }
 
     /**

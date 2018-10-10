@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clients extends Model
+class Clientes extends Model
 {
-  // protected $table = 'clients';
+  protected $table = 'clients';
   protected $fillable = [
-      'RFC', 'business', 'address', 'phone', 'email',
+    'nombre_empresa', 'rfc', 'siglas', 'correo', 'telefono', 'direccion'
   ];
 
   public function quotations()

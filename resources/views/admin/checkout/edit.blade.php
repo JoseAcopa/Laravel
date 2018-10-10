@@ -36,14 +36,14 @@
                     <input type="text" name="categoria" id="categoria" value="{{ $checkout->category->id }}" hidden>
                     {!! $errors->first('categoria-view','<span class="help-block">:message</span>')!!}
                   </div>
-                  <div class="col-xs-4 top-copasat">
+                  <div class="col-xs-4" style="margin-top: 25px;">
                     <input type="text" id="letter" class="form-control" name="iniciales" value="{{ $checkout->initials }}" readonly>
                   </div>
                 </div>
               </div>
               <div class="form-group {{ $errors->has('proveedor-view') ? 'has-error' : '' }}">
                 <label for="proveedor-view">Proveedor:</label>
-                <input type="text" name="proveedor-view" id="proveedor-view" value="{{ $checkout->supplier->business }}" class="form-control" readonly>
+                <input type="text" name="proveedor-view" id="proveedor-view" value="{{ $checkout->supplier->nombre_empresa }}" class="form-control" readonly>
                 <input type="text" name="proveedor" id="proveedor" value="{{ $checkout->supplier->id }}" hidden>
                 {!! $errors->first('proveedor-view','<span class="help-block">:message</span>')!!}
               </div>

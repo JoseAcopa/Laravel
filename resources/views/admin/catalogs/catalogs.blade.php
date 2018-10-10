@@ -51,7 +51,7 @@
                   <td>{{ $i+1 }}</td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>
-                  <td>{{ $product->supplier->business }}</td>
+                  <td>{{ $product->supplier->nombre_empresa }}</td>
                   <td>{{ $product->unit }}</td>
                   <td>{{ str_limit($product->description, 50) }}</td>
                   <td class="row-copasat">

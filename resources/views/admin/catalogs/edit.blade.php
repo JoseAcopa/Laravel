@@ -40,9 +40,9 @@
               <div class="form-group {{ $errors->has('proveedor') ? 'has-error' : '' }}">
                 <label for="proveedor">Proveedor:</label>
                 <select class="form-control" name="proveedor">
-                  <option value="{{$catalog->supplier_id}}">{{$catalog->supplier->business}}</option>
-                  @foreach ($suppliers as $supplier)
-                    <option value="{{$supplier->id}}">{{$supplier->business}}</option>
+                  <option value="{{$catalog->supplier_id}}">{{$catalog->supplier->nombre_empresa}}</option>
+                  @foreach ($proveedores as $proveedor)
+                    <option value="{{$proveedor->id}}">{{$proveedor->nombre_empresa}}</option>
                   @endforeach
                 </select>
               </div>
@@ -58,7 +58,7 @@
                     </select>
                     {!! $errors->first('unidad','<span class="help-block">:message</span>')!!}
                   </div>
-                  <div class="col-xs-6 top-copasat">
+                  <div class="col-xs-6" style="margin-top: 25px;">
                     <input type="text" class="form-control" name="unidad" id="unidad" value="{{$catalog->unit}}" readonly>
                   </div>
                 </div>
