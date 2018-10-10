@@ -42,13 +42,13 @@ class QuotationsController extends Controller
     public function create()
     {
       // $clients = Clients::all();
-      $clients = Clients::all()->pluck('business', 'id');
+      $clientes = Clients::all()->pluck('business', 'id');
       $products = Products::all();
       $units = Units::all();
       $categories = Category::all();
       $proveedores = Suppliers::all();
       $coins = Coins::all();
-      return view('admin.quotation.create', compact('products', 'clients', 'units', 'categories', 'proveedores', 'coins'));
+      return view('admin.quotation.create', compact('products', 'clientes', 'units', 'categories', 'proveedores', 'coins'));
     }
 
     /**
@@ -88,7 +88,7 @@ class QuotationsController extends Controller
         }
       }
 
-      // return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
+      // return redirect()->route('roles.edit', $role->id)->with('success','Datos guardado correctamente.');
       return 'se guado corectamente';
     }
 
@@ -115,7 +115,17 @@ class QuotationsController extends Controller
      */
     public function edit($id)
     {
-        //
+      $products = Products::all();
+      $units = Units::all();
+      $categories = Category::all();
+      $proveedores = Suppliers::all();
+      $coins = Coins::all();
+
+      $productos_cotizados = Quoteers::where('cotizacion_id', $id)->get();
+      $cotizacion = Quotations::find($id);
+      $cotizacion->user;
+      $cotizacion->cliente;
+      return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'products', 'units', 'categories', 'proveedores', 'coins'));
     }
 
     /**

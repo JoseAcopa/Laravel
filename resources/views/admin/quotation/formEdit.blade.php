@@ -1,28 +1,4 @@
 <br>
-<div class="col-md-12">
-  <div class="box box-primary box-solid">
-    <div class="box-header with-border">
-      <h3 class="box-title">Buscar cliente</h3>
-    </div>
-    <div class="box-body" style="">
-      <div class="form-group">
-        <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
-        {{ Form::label('cliente_id', 'Clientes') }}
-        <div class="input-group">
-          {!! Form::select('cliente_id', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
-          {{-- <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
-            <option selected="selected" value="null">Buscar...</option>
-            @foreach ($clients as $client)
-              <option value="{{ $client->id }}">{{$client->business}} | {{$client->email}} | {{$client->phone}}</option>
-            @endforeach
-          </select> --}}
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class="box-body">
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('numero_cotizacion') ? 'has-error' : '' }}">
@@ -32,12 +8,12 @@
     </div>
     <div class="form-group {{ $errors->has('rfc') ? 'has-error' : '' }}">
       {{ Form::label('rfc', 'RFC:') }}
-      {{ Form::text('rfc', null, ['class' => 'form-control', 'placeholder' => 'RFC', 'id' => 'rfc', 'readonly']) }}
+      {{ Form::text('rfc', $cotizacion->cliente->RFC, ['class' => 'form-control', 'placeholder' => 'RFC', 'id' => 'rfc', 'readonly']) }}
       {!! $errors->first('rfc','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
       {{ Form::label('empresa', 'Nombre de la empresa:') }}
-      {{ Form::text('empresa', null, ['class' => 'form-control', 'placeholder' => 'nombre de la empresa', 'id' => 'empresa', 'readonly']) }}
+      {{ Form::text('empresa', $cotizacion->cliente->business, ['class' => 'form-control', 'placeholder' => 'nombre de la empresa', 'id' => 'empresa', 'readonly']) }}
       {!! $errors->first('empresa','<span class="help-block">:message</span>')!!}
     </div>
   </div>
@@ -52,7 +28,7 @@
     </div>
     <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
       {{ Form::label('telefono', 'Teléfono:') }}
-      {{ Form::text('telefono', null, ['class' => 'form-control', 'placeholder' => 'teléfono', 'id' => 'telefono', 'readonly']) }}
+      {{ Form::text('telefono', $cotizacion->cliente->phone, ['class' => 'form-control', 'placeholder' => 'teléfono', 'id' => 'telefono', 'readonly']) }}
       {!! $errors->first('telefono','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('nombre_cotizar') ? 'has-error' : '' }}">
@@ -69,7 +45,7 @@
     </div>
     <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
       {{ Form::label('correo', 'E-mail:') }}
-      {{ Form::email('correo', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'id' => 'correo']) }}
+      {{ Form::email('correo', $cotizacion->cliente->email, ['class' => 'form-control', 'placeholder' => 'e-mail', 'id' => 'correo']) }}
       {!! $errors->first('correo','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
@@ -81,7 +57,7 @@
   <div class="col-md-6">
     <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
       {{ Form::label('direccion', 'Dirección:') }}
-      {{ Form::textarea('direccion', null, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'dirección', 'id' => 'direccion', 'readonly']) }}
+      {{ Form::textarea('direccion', $cotizacion->cliente->address, ['class' => 'form-control', 'rows' => '3', 'placeholder' => 'dirección', 'id' => 'direccion', 'readonly']) }}
       {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
     </div>
   </div>
@@ -159,8 +135,46 @@
           <th>Eliminar</th>
        </tr>
       </thead>
-      <tbody id="tabla">
-
+      <tbody id="Jtabla" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cant.</th>
+            <th>Unidad</th>
+            <th>Descripcion del producto</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+            <th>Eliminar</th>
+         </tr>
+        </thead>
+        <tbody>
+          @foreach ($productos_cotizados as $key => $producto_cotizado)
+            <tr>
+              <td>{{$producto_cotizado->producto_id}}</td>
+              <td>{{$producto_cotizado->cantidad}}</td>
+              <td>{{$producto_cotizado->cantidad}}</td>
+              <td>{{$producto_cotizado->cantidad}}</td>
+              <td>{{$producto_cotizado->cantidad}}</td>
+              <td>${{$producto_cotizado->cantidad}}</td>
+              <td class="row-copasat">
+                @can ('quotation.destroy')
+                  <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $producto_cotizado->id)}}');"><i class="fa fa-trash-o"></i></a>
+                @endcan
+              </td>
+            </tr>
+          @endforeach
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Producto</th>
+            <th>Cant.</th>
+            <th>Unidad</th>
+            <th>Descripcion del producto</th>
+            <th>Precio Unitario</th>
+            <th>Subtotal</th>
+            <th>Eliminar</th>
+         </tr>
+        </tfoot>
       </tbody>
     </table>
     <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
@@ -172,9 +186,3 @@
     <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
   </div>
 </div>
-
-<input type="text" name="total" id="totalAmount">
-<input type="text" id="currency">
-<input type="text" id="unit">
-<input type="text" name="total_poductos" id="total_poductos">
-<input type="text" id="description">

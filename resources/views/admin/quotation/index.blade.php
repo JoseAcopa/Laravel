@@ -45,7 +45,7 @@
 
       <div class="box">
         <div class="box-header">
-          @can ('quotation.create')
+          @can ('cotizacion.create')
             <a href="{{route('cotizacion.create')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nueva cotización</a>
           @endcan
         </div>
@@ -69,7 +69,7 @@
               @foreach ($cotizaciones as $key => $cotizacion)
                 <tr>
                   <td>{{$key + 1}}</td>
-                  <td>{{$cotizacion->numero_cotizacion}}</td>
+                  <td><a href="{{route('cotizacion.edit', $cotizacion->id)}}">{{$cotizacion->numero_cotizacion}}</a></td>
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
                   <td>{{$cotizacion->nombre}}</td>
