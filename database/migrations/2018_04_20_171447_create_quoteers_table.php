@@ -15,11 +15,11 @@ class CreateQuoteersTable extends Migration
     {
         Schema::create('quoteers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('cotizacion_id');
-            $table->integer('producto_id');
             $table->string('cantidad');
             $table->string('precio');
             $table->string('subtotal');
+            $table->integer('cotizacion_id');
+            $table->integer('producto_id');
             $table->timestamps();
         });
     }

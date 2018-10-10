@@ -57,7 +57,7 @@ class QuotationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateQuotationRequest $request)
+    public function store(Request $request)
     {
       // guardando cotizacion
       $user = Auth::user();
@@ -67,32 +67,29 @@ class QuotationsController extends Controller
       // guardando contador del cotizdor
       $now = new \DateTime(); //obteniendo la fecha actual
       $year = $now->format('Y'); //obteniendo solo el anio
-      $newCount = Count::where('fecha', $year)->get(); //obteniendo todas als fechas guardadas en este anio
+      $newCount = Count::where('fecha', $year)->get(); //obteniendo todas las fechas guardadas en este anio
       $count = new Count;
       $count->count = count($newCount)+1; //obteniendoel resultado y le sumo uno para agregar uno nuevo
       $count->fecha = $year;
       $count->save();
-      // return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
 
       // guardando productos cotizados
-      // $count = request('count');
-      // for ($i=0; $i < $count; $i++) {
-      //   if (request('producto'.$i)) {
-      //     $quoteer = new Quoteers;
-      //     $quoteer->cotizacion_id = $quotation->id;
-      //     $quoteer->producto_id = (int) request('idProduct'.$i);
-      //     $quoteer->cantidad = request('cantidad'.$i);
-      //     $quoteer->precio = request('precio'.$i);
-      //     $quoteer->subtotal = request('subtotal'.$i);
-      //     $quoteer->save();
-      //   }
-      // }
-      //
+      $total = request('total_poductos');
+      for ($i=0; $i < $total; $i++) {
+        if (request('producto'.$i)) {
+          // $quoteer = Quoteers::create($request->all());
+          $producto_cotizado = new Quoteers;
+          $producto_cotizado->cantidad = request('cantidad'.$i);
+          $producto_cotizado->precio = request('precio'.$i);
+          $producto_cotizado->subtotal = request('subtotal'.$i);
+          $producto_cotizado->cotizacion_id = (int) $quotation->id;
+          $producto_cotizado->producto_id = (int) $request->idProduct1.$i;
+          $producto_cotizado->save();
+        }
+      }
 
-      //
-      // $quotationPDF = $quotation->id;
-      // $quotations = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.index', compact('quotations', 'quotationPDF'));
+      // return redirect()->route('roles.edit', $role->id)->with('success','Rol guardado correctamente.');
+      return 'se guado corectamente';
     }
 
     /**

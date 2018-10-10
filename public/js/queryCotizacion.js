@@ -189,7 +189,7 @@ if (products.length != 0) {
     iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td><td style="display: none;"><input name="idProduct'+i+'" class="form-control" value="'+item.id+'" readonly></td></tr>'
 
     setTimeout(()=>{
-      $('#count').val(products.length)
+      $('#total_poductos').val(products.length)
       $('#tabla').append(iter)
       totalAmount()
     },500)
@@ -226,7 +226,6 @@ function addProduct() {
       findProduct.total = Number(findProduct.price) * Number(findProduct.quantity)
 
       products.map((item, i)=>{
-        console.log(item);
         $('#fila'+i).remove();
 
         var iter = '';
@@ -253,14 +252,13 @@ function addProduct() {
 
       products.map((item, i)=>{
         $('#fila'+i).remove();
-        console.log(item);
         var iter = '';
         iter += '<tr id="fila'+i+'"><td><input name="producto'+i+'" class="form-control" value="'+item.product+'" readonly></td><td><input name="cantidad'+i+'" class="form-control" value="'+item.quantity+'" readonly></td><td><input name="unidad'+i+'" class="form-control" value="'+item.unit+'" readonly></td><td><input name="descripcion'+i+'" value="'+item.description+'" class="form-control" readonly></td><td><input name="precio'+i+'" class="form-control" value="$'+item.price+' '+item.currency+'" readonly></td><td><input name="subtotal'+i+'" class="form-control" value="$'+item.total.toFixed(2)+' '+item.currency+'" readonly></td><td><a class="btn btn-danger" onclick="deleteProduct(fila'+i+', '+i+');"><i class="fa fa-trash"></i></a></td><td style="display: none;"><input name="idProduct'+i+'" class="form-control" value="'+item.id+'" readonly></td></tr>'
 
         $('#tabla').append(iter)
         totalAmount()
       })
-      $('#count').val(products.length)
+      $('#total_poductos').val(products.length)
     }
   }else {
     if (precio === '') {
@@ -302,7 +300,7 @@ function deleteProduct(val, i) {
         'El Producto ha sido eliminado.',
         'success'
       )
-      $('#count').val(products.length)
+      $('#total_poductos').val(products.length)
     }else if (res.dismiss === "cancel") {
       swal(
         '¡Cancelado!',

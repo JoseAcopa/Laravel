@@ -21,9 +21,9 @@ class CreateQuotationsTable extends Migration
             $table->string('nombre_cotizar');
             $table->string('puesto');
             $table->string('observaciones',10000);
+            $table->string('total');
             $table->integer('cliente_id');
             $table->integer('user_id');
-            $table->string('total');
             $table->timestamps();
         });
     }

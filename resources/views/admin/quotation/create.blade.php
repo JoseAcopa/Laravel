@@ -72,7 +72,6 @@
     })
   }
 
-
   // funciones para agregar datos del formulario
   function typeProduct(val){
     var priceList = $("#priceList").val()

@@ -46,7 +46,7 @@
       <div class="box">
         <div class="box-header">
           @can ('quotation.create')
-            <a href="{{route('cotizacion.create')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nuevo</a>
+            <a href="{{route('cotizacion.create')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nueva cotización</a>
           @endcan
         </div>
 

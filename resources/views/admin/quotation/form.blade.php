@@ -176,5 +176,5 @@
 <input type="text" name="total" id="totalAmount">
 <input type="text" id="currency">
 <input type="text" id="unit">
-{{-- <input type="text" name="count" id="count"> --}}
-{{-- <input type="text" id="description"> --}}
+<input type="text" name="total_poductos" id="total_poductos">
+<input type="text" id="description">
