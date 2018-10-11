@@ -12,8 +12,9 @@ class Quotations extends Model
   // public $timestamps = false;
 
   protected $fillable = [
-    'numero_cotizacion', 'fecha', 'licitacion', 'nombre_cotizar', 'puesto',
-    'observaciones', 'total', 'cliente_id', 'user_id'
+    'numero_cotizacion', 'fecha', 'licitacion', 'rfc_cliente', 'telefono_cliente',
+    'correo_cliente', 'nombre_empresa', 'direccion', 'nombre_cotizar', 'puesto',
+    'observaciones', 'total', 'moneda', 'cliente_id', 'user_id'
   ];
 
   public function user()
@@ -23,6 +24,6 @@ class Quotations extends Model
 
   public function cliente()
   {
-    return $this->belongsTo('App\Clients');
+    return $this->belongsTo('App\Clientes');
   }
 }

@@ -42,12 +42,7 @@ class QuotationsController extends Controller
     {
       // $clients = Clients::all();
       $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
-      $products = Products::all();
-      $units = Units::all();
-      $categories = Category::all();
-      $proveedores = Suppliers::all();
-      $coins = Coins::all();
-      return view('admin.quotation.create', compact('products', 'clientes', 'units', 'categories', 'proveedores', 'coins'));
+      return view('admin.quotation.create', compact('clientes'));
     }
 
     /**
@@ -61,7 +56,8 @@ class QuotationsController extends Controller
       // guardando cotizacion
       $user = Auth::user();
       $request['user_id'] =  $user->id;
-      $quotation = Quotations::create($request->all());
+      $request['total'] = 0;
+      $cotizacion = Quotations::create($request->all());
 
       // guardando contador del cotizdor
       $now = new \DateTime(); //obteniendo la fecha actual
@@ -73,22 +69,21 @@ class QuotationsController extends Controller
       $count->save();
 
       // guardando productos cotizados
-      $total = request('total_poductos');
-      for ($i=0; $i < $total; $i++) {
-        if (request('producto'.$i)) {
-          // $quoteer = Quoteers::create($request->all());
-          $producto_cotizado = new Quoteers;
-          $producto_cotizado->cantidad = request('cantidad'.$i);
-          $producto_cotizado->precio = request('precio'.$i);
-          $producto_cotizado->subtotal = request('subtotal'.$i);
-          $producto_cotizado->cotizacion_id = (int) $quotation->id;
-          $producto_cotizado->producto_id = (int) $request->idProduct1.$i;
-          $producto_cotizado->save();
-        }
-      }
+      // $total = request('total_poductos');
+      // for ($i=0; $i < $total; $i++) {
+      //   if (request('producto'.$i)) {
+      //     // $quoteer = Quoteers::create($request->all());
+      //     $producto_cotizado = new Quoteers;
+      //     $producto_cotizado->cantidad = request('cantidad'.$i);
+      //     $producto_cotizado->precio = request('precio'.$i);
+      //     $producto_cotizado->subtotal = request('subtotal'.$i);
+      //     $producto_cotizado->cotizacion_id = (int) $quotation->id;
+      //     $producto_cotizado->producto_id = (int) $request->idProduct1.$i;
+      //     $producto_cotizado->save();
+      //   }
+      // }
 
-      // return redirect()->route('roles.edit', $role->id)->with('success','Datos guardado correctamente.');
-      return 'se guado corectamente';
+      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
     }
 
     /**
@@ -114,17 +109,9 @@ class QuotationsController extends Controller
      */
     public function edit($id)
     {
-      $products = Products::all();
-      $units = Units::all();
-      $categories = Category::all();
-      $proveedores = Suppliers::all();
-      $coins = Coins::all();
-
       $productos_cotizados = Quoteers::where('cotizacion_id', $id)->get();
       $cotizacion = Quotations::find($id);
-      $cotizacion->user;
-      $cotizacion->cliente;
-      return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'products', 'units', 'categories', 'proveedores', 'coins'));
+      return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados'));
     }
 
     /**
@@ -152,8 +139,11 @@ class QuotationsController extends Controller
       return redirect('admin/cotizacion')->with('success','La cotizacion ha sido eliminado correctamente');
     }
 
-    public function get()
+    public function cliente(Request $request)
     {
-      return 'test';
+      $cliente = Clientes::create($request->all());
+      $cliente->save();
+
+      return redirect()->route('cotizacion.create')->with('success','Datos guardados correctamente.');
     }
 }

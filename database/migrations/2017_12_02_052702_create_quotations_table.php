@@ -18,10 +18,16 @@ class CreateQuotationsTable extends Migration
             $table->string('numero_cotizacion');
             $table->string('fecha');
             $table->string('licitacion');
+            $table->string('rfc_cliente');
+            $table->string('telefono_cliente');
+            $table->string('correo_cliente');
+            $table->string('nombre_empresa');
+            $table->string('direccion');
             $table->string('nombre_cotizar');
             $table->string('puesto');
             $table->string('observaciones',10000);
             $table->string('total');
+            $table->string('moneda');
             $table->integer('cliente_id');
             $table->integer('user_id');
             $table->timestamps();

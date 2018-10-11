@@ -86,7 +86,7 @@ Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotiza
 Route::post('/admin/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
 Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
 Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
-Route::post('/obtener-cotizacion-existente', 'QuotationsController@get')->name('cotizacion.get');
+Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
 // ------------------fin cotizacion----------------------------------------
 
 // ------------------facturas----------------------------------------
@@ -112,9 +112,8 @@ Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')-
 // =======================metodos ajax ==============================================
 Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
 Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
-Route::get('/cliente/{id}', 'ControllersAjax@getClientAjax');
+Route::get('/cliente-cotizacion/{id}', 'ControllersAjax@getClientAjax');
 Route::get('/productos', 'ControllersAjax@getProductsAjax');
-// =======================End metodos ajax ==============================================
 
 // =======================recuperar contrasena ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
@@ -126,7 +125,7 @@ Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo
 
 // =======================guardar producto nuevo desde cotizacion==============================================
 Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
-Route::post('/guardar-cliente-cotizacion', 'ControllerNewProductQuotation@store')->name('cliente.cotizacion');
+
 // =======================guardar producto nuevo desde cotizacion==============================================
 
 // =======================crear PDF ==============================================

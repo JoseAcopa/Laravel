@@ -32,10 +32,10 @@ class CreateQuotationRequest extends FormRequest
           'observaciones' => 'max:10000||required',
           'total' => 'max:255|required',
           'cliente_id' => 'max:255|required',
-          'rfc' => 'max:255|required',
-          'empresa' => 'max:255|required',
-          'telefono' => 'digits:10|required',
-          'correo' => 'max:255|required',
+          'rfc_cliente' => 'max:255|required',
+          'nombre_empresa' => 'max:255|required',
+          'telefono_cliente' => 'digits:10|required',
+          'correo_cliente' => 'max:255|required',
           'direccion' => 'max:255|required',
         ];
     }

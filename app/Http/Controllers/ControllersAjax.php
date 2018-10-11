@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Products;
 use App\Catalog;
-use App\Clients;
+use App\Clientes;
 use App\Count;
 
 class ControllersAjax extends Controller
@@ -31,10 +31,10 @@ class ControllersAjax extends Controller
   public function getClientAjax($id)
   {
     $now = new \DateTime();
-    $year = $now->format('Y');
-    $count = Count::where('fecha', $year)->get();
-    $client = Clients::find($id);
-    $array = compact('year', 'count', 'client');
+    $fecha = $now->format('Y');
+    $total_cotizacion = Count::where('fecha', $fecha)->get();
+    $cliente = Clientes::find($id);
+    $array = compact('fecha', 'total_cotizacion', 'cliente');
     return $array;
   }
 

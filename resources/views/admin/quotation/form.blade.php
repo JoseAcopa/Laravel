@@ -1,27 +1,23 @@
 <br>
-<div class="col-md-12">
-  <div class="box box-primary box-solid">
-    <div class="box-header with-border">
-      <h3 class="box-title">Buscar cliente</h3>
-    </div>
-    <div class="box-body" style="">
-      <div class="form-group">
-        <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
-        {{ Form::label('cliente_id', 'Clientes') }}
-        <div class="input-group">
-          {!! Form::select('cliente_id', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
-          {{-- <select class="form-control select2" style="width: 100%;" onchange="getClient(this)">
-            <option selected="selected" value="null">Buscar...</option>
-            @foreach ($clients as $client)
-              <option value="{{ $client->id }}">{{$client->business}} | {{$client->email}} | {{$client->phone}}</option>
-            @endforeach
-          </select> --}}
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+@if (isset($clientes))
+  <div class="col-md-12">
+    <div class="box box-primary box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Buscar cliente</h3>
+      </div>
+      <div class="box-body" style="">
+        <div class="form-group">
+          <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
+          {{ Form::label('cliente_id', 'Clientes') }}
+          <div class="input-group">
+            {!! Form::select('cliente_id', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+@endif
 
 <div class="box-body">
   <div class="col-md-4">
@@ -30,15 +26,15 @@
       {{ Form::text('numero_cotizacion', null, ['class' => 'form-control', 'placeholder' => 'no. de cotización', 'id' => 'numero_cotizacion', 'readonly']) }}
       {!! $errors->first('numero_cotizacion','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('rfc') ? 'has-error' : '' }}">
-      {{ Form::label('rfc', 'RFC:') }}
-      {{ Form::text('rfc', null, ['class' => 'form-control', 'placeholder' => 'RFC', 'id' => 'rfc', 'readonly']) }}
-      {!! $errors->first('rfc','<span class="help-block">:message</span>')!!}
+    <div class="form-group {{ $errors->has('rfc_cliente') ? 'has-error' : '' }}">
+      {{ Form::label('rfc_cliente', 'RFC:') }}
+      {{ Form::text('rfc_cliente', null, ['class' => 'form-control', 'placeholder' => 'RFC', 'id' => 'rfc', 'readonly']) }}
+      {!! $errors->first('rfc_cliente','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('empresa') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('nombre_empresa') ? 'has-error' : '' }}">
       {{ Form::label('empresa', 'Nombre de la empresa:') }}
-      {{ Form::text('empresa', null, ['class' => 'form-control', 'placeholder' => 'nombre de la empresa', 'id' => 'empresa', 'readonly']) }}
-      {!! $errors->first('empresa','<span class="help-block">:message</span>')!!}
+      {{ Form::text('nombre_empresa', null, ['class' => 'form-control', 'placeholder' => 'nombre de la empresa', 'id' => 'empresa', 'readonly']) }}
+      {!! $errors->first('nombre_empresa','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
@@ -50,10 +46,10 @@
       </div>
       {!! $errors->first('fecha','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('telefono') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('telefono_cliente') ? 'has-error' : '' }}">
       {{ Form::label('telefono', 'Teléfono:') }}
-      {{ Form::text('telefono', null, ['class' => 'form-control', 'placeholder' => 'teléfono', 'id' => 'telefono', 'readonly']) }}
-      {!! $errors->first('telefono','<span class="help-block">:message</span>')!!}
+      {{ Form::text('telefono_cliente', null, ['class' => 'form-control', 'placeholder' => 'teléfono', 'id' => 'telefono', 'readonly']) }}
+      {!! $errors->first('telefono_cliente','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('nombre_cotizar') ? 'has-error' : '' }}">
       {{ Form::label('nombre_cotizar', 'Nombre Completo:') }}
@@ -67,10 +63,10 @@
       {{ Form::text('licitacion', null, ['class' => 'form-control', 'placeholder' => 'número de licitación']) }}
       {!! $errors->first('licitacion','<span class="help-block">:message</span>')!!}
     </div>
-    <div class="form-group {{ $errors->has('correo') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('correo_cliente') ? 'has-error' : '' }}">
       {{ Form::label('correo', 'E-mail:') }}
-      {{ Form::email('correo', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'id' => 'correo']) }}
-      {!! $errors->first('correo','<span class="help-block">:message</span>')!!}
+      {{ Form::email('correo_cliente', null, ['class' => 'form-control', 'placeholder' => 'e-mail', 'id' => 'correo']) }}
+      {!! $errors->first('correo_cliente','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
       {{ Form::label('puesto', 'Puesto:') }}
@@ -85,10 +81,16 @@
       {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
     </div>
   </div>
-  <div class="col-md-6">
+  <div class="col-md-2">
     <div class="form-group">
-      {{ Form::label('observaciones', 'Observaciones:') }}
-      {!! Form::select('observaciones', ['obs1' => 'Suministro', 'obs2' => 'Plataforma', 'obs3' => 'Trabajos en tierra'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione', 'onchange' => 'changeObservacion(this)']); !!}
+      {{ Form::label('moneda', 'Moneda:') }}
+      {!! Form::select('moneda', ['MXP' => 'MXP', 'USD' => 'USD'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione']); !!}
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      {{ Form::label('select', 'Observaciones:') }}
+      {!! Form::select('select', ['obs1' => 'Suministro', 'obs2' => 'Plataforma', 'obs3' => 'Trabajos en tierra'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione', 'onchange' => 'changeObservacion(this)']); !!}
     </div>
   </div>
   <div class="col-md-12">
@@ -99,7 +101,7 @@
   </div>
 
 {{-- cotizador de los productos --}}
-  <div class="col-md-12">
+  {{-- <div class="col-md-12">
     <hr>
     <h4><i class="fa fa-book"></i> Cotizar Producto</h4>
     <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i> Nuevo Producto</a>
@@ -165,16 +167,14 @@
     </table>
     <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
   </div>
-</div>
+</div> --}}
 <div class="box-footer">
-  <div class="pull-right">
-    <a href="{{ url('/admin/cotizacion') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o"></i> Cancelar</a>
-    <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i>  Guardar e imprimir</button>
-  </div>
+  <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+  <a href="{{ url('/admin/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>
 
-<input type="text" name="total" id="totalAmount">
+{{-- <input type="text" name="total" id="totalAmount">
 <input type="text" id="currency">
 <input type="text" id="unit">
 <input type="text" name="total_poductos" id="total_poductos">
-<input type="text" id="description">
+<input type="text" id="description"> --}}
