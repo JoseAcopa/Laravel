@@ -87,7 +87,6 @@ Route::post('/admin/actualizar-cotizacion/{cotizacion}', 'QuotationsController@u
 Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
 Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
 Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
-// ------------------fin cotizacion----------------------------------------
 
 // ------------------facturas----------------------------------------
 Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');

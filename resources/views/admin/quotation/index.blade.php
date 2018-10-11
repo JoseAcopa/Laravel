@@ -60,7 +60,6 @@
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Empresa</th>
-                <th>RFC</th>
                 <th>Total</th>
                 <th>Acciones</th>
              </tr>
@@ -72,16 +71,15 @@
                   <td><a href="{{route('cotizacion.edit', $cotizacion->id)}}">{{$cotizacion->numero_cotizacion}}</a></td>
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
-                  <td>{{$cotizacion->nombre}}</td>
+                  <td>{{$cotizacion->nombre_cotizar}}</td>
                   <td>{{$cotizacion->cliente->nombre_empresa}}</td>
-                  <td>{{$cotizacion->cliente->RFC}}</td>
                   <td>${{$cotizacion->total}}</td>
                   <td class="row-copasat">
-                    @can ('quotation.show')
+                    @can ('cotizacion.show')
                       <a class="btn btn-primary" href="{{route('cotizacion.show',$cotizacion->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
                     @endcan
                     <a class="btn btn-default" target="_blank" href="{{url('/cotizacion',$cotizacion->id)}}"><i class="fa fa-file-pdf-o"></i></a>
-                    @can ('quotation.destroy')
+                    @can ('cotizacion.destroy')
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('cotizacion.destroy', $cotizacion->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>
@@ -96,7 +94,6 @@
                 <th>Fecha</th>
                 <th>Cliente</th>
                 <th>Empresa</th>
-                <th>RFC</th>
                 <th>Total</th>
                 <th>Acciones</th>
              </tr>

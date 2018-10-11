@@ -99,82 +99,8 @@
       {!! $errors->first('observaciones','<span class="help-block">:message</span>')!!}
     </div>
   </div>
-
-{{-- cotizador de los productos --}}
-  {{-- <div class="col-md-12">
-    <hr>
-    <h4><i class="fa fa-book"></i> Cotizar Producto</h4>
-    <a href="#" data-toggle="modal" data-target=".bd-example-modal-lg"><i class="fa fa-plus"></i> Nuevo Producto</a>
-    <br><br>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label>Buscar Producto</label>
-      <select id="searchProduct" class="form-control select2" style="width: 100%;" onchange="getProduct(this);">
-      </select>
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Producto:</label>
-      <input type="text" class="form-control" placeholder="producto" id="producto" readonly>
-    </div>
-  </div>
-  <div class="col-md-1">
-    <div class="form-group">
-      <label>Cantidad:</label>
-      <input type="number" id="cantidad" class="form-control" placeholder="0" min="1" value="">
-    </div>
-  </div>
-  <div class="col-md-2">
-    <div class="form-group">
-      <label>Precios:</label>
-      <select class="form-control" id="" onchange="cambiarPrecio(this.value);" >
-        <option selected="selected" value="">Selecciona</option>
-        <option id="price1"></option>
-        <option id="price2"></option>
-        <option id="price3"></option>
-        <option id="price4"></option>
-        <option id="price5" value="price5"></option>
-      </select>
-    </div>
-  </div>
-  <div class="col-md-2" style="margin-top: 25px;">
-    <input type="text" name="" class="form-control" id="precioUnitario" readonly>
-  </div>
-  <div class="col-md-1">
-    <label>Agregar:</label>
-    <button type="button" class="btn btn-block btn-primary btn-flat" onclick="addProduct()"><i class="fa fa-plus fa-lg"></i></button>
-  </div>
-
-  <div class="col-md-12">
-    <br>
-    <table class="table table-bordered table-striped">
-      <thead>
-        <tr style="background-color: #a5b1c2 !important; color: #fff !important;">
-          <th>Producto</th>
-          <th>Cant.</th>
-          <th>Unidad</th>
-          <th>Descripción del producto</th>
-          <th>Precio Unitario</th>
-          <th>Subtotal</th>
-          <th>Eliminar</th>
-       </tr>
-      </thead>
-      <tbody id="tabla">
-
-      </tbody>
-    </table>
-    <h3 style="text-align: right">Total: $<span id="totalAmount1">0.00</span> </h3>
-  </div>
-</div> --}}
+</div>
 <div class="box-footer">
   <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
   <a href="{{ url('/admin/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>
-
-{{-- <input type="text" name="total" id="totalAmount">
-<input type="text" id="currency">
-<input type="text" id="unit">
-<input type="text" name="total_poductos" id="total_poductos">
-<input type="text" id="description"> --}}
