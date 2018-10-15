@@ -99,6 +99,67 @@
       {!! $errors->first('observaciones','<span class="help-block">:message</span>')!!}
     </div>
   </div>
+
+  <div class="col-md-12">
+    <div class="box box-primary box-solid">
+      <div class="box-header with-border">
+        <h3 class="box-title">Buscar Producto</h3>
+      </div>
+      <div class="box-body" style="">
+        <div class="form-group">
+          <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
+          {{ Form::label('producto', 'Productos') }}
+          <div class="input-group">
+            {!! Form::select('producto', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    {{ Form::label('descripcion_producto', 'Descripcion:') }}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+  </div>
+  <div class="col-md-3">
+    {{ Form::label('descripcion_producto', 'Producto:') }}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+  </div>
+  <div class="col-md-3">
+    {{ Form::label('descripcion_producto', 'Precio:') }}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+  </div>
+  <div class="col-md-1">
+    {{ Form::label('descripcion_producto', 'Cantidad:') }}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+  </div>
+  <div class="col-md-1">
+    {{ Form::label('Agregar', 'Agregar:') }}
+    <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+  </div>
+  <div class="col-md-12">
+    <br>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th style="width: 10px">#</th>
+          <th>Descripcion</th>
+          <th style="width: 40px">Cantidad</th>
+          <th style="width: 40px">Precio</th>
+          <th style="width: 40px">Subtotal</th>
+          <th style="width: 40px">Accion</th>
+        </tr>
+        <tr>
+          <td>1.</td>
+          <td>Manguera Hidraulica</td>
+          <td>2</td>
+          <td>20000</td>
+          <td>40000</td>
+          <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
 <div class="box-footer">
   <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>

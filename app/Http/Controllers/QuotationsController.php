@@ -59,7 +59,7 @@ class QuotationsController extends Controller
       $request['total'] = 0;
       $cotizacion = Quotations::create($request->all());
 
-      // guardando contador del cotizdor
+      // guardando contador del cotizador
       $now = new \DateTime(); //obteniendo la fecha actual
       $year = $now->format('Y'); //obteniendo solo el anio
       $newCount = Count::where('fecha', $year)->get(); //obteniendo todas las fechas guardadas en este anio
