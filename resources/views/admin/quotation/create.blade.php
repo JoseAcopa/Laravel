@@ -71,14 +71,80 @@
       url: '/producto/'+id,
       type: 'GET',
       success: (res)=>{
-        console.log(res);
         $('#descripcion').val(res.description);
         $('#producto_cotizar').val(res.category.type);
         $('#stock').val(+res.stock);
         $('.selectPrecios').remove();
         $('#precios').append('<option class="selectPrecios">$'+res.priceSales1+'</option><option class="selectPrecios">$'+res.priceSales2+'</option class="selectPrecios"><option>$'+res.priceSales3+'</option><option class="selectPrecios">$'+res.priceSales4+'</option><option class="selectPrecios">$'+res.priceSales5+'</option>')
-        // sessionStorage.setItem('products',JSON.stringify(products))
       }
     })
   }
+
+  var productos = (JSON.parse(sessionStorage.getItem('productos')) != null) ? JSON.parse(sessionStorage.getItem('productos')) : []
+
+  function agregarPaquete() {
+    var cantidad = Number($('#cantidad').val())
+    var precio = Number($('.selectPrecios').val().replace(/[$]/gi, ''))
+    var subtotal = cantidad * precio
+    var productoId = Number($('#producto_id').val())
+
+    var producto = {
+      cantidad: cantidad,
+      precio: precio,
+      subtotal: subtotal,
+      producto_id: productoId
+    }
+    productos.push(producto)
+    sessionStorage.setItem('productos',JSON.stringify(productos))
+    productos.map((item, i)=>{
+      $('#fila'+i).remove();
+      var iter = '';
+      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado(fila'+i+', '+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+      $('#tabla').append(iter)
+    })
+    console.log(productos)
+    total()
+  }
+
+function total() {
+  let total = 0;
+
+  productos.map((item)=>{
+    total += Number(item.subtotal)
+  })
+  $('#total').val(total.toFixed(2))
+}
+
+function eliminarProductoCotizado(val, i) {
+  var id = val.id
+  swal({
+    title: '¿Desea eliminar este producto?',
+    text: "¡El producto se eliminara de la cotización!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3c8dbc',
+    cancelButtonColor: '#dd4b39',
+    confirmButtonText: 'Sí, eliminar!',
+    cancelButtonText: 'No, cancelar!'
+  }).then((res) => {
+    if (res.value) {
+      productos.splice(i, i === 0 ? 1 : i)
+      $('#'+id).remove();
+      sessionStorage.clear();
+      total()
+      swal(
+        '¡Eliminado!',
+        'El Producto ha sido eliminado.',
+        'success'
+      )
+      $('#count').val(products.length)
+    }else if (res.dismiss === "cancel") {
+      swal(
+        '¡Cancelado!',
+        'La accion fue cancelada.',
+        'error'
+      )
+    }
+  })
+}
 </script>

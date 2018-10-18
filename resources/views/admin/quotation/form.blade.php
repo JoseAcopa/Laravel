@@ -110,7 +110,7 @@
           <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
           {{ Form::label('producto', 'Productos') }}
           <div class="input-group">
-            {!! Form::select('producto', $productos, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
+            {!! Form::select('producto', $productos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
@@ -119,11 +119,11 @@
   </div>
   <div class="col-md-4">
     {{ Form::label('descripcion_producto', 'Descripción:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion']); !!}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly']); !!}
   </div>
   <div class="col-md-3">
     {{ Form::label('producto_cotizar', 'Producto:') }}
-    {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar']); !!}
+    {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly']); !!}
   </div>
   <div class="col-md-2">
     {{ Form::label('precio', 'Precio:') }}
@@ -133,7 +133,7 @@
   </div>
   <div class="col-md-1">
     {{ Form::label('stock', 'Stock:') }}
-    {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock']); !!}
+    {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly']); !!}
   </div>
   <div class="col-md-1">
     {{ Form::label('cantidad', 'Cantidad:') }}
@@ -141,12 +141,12 @@
   </div>
   <div class="col-md-1">
     {{ Form::label('Agregar', 'Agregar:') }}
-    <a href="#" class="btn btn-block bg-navy btn-flat"><i class="fa fa-plus"></i></a>
+    <button type="button" class="btn btn-block bg-navy btn-flat" onclick="agregarPaquete()"><i class="fa fa-plus"></i></button>
   </div>
   <div class="col-md-12">
     <br>
     <table class="table table-bordered">
-      <tbody>
+      <thead>
         <tr>
           <th style="width: 10px">#</th>
           <th>Descripción</th>
@@ -155,16 +155,15 @@
           <th style="width: 30px">Subtotal</th>
           <th style="width: 30px">Accion</th>
         </tr>
-        <tr>
-          <td>1.</td>
-          <td>Manguera Hidraulica</td>
-          <td>200</td>
-          <td>$20000.00</td>
-          <td>$40000.00</td>
-          <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
-        </tr>
+      </thead>
+      <tbody id="tabla">
+        
       </tbody>
     </table>
+  </div>
+  <div class="col-md-3 pull-right">
+    {{ Form::label('total', 'Total:') }}
+    {!! Form::text('total', null,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
   </div>
 </div>
 <div class="box-footer">

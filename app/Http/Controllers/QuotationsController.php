@@ -52,12 +52,11 @@ class QuotationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateQuotationRequest $request)
     {
       // guardando cotizacion
       $user = Auth::user();
       $request['user_id'] =  $user->id;
-      $request['total'] = 0;
       $cotizacion = Quotations::create($request->all());
 
       // guardando contador del cotizador

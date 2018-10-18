@@ -37,6 +37,7 @@ class CreateQuotationRequest extends FormRequest
           'telefono_cliente' => 'digits:10|required',
           'correo_cliente' => 'max:255|required',
           'direccion' => 'max:255|required',
+          'total' => 'max:255|required',
         ];
     }
 }
