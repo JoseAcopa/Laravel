@@ -110,7 +110,7 @@
           <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
           {{ Form::label('producto', 'Productos') }}
           <div class="input-group">
-            {!! Form::select('producto', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+            {!! Form::select('producto', $productos, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
@@ -118,24 +118,30 @@
     </div>
   </div>
   <div class="col-md-4">
-    {{ Form::label('descripcion_producto', 'Descripcion:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+    {{ Form::label('descripcion_producto', 'Descripción:') }}
+    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion']); !!}
   </div>
   <div class="col-md-3">
-    {{ Form::label('descripcion_producto', 'Producto:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+    {{ Form::label('producto_cotizar', 'Producto:') }}
+    {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar']); !!}
   </div>
-  <div class="col-md-3">
-    {{ Form::label('descripcion_producto', 'Precio:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+  <div class="col-md-2">
+    {{ Form::label('precio', 'Precio:') }}
+    <select class="form-control" id="precios">
+
+    </select>
   </div>
   <div class="col-md-1">
-    {{ Form::label('descripcion_producto', 'Cantidad:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripcion', 'id' => 'descripcion']); !!}
+    {{ Form::label('stock', 'Stock:') }}
+    {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock']); !!}
+  </div>
+  <div class="col-md-1">
+    {{ Form::label('cantidad', 'Cantidad:') }}
+    {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad']); !!}
   </div>
   <div class="col-md-1">
     {{ Form::label('Agregar', 'Agregar:') }}
-    <a href="#" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+    <a href="#" class="btn btn-block bg-navy btn-flat"><i class="fa fa-plus"></i></a>
   </div>
   <div class="col-md-12">
     <br>
@@ -143,18 +149,18 @@
       <tbody>
         <tr>
           <th style="width: 10px">#</th>
-          <th>Descripcion</th>
-          <th style="width: 40px">Cantidad</th>
-          <th style="width: 40px">Precio</th>
-          <th style="width: 40px">Subtotal</th>
-          <th style="width: 40px">Accion</th>
+          <th>Descripción</th>
+          <th style="width: 30px">Cantidad</th>
+          <th style="width: 30px">Precio</th>
+          <th style="width: 30px">Subtotal</th>
+          <th style="width: 30px">Accion</th>
         </tr>
         <tr>
           <td>1.</td>
           <td>Manguera Hidraulica</td>
-          <td>2</td>
-          <td>20000</td>
-          <td>40000</td>
+          <td>200</td>
+          <td>$20000.00</td>
+          <td>$40000.00</td>
           <td><a href="#" class="btn btn-danger"><i class="fa fa-trash"></i></a></td>
         </tr>
       </tbody>

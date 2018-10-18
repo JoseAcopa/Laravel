@@ -42,7 +42,8 @@ class QuotationsController extends Controller
     {
       // $clients = Clients::all();
       $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
-      return view('admin.quotation.create', compact('clientes'));
+      $productos = Products::all()->pluck('description', 'id');
+      return view('admin.quotation.create', compact('clientes', 'productos'));
     }
 
     /**

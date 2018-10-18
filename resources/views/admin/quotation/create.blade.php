@@ -63,4 +63,22 @@
       }
     })
   }
+
+  // obteniendo producto para cotizar
+  function getProducto(val) {
+    var id = val.value
+    $.ajax({
+      url: '/producto/'+id,
+      type: 'GET',
+      success: (res)=>{
+        console.log(res);
+        $('#descripcion').val(res.description);
+        $('#producto_cotizar').val(res.category.type);
+        $('#stock').val(+res.stock);
+        $('.selectPrecios').remove();
+        $('#precios').append('<option class="selectPrecios">$'+res.priceSales1+'</option><option class="selectPrecios">$'+res.priceSales2+'</option class="selectPrecios"><option>$'+res.priceSales3+'</option><option class="selectPrecios">$'+res.priceSales4+'</option><option class="selectPrecios">$'+res.priceSales5+'</option>')
+        // sessionStorage.setItem('products',JSON.stringify(products))
+      }
+    })
+  }
 </script>
