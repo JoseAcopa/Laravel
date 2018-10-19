@@ -141,7 +141,7 @@
   </div>
   <div class="col-md-1">
     {{ Form::label('Agregar', 'Agregar:') }}
-    <button type="button" class="btn btn-block bg-navy btn-flat" onclick="agregarPaquete()"><i class="fa fa-plus"></i></button>
+    <button type="button" class="btn btn-block bg-navy btn-flat" onclick="agregarProducto()"><i class="fa fa-plus"></i></button>
   </div>
   <div class="col-md-12">
     <br>
@@ -157,7 +157,7 @@
         </tr>
       </thead>
       <tbody id="tabla">
-        
+
       </tbody>
     </table>
   </div>

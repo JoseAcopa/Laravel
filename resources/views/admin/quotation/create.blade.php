@@ -80,14 +80,35 @@
     })
   }
 
+  // variable para guardar los datos en sesionstorage y en cotizacion
   var productos = (JSON.parse(sessionStorage.getItem('productos')) != null) ? JSON.parse(sessionStorage.getItem('productos')) : []
 
-  function agregarPaquete() {
+  // agregando productos si se recarga la pagina
+  setTimeout(function() {
+    productos.map((item, i)=>{
+      $('#fila'+i).remove();
+      var iter = '';
+      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+      $('#tabla').append(iter)
+    })
+    total()
+  }, 600)
+
+  // agregando productos a la tabla
+  function agregarProducto() {
     var cantidad = Number($('#cantidad').val())
     var precio = Number($('.selectPrecios').val().replace(/[$]/gi, ''))
     var subtotal = cantidad * precio
     var productoId = Number($('#producto_id').val())
 
+    if (cantidad == '') {
+      swal(
+        '¡Campos requeridos!',
+        'Algunos campos son requeridos.',
+        'warning'
+      )
+      return
+    }
     var producto = {
       cantidad: cantidad,
       precio: precio,
@@ -99,13 +120,13 @@
     productos.map((item, i)=>{
       $('#fila'+i).remove();
       var iter = '';
-      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado(fila'+i+', '+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
       $('#tabla').append(iter)
     })
-    console.log(productos)
     total()
   }
 
+// obteniendo el total de los productos cotizados
 function total() {
   let total = 0;
 
@@ -115,8 +136,8 @@ function total() {
   $('#total').val(total.toFixed(2))
 }
 
-function eliminarProductoCotizado(val, i) {
-  var id = val.id
+// eliminar producto de la tabla de cotizacion
+function eliminarProductoCotizado(index) {
   swal({
     title: '¿Desea eliminar este producto?',
     text: "¡El producto se eliminara de la cotización!",
@@ -128,16 +149,31 @@ function eliminarProductoCotizado(val, i) {
     cancelButtonText: 'No, cancelar!'
   }).then((res) => {
     if (res.value) {
-      productos.splice(i, i === 0 ? 1 : i)
-      $('#'+id).remove();
-      sessionStorage.clear();
-      total()
+      // eliminando los datos de la tabla
+      productos.map((item, i)=>{
+        $('#fila'+i).remove();
+      })
+
+      // refrescando tabla
+      setTimeout(function() {
+        productos.splice(index, 1)
+        total()
+
+        sessionStorage.setItem('productos',JSON.stringify(productos))
+
+        productos.map((item, i)=>{
+          $('#fila'+i).remove();
+          var iter = '';
+          iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+          $('#tabla').append(iter)
+        })
+      }, 400)
+
       swal(
         '¡Eliminado!',
         'El Producto ha sido eliminado.',
         'success'
       )
-      $('#count').val(products.length)
     }else if (res.dismiss === "cancel") {
       swal(
         '¡Cancelado!',
