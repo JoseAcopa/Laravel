@@ -85,10 +85,14 @@
 
   // agregando productos si se recarga la pagina
   setTimeout(function() {
+    // llenando el campo de los productos a cotizar para enviarlo
+    $('#cotizar_productos').val(JSON.stringify(productos));
     productos.map((item, i)=>{
+      var precio = item.precio.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+      var subtotal = item.subtotal.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
       $('#fila'+i).remove();
       var iter = '';
-      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+      iter += '<tr id="fila'+i+'"><td style="width: 10px;">'+Number(i+1)+'.</td><td>'+item.descripcion+'</td><td>'+item.cantidad+'</td><td style="width: 30px;">$'+precio+'</td><td style="width: 30px;">$'+subtotal+'</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
       $('#tabla').append(iter)
     })
     total()
@@ -96,8 +100,9 @@
 
   // agregando productos a la tabla
   function agregarProducto() {
+    var descripcion = $('#descripcion').val()
     var cantidad = Number($('#cantidad').val())
-    var precio = Number($('.selectPrecios').val().replace(/[$]/gi, ''))
+    var precio = Number($('#precios').val().replace(/[$]/gi, ''))
     var subtotal = cantidad * precio
     var productoId = Number($('#producto_id').val())
 
@@ -113,14 +118,20 @@
       cantidad: cantidad,
       precio: precio,
       subtotal: subtotal,
-      producto_id: productoId
+      producto_id: productoId,
+      descripcion: descripcion
     }
     productos.push(producto)
     sessionStorage.setItem('productos',JSON.stringify(productos))
+    // llenando el campo de los productos a cotizar para enviarlo
+    $('#cotizar_productos').val(JSON.stringify(productos));
+    // creando tabla de productos cotizados
     productos.map((item, i)=>{
+      var precio = item.precio.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+      var subtotal = item.subtotal.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
       $('#fila'+i).remove();
       var iter = '';
-      iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+      iter += '<tr id="fila'+i+'"><td style="width: 10px;">'+Number(i+1)+'.</td><td>'+item.descripcion+'</td><td>'+item.cantidad+'</td><td style="width: 30px;">$'+precio+'</td><td style="width: 30px;">$'+subtotal+'</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
       $('#tabla').append(iter)
     })
     total()
@@ -133,7 +144,7 @@ function total() {
   productos.map((item)=>{
     total += Number(item.subtotal)
   })
-  $('#total').val(total.toFixed(2))
+  $('#total').val('$'+total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
 }
 
 // eliminar producto de la tabla de cotizacion
@@ -160,11 +171,14 @@ function eliminarProductoCotizado(index) {
         total()
 
         sessionStorage.setItem('productos',JSON.stringify(productos))
-
+        // llenando el campo de los productos a cotizar para enviarlo
+        $('#cotizar_productos').val(JSON.stringify(productos));
         productos.map((item, i)=>{
+          var precio = item.precio.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
+          var subtotal = item.subtotal.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,")
           $('#fila'+i).remove();
           var iter = '';
-          iter += '<tr id="fila'+i+'"><td>'+Number(i+1)+'.</td><td>Manguera Hidraulica</td><td>200</td><td>$20000.00</td><td>$40000.00</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
+          iter += '<tr id="fila'+i+'"><td style="width: 10px;">'+Number(i+1)+'.</td><td>'+item.descripcion+'</td><td>'+item.cantidad+'</td><td style="width: 30px;">$'+precio+'</td><td style="width: 30px;">$'+subtotal+'</td><td><button type="button" class="btn btn-danger" onclick="eliminarProductoCotizado('+i+')"><i class="fa fa-trash"></i></button></td></tr>'
           $('#tabla').append(iter)
         })
       }, 400)

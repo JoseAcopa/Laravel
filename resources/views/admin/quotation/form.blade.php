@@ -137,7 +137,7 @@
   </div>
   <div class="col-md-1">
     {{ Form::label('cantidad', 'Cantidad:') }}
-    {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad']); !!}
+    {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1']); !!}
   </div>
   <div class="col-md-1">
     {{ Form::label('Agregar', 'Agregar:') }}
@@ -145,15 +145,15 @@
   </div>
   <div class="col-md-12">
     <br>
-    <table class="table table-bordered">
+    <table class="table table-bordered table-hover">
       <thead>
         <tr>
-          <th style="width: 10px">#</th>
+          <th style="width: 10px;">#</th>
           <th>Descripción</th>
-          <th style="width: 30px">Cantidad</th>
-          <th style="width: 30px">Precio</th>
-          <th style="width: 30px">Subtotal</th>
-          <th style="width: 30px">Accion</th>
+          <th style="width: 30px;">Cantidad</th>
+          <th style="width: 30px;">Precio</th>
+          <th style="width: 30px;">Subtotal</th>
+          <th style="width: 30px;">Accion</th>
         </tr>
       </thead>
       <tbody id="tabla">
@@ -164,6 +164,7 @@
   <div class="col-md-3 pull-right">
     {{ Form::label('total', 'Total:') }}
     {!! Form::text('total', null,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
+    {!! Form::text('cotizar_productos', null,  ['class' => 'form-control', 'id' => 'cotizar_productos', 'style' => 'display: none;']); !!}
   </div>
 </div>
 <div class="box-footer">
