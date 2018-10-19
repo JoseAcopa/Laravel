@@ -69,19 +69,16 @@ class QuotationsController extends Controller
       $count->save();
 
       // guardando productos cotizados
-      // $total = request('total_poductos');
-      // for ($i=0; $i < $total; $i++) {
-      //   if (request('producto'.$i)) {
-      //     // $quoteer = Quoteers::create($request->all());
-      //     $producto_cotizado = new Quoteers;
-      //     $producto_cotizado->cantidad = request('cantidad'.$i);
-      //     $producto_cotizado->precio = request('precio'.$i);
-      //     $producto_cotizado->subtotal = request('subtotal'.$i);
-      //     $producto_cotizado->cotizacion_id = (int) $quotation->id;
-      //     $producto_cotizado->producto_id = (int) $request->idProduct1.$i;
-      //     $producto_cotizado->save();
-      //   }
-      // }
+      $productos_cotizados = json_decode($request->cotizar_productos);
+      for ($i=0; $i < count($productos_cotizados); $i++) {
+        $cotizar = new Quoteers;
+        $cotizar->cantidad = $productos_cotizados[$i]->cantidad;
+        $cotizar->precio = $productos_cotizados[$i]->precio;
+        $cotizar->subtotal = $productos_cotizados[$i]->subtotal;
+        $cotizar->cotizacion_id = (int) $cotizacion->id;
+        $cotizar->producto_id = (int) $productos_cotizados[$i]->producto_id;
+        $cotizar->save();
+      }
 
       return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
     }
@@ -109,9 +106,10 @@ class QuotationsController extends Controller
      */
     public function edit($id)
     {
-      $productos = Products::all();
+      $productos = Products::all()->pluck('description', 'id');
       $productos_cotizados = Quoteers::where('cotizacion_id', $id)->get();
       $cotizacion = Quotations::find($id);
+      return $productos_cotizados;
       return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'productos'));
     }
 
