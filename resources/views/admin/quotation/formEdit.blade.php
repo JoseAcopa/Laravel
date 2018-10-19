@@ -136,7 +136,7 @@
           <th style="width: 30px;">Accion</th>
         </tr>
       </thead>
-      <tbody id="tabla">
+      <tbody>
         @foreach ($productos_cotizados as $key => $producto_cotizado)
           <tr>
             <td style="width: 10px;">{{$key+1}}</td>

@@ -109,7 +109,6 @@ class QuotationsController extends Controller
       $productos = Products::all()->pluck('description', 'id');
       $productos_cotizados = Quoteers::where('cotizacion_id', $id)->get();
       $cotizacion = Quotations::find($id);
-      return $productos_cotizados;
       return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'productos'));
     }
 

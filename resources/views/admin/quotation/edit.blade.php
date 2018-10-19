@@ -32,7 +32,7 @@
         {!! Form::model($cotizacion, ['method' => 'POST','route' => ['cotizacion.update', $cotizacion->id]]) !!}
           {{ csrf_field() }}
 
-          @include('admin.quotation.form')
+          @include('admin.quotation.formEdit')
 
         {!! Form::close() !!}
       </div>
