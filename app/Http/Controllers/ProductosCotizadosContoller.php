@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Quotations;
+use App\Quoteers;
 
 class ProductosCotizadosContoller extends Controller
 {
@@ -24,9 +24,7 @@ class ProductosCotizadosContoller extends Controller
      */
     public function create($id)
     {
-      $cotizacion = Quotations::all($id);
-      // $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
-      return view('admin.productosCotizados.create', compact('cotizacion'));
+
     }
 
     /**
@@ -37,7 +35,9 @@ class ProductosCotizadosContoller extends Controller
      */
     public function store(Request $request)
     {
-        //
+      return $request;
+      $producto->create($request->all());
+      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
     }
 
     /**

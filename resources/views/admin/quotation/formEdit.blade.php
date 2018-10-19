@@ -140,7 +140,7 @@
         @foreach ($productos_cotizados as $key => $producto_cotizado)
           <tr>
             <td style="width: 10px;">{{$key+1}}</td>
-            <td>{{$producto_cotizado->producto_id}}</td>
+            <td>{{$producto_cotizado->producto->description}}</td>
             <td style="width: 30px;">{{$producto_cotizado->cantidad}}</td>
             <td style="width: 30px;">{{$producto_cotizado->precio}}</td>
             <td style="width: 30px;">{{$producto_cotizado->subtotal}}</td>

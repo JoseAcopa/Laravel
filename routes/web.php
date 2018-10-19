@@ -83,10 +83,21 @@ Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.i
 Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
 Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
 Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-Route::post('/admin/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
+Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
 Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
 Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
 Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
+
+// ------------------cotizacion----------------------------------------
+Route::post('/guardar-producto-cotizado/{producto}','ProductosCotizados@store')->name('producto_cotizado.store');
+// Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
+// Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
+// Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
+// Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
+// Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
+// Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
+// Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
+
 
 // ------------------facturas----------------------------------------
 Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');

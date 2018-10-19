@@ -107,7 +107,7 @@ class QuotationsController extends Controller
     public function edit($id)
     {
       $productos = Products::all()->pluck('description', 'id');
-      $productos_cotizados = Quoteers::where('cotizacion_id', $id)->get();
+      $productos_cotizados = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
       $cotizacion = Quotations::find($id);
       return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'productos'));
     }
@@ -119,9 +119,10 @@ class QuotationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Quotations $cotizacion)
     {
-        //
+      $cotizacion->update($request->all());
+      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
     }
 
     /**
