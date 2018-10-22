@@ -97,32 +97,35 @@
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    {{ Form::label('descripcion_producto', 'Descripción:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly']); !!}
-  </div>
-  <div class="col-md-3">
-    {{ Form::label('producto_cotizar', 'Producto:') }}
-    {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly']); !!}
-  </div>
-  <div class="col-md-2">
-    {{ Form::label('precio', 'Precio:') }}
-    <select class="form-control" id="precios">
+  {!! Form::open(['method' => 'POST', 'route' => 'cotizacion.store']) !!}
+    {{ csrf_field() }}
+    <div class="col-md-4">
+      {{ Form::label('descripcion_producto', 'Descripción:') }}
+      {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly', 'required']); !!}
+    </div>
+    <div class="col-md-3">
+      {{ Form::label('producto_cotizar', 'Producto:') }}
+      {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly', 'required']); !!}
+    </div>
+    <div class="col-md-2">
+      {{ Form::label('precio', 'Precio:') }}
+      <select class="form-control" id="precios">
 
-    </select>
-  </div>
-  <div class="col-md-1">
-    {{ Form::label('stock', 'Stock:') }}
-    {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly']); !!}
-  </div>
-  <div class="col-md-1">
-    {{ Form::label('cantidad', 'Cantidad:') }}
-    {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1']); !!}
-  </div>
-  <div class="col-md-1">
-    {{ Form::label('Agregar', 'Agregar:') }}
-    <button type="button" class="btn btn-block bg-navy btn-flat" onclick="agregarProducto()"><i class="fa fa-plus"></i></button>
-  </div>
+      </select>
+    </div>
+    <div class="col-md-1">
+      {{ Form::label('stock', 'Stock:') }}
+      {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly', 'required']); !!}
+    </div>
+    <div class="col-md-1">
+      {{ Form::label('cantidad', 'Cantidad:') }}
+      {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1', 'required']); !!}
+    </div>
+    <div class="col-md-1">
+      {{ Form::label('Agregar', 'Agregar:') }}
+      <button type="submit" class="btn btn-block bg-navy btn-flat"><i class="fa fa-plus"></i></button>
+    </div>
+  {!! Form::close() !!}
   <div class="col-md-12">
     <br>
     <table class="table table-bordered table-hover">
