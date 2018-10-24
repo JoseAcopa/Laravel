@@ -185,6 +185,7 @@
               _method: "DELETE"
           },
           success: function(data){
+            console.log(data);
             swal(
               '¡Eliminado!',
               'El registro ha sido eliminado.',
