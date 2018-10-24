@@ -36,7 +36,28 @@ class ProductosCotizadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      // guardando producto cotizado
+      $producto = new Quoteers;
+      $producto->cotizacion_id = $request->cotizacion_id;
+      $producto->producto_id = $request->producto_id;
+      $producto->cantidad = (float) $request->cantidad;
+      $producto->precio = (float) trim($request->precio, "$");
+      $producto->subtotal = (int) $request->cantidad * (float) trim($request->precio, "$");
+      $producto->save();
+
+      // editando el subtotal de la cotizacion
+      $cotizacion = Quotations::find($request->cotizacion_id);
+      $productos = Quoteers::where('cotizacion_id', $request->cotizacion_id)->get();
+      $total = 0;
+
+      for ($i=0; $i < count($productos); $i++) {
+        $total += $productos[$i]->subtotal;
+      }
+
+      $cotizacion->total = $total;
+      $cotizacion->save();
+
+      return redirect()->route('cotizacion.edit', $request->cotizacion_id)->with('success_product','Datos guardado correctamente.');
     }
 
     /**

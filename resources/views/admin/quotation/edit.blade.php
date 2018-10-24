@@ -52,28 +52,29 @@
 
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-book"></i> Editar Cotización</h3>
+          <h3 class="box-title"><i class="fa fa-book"></i> Editar productos cotizados</h3>
         </div>
         <div class="box-body">
           <div class="col-md-12">
-            <div class="box box-primary box-solid">
-              <div class="box-header with-border">
-                <h3 class="box-title">Buscar Producto</h3>
-              </div>
-              <div class="box-body" style="">
-                <div class="form-group">
-                  <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
-                  {{ Form::label('producto', 'Productos') }}
-                  <div class="input-group">
-                    {!! Form::select('producto', $productos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
-                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+            {!! Form::open(['method' => 'POST', 'route' => 'producto_cotizado.store']) !!}
+              {{ csrf_field() }}
+              <div class="box box-primary box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Buscar Producto</h3>
+                </div>
+                <div class="box-body" style="">
+                  <div class="form-group">
+                    <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
+                    {{ Form::label('producto_id', 'Productos') }}
+                    <div class="input-group">
+                      {!! Form::select('producto_id', $productos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
+                      <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          {!! Form::open(['method' => 'POST', 'route' => 'cotizacion.store']) !!}
-            {{ csrf_field() }}
+
             <div class="col-md-4">
               {{ Form::label('descripcion_producto', 'Descripción:') }}
               {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly', 'required']); !!}
@@ -84,7 +85,7 @@
             </div>
             <div class="col-md-2">
               {{ Form::label('precio', 'Precio:') }}
-              <select class="form-control" id="precios">
+              <select class="form-control" id="precios" name="precio">
 
               </select>
             </div>
@@ -95,6 +96,7 @@
             <div class="col-md-1">
               {{ Form::label('cantidad', 'Cantidad:') }}
               {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1', 'required']); !!}
+              {!! Form::number('cotizacion_id', $cotizacion->id,  ['class' => 'form-control']); !!}
             </div>
             <div class="col-md-1">
               {{ Form::label('Agregar', 'Agregar:') }}
