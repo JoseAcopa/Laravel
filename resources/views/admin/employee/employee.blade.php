@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @can ('employee.create')
+          @can ('empleado.create')
             <a href="{{ url('/admin/create-usuario') }}" class="btn btn-default" ><i class="fa fa-user-plus"></i> Registrar Empleados</a>
           @endcan
         </div>
@@ -55,10 +55,10 @@
                   <td>{{ $employee->user }}</td>
                   <td><?php echo isset($employee->role->name) == 1 ? $employee->role->name : 'No asignado'; ?></td>
                   <td class="row-copasat">
-                    @can ('employee.edit')
+                    @can ('empleado.edit')
                       <a class="btn bg-navy" href="{{ route('employee.edit',$employee->id) }}"><i class="fa fa-pencil-square-o"></i></a>
                     @endcan
-                    @can ('employee.destroy')
+                    @can ('empleado.destroy')
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('employee.destroy', $employee->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>

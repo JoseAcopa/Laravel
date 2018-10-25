@@ -39,7 +39,7 @@
             @foreach ($clientes as $key => $cliente)
               <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $cliente->rfc }}</td>
+                <td><a href="{{route('cliente.edit', $cliente->id)}}">{{ $cliente->rfc }}</a></td>
                 <td>{{ str_limit($cliente->nombre_empresa, 30) }}</td>
                 <td>{{ $cliente->siglas }}</td>
                 <td>{{ str_limit($cliente->direccion, 50) }}</td>

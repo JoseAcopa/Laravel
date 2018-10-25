@@ -58,7 +58,7 @@
                 </div>
               </div>
               <div class="box-footer">
-                @can ('clasificationProduct.create')
+                @can ('categoria.create')
                   <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
                 @endcan
               </div>
@@ -83,7 +83,7 @@
                     <td>{{$key->letters}}</td>
                     <td>{{$key->categorias}}</td>
                     <td class="row-copasat">
-                      @can ('clasificationProduct.destroy')
+                      @can ('categoria.destroy')
                         <a type="submit" class="btn btn-danger" onclick="destroy('{{route('categoria.destroy', $key->id)}}');"><i class="fa fa-trash-o"></i></a>
                       @endcan
                     </td>

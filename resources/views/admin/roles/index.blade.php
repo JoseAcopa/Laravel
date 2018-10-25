@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @can ('roles.create')
+          @can ('rol.create')
             <a href="{{ url('/admin/create-rol') }}" class="btn btn-default" ><i class="fa fa-plus"></i> Crear Rol</a>
           @endcan
         </div>
@@ -52,10 +52,10 @@
                     <td>{{$rol->slug}}</td>
                     <td>{{str_limit($rol->created_at, 10)}}</td>
                     <td class="row-copasat">
-                      @can ('roles.edit')
+                      @can ('rol.edit')
                         <a class="btn bg-navy" href="{{route('roles.edit',$rol->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                       @endcan
-                      @can ('roles.destroy')
+                      @can ('rol.destroy')
                         <a type="submit" class="btn btn-danger" onclick="destroy('{{route('roles.destroy',$rol->id)}}');"><i class="fa fa-trash-o"></i></a>
                       @endcan
                     </td>

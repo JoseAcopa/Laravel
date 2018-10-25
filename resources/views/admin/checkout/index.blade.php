@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @can ('product-output.create')
+          @can ('salida.create')
             <a href="{{url('admin/crear-salida')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Salida Productos</a>
           @endcan
         </div>
@@ -64,13 +64,13 @@
                   <td><span class="badge bg-yellow">{{ $checkout->quantity_output }}</span> {{ $checkout->unit }}</td>
                   <td>${{ $checkout->price_output }} {{ $checkout->coin->type }}</td>
                   <td class="row-copasat">
-                    @can ('product-output.show')
+                    @can ('salida.show')
                       <a class="btn btn-default" href="{{url('/admin/ver-salida',$checkout->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
                     @endcan
-                    @can ('product-output.edit')
+                    @can ('salida.edit')
                       <a class="btn bg-navy" href="{{url('/admin/editar-salida',$checkout->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                     @endcan
-                    @can ('product-output.destroy')
+                    @can ('salida.destroy')
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $checkout->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>

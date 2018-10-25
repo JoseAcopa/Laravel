@@ -38,7 +38,7 @@
             @foreach ($proveedores as $key => $proveedor)
               <tr>
                 <td>{{ $key+1 }}</td>
-                <td>{{ $proveedor->rfc }}</td>
+                <td><a href="{{route('proveedor.edit', $proveedor->id)}}">{{ $proveedor->rfc }}</a></td>
                 <td>{{ str_limit($proveedor->nombre_empresa, 30) }}</td>
                 <td>{{ str_limit($proveedor->direccion, 50) }}</td>
                 <td>{{ $proveedor->telefono }}</td>

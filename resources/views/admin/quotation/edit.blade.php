@@ -96,7 +96,7 @@
             <div class="col-md-1">
               {{ Form::label('cantidad', 'Cantidad:') }}
               {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1', 'required']); !!}
-              {!! Form::number('cotizacion_id', $cotizacion->id,  ['class' => 'form-control']); !!}
+              {!! Form::number('cotizacion_id', $cotizacion->id,  ['class' => 'form-control invisible']); !!}
             </div>
             <div class="col-md-1">
               {{ Form::label('Agregar', 'Agregar:') }}

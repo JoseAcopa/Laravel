@@ -27,7 +27,7 @@
 
       <div class="box">
         <div class="box-header">
-          @can ('inventary.create')
+          @can ('inventario.create')
             <a href="{{url('admin/crear-producto')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Registrar Productos</a>
           @endcan
         </div>
@@ -64,13 +64,13 @@
                   <td>${{ $product->priceList }} {{ $product->coin->type }}</td>
                   <td>${{ $product->cost }} {{ $product->coin->type }}</td>
                   <td class="row-copasat">
-                    @can ('inventary.show')
+                    @can ('inventario.show')
                       <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
                     @endcan
-                    @can ('inventary.edit')
+                    @can ('inventario.edit')
                       <a class="btn bg-navy" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
                     @endcan
-                    @can ('inventary.destroy')
+                    @can ('inventario.destroy')
                       <a type="submit" class="btn btn-danger" onclick="destroy('{{route('producto.destroy', $product->id)}}');"><i class="fa fa-trash-o"></i></a>
                     @endcan
                   </td>
