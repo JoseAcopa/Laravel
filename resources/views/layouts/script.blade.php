@@ -17,40 +17,7 @@
 <script src="{{ asset('/dist/js/demo.js')}}"></script>
 <script type="text/javascript">
   $(function () {
-    $('#Jtabla').dataTable({
-      "bLengthChange": true,
-      "bFilter": true,
-      "bSort": true,
-      "bInfo": true,
-      "bAutoWidth": true,
-      "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todo"]],
-      "language": {
-        "sProcessing": "Procesando...",
-        "sLengthMenu": "Mostrar _MENU_ registros",
-        "sZeroRecords": "No se encontraron resultados",
-        "sEmptyTable": "Ningún registro disponible.",
-        "sInfo": "Mostrando de _START_ al _END_ de un total de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando del 0 al 0 de un total de 0 registros",
-        "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-        "sInfoPostFix": "",
-        "sSearch": "Buscar:",
-        "sUrl": "",
-        "sInfoThousands": ",",
-        "sLoadingRecords": "Cargando...",
-        "oPaginate": {
-          "sFirst": "Primero",
-          "sLast": "Último",
-          "sNext": "Siguiente",
-          "sPrevious": "Anterior"
-        },
-        "oAria": {
-          "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-          "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-        }
-      },
-    });
-
-    $('#correos').dataTable({
+    $('#dataTable').dataTable({
       "bLengthChange": true,
       "bFilter": true,
       "bSort": true,
@@ -124,6 +91,7 @@
     })
 
     $('.select2').select2()
+
     $('#datepicker').datepicker({
       todayHighlight: true,
       endDate: new Date(),
@@ -132,15 +100,7 @@
       format: 'dd/mm/yyyy'
     });
 
-    $('#datepickerProduct').datepicker({
-      todayHighlight: true,
-      endDate: new Date(),
-      autoclose: true,
-      language: 'es',
-      format: 'dd/mm/yyyy'
-    });
-
-    $('#datepickerSalida').datepicker({
+    $('#datepicker2').datepicker({
       startDate: '-5d',
       todayHighlight: true,
       endDate: new Date(),
@@ -150,19 +110,6 @@
     });
 
   });
-</script>
-<script type="text/javascript">
-  function changePass(value) {
-    if (value === "change") {
-      document.getElementById('btn-password').style.display = "block"
-      document.getElementById('btn-cancel').style.display = "block"
-      document.getElementById('btn-change').style.display = "none"
-    }else {
-      document.getElementById('btn-password').style.display = "none"
-      document.getElementById('btn-cancel').style.display = "none"
-      document.getElementById('btn-change').style.display = "block"
-    }
-  }
 
   function destroy(url){
     event.preventDefault();

@@ -28,7 +28,7 @@
 
           <p>
             La página que estabas buscando no existe.
-            Mientras tanto, puede regresar al <a href="{{ url('admin/admin-welcome') }}">inicio.</a>
+            Mientras tanto, puede regresar al <a href="{{ url('/home') }}">inicio.</a>
           </p>
         </div>
         <!-- /.error-content -->

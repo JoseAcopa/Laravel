@@ -13,10 +13,10 @@ class Notifications {
      */
     public function compose(View $view)
     {
-      Carbon::setLocale('es');
-      $users = Correo::where('status', 'activo')->get();
-      $count = $users->count();
-      $view->with(compact('users', 'count'));
+      // Carbon::setLocale('es');
+      // $users = Correo::where('status', 'activo')->get();
+      // $count = $users->count();
+      // $view->with(compact('users', 'count'));
     }
 
 }

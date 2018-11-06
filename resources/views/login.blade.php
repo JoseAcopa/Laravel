@@ -5,7 +5,6 @@
     <title>SIYC RayosX</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
-    {{-- <link rel="stylesheet" href="{{ url('css/style.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome/css/font-awesome.min.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200" rel="stylesheet">
@@ -37,7 +36,7 @@
         </div>
       @endif
       <div class="login-logo">
-        <b>SIYC</b>RayosX <img src="{{ url('img/LogoRX.png')}}" alt="logo" style="width: 60px; height:40px; margin-top: -15px;">
+        <b>Admin</b>LTE <img src="{{ url('img/image.png')}}" alt="logo" style="width: 60px; height:40px; margin-top: -15px;">
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
@@ -64,37 +63,7 @@
       </div>
       <!-- /.login-box-body -->
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <form class="modal-content" method="POST" action="{{route('password.new')}}" onsubmit="changeButton();">
-          {{ csrf_field() }}
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Enviar correo</h4>
-          </div>
-          <div class="modal-body">
-            <p>Ingresa tu correo electrónico.</p>
-            <div class="form-group">
-              <input type="email" name="correo" class="form-control" placeholder="correo" required>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" id="submit"><i class="fa fa-envelope"></i> Enviar</button>
-            <button type="button" class="btn btn-primary pull-right disabled" style="display: none;" id="loading"><i class="fa fa-spinner fa-spin"></i> Enviando</button>
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
-          </div>
-        </form>
-      </div>
-    </div>
     <script src="{{ asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{ asset('bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script type="text/javascript">
-      function changeButton() {
-        document.getElementById('submit').style.display = 'none'
-        document.getElementById('loading').style.display = 'block'
-      }
-    </script>
   </body>
 </html>

@@ -1,13 +1,9 @@
-<?php
- $id =  Auth::user()->id
-?>
-
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/admin/admin-welcome') }}" class="logo">
-      <span class="logo-mini"><b>R</b>X</span>
-      <span class="logo-lg"><b>SIYC</b>RayosX</span>
+    <a href="{{ url('/home') }}" class="logo">
+      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
 
     <!-- Header Navbar -->
@@ -23,31 +19,28 @@
             @can ('correos.index')
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="fa fa-envelope-o"></i>
-                <span class="label label-success">{{$count}}</span>
+                <span class="label label-success">1</span>
               </a>
             @endcan
             <ul class="dropdown-menu">
-              <li class="header">Tiene {{$count}} mensajes</li>
+              <li class="header">Tiene 1 mensajes</li>
               <li>
                 <ul class="menu">
-                  {{-- mensajes nuevos --}}
-                  @foreach ($users as $user)
-                    <li>
-                      <a href="{{ route('employee.edit', $user->idUsuario) }}">
-                        <div class="pull-left">
-                          <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
-                        </div>
-                        <h4>
-                          {{$user->nombre}}
-                          <small><i class="fa fa-clock-o"></i> {{ Carbon\Carbon::parse($user->created_at)->diffForHumans()}}</small>
-                        </h4>
-                        <p>{{$user->correo}}</p>
-                      </a>
-                    </li>
-                  @endforeach
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Jose Acopa
+                        <small><i class="fa fa-clock-o"></i> 4</small>
+                      </h4>
+                      <p>jose.acopa.martinez@gmail.com</p>
+                    </a>
+                  </li>
                 </ul>
               </li>
-              <li class="footer"><a href="{{ route('correo.index') }}">Ver todos los mensajes</a></li>
+              <li class="footer"><a href="">Ver todos los mensajes</a></li>
             </ul>
           </li>
           <!-- /.messages-menu -->

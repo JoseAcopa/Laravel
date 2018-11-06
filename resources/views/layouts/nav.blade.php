@@ -1,7 +1,7 @@
 <nav class="nav">
   <ul class="ul-nav">
     <li onclick="menuVertical()"><i  class="fa fa-bars" aria-hidden="true"></i></li>
-    <li>RAYOS X Y SERVICIOS INDUSTRIALES S.A. DE C.V.</li>
+    <li>Admin LTE</li>
     <div class="sesion">
       <ul>
         <li><img src="{{ url('img/image.png')}}" alt="" class="popout">
