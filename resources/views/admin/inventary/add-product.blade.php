@@ -177,6 +177,11 @@
             if (res.category.categorias === 'Petrolera | Industrial') {
               $('#cost').attr('readonly', 'readonly');
               $('#priceList').removeAttr('readonly');
+              // bloqueando campos de precios
+              $("#priceSales1").attr('readonly', 'readonly');
+              $("#priceSales2").attr('readonly', 'readonly');
+              $("#priceSales3").attr('readonly', 'readonly');
+              $("#priceSales4").attr('readonly', 'readonly');
               for (var i = 0; i < cat1.length; i++) {
                 var res = cat1[i] * priceList
                 newRes.push(res)
@@ -188,6 +193,11 @@
             }else if (res.category.categorias === 'Hidraulica') {
               $('#cost').attr('readonly', 'readonly');
               $('#priceList').removeAttr('readonly');
+              // bloqueando campos de precios
+              $("#priceSales1").attr('readonly', 'readonly');
+              $("#priceSales2").attr('readonly', 'readonly');
+              $("#priceSales3").attr('readonly', 'readonly');
+              $("#priceSales4").attr('readonly', 'readonly');
               for (var i = 0; i < cat2.length; i++) {
                 var res = cat2[i] * cost
                 newRes.push(res)
@@ -199,6 +209,11 @@
             }else if (res.category.categorias === 'Otro') {
               $('#cost').removeAttr('readonly');
               $('#priceList').attr('readonly', 'readonly');
+              // bloqueando campos de precios
+              $("#priceSales1").attr('readonly', 'readonly');
+              $("#priceSales2").attr('readonly', 'readonly');
+              $("#priceSales3").attr('readonly', 'readonly');
+              $("#priceSales4").attr('readonly', 'readonly');
               for (var i = 0; i < cat3.length; i++) {
                 var res = cost / cat3[i]
                 newRes.push(res)
@@ -207,6 +222,14 @@
                 $('#pv3').text("(/ 0.80)")
                 $('#pv4').text("(/ 0.85)")
               }
+            }else if (res.category.categorias === 'Servicios') {
+              // desbloqueando precios si son de servicios
+              $("#priceSales1").removeAttr("readonly");
+              $("#priceSales2").removeAttr("readonly");
+              $("#priceSales3").removeAttr("readonly");
+              $("#priceSales4").removeAttr("readonly");
+              $('#priceList').removeAttr('readonly');
+              $('#cost').removeAttr('readonly');
             }
 
             $('#priceSales1').val(newRes[0].toFixed(2))

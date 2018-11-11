@@ -25,6 +25,6 @@ class Invoice extends Model
 
   public function supplier()
   {
-    return $this->belongsTo('App\Suppliers');
+    return $this->belongsTo('App\Proveedores');
   }
 }

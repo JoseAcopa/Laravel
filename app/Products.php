@@ -28,7 +28,7 @@ class Products extends Model
 
   public function supplier()
   {
-    return $this->belongsTo('App\Suppliers');
+    return $this->belongsTo('App\Proveedores');
   }
 
   public function quoteers()
