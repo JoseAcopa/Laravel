@@ -144,8 +144,8 @@
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/productos')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+            <a href="{{ url('admin/productos') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         </form>
       </div>

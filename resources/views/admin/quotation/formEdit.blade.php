@@ -81,7 +81,7 @@
   </div>
   <div class="col-md-3 pull-right">
     {{ Form::label('total', 'Total:') }}
-    {!! Form::text('total', null,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
+    {!! Form::text('total', round($cotizacion->total, 2),  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
   </div>
 </div>
 <div class="box-footer">

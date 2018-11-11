@@ -69,7 +69,7 @@
                   <td>{{ $i+1 }}</td>
                   <td>{{ $invoice->nInvoice }}</td>
                   <td>{{ $invoice->category->categorias }}</td>
-                  <td>{{ $invoice->supplier->business }}</td>
+                  <td>{{ $invoice->supplier->nombre_empresa }}</td>
                   <td>{{ $invoice->checkin }}</td>
                   <td>{{ $invoice->quantity }} {{ $invoice->unit }}</td>
                   <td>{{ $invoice->priceList }}</td>

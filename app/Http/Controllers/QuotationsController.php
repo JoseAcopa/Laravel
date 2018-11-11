@@ -80,7 +80,7 @@ class QuotationsController extends Controller
         $cotizar->save();
       }
 
-      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
+      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardados correctamente.');
     }
 
     /**
@@ -122,7 +122,7 @@ class QuotationsController extends Controller
     public function update(Request $request, Quotations $cotizacion)
     {
       $cotizacion->update($request->all());
-      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos guardado correctamente.');
+      return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos actualizados correctamente.');
     }
 
     /**

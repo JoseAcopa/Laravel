@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{$selectQuotation->cotizacion}}</title>
+    <title>{{$selectQuotation->numero_cotizacion}}</title>
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
@@ -166,8 +166,8 @@
     </div>
 
     <div class="bussines">
-      <h2 class="title-bussines">{{$selectQuotation->cliente->business}}</h2>
-      <p class="title-bussines">{{$selectQuotation->cliente->address}}</p>
+      <h2 class="title-bussines">{{$selectQuotation->cliente->nombre_empresa}}</h2>
+      <p class="title-bussines">{{$selectQuotation->cliente->direccion}}</p>
     </div>
     <div class="table">
       <ul class="ul-table">
@@ -175,7 +175,7 @@
         <li>{{$selectQuotation->fecha}}</li>
         {{-- <li>{{ date('d/m/Y') }}</li> --}}
         <li class="li-active">No. de Cotización</li>
-        <li>{{$selectQuotation->cotizacion}}</li>
+        <li>{{$selectQuotation->numero_cotizacion}}</li>
         <li class="li-active">No. de Licitacón</li>
         <li>{{$selectQuotation->licitacion}}</li>
       </ul>
@@ -183,8 +183,8 @@
     <div class="usuario">
       <h2>Atención:</h2>
       <p>{{$selectQuotation->puesto}}</p>
-      <p>{{$selectQuotation->nombre}}</p>
-      <p>{{$selectQuotation->cliente->email}}</p>
+      <p>{{$selectQuotation->nombre_cotizar}}</p>
+      <p>{{$selectQuotation->cliente->correo}}</p>
     </div>
 
     <main>
@@ -210,15 +210,15 @@
                   </td>
                   <td>{{$quoteer->cantidad}}</td>
                   <td>Pieza</td>
-                  <td>${{substr($quoteer->precio, 1, -3)}}</td>
-                  <td>${{substr($quoteer->subtotal, 1, -3)}}</td>
+                  <td>${{$quoteer->precio}}</td>
+                  <td>${{$quoteer->subtotal}}</td>
                 </tr>
               @endforeach
             </tbody>
           </table>
         </div>
         <p class="sub-condiciones">
-          SUBTOTAL = ${{$selectQuotation->total}} ({{strtoupper($letras)}} {{substr($selectQuotation->total, -2)}}/100) + IVA
+          SUBTOTAL = ${{round($selectQuotation->total, 2)}} {{$selectQuotation->moneda}} ({{strtoupper($letras)}} {{substr(round($selectQuotation->total, 2), -2)}}/100) + IVA
         </p>
 
         <p class="sub-condiciones">
@@ -229,6 +229,7 @@
           {!! nl2br($selectQuotation->observaciones) !!}
         </p>
       </div>
+      <br><br>
       <div class="firma">
         <p class="title-bussines">ATENTAMENTE</p>
         {{-- <p class="title-bussines">_____________________</p> --}}
