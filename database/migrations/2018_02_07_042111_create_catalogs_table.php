@@ -15,6 +15,7 @@ class CreateCatalogsTable extends Migration
     {
         Schema::create('catalogs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('sku');
             $table->integer('category_id');
             $table->string('letter');
             $table->integer('supplier_id');

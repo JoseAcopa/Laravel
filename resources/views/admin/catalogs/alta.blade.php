@@ -21,6 +21,12 @@
         <form role="form" method="POST" action="{{route('catalogo.store')}}">
           {{ csrf_field() }}
           <div class="box-body">
+            <div class="col-md-4 pull-right">
+              <div class="form-group">
+                <input type="text" name="sku" value="" class="form-control" placeholder="SKU">
+              </div>
+            </div>
+            <br><br><br>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                 <label for="category">Tipo de Producto:</label>
@@ -32,6 +38,8 @@
                 </select>
                 {!! $errors->first('category','<span class="help-block">:message</span>')!!}
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group {{ $errors->has('letter') ? 'has-error' : '' }}">
                 <label for="initials" >Iniciales</label>
                 <input class="form-control" type="text" id="letter" name="letter" readonly>
@@ -48,6 +56,8 @@
                 </select>
                 {!! $errors->first('proveedor','<span class="help-block">:message</span>')!!}
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
                 <div class="row">
                   <div class="col-xs-6">
