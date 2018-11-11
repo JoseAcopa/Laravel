@@ -48,14 +48,15 @@ class CatalogsController extends Controller
      */
     public function store(CreateCatalogs $request)
     {
-      $product = new Catalog;
-      $product->category_id = request('category');
-      $product->letter = request('letter');
-      $product->supplier_id = request('proveedor');
-      $product->unit = request('unidad');
-      $product->description = request('description');
-      $product->save();
-      return redirect('admin/catalogo')->with('success','Producto Guardado correctamente.')->withInput(request(['description', 'unidad']));
+      $producto = new Catalog;
+      $producto->category_id = $request->category;
+      $producto->letter = $request->letter;
+      $producto->supplier_id = $request->proveedor;
+      $producto->unit = $request->unidad;
+      $producto->description = $request->description;
+      $producto->sku = $request->sku;
+      $producto->save();
+      return redirect()->route('catalogo.edit', $producto->id)->with('success','Datos guardados correctamente.');
     }
 
     /**
@@ -95,21 +96,16 @@ class CatalogsController extends Controller
      */
     public function update(UpdateCatalogs $request, $id)
     {
-      $newCategory = $request->input('category');
-      $newLetter = $request->input('letter');
-      $newSuppler = $request->input('proveedor');
-      $newUnit = $request->input('unidad');
-      $newDescription = $request->input('description');
+      $producto = Catalog::find($id);
 
-      $product = Catalog::find($id);
-
-      $product->category_id = $newCategory;
-      $product->letter = $newLetter;
-      $product->supplier_id = $newSuppler;
-      $product->unit = $newUnit;
-      $product->description = $newDescription;
-      $product->save();
-      return redirect('admin/catalogo')->with('success',$newDescription .' actualizado correctamente.');
+      $producto->category_id = $request->category;
+      $producto->letter = $request->letter;
+      $producto->supplier_id = $request->proveedor;
+      $producto->unit = $request->unidad;
+      $producto->description = $request->description;
+      $producto->sku = $request->sku;
+      $producto->save();
+      return redirect()->route('catalogo.edit', $producto->id)->with('success','Datos guardados correctamente.');
     }
 
     /**

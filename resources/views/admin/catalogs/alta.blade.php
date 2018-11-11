@@ -23,7 +23,7 @@
           <div class="box-body">
             <div class="col-md-4 pull-right">
               <div class="form-group">
-                <input type="text" name="sku" value="" class="form-control" placeholder="SKU">
+                <input type="text" name="sku" value="" class="form-control" placeholder="SKU" id="sku" readonly>
               </div>
             </div>
             <br><br><br>
@@ -85,8 +85,8 @@
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/catalogo')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+            <a href="{{ url('admin/catalogo') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         </form>
       </div>
@@ -102,6 +102,8 @@
 
         var category = newVal[val.value]
         document.getElementById('letter').value = category.letters;
+        var hoy = moment().format('X')
+        $('#sku').val(category.letters+'-'+hoy)
       }
     </script>
     <script type="text/javascript">

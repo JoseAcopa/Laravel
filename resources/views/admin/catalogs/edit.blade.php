@@ -21,6 +21,12 @@
         {!! Form::model($catalog, ['method' => 'POST','route' => ['catalogo.update', $catalog->id], 'role' => 'form']) !!}
           {{ csrf_field() }}
           <div class="box-body">
+            <div class="col-md-4 pull-right">
+              <div class="form-group">
+                <input type="text" name="sku" value="{{$catalog->sku}}" class="form-control" placeholder="SKU" id="sku" readonly>
+              </div>
+            </div>
+            <br><br><br>
             <div class="col-md-6">
               <div class="form-group {{ $errors->has('category') ? 'has-error' : '' }}">
                 <label for="category">Tipo de Producto:</label>
@@ -31,6 +37,8 @@
                   @endforeach
                 </select>
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group {{ $errors->has('letter') ? 'has-error' : '' }}">
                 <label for="initials" >Iniciales</label>
                 <input type="text" id="letter" name="letter" class="form-control" value="{{$catalog->letter}}" readonly>
@@ -46,6 +54,8 @@
                   @endforeach
                 </select>
               </div>
+            </div>
+            <div class="col-md-6">
               <div class="form-group {{ $errors->has('unidad') ? 'has-error' : '' }}">
                 <div class="row">
                   <div class="col-xs-6">
@@ -73,8 +83,8 @@
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{url('admin/catalogo')}}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+            <a href="{{ url('admin/catalogo') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         {!! Form::close() !!}
       </div>
