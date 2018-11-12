@@ -14,6 +14,17 @@
     </section>
 
     <section class="content container-fluid">
+      @if ($message = Session::get('success'))
+        <div class="box box-success box-solid">
+          <div class="box-header">
+            <h3 class="box-title"><i class="icon fa fa-check"></i> {{ $message }}</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+        </div>
+      @endif
+
       <div class="box box-primary">
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-edit"></i> Editar Empleado</h3>
@@ -45,7 +56,7 @@
                 {!! $errors->first('user','<span class="help-block">:message</span>')!!}
               </div>
             </div>
-            <div class="col-md-6" id="btn-password">
+            <div class="col-md-6" id="btn-password" style="display: none">
               <label for="password">Nueva Contraseña:</label>
               <input type="password" name="password" class="form-control" placeholder="nueva contraseña">
               <div id="btn-cancel" style="margin-top: 25px;">
@@ -69,8 +80,8 @@
             </div>
           </div>
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-            <a href="{{ url('/admin/usuario') }}" class="btn btn-danger"><i class="fa fa-times-rectangle-o fa-lg"></i> Cancelar</a>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+            <a href="{{ url('/admin/usuario') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         {!! Form::close() !!}
       </div>

@@ -58,7 +58,8 @@ class EmployeeController extends Controller
      $roleUser->user_id = $employee->id;
      $roleUser->save();
 
-     return redirect('admin/usuario')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
+     return redirect()->route('employee.edit', $employee->id)->with('success','Datos guardados correctamente.');
+     // return redirect('admin/usuario')->with('success','Empleado '. $employee->name .' Guardado correctamente')->withInput(request(['email', 'name', 'user', 'phone']));
    }
 
    /**
@@ -132,7 +133,7 @@ class EmployeeController extends Controller
        }
      }
 
-     return redirect('admin/usuario')->with('success','Empleado actualizado correctamente');
+     return redirect()->route('employee.edit', $employee->id)->with('success','Datos actualizados correctamente.');
    }
 
    /**
