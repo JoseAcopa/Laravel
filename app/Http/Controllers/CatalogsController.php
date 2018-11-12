@@ -105,7 +105,7 @@ class CatalogsController extends Controller
       $producto->description = $request->description;
       $producto->sku = $request->sku;
       $producto->save();
-      return redirect()->route('catalogo.edit', $producto->id)->with('success','Datos guardados correctamente.');
+      return redirect()->route('catalogo.edit', $producto->id)->with('success','Datos actualizados correctamente.');
     }
 
     /**
