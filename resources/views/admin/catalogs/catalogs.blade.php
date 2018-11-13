@@ -26,6 +26,7 @@
             <thead>
               <tr>
                 <th>#</th>
+                <th>SKU</th>
                 <th>Tipo de Producto</th>
                 <th>Iniciales</th>
                 <th>Proveedor</th>
@@ -38,6 +39,7 @@
               @foreach ($catalog as $i => $product)
                 <tr>
                   <td>{{ $i+1 }}</td>
+                  <td> <a href="{{url('/admin/editar-producto-catalogo',$product->id)}}">{{ $product->sku }}</a></td>
                   <td>{{ $product->category->type }}</td>
                   <td>{{ $product->letter }}</td>
                   <td>{{ $product->supplier->nombre_empresa }}</td>

@@ -14,23 +14,23 @@
 
     <section class="content container-fluid">
       <div class="box box-primary">
-        <div class="box-header with-border">
-          <div class="col-md-4">
-            <h3 class="box-title"><i class="fa fa-plus"></i> Registrar Producto</h3>
-          </div>
-          <div class="col-md-8">
-            <div class="form-group">
-              <label>Buscar Producto en Catálogo</label>
-              <select class="form-control select2" onchange="catalogo(this)">
-                <option selected="selected" value="null">Buscar...</option>
-                @foreach ($catalog as $products)
-                  <option value="{{ $products->id }}">{{ $products->category->type }} | {{ $products->description }}</option>
-                @endforeach
-              </select>
+        <form role="form" method="POST" action="{{route('producto.store')}}">
+          <div class="box-header with-border">
+            <div class="col-md-4">
+              <h3 class="box-title"><i class="fa fa-plus"></i> Registrar Producto</h3>
+            </div>
+            <div class="col-md-8">
+              <div class="form-group">
+                <label>Buscar Producto en Catálogo</label>
+                <select class="form-control select2" onchange="catalogo(this)" name="idCatalogo">
+                  <option selected="selected" value="null">Buscar...</option>
+                  @foreach ($catalog as $products)
+                    <option value="{{ $products->id }}">{{ $products->category->type }} | {{ $products->description }}</option>
+                  @endforeach
+                </select>
+              </div>
             </div>
           </div>
-        </div>
-        <form role="form" method="POST" action="{{route('producto.store')}}">
           {{ csrf_field() }}
           <div class="box-body">
             <div class="col-md-4">
@@ -63,7 +63,7 @@
                 <label for="fecha_entrada">Fecha de Entrada:</label>
                 <div class="input-group">
                   <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                  <input type="text" value="{{ old('fecha_entrada') }}" name="fecha_entrada" class="form-control" id="datepickerProduct" placeholder="dd/mm/aaaa">
+                  <input type="text" value="{{ old('fecha_entrada') }}" name="fecha_entrada" class="form-control" id="datepickerProduct" placeholder="dd/mm/aaaa" autocomplete="off">
                 </div>
                 {!! $errors->first('fecha_entrada','<span class="help-block">:message</span>')!!}
               </div>

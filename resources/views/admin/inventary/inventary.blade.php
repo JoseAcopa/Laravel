@@ -26,9 +26,9 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Tipo Producto</th>
-                <th>N° de Producto</th>
-                <th>Descripción del Producto</th>
+                <th>TProducto</th>
+                <th>SKU</th>
+                <th>Descripción</th>
                 <th>Fecha de Entrada</th>
                 <th>Stock</th>
                 <th>Precio Lista</th>
@@ -41,7 +41,7 @@
                 <tr>
                   <td>{{ $i+1 }}</td>
                   <td>{{ $product->category->type }}</td>
-                  <td>{{ $product->initials }}-{{ $product->id }}</td>
+                  <td>{{ $product->initials }}</td>
                   <td>{{ str_limit($product->description, 50) }}</td>
                   <td>{{ $product->checkin }}</td>
                   <td>
@@ -54,7 +54,7 @@
                   <td>${{ $product->cost }} {{ $product->coin->type }}</td>
                   <td class="row-copasat">
                     @can ('inventario.show')
-                      <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                      {{-- <a class="btn btn-primary" href="{{url('/admin/ver-producto',$product->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a> --}}
                     @endcan
                     @can ('inventario.edit')
                       <a class="btn bg-navy" href="{{url('/admin/edita-producto',$product->id)}}"><i class="fa fa-pencil-square-o"></i></a>
