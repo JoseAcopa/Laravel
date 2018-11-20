@@ -43,11 +43,10 @@ Route::delete('/eliminar-usuario/{id}','UsuariosController@destroy')->name('usua
 // ------------------End Usuarios------------------------------------
 
 // ------------------categorias---------------------------------------
-Route::get('admin/categoria','CategoriesController@index')->name('categoria.index')->middleware('permission:categorias.index');
-Route::get('/admin/create-categoria', 'CategoriesController@create')->name('categoria.create')->middleware('permission:categoria.create');
-Route::post('admin/store-categoria','CategoriesController@store')->name('categoria.store')->middleware('permission:categoria.create');
-Route::delete('admin/delete-categoria/{id}','CategoriesController@destroy')->name('categoria.destroy')->middleware('permission:categoria.destroy');
-// ------------------End clasificationProduct----------------------------------------
+Route::get('/categorias','CategoriasController@index')->name('categoria.index')->middleware('permission:categorias.index');
+Route::post('/crear-categoria', 'CategoriasController@store')->name('categoria.store')->middleware('permission:categoria.create');
+Route::delete('/eliminar-categoria/{id}','CategoriasController@destroy')->name('categoria.destroy')->middleware('permission:categoria.destroy');
+// ------------------categorias----------------------------------------
 
 // ------------------Alta de Catalogo----------------------------------------
 Route::get('/admin/catalogo','CatalogsController@index')->name('catalogo.index')->middleware('permission:catalogos.index');

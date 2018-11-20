@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Http\Requests\CreateCategoriesRequest;
+use App\Categoria;
+use App\Http\Requests\CrearCategoriasRequest;
 
-class CategoriesController extends Controller
+class CategoriasController extends Controller
 {
+    public function __construct()
+    {
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +19,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-      $categories = Category::all();
-      return view('admin.inventary.clasificationProduct',compact('categories'));
+      $categorias = Categoria::all();
+      return view('admin.categorias.index',compact('categorias'));
     }
 
     /**
@@ -26,7 +30,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-      return views('admin.inventary.clasificationProduct');
+        //
     }
 
     /**
@@ -35,14 +39,11 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCategoriesRequest $request)
+    public function store(CrearCategoriasRequest $request)
     {
-      $category = new Category;
-      $category->type = request('type');
-      $category->letters = request('letters');
-      $category->categorias = request('categorias');
-      $category->save();
-      return redirect('admin/categoria')->with('success', $category->type.' Guardado correctamente');
+      $categorias = Categoria::create($request->all());
+      $categorias->save();
+      return redirect('/categorias')->with('success', 'Datos guardados correctamente');
     }
 
     /**
@@ -87,7 +88,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-      Category::find($id)->delete();
-      return redirect('admin/categoria')->with('success', 'Tipo de producto eliminado correctamente');
+      Categoria::find($id)->delete();
+      return ['success' => true];
     }
 }

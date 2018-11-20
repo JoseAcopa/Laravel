@@ -25,13 +25,13 @@
         <table id="Jtabla" class="table table-bordered table-hover dataTable">
           <thead>
             <tr>
-              <th style="with: 10px;">#</th>
+              <th style="width: 10px;">#</th>
               <th>Nombre completo</th>
               <th>Correo</th>
               <th>Teléfono</th>
               <th>Iniciales</th>
               <th>Tipo de Usuario</th>
-              <th style="with: 60px;">Acciones</th>
+              <th style="width: 60px;">Acciones</th>
            </tr>
           </thead>
           <tbody>
