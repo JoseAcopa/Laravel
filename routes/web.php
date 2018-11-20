@@ -34,12 +34,12 @@ Route::delete('admin/delete-rol/{id}','RolesController@destroy')->name('roles.de
 // ------------------End Roles------------------------------------
 
 // ------------------Usuarios-----------------------------------------
-Route::get('admin/usuario','EmployeeController@index')->name('employee.index')->middleware('permission:empleados.index');
-Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:empleado.create');
-Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:empleado.create');
-Route::get('/admin/edit-usuario/{id}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:empleado.edit');
-Route::post('/admin/update-user/{id}', 'EmployeeController@update')->name('employee.update')->middleware('permission:empleado.edit');
-Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:empleado.destroy');
+Route::get('/usuarios','UsuariosController@index')->name('usuarios.index')->middleware('permission:usuarios.index');
+Route::get('/crear-usuario', 'UsuariosController@create')->name('usuario.create')->middleware('permission:usuario.create');
+Route::post('/guardar-usuario','UsuariosController@store')->name('usuario.store')->middleware('permission:usuario.create');
+Route::get('/editar-usuario/{id}', 'UsuariosController@edit')->name('usuario.edit')->middleware('permission:usuario.edit');
+Route::put('/actualizar-usuario/{usuario}', 'UsuariosController@update')->name('usuario.update')->middleware('permission:usuario.edit');
+Route::delete('/eliminar-usuario/{id}','UsuariosController@destroy')->name('usuario.destroy')->middleware('permission:usuario.destroy');
 // ------------------End Usuarios------------------------------------
 
 // ------------------categorias---------------------------------------

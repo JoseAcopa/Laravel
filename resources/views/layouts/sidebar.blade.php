@@ -54,12 +54,12 @@ function current_page($url = '/'){
             </a>
           </li>
         @endcan
-        @can ('empleados.index')
-          <li <?php echo current_page('admin/usuario') || current_page('admin/create-usuario') || strpos(request()->path(), 'edit-usuario') ? "class='active'" : "";?>>
-            <a href="{{ url('/admin/usuario') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span>
-              <?php echo current_page('admin/usuario') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
-              <?php echo current_page('admin/create-usuario') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-              <?php echo strpos(request()->path(), 'edit-usuario') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
+        @can ('usuarios.index')
+          <li <?php echo current_page('usuarios') || current_page('crear-usuario') || isset($editarUsuario) ? "class='active'" : "";?>>
+            <a href="{{ url('/usuarios') }}"><i class="fa fa-address-book-o"></i> <span>Empleados</span>
+              <?php echo current_page('usuarios') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+              <?php echo current_page('crear-usuario') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
+              <?php echo isset($editarUsuario) ? '<small class="label pull-right bg-green">editar</small>' : "";?>
             </a></li>
         @endcan
         <li class="header">INVENTARIO Y COTIZACIONES</li>

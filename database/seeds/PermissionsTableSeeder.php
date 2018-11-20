@@ -15,23 +15,23 @@ class PermissionsTableSeeder extends Seeder
       // usuarios
       Permission::create([
         'name' => 'Navegar usuarios',
-        'slug' => 'empleados.index',
-        'description' => 'Listar empleados'
+        'slug' => 'usuarios.index',
+        'description' => 'Listar usuarios'
       ]);
       Permission::create([
         'name' => 'Crear usuario',
-        'slug' => 'empleado.create',
-        'description' => 'Crear empleado'
+        'slug' => 'usuario.create',
+        'description' => 'Crear usuario'
       ]);
       Permission::create([
         'name' => 'Editar usuario',
-        'slug' => 'empleado.edit',
-        'description' => 'Editar empleado'
+        'slug' => 'usuario.edit',
+        'description' => 'Editar usuario'
       ]);
       Permission::create([
         'name' => 'Eliminar usuario',
-        'slug' => 'empleado.destroy',
-        'description' => 'Eliminar empleado'
+        'slug' => 'usuario.destroy',
+        'description' => 'Eliminar usuario'
       ]);
 
       // roles
