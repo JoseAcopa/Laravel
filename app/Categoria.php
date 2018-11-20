@@ -12,9 +12,9 @@ class Categoria extends Model
       'tipo', 'letra', 'categorias',
   ];
 
-  public function catalogs()
+  public function catalogo()
   {
-    return $this->hasMany('App\Catalog');
+    return $this->hasMany('App\Catalogo');
   }
 
   public function products()

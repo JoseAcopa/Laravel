@@ -100,19 +100,19 @@ class PermissionsTableSeeder extends Seeder
         'description' => 'Eliminar cliente'
       ]);
 
-      // tipo de producto
+      // categorias
       Permission::create([
-        'name' => 'Navegar tipo de producto',
+        'name' => 'Navegar categorias',
         'slug' => 'categorias.index',
         'description' => 'Listar los tipos de productos'
       ]);
       Permission::create([
-        'name' => 'Crear tipo de producto',
+        'name' => 'Crear categoria',
         'slug' => 'categoria.create',
         'description' => 'Crear tipo de producto'
       ]);
       Permission::create([
-        'name' => 'Eliminar tipo de producto',
+        'name' => 'Eliminar categoria',
         'slug' => 'categoria.destroy',
         'description' => 'Eliminar tipo de producto'
       ]);

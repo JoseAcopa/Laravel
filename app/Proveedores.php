@@ -11,9 +11,9 @@ class Proveedores extends Model
       'nombre_empresa', 'rfc', 'telefono', 'correo', 'direccion',
   ];
 
-  public function catalogs()
+  public function catalogo()
   {
-    return $this->hasMany('App\Catalog');
+    return $this->hasMany('App\Catalogo');
   }
 
   public function products()

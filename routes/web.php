@@ -48,14 +48,14 @@ Route::post('/crear-categoria', 'CategoriasController@store')->name('categoria.s
 Route::delete('/eliminar-categoria/{id}','CategoriasController@destroy')->name('categoria.destroy')->middleware('permission:categoria.destroy');
 // ------------------categorias----------------------------------------
 
-// ------------------Alta de Catalogo----------------------------------------
-Route::get('/admin/catalogo','CatalogsController@index')->name('catalogo.index')->middleware('permission:catalogos.index');
-Route::get('/admin/create-producto-catalogo', 'CatalogsController@create')->name('catalogo.create')->middleware('permission:catalogo.create');
-Route::post('admin/store-producto-catalogo','CatalogsController@store')->name('catalogo.store')->middleware('permission:catalogo.create');
-Route::get('/admin/editar-producto-catalogo/{producto}', 'CatalogsController@edit')->name('catalogo.edit')->middleware('permission:catalogo.edit');
-Route::post('/admin/producto-catalogo/{producto}', 'CatalogsController@update')->name('catalogo.update')->middleware('permission:catalogo.edit');
-Route::delete('admin/delete-producto-catalogo/{id}','CatalogsController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
-// ------------------End Alta de Catalogo----------------------------------------
+// ------------------------Catalogo----------------------------------------
+Route::get('/catalogos','CatalogosController@index')->name('catalogo.index')->middleware('permission:catalogos.index');
+Route::get('/crear-producto-catalogo', 'CatalogosController@create')->name('catalogo.create')->middleware('permission:catalogo.create');
+Route::post('/guardar-producto-catalogo','CatalogosController@store')->name('catalogo.store')->middleware('permission:catalogo.create');
+Route::get('/editar-producto-catalogo/{id}', 'CatalogosController@edit')->name('catalogo.edit')->middleware('permission:catalogo.edit');
+Route::put('/actualizar-producto-catalogo/{producto}', 'CatalogosController@update')->name('catalogo.update')->middleware('permission:catalogo.edit');
+Route::delete('/eliminar-producto-catalogo/{id}','CatalogosController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
+// -------------------------Catalogo----------------------------------------
 
 // ------------------inventary----------------------------------------
 Route::get('/admin/productos','ProductsControllers@index')->name('producto.index')->middleware('permission:inventarios.index');
