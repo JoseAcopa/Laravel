@@ -139,9 +139,10 @@ function current_page($url = '/'){
           <li class="header">REPORTES</li>
         @endcan
         @can ('facturas.index')
-          <li <?php echo current_page('admin/facturas') ? "class='active'" : "";?>>
-            <a href="/admin/facturas"><i class="fa fa-clipboard"></i> <span>Reportes de ingreso</span>
-              <?php echo current_page('admin/facturas') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+          <li <?php echo current_page('facturas-ingresos') || current_page('buscar-facturas-fecha') ? "class='active'" : "";?>>
+            <a href="/facturas-ingresos"><i class="fa fa-clipboard"></i> <span>Reportes de ingreso</span>
+              <?php echo current_page('facturas-ingresos') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+              <?php echo current_page('buscar-facturas-fecha') ? '<small class="label pull-right bg-green">buscar</small>' : "";?>
             </a>
           </li>
         @endcan

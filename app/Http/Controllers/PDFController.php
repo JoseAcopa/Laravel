@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use PDF;
 use App\Quotations;
 use App\Quoteers;
-use App\Invoice;
+use App\Factura;
+use App\Catalogo;
 use NumerosEnLetras;
 
 class PDFController extends Controller
@@ -55,17 +56,42 @@ class PDFController extends Controller
     return $pdf->download($selectQuotation->cotizacion.'.pdf');
   }
 
-  public function downloadPDF($id)
+  public function generarReporteIngreso($id)
   {
-    $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
-    $pdf = PDF::loadView('admin.PDF.salida', compact('invoice'));
+    $factura = Factura::with(['categoria', 'proveedor', 'producto'])->find($id);
+    if ($factura->producto != null) {
+      $producto = Catalogo::find($factura->producto->id);
+      $factura->producto = $producto;
+    }
+
+    $pdf = PDF::loadView('admin.PDF.ingreso', compact('factura'));
 
     $pdf->output();
     $dom_pdf = $pdf->getDomPDF();
 
     $canvas = $dom_pdf ->get_canvas();
     $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
-    return $pdf->stream($invoice->supplier->business.'.pdf');
+    return $pdf->stream($factura->proveedor->nombre_empresa.'.pdf');
+  }
+
+  public function reporteGeneralIngreso()
+  {
+    $facturas = Factura::with(['categoria', 'proveedor', 'producto'])->get();
+    for ($i=0; $i < count($facturas); $i++) {
+      if ($facturas[$i]->producto != null) {
+        $producto = Catalogo::find($facturas[$i]->producto->id);
+        $facturas[$i]->catalogo = $producto;
+      }
+    }
+
+    $pdf = PDF::loadView('admin.PDF.ingresoGeneral', compact('facturas'));
+
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+    return $pdf->stream('Ingreso General.pdf');
   }
 
   public function descargarPDF($id)

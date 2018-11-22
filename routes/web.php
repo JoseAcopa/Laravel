@@ -68,9 +68,9 @@ Route::get('/ver-producto/{id}','ProductosController@show')->name('producto.show
 // ------------------productos----------------------------------------
 
 // ------------------facturas de ingreso----------------------------------------
-Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
-Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
-Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:factura.show');
+Route::get('/facturas-ingresos','FacturasIngresoController@index')->name('facturas.index')->middleware('permission:facturas.index');
+Route::delete('/eliminar-factura/{id}','FacturasIngresoController@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
+Route::get('admin/ver-factura/{id}','FacturasIngresoController@show')->name('factura.show')->middleware('permission:factura.show');
 // ------------------facturas de ingreso----------------------------------------
 
 // ------------------checkout----------------------------------------
@@ -113,13 +113,6 @@ Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edi
 Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
 // =======================actividades ==============================================
 
-// =======================reportes ==============================================
-Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
-Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
-Route::post('admin/generar-facturas', 'ReportesController@generarFacturas')->name('facturas.generar');
-Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
-// =======================reportes ==============================================
-
 // =======================peticiones con ajax ==============================================
 Route::get('/producto-catalogo/{id}', 'AjaxController@getCatalogoAjax');
 Route::get('/producto/{id}', 'AjaxController@getProductAjax');
@@ -140,7 +133,15 @@ Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveN
 // =======================guardar producto nuevo desde cotizacion==============================================
 
 // =======================crear PDF ==============================================
-Route::get("factura/{id}","PDFController@downloadPDF");
+Route::get("reporte-ingreso/{id}","PDFController@generarReporteIngreso")->name('reporte.generate');
+Route::get("reporte-general-ingreso","PDFController@reporteGeneralIngreso")->name('reporte.general');
 Route::get("descargar/{id}","PDFController@descargarPDF");
 Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
 Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");
+
+// =======================buscando reportes==============================================
+Route::post('/buscar-facturas-fecha', 'ReportesController@generarFacturas')->name('facturas.generar');
+Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
+Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
+Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
+// =======================buscando reportes ==============================================

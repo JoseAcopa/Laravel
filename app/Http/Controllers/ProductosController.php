@@ -54,6 +54,9 @@ class ProductosController extends Controller
       // optener el producto para saver si crearlo o editaro
       $idProducto = Producto::where('catalogo_id', $request->catalogo_id)->get();
       $request['stock'] = $request->cantidad_entrada;
+      $request['precio_lista'] = $request->precio_lista == null ? 0 : $request->precio_lista;
+      $request['numero_factura'] = $request->numero_factura == null ? 'No asignado' : $request->numero_factura;
+      $request['precio_venta5'] = $request->precio_venta5 == null ? 0 : $request->precio_venta5;
 
       // validamos si el producto no exuste lo creamos, si no, editamos el stock
       if (count($idProducto) == 0) {
@@ -77,6 +80,10 @@ class ProductosController extends Controller
         $producto->precio_venta4 = $request->precio_venta4;
         $producto->precio_venta5 = $request->precio_venta5;
         $producto->save();
+
+        $request['producto_id'] = $producto->id;
+        $factura = Factura::create($request->all());
+        $factura->save();
       }
 
       return redirect()->route('producto.edit', $producto->id)->with('success','Datos guardados correctamente.');

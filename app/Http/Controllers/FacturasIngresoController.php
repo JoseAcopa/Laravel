@@ -3,24 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
-use PDF;
+use App\Factura;
+use App\Catalogo;
 
-class ControllerInvoices extends Controller
+class FacturasIngresoController extends Controller
 {
     public function __construct()
     {
       $this->middleware('auth');
     }
-      /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-      $invoices = Invoice::all();
-      return view('admin.facturas.index', compact('invoices'));
+      $facturas = Factura::with(['categoria', 'proveedor', 'producto'])->get();
+      for ($i=0; $i < count($facturas); $i++) {
+        if ($facturas[$i]->producto != null) {
+          $producto = Catalogo::find($facturas[$i]->producto->id);
+          $facturas[$i]->catalogo = $producto;
+        }
+      }
+
+      return view('admin.facturas.index', compact('facturas'));
     }
 
     /**
@@ -86,7 +93,7 @@ class ControllerInvoices extends Controller
      */
     public function destroy($id)
     {
-      Invoice::find($id)->delete();
-      return redirect('admin/facturas')->with('success','Factura eliminado correctamente');
+      Factura::find($id)->delete();
+      return ['success' => true];
     }
 }

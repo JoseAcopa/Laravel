@@ -22,4 +22,9 @@ class Factura extends Model
   {
     return $this->belongsTo('App\Proveedores');
   }
+
+  public function producto()
+  {
+    return $this->belongsTo('App\Producto');
+  }
 }

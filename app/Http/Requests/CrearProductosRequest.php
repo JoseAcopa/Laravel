@@ -26,7 +26,6 @@ class CrearProductosRequest extends FormRequest
         return [
           'catalogo_id' => 'max:255|required',
           'fecha_entrada' => 'max:255|required',
-          'precio_lista' => 'max:255|required',
           'tipo_producto' => 'max:255|required',
           'cantidad_entrada' => 'max:255|required',
           'costo' => 'max:255|required',
