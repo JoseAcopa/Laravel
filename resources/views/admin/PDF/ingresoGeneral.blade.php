@@ -202,7 +202,7 @@
             </thead>
             <tbody class="tbody">
               @foreach ($facturas as $key => $factura)
-                <tr style="background: #f0f0f0;">
+                <tr style="background: rgba(52, 73, 94, .3)">
                   <td>{{$key+1}}</td>
                   <td>{{$factura->categoria->tipo}}</td>
                   <td class="tjustify">

@@ -201,7 +201,7 @@
               </tr>
             </thead>
             <tbody class="tbody">
-              <tr>
+              <tr style="background: rgba(52, 73, 94, .3)">
                 <td>1</td>
                 <td>{{$factura->categoria->tipo}}</td>
                 <td class="tjustify">

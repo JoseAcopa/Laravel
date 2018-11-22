@@ -73,15 +73,15 @@ Route::delete('/eliminar-factura/{id}','FacturasIngresoController@destroy')->nam
 Route::get('admin/ver-factura/{id}','FacturasIngresoController@show')->name('factura.show')->middleware('permission:factura.show');
 // ------------------facturas de ingreso----------------------------------------
 
-// ------------------checkout----------------------------------------
-Route::get('/admin/salidas','CheckoutsController@index')->name('salida.index')->middleware('permission:salidas.index');
+// ------------------salida----------------------------------------
+Route::get('/salida-producto','CheckoutsController@index')->name('salida.index')->middleware('permission:salidas.index');
 Route::get('/admin/crear-salida', 'CheckoutsController@create')->name('salida.create')->middleware('permission:salida.create');
 Route::post('admin/store-salida','CheckoutsController@store')->name('salida.store')->middleware('permission:salida.create');
 Route::get('/admin/editar-salida/{salida}', 'CheckoutsController@edit')->name('salida.edit')->middleware('permission:salida.edit');
 Route::post('/admin/salida/{salida}', 'CheckoutsController@update')->name('salida.update')->middleware('permission:salida.edit');
 Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('salida.destroy')->middleware('permission:salida.destroy');
 Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:salida.show');
-// ------------------End checkout----------------------------------------
+// ------------------salida----------------------------------------
 
 // ------------------cotizacion----------------------------------------
 Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.index')->middleware('permission:cotizaciones.index');
