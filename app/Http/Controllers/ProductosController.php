@@ -124,9 +124,10 @@ class ProductosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Producto $producto)
     {
-        //
+      $producto->update($request->all());
+      return redirect()->route('producto.edit', $producto->id)->with('success','Datos actualizados correctamente.');
     }
 
     /**

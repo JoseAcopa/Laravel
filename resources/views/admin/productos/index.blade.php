@@ -33,7 +33,7 @@
               <th>Stock</th>
               <th>Precio Lista</th>
               <th>Costo</th>
-              <th style="width: 120px;">Acciones</th>
+              <th style="width: 110px;">Acciones</th>
            </tr>
           </thead>
           <tbody>
