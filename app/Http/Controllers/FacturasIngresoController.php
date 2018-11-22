@@ -22,7 +22,7 @@ class FacturasIngresoController extends Controller
       $facturas = Factura::with(['categoria', 'proveedor', 'producto'])->get();
       for ($i=0; $i < count($facturas); $i++) {
         if ($facturas[$i]->producto != null) {
-          $producto = Catalogo::find($facturas[$i]->producto->id);
+          $producto = Catalogo::find($facturas[$i]->producto->catalogo_id);
           $facturas[$i]->catalogo = $producto;
         }
       }

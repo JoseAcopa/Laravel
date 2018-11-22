@@ -133,7 +133,7 @@
 
         if (categoria === 'Petrolera | Industrial') {
           var newCosto = precioLista * .50
-          $('#costo').val(newCosto)
+          $('#costo').val(newCosto.toFixed(2))
           for (var i = 0; i < cat1.length; i++) {
             var res = cat1[i] * precioLista
             newRes.push(res)
@@ -144,7 +144,7 @@
           }
         }else if (categoria === 'Hidraulica') {
           var newCosto = precioLista * .29
-          $('#costo').val(newCosto)
+          $('#costo').val(newCosto.toFixed(2))
           for (var i = 0; i < cat2.length; i++) {
             var res = cat2[i] * newCosto
             newRes.push(res)

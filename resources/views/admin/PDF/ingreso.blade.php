@@ -190,17 +190,20 @@
             <thead class="default">
               <tr>
                 <th>#</th>
-                <th>DESCRIPCIÓN</th>
+                <th>PRODUCTO</th>
+                <th style="width: 220px;">DESCRIPCIÓN</th>
                 <th>CANTIDAD</th>
                 <th>U.MEDIDA</th>
                 <th>P. LISTA</th>
                 <th>COSTO</th>
-                <th>Proveedor</th>
+                <th>PROVEEDOR</th>
+                <th>FECHA</th>
               </tr>
             </thead>
             <tbody class="tbody">
               <tr>
                 <td>1</td>
+                <td>{{$factura->categoria->tipo}}</td>
                 <td class="tjustify">
                   @if ($factura->producto)
                     {{strtoupper($factura->producto->descripcion)}}
@@ -214,7 +217,8 @@
                 </td>
                 <td>${{$factura->precio_lista}} {{$factura->moneda}}</td>
                 <td>${{$factura->costo}} {{$factura->moneda}}</td>
-                <td>${{$factura->proveedor->nombre_empresa}}</td>
+                <td>{{$factura->proveedor->nombre_empresa}}</td>
+                <td>{{$factura->fecha_entrada}}</td>
               </tr>
             </tbody>
           </table>
