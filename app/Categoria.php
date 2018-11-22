@@ -17,9 +17,9 @@ class Categoria extends Model
     return $this->hasMany('App\Catalogo');
   }
 
-  public function products()
+  public function productos()
   {
-    return $this->hasMany('App\Products');
+    return $this->hasMany('App\Producto');
   }
 
   public function invoices()

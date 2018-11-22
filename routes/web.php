@@ -57,15 +57,21 @@ Route::put('/actualizar-producto-catalogo/{producto}', 'CatalogosController@upda
 Route::delete('/eliminar-producto-catalogo/{id}','CatalogosController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
 // -------------------------Catalogo----------------------------------------
 
-// ------------------inventary----------------------------------------
-Route::get('/admin/productos','ProductsControllers@index')->name('producto.index')->middleware('permission:inventarios.index');
-Route::get('/admin/crear-producto', 'ProductsControllers@create')->name('producto.create')->middleware('permission:inventario.create');
-Route::post('admin/store-producto','ProductsControllers@store')->name('producto.store')->middleware('permission:inventario.create');
-Route::get('/admin/edita-producto/{producto}', 'ProductsControllers@edit')->name('producto.edit')->middleware('permission:inventario.edit');
-Route::post('/admin/producto/{producto}', 'ProductsControllers@update')->name('producto.update')->middleware('permission:inventario.edit');
-Route::delete('admin/delete-producto/{id}','ProductsControllers@destroy')->name('producto.destroy')->middleware('permission:inventario.destroy');
-Route::get('admin/ver-producto/{id}','ProductsControllers@show')->name('producto.show')->middleware('permission:inventario.show');
-// ------------------End inventary----------------------------------------
+// ------------------productos----------------------------------------
+Route::get('/entrada-productos','ProductosController@index')->name('productos.index')->middleware('permission:productos.index');
+Route::get('/crear-producto', 'ProductosController@create')->name('producto.create')->middleware('permission:producto.create');
+Route::post('guardar-producto','ProductosController@store')->name('producto.store')->middleware('permission:producto.create');
+Route::get('/editar-producto/{id}', 'ProductosController@edit')->name('producto.edit')->middleware('permission:producto.edit');
+Route::post('/actualizar-producto/{producto}', 'ProductosController@update')->name('producto.update')->middleware('permission:producto.edit');
+Route::delete('/eliminar-producto/{id}','ProductosController@destroy')->name('producto.destroy')->middleware('permission:producto.destroy');
+Route::get('/ver-producto/{id}','ProductosController@show')->name('producto.show')->middleware('permission:producto.show');
+// ------------------productos----------------------------------------
+
+// ------------------facturas de ingreso----------------------------------------
+Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
+Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
+Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:factura.show');
+// ------------------facturas de ingreso----------------------------------------
 
 // ------------------checkout----------------------------------------
 Route::get('/admin/salidas','CheckoutsController@index')->name('salida.index')->middleware('permission:salidas.index');
@@ -100,12 +106,6 @@ Route::delete('/eliminar-producto-cotizado/{id}','ProductosCotizadosController@d
 // Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
 
 
-// ------------------facturas----------------------------------------
-Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
-Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
-Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:factura.show');
-// ------------------End facturas----------------------------------------
-
 // =======================actividades ==============================================
 Route::post('/crear-actividad', 'AdminControllers@store')->name('actividad.store');
 Route::delete('/actividad/{id}', 'AdminControllers@destroy')->name('actividad.destroy');
@@ -120,11 +120,11 @@ Route::post('admin/generar-facturas', 'ReportesController@generarFacturas')->nam
 Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
 // =======================reportes ==============================================
 
-// =======================metodos ajax ==============================================
-Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
-Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
-Route::get('/cliente-cotizacion/{id}', 'ControllersAjax@getClientAjax');
-Route::get('/productos', 'ControllersAjax@getProductsAjax');
+// =======================peticiones con ajax ==============================================
+Route::get('/producto-catalogo/{id}', 'AjaxController@getCatalogoAjax');
+Route::get('/producto/{id}', 'AjaxController@getProductAjax');
+Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClientAjax');
+Route::get('/productos', 'AjaxController@getProductsAjax');
 
 // =======================recuperar contrasena ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');

@@ -15,22 +15,15 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nInvoice');
-            $table->integer('category_id');
-            $table->string('initials');
-            $table->integer('supplier_id');
-            $table->string('checkin');
-            $table->string('quantity');
-            $table->string('unit');
-            $table->string('priceList');
-            $table->string('cost');
-            $table->string('description');
-            $table->string('priceSales1');
-            $table->string('priceSales2');
-            $table->string('priceSales3');
-            $table->string('priceSales4');
-            $table->string('priceSales5');
-            $table->integer('coin_id');
+            $table->string('numero_factura')->default('-');
+            $table->string('precio_lista');
+            $table->string('costo');
+            $table->string('moneda');
+            $table->string('fecha_entrada');
+            $table->string('cantidad_entrada');
+            $table->integer('producto_id');
+            $table->integer('proveedor_id');
+            $table->integer('categoria_id');
             $table->timestamps();
         });
     }

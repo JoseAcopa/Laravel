@@ -15,21 +15,19 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
-            $table->string('initials');
-            $table->integer('supplier_id');
-            $table->string('checkin');
-            $table->string('unit');
-            $table->string('description');
-            $table->string('priceList');
-            $table->string('cost');
+            $table->string('fecha_entrada');
+            $table->string('precio_lista');
+            $table->string('costo');
             $table->string('stock');
-            $table->string('priceSales1');
-            $table->string('priceSales2');
-            $table->string('priceSales3');
-            $table->string('priceSales4');
-            $table->string('priceSales5');
-            $table->integer('coin_id');
+            $table->string('precio_venta1');
+            $table->string('precio_venta2');
+            $table->string('precio_venta3');
+            $table->string('precio_venta4');
+            $table->string('precio_venta5')->default(0);
+            $table->string('moneda');
+            $table->integer('catalogo_id');
+            $table->integer('proveedor_id');
+            $table->integer('categoria_id');
             $table->timestamps();
         });
     }

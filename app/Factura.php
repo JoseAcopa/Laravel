@@ -4,12 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Catalogo extends Model
+class Factura extends Model
 {
-  protected $table = 'catalogs';
+  protected $table = 'invoices';
 
   protected $fillable = [
-    'sku', 'unidad_medida', 'descripcion', 'categoria_id', 'proveedor_id'
+    'numero_factura', 'precio_lista', 'costo', 'moneda', 'fecha_entrada',
+    'cantidad_entrada', 'producto_id', 'proveedor_id', 'categoria_id'
   ];
 
   public function categoria()
@@ -20,10 +21,5 @@ class Catalogo extends Model
   public function proveedor()
   {
     return $this->belongsTo('App\Proveedores');
-  }
-
-  public function productos()
-  {
-    return $this->hasMany('App\Producto');
   }
 }
