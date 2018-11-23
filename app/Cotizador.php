@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quoteers extends Model
+class Cotizador extends Model
 {
   protected $table = 'quoteers';
 
@@ -14,6 +14,6 @@ class Quoteers extends Model
 
   public function producto()
   {
-    return $this->belongsTo('App\Products');
+    return $this->belongsTo('App\Producto');
   }
 }

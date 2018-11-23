@@ -39,8 +39,8 @@ class Producto extends Model
     return $this->belongsTo('App\Salida');
   }
 
-  public function quoteers()
+  public function cotizador()
   {
-    return $this->hasMany('App\Quoteers');
+    return $this->hasMany('App\Cotizador');
   }
 }

@@ -84,26 +84,18 @@ Route::get('/ver-salida-producto/{id}','SalidasController@show')->name('salida.s
 // ------------------salida----------------------------------------
 
 // ------------------cotizacion----------------------------------------
-Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.index')->middleware('permission:cotizaciones.index');
-Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
-Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
-Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-Route::put('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
-Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
-Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
-Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
+Route::get('/cotizacion','CotizacionController@index')->name('cotizacion.index')->middleware('permission:cotizaciones.index');
+Route::get('/crear-cotizacion', 'CotizacionController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
+Route::post('/guardar-cotizacion','CotizacionController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
+Route::get('/editar-cotizacion/{id}', 'CotizacionController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
+Route::put('/actualizar-cotizacion/{cotizacion}', 'CotizacionController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
+Route::delete('/eliminar-cotizacion/{id}','CotizacionController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
+Route::get('/ver-cotizacion/{id}','CotizacionController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
+Route::post('/guardar-cliente-cotizacion', 'CotizacionController@cliente')->name('cliente.cotizacion');
 
-// ------------------cotizacion----------------------------------------
+// ------------------cotizaciguardar producto cotizado----------------------------------------
 Route::post('/guardar-producto-cotizado', 'ProductosCotizadosController@store')->name('producto_cotizado.store');
 Route::delete('/eliminar-producto-cotizado/{id}','ProductosCotizadosController@destroy')->name('producto_cotizado.destroy');
-// Route::post('/guardar-producto-cotizado/{producto}','ProductosCotizados@store')->name('producto_cotizado.store');
-// Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
-// Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
-// Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-// Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
-// Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
-// Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
-// Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
 
 
 // =======================actividades ==============================================
@@ -115,9 +107,9 @@ Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.upd
 
 // =======================peticiones con ajax ==============================================
 Route::get('/producto-catalogo/{id}', 'AjaxController@getCatalogoAjax');
-Route::get('/producto/{id}', 'AjaxController@getProductAjax');
-Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClientAjax');
-Route::get('/productos', 'AjaxController@getProductsAjax');
+Route::get('/producto-cotizacion/{id}', 'AjaxController@getProductoAjax');
+Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClienteAjax');
+Route::get('/productos', 'AjaxController@getProductosAjax');
 
 // =======================recuperar contrasena ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');

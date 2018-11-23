@@ -33,12 +33,12 @@
         {!! Form::open(['method' => 'POST', 'route' => 'cotizacion.store']) !!}
           {{ csrf_field() }}
 
-          @include('admin.quotation.form')
+          @include('admin.cotizacion.form')
 
         {!! Form::close() !!}
 
       </div>
-      @include('admin.quotation.formClient')
+      @include('admin.cotizacion.formClient')
     </section>
 
 @endsection
@@ -68,18 +68,14 @@
   function getProducto(val) {
     var id = val.value
     $.ajax({
-      url: '/producto/'+id,
+      url: '/producto-cotizacion/'+id,
       type: 'GET',
       success: (res)=>{
-        $('#descripcion').val(res.description);
-        $('#producto_cotizar').val(res.category.type);
+        $('#descripcion').val(res.catalogo.descripcion);
+        $('#producto_cotizar').val(res.categoria.tipo);
         $('#stock').val(+res.stock);
-        $('.precio1').remove();
-        $('.precio2').remove();
-        $('.precio3').remove();
-        $('.precio4').remove();
-        $('.precio5').remove();
-        $('#precios').append('<option class="precio1">$'+res.priceSales1+'</option><option class="precio2">$'+res.priceSales2+'</option><option class="precio3">$'+res.priceSales3+'</option><option class="precio4">$'+res.priceSales4+'</option><option class="precio5">$'+res.priceSales5+'</option>')
+        $('#precios').empty();
+        $('#precios').append('<option class="precio1">$'+res.precio_venta1+'</option><option class="precio2">$'+res.precio_venta2+'</option><option class="precio3">$'+res.precio_venta3+'</option><option class="precio4">$'+res.precio_venta4+'</option><option class="precio5">$'+res.precio_venta5+'</option>')
       }
     })
   }

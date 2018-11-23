@@ -29,10 +29,10 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-book"></i> Editar Cotización</h3>
         </div>
-        {!! Form::model($cotizacion, ['method' => 'POST','route' => ['cotizacion.update', $cotizacion->id]]) !!}
+        {!! Form::model($cotizacion, ['method' => 'PUT','route' => ['cotizacion.update', $cotizacion->id]]) !!}
           {{ csrf_field() }}
 
-          @include('admin.quotation.formEdit')
+          @include('admin.cotizacion.formEdit')
 
         {!! Form::close() !!}
       </div>
@@ -67,7 +67,7 @@
                     <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
                     {{ Form::label('producto_id', 'Productos') }}
                     <div class="input-group">
-                      {!! Form::select('producto_id', $productos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
+                      {!! Form::select('producto_id', $selectProductos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
                       <span class="input-group-addon"><i class="fa fa-search"></i></span>
                     </div>
                   </div>
@@ -120,7 +120,7 @@
                 @foreach ($productos_cotizados as $key => $producto_cotizado)
                   <tr>
                     <td style="width: 10px;">{{$key+1}}</td>
-                    <td>{{$producto_cotizado->producto->description}}</td>
+                    <td>{{$producto_cotizado->catalogo->descripcion}}</td>
                     <td style="width: 30px;">{{$producto_cotizado->cantidad}}</td>
                     <td style="width: 30px;">${{$producto_cotizado->precio}}</td>
                     <td style="width: 30px;">${{$producto_cotizado->subtotal}}</td>
@@ -146,18 +146,14 @@
 function getProducto(val) {
   var id = val.value
   $.ajax({
-    url: '/producto/'+id,
+    url: '/producto-cotizacion/'+id,
     type: 'GET',
     success: (res)=>{
-      $('#descripcion').val(res.description);
-      $('#producto_cotizar').val(res.category.type);
+      $('#descripcion').val(res.catalogo.descripcion);
+      $('#producto_cotizar').val(res.categoria.tipo);
       $('#stock').val(+res.stock);
-      $('.precio1').remove();
-      $('.precio2').remove();
-      $('.precio3').remove();
-      $('.precio4').remove();
-      $('.precio5').remove();
-      $('#precios').append('<option class="precio1">$'+res.priceSales1+'</option><option class="precio2">$'+res.priceSales2+'</option><option class="precio3">$'+res.priceSales3+'</option><option class="precio4">$'+res.priceSales4+'</option><option class="precio5">$'+res.priceSales5+'</option>')
+      $('#precios').empty();
+      $('#precios').append('<option class="precio1">$'+res.precio_venta1+'</option><option class="precio2">$'+res.precio_venta2+'</option><option class="precio3">$'+res.precio_venta3+'</option><option class="precio4">$'+res.precio_venta4+'</option><option class="precio5">$'+res.precio_venta5+'</option>')
     }
   })
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Quoteers;
-use App\Quotations;
+use App\Cotizador;
+use App\Cotizacion;
 
 class ProductosCotizadosController extends Controller
 {
@@ -37,7 +37,7 @@ class ProductosCotizadosController extends Controller
     public function store(Request $request)
     {
       // guardando producto cotizado
-      $producto = new Quoteers;
+      $producto = new Cotizador;
       $producto->cotizacion_id = $request->cotizacion_id;
       $producto->producto_id = $request->producto_id;
       $producto->cantidad = (float) $request->cantidad;
@@ -46,8 +46,8 @@ class ProductosCotizadosController extends Controller
       $producto->save();
 
       // editando el subtotal de la cotizacion
-      $cotizacion = Quotations::find($request->cotizacion_id);
-      $productos = Quoteers::where('cotizacion_id', $request->cotizacion_id)->get();
+      $cotizacion = Cotizacion::find($request->cotizacion_id);
+      $productos = Cotizador::where('cotizacion_id', $request->cotizacion_id)->get();
       $total = 0;
 
       for ($i=0; $i < count($productos); $i++) {
@@ -103,10 +103,10 @@ class ProductosCotizadosController extends Controller
     public function destroy($id)
     {
       $total = 0;
-      $producto = Quoteers::find($id);
-      $cotizacion = Quotations::find($producto->cotizacion_id);
-      Quoteers::find($id)->delete();
-      $productos = Quoteers::where('cotizacion_id', $cotizacion->id)->get();
+      $producto = Cotizador::find($id);
+      $cotizacion = Cotizacion::find($producto->cotizacion_id);
+      Cotizador::find($id)->delete();
+      $productos = Cotizador::where('cotizacion_id', $cotizacion->id)->get();
 
       for ($i=0; $i < count($productos); $i++) {
         $total += $productos[$i]->subtotal;

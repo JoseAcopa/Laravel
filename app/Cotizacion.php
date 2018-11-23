@@ -4,12 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Quotations extends Model
+class Cotizacion extends Model
 {
-  // protected $table = 'quotations';
+  protected $table = 'quotations';
   // protected $id = "id";
-
-  // public $timestamps = false;
 
   protected $fillable = [
     'numero_cotizacion', 'fecha', 'licitacion', 'rfc_cliente', 'telefono_cliente',

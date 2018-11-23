@@ -18,25 +18,25 @@ class AjaxController extends Controller
     return $producto;
   }
 
-  public function getProductAjax($id)
+  public function getProductoAjax($id)
   {
     $producto = Producto::with(['catalogo', 'proveedor', 'categoria'])->find($id);
     return $producto;
   }
 
-  // public function getClientAjax($id)
-  // {
-  //   $now = new \DateTime();
-  //   $fecha = $now->format('Y');
-  //   $total_cotizacion = Count::where('fecha', $fecha)->get();
-  //   $cliente = Clientes::find($id);
-  //   $array = compact('fecha', 'total_cotizacion', 'cliente');
-  //   return $array;
-  // }
-  //
-  // public function getProductsAjax()
-  // {
-  //   $products = Producto::with(['category'])->get();
-  //   return $products;
-  // }
+  public function getClienteAjax($id)
+  {
+    $now = new \DateTime();
+    $fecha = $now->format('Y');
+    $total_cotizacion = Count::where('fecha', $fecha)->get();
+    $cliente = Clientes::find($id);
+    $array = compact('fecha', 'total_cotizacion', 'cliente');
+    return $array;
+  }
+
+  public function getProductosAjax()
+  {
+    $productos = Producto::with(['categoria'])->get();
+    return $productos;
+  }
 }

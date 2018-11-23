@@ -10,7 +10,7 @@
           <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
           {{ Form::label('cliente_id', 'Clientes') }}
           <div class="input-group">
-            {!! Form::select('cliente_id', $clientes, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+            {!! Form::select('cliente_id', $selectCliente, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
@@ -110,7 +110,7 @@
           <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
           {{ Form::label('producto', 'Productos') }}
           <div class="input-group">
-            {!! Form::select('producto', $productos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
+            {!! Form::select('producto', $selectProducto, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
@@ -169,5 +169,5 @@
 </div>
 <div class="box-footer">
   <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
-  <a href="{{ url('/admin/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
+  <a href="{{ url('/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>

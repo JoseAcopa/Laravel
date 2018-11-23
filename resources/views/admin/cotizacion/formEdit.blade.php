@@ -81,10 +81,10 @@
   </div>
   <div class="col-md-3 pull-right">
     {{ Form::label('total', 'Total:') }}
-    {!! Form::text('total', round($cotizacion->total, 2),  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
+    {!! Form::text('total', $cotizacion->total,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
   </div>
 </div>
 <div class="box-footer">
   <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
-  <a href="{{ url('/admin/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
+  <a href="{{ url('/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>

@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Quotations;
-use App\Products;
-use App\Clientes;
-use App\Quoteers;
-use App\Count;
-use App\Units;
-use App\Category;
-use App\Suppliers;
-use App\Coins;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateQuotationRequest;
+use App\Cotizacion;
+use App\Producto;
+use App\Clientes;
+use App\Cotizador;
+use App\Count;
+use App\Categoria;
+use App\Proveedor;
+use App\Catalogo;
 
-class QuotationsController extends Controller
+class CotizacionController extends Controller
 {
     public function __construct()
     {
@@ -29,8 +27,8 @@ class QuotationsController extends Controller
      */
     public function index()
     {
-      $cotizaciones = Quotations::with(['user', 'cliente'])->get();
-      return view('admin.quotation.index', compact('cotizaciones'));
+      $cotizaciones = Cotizacion::with(['user', 'cliente'])->get();
+      return view('admin.cotizacion.index', compact('cotizaciones'));
     }
 
     /**
@@ -40,10 +38,19 @@ class QuotationsController extends Controller
      */
     public function create()
     {
-      // $clients = Clients::all();
-      $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
-      $productos = Products::all()->pluck('description', 'id');
-      return view('admin.quotation.create', compact('clientes', 'productos'));
+      $clientes = Clientes::all();
+      for ($i=0; $i < count($clientes); $i++) {
+        $clientes[$i]->select = $clientes[$i]->nombre_empresa.' | '.$clientes[$i]->correo.' | '.$clientes[$i]->telefono;
+      }
+
+      $productos = Producto::with(['catalogo', 'categoria'])->get();
+      for ($i=0; $i < count($productos); $i++) {
+        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->catalogo->descripcion;
+      }
+      $selectProducto = $productos->pluck('select', 'id');
+      $selectCliente = $clientes->pluck('select', 'id');
+
+      return view('admin.cotizacion.create', compact('clientes', 'selectProducto', 'selectCliente'));
     }
 
     /**
@@ -52,12 +59,12 @@ class QuotationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateQuotationRequest $request)
+    public function store(Request $request)
     {
       // guardando cotizacion
       $user = Auth::user();
       $request['user_id'] =  $user->id;
-      $cotizacion = Quotations::create($request->all());
+      $cotizacion = Cotizacion::create($request->all());
 
       // guardando contador del cotizador
       $now = new \DateTime(); //obteniendo la fecha actual
@@ -71,7 +78,7 @@ class QuotationsController extends Controller
       // guardando productos cotizados
       $productos_cotizados = json_decode($request->cotizar_productos);
       for ($i=0; $i < count($productos_cotizados); $i++) {
-        $cotizar = new Quoteers;
+        $cotizar = new Cotizador;
         $cotizar->cantidad = $productos_cotizados[$i]->cantidad;
         $cotizar->precio = $productos_cotizados[$i]->precio;
         $cotizar->subtotal = $productos_cotizados[$i]->subtotal;
@@ -91,11 +98,11 @@ class QuotationsController extends Controller
      */
     public function show($id)
     {
-      $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
-      $quotations = Quotations::find($id);
-      $quotations->user;
-      $quotations->cliente;
-      return view('admin.quotation.show', compact('quoteers', 'quotations'));
+      $cotizador = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
+      $cotizacion = Cotizacion::find($id);
+      $cotizacion->user;
+      $cotizacion->cliente;
+      return view('admin.cotizacion.show', compact('$cotizador', 'cotizacion'));
     }
 
     /**
@@ -106,10 +113,21 @@ class QuotationsController extends Controller
      */
     public function edit($id)
     {
-      $productos = Products::all()->pluck('description', 'id');
-      $productos_cotizados = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
-      $cotizacion = Quotations::find($id);
-      return view('admin.quotation.edit', compact('cotizacion', 'productos_cotizados', 'productos'));
+
+      $productos = Producto::with(['catalogo', 'categoria'])->get();
+      for ($i=0; $i < count($productos); $i++) {
+        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->catalogo->descripcion;
+      }
+      $selectProductos = $productos->pluck('select', 'id');
+
+      $productos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
+      for ($i=0; $i < count($productos_cotizados); $i++) {
+        $catalogo = Catalogo::find($productos_cotizados[$i]->producto->catalogo_id);
+        $productos_cotizados[$i]->catalogo = $catalogo;
+      }
+
+      $cotizacion = Cotizacion::find($id);
+      return view('admin.cotizacion.edit', compact('cotizacion', 'productos_cotizados', 'selectProductos'));
     }
 
     /**
@@ -119,7 +137,7 @@ class QuotationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Quotations $cotizacion)
+    public function update(Request $request,Cotizacion $cotizacion)
     {
       $cotizacion->update($request->all());
       return redirect()->route('cotizacion.edit', $cotizacion->id)->with('success','Datos actualizados correctamente.');
@@ -133,9 +151,9 @@ class QuotationsController extends Controller
      */
     public function destroy($id)
     {
-      Quotations::find($id)->delete();
+      Cotizacion::find($id)->delete();
       DB::table('quoteers')->where('cotizacion_id', $id)->delete();
-      return redirect('admin/cotizacion')->with('success','La cotizacion ha sido eliminado correctamente');
+      return ['success' => true];
     }
 
     public function cliente(Request $request)
