@@ -18,15 +18,12 @@ class AjaxController extends Controller
     return $producto;
   }
 
-  // public function getProductAjax($id)
-  // {
-  //   $product = Producto::find($id);
-  //   $product->coin;
-  //   $product->supplier;
-  //   $product->category;
-  //   return $product;
-  // }
-  //
+  public function getProductAjax($id)
+  {
+    $producto = Producto::with(['catalogo', 'proveedor', 'categoria'])->find($id);
+    return $producto;
+  }
+
   // public function getClientAjax($id)
   // {
   //   $now = new \DateTime();

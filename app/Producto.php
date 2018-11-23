@@ -34,6 +34,11 @@ class Producto extends Model
     return $this->belongsTo('App\Factura');
   }
 
+  public function salida()
+  {
+    return $this->belongsTo('App\Salida');
+  }
+
   public function quoteers()
   {
     return $this->hasMany('App\Quoteers');

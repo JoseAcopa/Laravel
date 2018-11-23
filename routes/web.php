@@ -74,13 +74,13 @@ Route::get('admin/ver-factura/{id}','FacturasIngresoController@show')->name('fac
 // ------------------facturas de ingreso----------------------------------------
 
 // ------------------salida----------------------------------------
-Route::get('/salida-producto','CheckoutsController@index')->name('salida.index')->middleware('permission:salidas.index');
-Route::get('/admin/crear-salida', 'CheckoutsController@create')->name('salida.create')->middleware('permission:salida.create');
-Route::post('admin/store-salida','CheckoutsController@store')->name('salida.store')->middleware('permission:salida.create');
-Route::get('/admin/editar-salida/{salida}', 'CheckoutsController@edit')->name('salida.edit')->middleware('permission:salida.edit');
-Route::post('/admin/salida/{salida}', 'CheckoutsController@update')->name('salida.update')->middleware('permission:salida.edit');
-Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('salida.destroy')->middleware('permission:salida.destroy');
-Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:salida.show');
+Route::get('/salida-producto','SalidasController@index')->name('salida.index')->middleware('permission:salidas.index');
+Route::get('/crear-salida-producto', 'SalidasController@create')->name('salida.create')->middleware('permission:salida.create');
+Route::post('guardar-salida-producto','SalidasController@store')->name('salida.store')->middleware('permission:salida.create');
+Route::get('/editar-salida-producto/{id}', 'SalidasController@edit')->name('salida.edit')->middleware('permission:salida.edit');
+Route::put('/actualizar-salida-producto/{salida}', 'SalidasController@update')->name('salida.update')->middleware('permission:salida.edit');
+Route::delete('/eliminar-salida-producto/{id}','SalidasController@destroy')->name('salida.destroy')->middleware('permission:salida.destroy');
+Route::get('/ver-salida-producto/{id}','SalidasController@show')->name('salida.show')->middleware('permission:salida.show');
 // ------------------salida----------------------------------------
 
 // ------------------cotizacion----------------------------------------
@@ -88,7 +88,7 @@ Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.i
 Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
 Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
 Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
+Route::put('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
 Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
 Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
 Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
