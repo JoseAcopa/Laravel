@@ -98,11 +98,14 @@ class CotizacionController extends Controller
      */
     public function show($id)
     {
-      $cotizador = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
-      $cotizacion = Cotizacion::find($id);
-      $cotizacion->user;
-      $cotizacion->cliente;
-      return view('admin.cotizacion.show', compact('$cotizador', 'cotizacion'));
+      $productos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
+      for ($i=0; $i < count($productos_cotizados); $i++) {
+        $catalogo = Catalogo::find($productos_cotizados[$i]->producto->catalogo_id);
+        $productos_cotizados[$i]->catalogo = $catalogo;
+      }
+
+      $ver_cotizacion = Cotizacion::with(['user', 'cliente'])->find($id);
+      return view('admin.cotizacion.show', compact('productos_cotizados', 'ver_cotizacion'));
     }
 
     /**

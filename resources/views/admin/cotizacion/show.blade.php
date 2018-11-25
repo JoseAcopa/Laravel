@@ -29,33 +29,32 @@
           <div class="col-sm-4 invoice-col">
             De:
             <address>
-              <strong>{{$quotations->user->name}}</strong><br>
-              {{$quotations->user->user}}<br>
-              Telefono: {{$quotations->user->phone}}<br>
-              Correo: {{$quotations->user->email}}
+              <strong>{{$ver_cotizacion->user->name}}</strong><br>
+              {{$ver_cotizacion->user->user}}<br>
+              Telefono: {{$ver_cotizacion->user->phone}}<br>
+              Correo: {{$ver_cotizacion->user->email}}
             </address>
           </div>
 
           <div class="col-sm-4 invoice-col">
             Para:
             <address>
-              <strong>{{$quotations->cliente->business}}</strong><br>
-              {{$quotations->cliente->address}}<br>
-              Telefono: {{$quotations->cliente->phone}}<br>
-              Correo: {{$quotations->cliente->email}}
+              <strong>{{$ver_cotizacion->cliente->nombre_empresa}}</strong><br>
+              {{$ver_cotizacion->cliente->direccion}}<br>
+              Telefono: {{$ver_cotizacion->cliente->telefono}}<br>
+              Correo: {{$ver_cotizacion->cliente->correo}}
             </address>
           </div>
 
           <div class="col-sm-4 invoice-col">
-            <b>Cotización:<br> {{$quotations->cotizacion}}</b><br>
-            <br>
-            <b>Licitación:</b> {{$quotations->licitacion}}<br>
-            <b>Nombre:</b> {{$quotations->nombre}}<br>
-            <b>Puesto:</b> {{$quotations->puesto}}
+            <b>Cotización:<br> {{$ver_cotizacion->numero_cotizacion}}</b><br>
+            <b>Licitación:</b> {{$ver_cotizacion->licitacion}}<br>
+            <b>Nombre:</b> {{$ver_cotizacion->nombre_empresa}}<br>
+            <b>Puesto:</b> {{$ver_cotizacion->puesto}}
           </div>
         </div>
         <hr>
-        <p class="lead">Fecha cotizada {{$quotations->fecha}}</p>
+        <p class="lead">Fecha cotizada {{$ver_cotizacion->fecha}}</p>
         <div class="row">
           <div class="col-xs-12 table-responsive">
             <table class="table table-striped">
@@ -70,16 +69,16 @@
                 </tr>
               </thead>
               <tbody>
-                @foreach ($quoteers as $i=>$quoteer)
+                @foreach ($productos_cotizados as $i => $producto)
                   <tr>
                     <td>{{$i+1}}</td>
                     <td class="tjustify">
-                      {{strtoupper($quoteer->producto->description)}}
+                      {{strtoupper($producto->catalogo->descripcion)}}
                     </td>
-                    <td>{{$quoteer->cantidad}}</td>
+                    <td>{{$producto->cantidad}}</td>
                     <td>Pieza</td>
-                    <td>${{substr($quoteer->precio, 1, -3)}}</td>
-                    <td>${{substr($quoteer->subtotal, 1, -3)}}</td>
+                    <td>${{$producto->precio}}</td>
+                    <td>${{$producto->subtotal}}</td>
                   </tr>
                 @endforeach
               </tbody>
@@ -104,7 +103,7 @@
                 <tbody>
                 <tr>
                   <th>Total:</th>
-                  <td>${{$quotations->total}}</td>
+                  <td>${{$ver_cotizacion->total}}</td>
                 </tr>
               </tbody></table>
             </div>
@@ -113,10 +112,8 @@
 
         <div class="row no-print">
           <div class="col-xs-12">
-            <a href="{{url('admin/cotizacion')}}" class="btn btn-default pull-right"><i class="fa fa-reply fa-lg"></i> Regresar</a>
-            <a href="{{url('/cotizacion',$quotations->id)}}" class="btn btn-primary pull-right" style="margin-right: 5px;" target="_blank">
-              <i class="fa fa-file-pdf-o"></i> Generar PDF
-            </a>
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus fa-lg"></i> Nueva Cotización</button>
+            <a href="{{ url('/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         </div>
       </section>
