@@ -53,7 +53,7 @@
                 <td><span class="badge bg-yellow">{{ $salida->cantidad_salida }}</span> {{ $salida->catalogo->unidad_medida }}</td>
                 <td>${{ $salida->precio_venta }} {{ $salida->moneda }}</td>
                 <td class="row-copasat">
-                  <a class="btn btn-default" href="{{route('salida.show',$salida->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
+                  <a class="btn btn-default" target="_blank" href="{{route('reporte.salida',$salida->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
                   @can ('salida.show')
                     <a class="btn bg-navy"  data-toggle="modal" data-target="#myModal" onclick="verSalida('{{route('salida.show',$salida->id)}}');"><i class="fa fa-eye"></i></a>
                   @endcan

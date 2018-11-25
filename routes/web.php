@@ -93,6 +93,9 @@ Route::delete('/eliminar-cotizacion/{id}','CotizacionController@destroy')->name(
 Route::get('/ver-cotizacion/{id}','CotizacionController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
 Route::post('/guardar-cliente-cotizacion', 'CotizacionController@cliente')->name('cliente.cotizacion');
 
+// =======================guardar producto nuevo desde cotizacion==============================================
+Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
+
 // ------------------cotizaciguardar producto cotizado----------------------------------------
 Route::post('/guardar-producto-cotizado', 'ProductosCotizadosController@store')->name('producto_cotizado.store');
 Route::delete('/eliminar-producto-cotizado/{id}','ProductosCotizadosController@destroy')->name('producto_cotizado.destroy');
@@ -120,14 +123,10 @@ Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo
 Route::post('/enviar-correo-rapido', 'CorreoController@correoRapido')->name('correo.quick');
 // =======================Enviando correos ==============================================
 
-// =======================guardar producto nuevo desde cotizacion==============================================
-Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
-
-// =======================guardar producto nuevo desde cotizacion==============================================
-
 // =======================crear PDF ==============================================
 Route::get("reporte-ingreso/{id}","PDFController@generarReporteIngreso")->name('reporte.generate');
 Route::get("reporte-general-ingreso","PDFController@reporteGeneralIngreso")->name('reporte.general');
+Route::get("reporte-salida/{id}","PDFController@generarReporteSalida")->name('reporte.salida');
 Route::get("descargar/{id}","PDFController@descargarPDF");
 Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
 Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");

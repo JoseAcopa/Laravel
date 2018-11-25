@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{$invoice->supplier->business}}</title>
+    <title>{{$salida->proveedor->nombre_empresa}}</title>
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
@@ -168,24 +168,22 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">{{$invoice->supplier->business}}</h2>
-          <p class="title-bussines">{{$invoice->supplier->address}}</p>
+          <h2 class="title-bussines">Proveedor: {{$salida->proveedor->nombre_empresa}}</h2>
+          <p class="title-bussines">Dirección: {{$salida->proveedor->direccion}}</p>
         </div>
         <div class="table">
           <ul class="ul-table">
-            <li class="li-active">Fecha de entrada</li>
-            <li>{{$invoice->checkin}}</li>
+            <li class="li-active">Fecha de Salida</li>
+            <li>{{$salida->fecha_salida}}</li>
             <li class="li-active">No. de Factura</li>
-            <li>{{$invoice->nInvoice}}</li>
-            {{-- <li class="li-active">No. de Licitacón</li>
-            <li>N/A</li> --}}
+            <li>{{$salida->numero_factura}}</li>
           </ul>
         </div>
         <div class="usuario">
           <h2>Tipo:</h2>
-          <p>{{$invoice->category->type}}</p>
+          <p>{{$salida->categoria->tipo}}</p>
           <h2>Categoria:</h2>
-          <p>{{$invoice->category->categorias}}</p>
+          <p>{{$salida->categoria->categorias}}</p>
         </div>
         <div class="container-table">
           <table>
@@ -193,64 +191,30 @@
               <tr>
                 <th>#</th>
                 <th>DESCRIPCIÓN</th>
-                <th>CANTIDAD</th>
+                <th>SALIDA</th>
+                <th>STOCK</th>
                 <th>U.MEDIDA</th>
                 <th>P. LISTA</th>
                 <th>COSTO</th>
+                <th>VENTA</th>
               </tr>
             </thead>
             <tbody class="tbody">
               <tr>
                 <td>1</td>
                 <td class="tjustify">
-                  {{strtoupper($invoice->description)}}
+                  {{strtoupper($salida->catalogo->descripcion)}}
                 </td>
-                <td>{{$invoice->quantity}}</td>
-                <td>{{$invoice->unit}}</td>
-                <td>${{$invoice->priceList}} {{$invoice->coin->type}}</td>
-                <td>${{$invoice->cost}} {{$invoice->coin->type}}</td>
+                <td>{{$salida->cantidad_salida}}</td>
+                <td>{{$salida->producto->stock}}</td>
+                <td>{{$salida->catalogo->unidad_medida}}</td>
+                <td>${{$salida->producto->precio_lista}} {{$salida->moneda}}</td>
+                <td>${{$salida->producto->costo}} {{$salida->moneda}}</td>
+                <td>${{$salida->precio_venta}} {{$salida->moneda}}</td>
               </tr>
             </tbody>
           </table>
         </div>
-        {{-- <p class="sub-condiciones">
-          TOTAL = $19166.25 (DIECINUEVE MIL CIENTO SESENTA SEIS USD 25/100)
-        </p>
-
-        <p class="sub-condiciones">
-          FAVOR DE RAVISAR TODAS LAS CONDICIONES DE VENTA, GRACIAS!!!
-        </p>
-
-        <p class="title-bussines">
-          RESUMEN DE CONDICIONES DE VENTA <br>
-          CONDICIONES DE PAGO: 30 días a presentación de factura. <br>
-          Precios Sin I.V.A.: Se agrega al Facturar <br>
-          VIGENCIA DE PRECIOS: 15 días <br>
-          LUGAR DE ENTREGA: LAB su almacén <br>
-          TIEMPO DE ENTREGA: <br>
-          Partida 1 y 2: 15 días hábiles una vez recibida su orden de compra. <br>
-          Partida 3: 3 a 5 días hábiles una vez recibida su orden de compra, salvo previa venta. <br>
-          MONEDA: USD Americanos pagaderosal tipo de cambio DOF vigente del dia de su pago ó directamente a nuestra cuenta en USD. <br><br>
-
-          DATOS FISCALES <br>
-          Rayos X y Servicios Industriales S.A. de C.V. <br>
-          Calle Júpiter No. 115 <br>
-          Fracc. Galaxia <br>
-          Villahermosa, Tab. <br>
-          CP 86035 <br>
-          RFC: RXS050608SY3 <br><br>
-
-          No. de Cuenta BANAMEX: 8004175 SUC: 820 <br>
-          CLABE INTERBANCARIA: 002790082080041755 <br>
-          Cuenta en USD: 7000 / 9669750
-        </p>
-      </div>
-      <div class="firma">
-        <p class="title-bussines">ATENTAMENTE</p>
-        <p class="title-bussines">_____________________</p>
-        <p class="title-bussines">M. en A. Francisco Mar Velazquez</p>
-        <p class="title-bussines">Gerencia</p>
-      </div> --}}
     </main>
   </body>
 </html>
