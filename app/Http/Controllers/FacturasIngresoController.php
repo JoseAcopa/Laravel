@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Factura;
 use App\Catalogo;
+use App\Proveedores;
 
 class FacturasIngresoController extends Controller
 {
@@ -27,7 +28,8 @@ class FacturasIngresoController extends Controller
         }
       }
 
-      return view('admin.facturas.index', compact('facturas'));
+        $proveedores = Proveedores::all()->pluck('nombre_empresa', 'id');
+      return view('admin.facturas.index', compact('facturas', 'proveedores'));
     }
 
     /**

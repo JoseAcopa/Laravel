@@ -17,7 +17,7 @@
         {{ csrf_field() }}
         <div class="row">
           <div class="col-md-3">
-            <label for="">Proveedor:</label>
+            <label for="">Proveedores:</label>
             {!! Form::select('proveedor', $proveedores,  null, ['class' => 'form-control', 'placeholder' => 'Seleccione']); !!}
           </div>
           <div class="col-md-7">

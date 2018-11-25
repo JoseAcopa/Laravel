@@ -13,21 +13,31 @@
     </ol>
 
     <div style="margin-top: 10px;">
-      <form method="POST" action="{{route('facturas.generar')}}" style="width:70%; display: flex; flex-direction: row; justify-content: space-between;">
+      {!! Form::open(['method' => 'POST','route' => 'reporte.buscar-rango']) !!}
         {{ csrf_field() }}
-        <div class="form-group" style="width:80%;">
-          <label>Buscar reportes por rango de fechas:</label>
-          <div class="input-group">
-            <div class="input-group-addon">
-              <i class="fa fa-calendar"></i>
+        <div class="row">
+          <div class="col-md-3">
+            <label for="">Proveedores:</label>
+            {!! Form::select('proveedor', $proveedores,  null, ['class' => 'form-control', 'placeholder' => 'Seleccione']); !!}
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label>Buscar reportes por rango de fechas:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {{ Form::text('rango', null, ['class' => 'form-control pull-right"', 'id' => "reservation"]) }}
+              </div>
             </div>
-            <input type="text" class="form-control pull-right" id="reservation" name="rango">
+          </div>
+          <div class="col-md-2">
+            <div style="margin-top: 25px;">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Generar PDF</button>
+            </div>
           </div>
         </div>
-        <div style="margin-top: 25px;">
-          <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Buscar Reportes</button>
-        </div>
-      </form>
+      {!! Form::close() !!}
     </div>
   </section>
 
@@ -67,8 +77,8 @@
                     {{ $factura->catalogo->unidad_medida }}
                   @endif
                 </td>
-                <td>{{ $factura->precio_lista }} {{ $factura->moneda }}</td>
-                <td>{{ $factura->costo }} {{ $factura->moneda }}</td>
+                <td>${{ $factura->precio_lista }} {{ $factura->moneda }}</td>
+                <td>${{ $factura->costo }} {{ $factura->moneda }}</td>
                 <td class="row-copasat">
                   <a class="btn btn-primary" target="_blank" href="{{ route('reporte.generate',$factura->id) }}"><i class="fa fa-file-pdf-o"></i></a>
                   @can ('factura.destroy')

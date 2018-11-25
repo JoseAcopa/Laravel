@@ -97,6 +97,48 @@ class PDFController extends Controller
     return $pdf->stream('Ingreso General.pdf');
   }
 
+  // generando los reportes de salidas por rango y provedor o solo por rango
+  public function   generarReporteIngresoRango(Request $request)
+  {
+    $rango = $request->rango;
+    $inicio = substr($rango, 0, -13);
+    $fin = substr($rango, -10);
+
+    if ($request->proveedor != null) {
+      $facturas = Factura::where('proveedor_id', $request->proveedor)->where('fecha_entrada', '>=' ,$inicio)->where('fecha_entrada', '<=' ,$fin)->with(['proveedor', 'categoria', 'producto'])->get();
+
+      for ($i=0; $i < count($facturas); $i++) {
+        $producto = Catalogo::find($facturas[$i]->producto->catalogo_id);
+        $facturas[$i]->catalogo = $producto;
+      }
+
+      $pdf = PDF::loadView('admin.PDF.ingresoProveedorRango', compact('facturas', 'rango'));
+
+      $pdf->output();
+      $dom_pdf = $pdf->getDomPDF();
+
+      $canvas = $dom_pdf ->get_canvas();
+      $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+      return $pdf->stream('Ingreso Proveedor y Fechas.pdf');
+    }else {
+      $facturas = Factura::where('fecha_entrada', '>=' ,$inicio)->where('fecha_entrada', '<=' ,$fin)->with(['proveedor', 'categoria', 'producto'])->get();
+
+      for ($i=0; $i < count($facturas); $i++) {
+        $producto = Catalogo::find($facturas[$i]->producto->catalogo_id);
+        $facturas[$i]->catalogo = $producto;
+      }
+
+      $pdf = PDF::loadView('admin.PDF.ingresoRango', compact('facturas', 'rango'));
+
+      $pdf->output();
+      $dom_pdf = $pdf->getDomPDF();
+
+      $canvas = $dom_pdf ->get_canvas();
+      $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+      return $pdf->stream('Ingreso por Rango.pdf');
+    }
+  }
+
   // generando reporte de salida individual
   public function generarReporteSalida($id)
   {
