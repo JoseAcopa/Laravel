@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Salida;
 use App\Producto;
 use App\Catalogo;
+use App\Http\Requests\CrearSalidasRequest;
 
 class SalidasController extends Controller
 {
@@ -47,8 +48,9 @@ class SalidasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CrearSalidasRequest $request)
     {
+      $request['numero_factura'] = $request->numero_factura == null ? 'No Asignado' : $request->numero_factura;
       $salida = Salida::create($request->all());
       $salida->save();
 
@@ -86,9 +88,11 @@ class SalidasController extends Controller
       $salida->categoria = $salida->categoria->tipo;
       $salida->proveedor = $salida->proveedor->nombre_empresa;
       $salida->stock = $salida->producto->stock;
+      $salida->existencia = $salida->producto->stock;
       $salida->precio_lista = $salida->producto->precio_lista;
       $salida->costo = $salida->producto->costo;
       $salida->descripcion = $catalogo->descripcion;
+      $salida->unidad_medida = $catalogo->unidad_medida;
 
       $precios = array(
         $salida->producto->precio_venta1 => $salida->producto->precio_venta1,

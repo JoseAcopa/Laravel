@@ -109,15 +109,16 @@ Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.upd
 Route::get('/producto-catalogo/{id}', 'AjaxController@getCatalogoAjax');
 Route::get('/producto-cotizacion/{id}', 'AjaxController@getProductoAjax');
 Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClienteAjax');
-Route::get('/productos', 'AjaxController@getProductosAjax');
+Route::get('/producto-salida/{id}', 'AjaxController@getProductoSalidaAjax');
 
-// =======================recuperar contrasena ==============================================
+// =======================Enviando correos ==============================================
 Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
 Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
 Route::get('/admin/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
 Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
 Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
-// =======================recuperar contrasena ==============================================
+Route::post('/enviar-correo-rapido', 'CorreoController@correoRapido')->name('correo.quick');
+// =======================Enviando correos ==============================================
 
 // =======================guardar producto nuevo desde cotizacion==============================================
 Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');

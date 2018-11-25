@@ -1,129 +1,74 @@
-
-@extends('layouts.app')
-
-@section('content')
-
-    <section class="content-header">
-      <h1>
-        Productos
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Ver Producto</li>
-      </ol>
-    </section>
-
-    <section class="content container-fluid">
-      <div class="col-md-8">
-        <div class="box box-primary">
-          <div class="box-header ui-sortable-handle" style="cursor: move;">
-            <i class="ion ion-clipboard"></i>
-            <h3 class="box-title">Producto</h3>
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="tipo_producto"></h3>
+        <h4 id="sku" class="modal-title pull-right"></h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-4">
+            <label>Categoria:</label>
+            <p id="categoria"></p>
           </div>
-          <div class="box-body">
-            <ul class="todo-list ui-sortable">
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->category->type}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Categoria</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->initials}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Iniciales</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->supplier->business}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Proveedor</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->checkin}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Fecha de Entrada</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->unit}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Unidad de medida</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">${{$product->priceList}} {{$product->coin->type}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Precio Lista</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">${{$product->cost}} {{$product->coin->type}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Costo</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">
-                  <span  <?php echo (int)$product->stock <= 20 ? "class='badge bg-red'" : "class='badge bg-green'"; ?>>
-                    {{$product->stock}}
-                  </span>
-                </span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Stock</small>
-                </div>
-              </li>
-              <li>
-                <span class="handle ui-sortable-handle">
-                  <i class="fa fa-ellipsis-v"></i>
-                  <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <span class="text">{{$product->description}}</span>
-                <div class="tools">
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> Descripción</small>
-                </div>
-              </li>
-            </ul>
+          <div class="col-md-4">
+            <label>Unidad de medida:</label>
+            <p id="unidad_medida"></p>
           </div>
-          <div class="box-footer clearfix no-border">
-            <a href="{{url('admin/productos')}}" class="btn btn-info pull-right"><i class="fa fa-mail-reply"></i> Atras</a>
+          <div class="col-md-4">
+            <label>Proveedor:</label>
+            <p id="proveedor"></p>
+          </div>
+          <div class="col-md-12">
+            <label>Descripción:</label>
+            <p id="descripcion"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Fecha de Entrada:</label>
+            <p id="fecha_entrada"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Cantidad:</label>
+            <p id="stock"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Lista:</label>
+            <p id="precio_lista"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Costo:</label>
+            <p id="costo"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Venta 1:</label>
+            <p id="precio_venta1"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Venta 2:</label>
+            <p id="precio_venta2"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Venta 3:</label>
+            <p id="precio_venta3"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Venta 4:</label>
+            <p id="precio_venta4"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Precio Venta 5:</label>
+            <p id="precio_venta5"></p>
+          </div>
+          <div class="col-md-4">
+            <label>Moneda:</label>
+            <p id="moneda"></p>
           </div>
         </div>
       </div>
-    </section>
-
-@endsection
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

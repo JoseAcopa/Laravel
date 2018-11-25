@@ -54,7 +54,7 @@
                 <td>${{ $producto->costo }} {{ $producto->moneda }}</td>
                 <td class="row-copasat">
                   @can ('producto.show')
-                    <a class="btn btn-primary" href="{{route('producto.show',$producto->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>
+                    <a class="btn btn-primary" alt="Ver mas.." data-toggle="modal" data-target="#myModal" onclick="verProducto('{{route('producto.show',$producto->id)}}');"><i class="fa fa-eye"></i></a>
                   @endcan
                   @can ('producto.edit')
                     <a class="btn bg-navy" href="{{route('producto.edit',$producto->id)}}"><i class="fa fa-pencil-square-o"></i></a>
@@ -83,5 +83,33 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    function verProducto(url) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: (res)=>{
+          $('#tipo_producto').text(res.tipo_producto)
+          $('#sku').text(res.sku)
+          $('#unidad_medida').text(res.unidad_medida)
+          $('#categoria').text(res.categoria)
+          $('#descripcion').text(res.descripcion)
+          $('#proveedor').text(res.proveedor)
+          $('#fecha_entrada').text(res.fecha_entrada)
+          $('#stock').text(res.stock)
+          $('#precio_lista').text('$'+res.precio_lista)
+          $('#costo').text('$'+res.costo)
+          $('#precio_venta1').text('$'+res.precio_venta1)
+          $('#precio_venta2').text('$'+res.precio_venta2)
+          $('#precio_venta3').text('$'+res.precio_venta3)
+          $('#precio_venta4').text('$'+res.precio_venta4)
+          $('#precio_venta5').text('$'+res.precio_venta5)
+          $('#moneda').text(res.moneda)
+        }
+      })
+    }
+  </script>
+
+  @include('admin.productos.show')
 
 @endsection

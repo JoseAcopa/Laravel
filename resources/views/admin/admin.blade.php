@@ -197,25 +197,26 @@
                 </div>
                 <!-- /. tools -->
               </div>
-              <div class="box-body">
-                <form action="#" method="post">
+              <form action="{{route('correo.quick')}}" method="post">
+                {{ csrf_field() }}
+                <div class="box-body">
                   <div class="form-group">
-                    <input type="email" class="form-control" name="emailto" placeholder="Para:">
+                    <input type="email" class="form-control" name="correo" placeholder="Para:" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="subject" placeholder="Asunto">
+                    <input type="text" class="form-control" name="asunto" placeholder="Asunto" required>
                   </div>
                   <div>
-                    <textarea class="form-control" placeholder="Mensaje" rows="8"></textarea>
+                    <textarea class="form-control" placeholder="Mensaje" name="mensaje" rows="8" required></textarea>
                   </div>
-                </form>
+                </div>
+                <div class="box-footer clearfix">
+                  <div class="form-group">
+                    <button type="submit" class="pull-right btn btn-default">Enviar
+                    <i class="fa fa-arrow-circle-right"></i></button>
+                  </div>
               </div>
-              <div class="box-footer clearfix">
-                <div class="form-group">
-                <button type="button" class="pull-right btn btn-default" id="sendEmail">Enviar
-                  <i class="fa fa-arrow-circle-right"></i></button>
-              </div>
-            </div>
+            </form>
           </div>
 
           <!-- Modal editar actividad -->

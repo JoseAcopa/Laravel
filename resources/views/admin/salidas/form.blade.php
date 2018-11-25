@@ -49,7 +49,7 @@
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('stock') ? 'has-error' : '' }}">
       {{ Form::label('stock', 'Existencia:') }}
-      {{ Form::number('stock', null, ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly']) }}
+      {{ Form::number('stock', null, ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock']) }}
       {!! $errors->first('stock','<span class="help-block">:message</span>')!!}
     </div>
   </div>
@@ -70,7 +70,7 @@
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('cantidad_salida') ? 'has-error' : '' }}">
       {{ Form::label('cantidad_salida', 'Cantidad de Salida:') }}
-      {{ Form::number('cantidad_salida', null, ['class' => 'form-control', 'placeholder' => 'cantidad de entrada', 'id' => 'cantidad_salida', 'min' => '1', 'onchange' => 'cantidadSalida(this)']) }}
+      {{ Form::number('cantidad_salida', null, ['class' => 'form-control', 'placeholder' => 'cantidad de salida', 'id' => 'cantidad_salida', 'min' => '1', 'onchange' => 'cantidadSalida(this)']) }}
       {!! $errors->first('cantidad_salida','<span class="help-block">:message</span>')!!}
     </div>
   </div>

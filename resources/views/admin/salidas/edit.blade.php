@@ -38,40 +38,6 @@
       {!! Form::close() !!}
     </div>
   </section>
-  <script type="text/javascript">
-    function getProducto(val) {
-      var id = val.value;
-
-      $.ajax({
-        url: '/producto/'+id,
-        type: 'GET',
-        success: (res)=>{
-          $('#precio').empty();
-          $('#precio_lista').val(res.precio_lista);
-          $('#categoria').val(res.categoria.categorias);
-          $('#letra').val(res.categoria.letra);
-          $('#stock').val(res.stock);
-          $('#existencia').val(res.stock);
-          $('#costo').val(res.costo);
-          $('#proveedor').val(res.proveedor.nombre_empresa);
-          $('#unidad_medida').val(res.catalogo.unidad_medida);
-          $('#descripcion').val(res.catalogo.descripcion);
-          $('#precio').append('<option>Seleccione</option>'+
-                              '<option>'+res.precio_venta1+'</option>'+
-                              '<option>'+res.precio_venta2+'</option>'+
-                              '<option>'+res.precio_venta3+'</option>'+
-                              '<option>'+res.precio_venta4+'</option>'+
-                              '<option value="precioVenta5">'+res.precio_venta5+'</option>'
-                            );
-          $('#categoria_id').val(res.catalogo.id);
-          $('#proveedor_id').val(res.proveedor.id);
-          // limpiando los precios y cantidad cada que se cambia el producto
-          $('#cantidad_salida').val("");
-          $('#precio_venta').val("");
-        }
-      })
-    }
-  </script>
   <script>
     function precioVenta(val) {
 

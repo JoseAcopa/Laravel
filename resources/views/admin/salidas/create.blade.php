@@ -30,9 +30,9 @@
   <script type="text/javascript">
     function getProducto(val) {
       var id = val.value;
-      
+
       $.ajax({
-        url: '/producto/'+id,
+        url: '/producto-salida/'+id,
         type: 'GET',
         success: (res)=>{
           $('#precio').empty();
@@ -57,12 +57,19 @@
           // limpiando los precios y cantidad cada que se cambia el producto
           $('#cantidad_salida').val("");
           $('#precio_venta').val("");
+
+          if (res.categoria.categorias == 'Servicios') {
+            $('#precio_venta').removeAttr('readonly')
+          }else {
+            $('#precio_venta').attr('readonly', 'readonly')
+          }
         }
       })
     }
   </script>
   <script>
     function precioVenta(val) {
+      var servicios = document.getElementById('categoria').value
 
       if (val.value === "precioVenta5") {
         $('#precio_venta').val('')
@@ -70,6 +77,10 @@
       }else {
         $('#precio_venta').val(val.value)
         $('#precio_venta').attr('readonly', 'readonly')
+      }
+
+      if ( servicios == 'Servicios') {
+        $('#precio_venta').removeAttr('readonly')
       }
     }
   </script>

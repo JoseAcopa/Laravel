@@ -39,6 +39,16 @@
     </div>
   </section>
   <script type="text/javascript">
+    var categoria = document.getElementById('categoria').value
+    setTimeout(function() {
+      if (categoria == 'Servicios') {
+        $('#precio_venta1').removeAttr('readonly');
+        $('#precio_venta2').removeAttr('readonly');
+        $('#precio_venta3').removeAttr('readonly');
+        $('#precio_venta4').removeAttr('readonly');
+      }
+    },500)
+
     function getPrecios() {
       var categoria = $("#categoria").val()
       var precioLista = $("#precio_lista").val()

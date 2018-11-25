@@ -34,9 +34,9 @@ class AjaxController extends Controller
     return $array;
   }
 
-  public function getProductosAjax()
+  public function getProductoSalidaAjax($id)
   {
-    $productos = Producto::with(['categoria'])->get();
-    return $productos;
+    $producto = Producto::with(['catalogo', 'proveedor', 'categoria'])->find($id);
+    return $producto;
   }
 }

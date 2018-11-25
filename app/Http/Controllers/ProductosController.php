@@ -55,7 +55,12 @@ class ProductosController extends Controller
       $idProducto = Producto::where('catalogo_id', $request->catalogo_id)->get();
       $request['stock'] = $request->cantidad_entrada;
       $request['precio_lista'] = $request->precio_lista == null ? 0 : $request->precio_lista;
-      $request['numero_factura'] = $request->numero_factura == null ? 'No asignado' : $request->numero_factura;
+      $request['costo'] = $request->costo == null ? 0 : $request->costo;
+      $request['numero_factura'] = $request->numero_factura == null ? 'No Asignado' : $request->numero_factura;
+      $request['precio_venta1'] = $request->precio_venta1 == null ? 0 : $request->precio_venta1;
+      $request['precio_venta2'] = $request->precio_venta2 == null ? 0 : $request->precio_venta2;
+      $request['precio_venta3'] = $request->precio_venta3 == null ? 0 : $request->precio_venta3;
+      $request['precio_venta4'] = $request->precio_venta4 == null ? 0 : $request->precio_venta4;
       $request['precio_venta5'] = $request->precio_venta5 == null ? 0 : $request->precio_venta5;
 
       // validamos si el producto no exuste lo creamos, si no, editamos el stock
@@ -97,7 +102,18 @@ class ProductosController extends Controller
      */
     public function show($id)
     {
-        //
+      $producto = Producto::find($id);
+      $catalogo = Catalogo::with(['categoria', 'proveedor'])->find($producto->catalogo_id);
+      $producto->descripcion = $catalogo->descripcion;
+      $producto->unidad_medida = $catalogo->unidad_medida;
+      $producto->proveedor = $catalogo->proveedor->nombre_empresa;
+      $producto->letra = $catalogo->categoria->letra;
+      $producto->tipo_producto = $catalogo->categoria->tipo;
+      $producto->categoria = $catalogo->categoria->categorias;
+      $producto->cantidad_entrada = $producto->stock;
+      $producto->sku = $producto->catalogo->sku;
+
+      return $producto;
     }
 
     /**
