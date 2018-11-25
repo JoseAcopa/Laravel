@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Salida;
 use App\Producto;
 use App\Catalogo;
+use App\Proveedores;
 use App\Http\Requests\CrearSalidasRequest;
 
 class SalidasController extends Controller
@@ -23,7 +24,8 @@ class SalidasController extends Controller
         $salidas[$i]->catalogo = $catalogo;
       }
 
-      return view('admin.salidas.index', compact('salidas'));
+      $proveedores = Proveedores::all()->pluck('nombre_empresa', 'id');
+      return view('admin.salidas.index', compact('salidas', 'proveedores'));
     }
 
     /**

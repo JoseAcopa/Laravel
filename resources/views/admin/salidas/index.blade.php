@@ -11,6 +11,34 @@
       <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
       <li class="active">Salida de Productos</li>
     </ol>
+
+    <div style="margin-top: 10px;">
+      {!! Form::open(['method' => 'POST','route' => 'salida.buscar-rango']) !!}
+        {{ csrf_field() }}
+        <div class="row">
+          <div class="col-md-3">
+            <label for="">Proveedor:</label>
+            {!! Form::select('proveedor', $proveedores,  null, ['class' => 'form-control', 'placeholder' => 'Seleccione']); !!}
+          </div>
+          <div class="col-md-7">
+            <div class="form-group">
+              <label>Buscar reportes por rango de fechas:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-calendar"></i>
+                </div>
+                {{ Form::text('rango', null, ['class' => 'form-control pull-right"', 'id' => "reservation"]) }}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div style="margin-top: 25px;">
+              <button type="submit" class="btn btn-primary"><i class="fa fa-file-pdf-o"></i> Generar PDF</button>
+            </div>
+          </div>
+        </div>
+      {!! Form::close() !!}
+    </div>
   </section>
 
   <section class="content container-fluid">
