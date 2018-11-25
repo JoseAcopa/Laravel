@@ -26,11 +26,11 @@
           <thead>
             <tr>
               <th style="width: 10px;">#</th>
-              <th>Tipo Producto</th>
+              <th>Producto</th>
               <th>SKU</th>
               <th>Descripción</th>
               <th>Stock</th>
-              <th>Fecha de Salida</th>
+              <th>Fecha salida</th>
               <th>Cantidad de Salida</th>
               <th>Precio Salida</th>
               <th style="width: 110px;">Acciones</th>
@@ -40,7 +40,7 @@
             @foreach ($salidas as $i => $salida)
               <tr>
                 <td>{{ $i+1 }}</td>
-                <td>{{ $salida->categoria->tipo }}</td>
+                <td><a href="{{route('salida.edit',$salida->id)}}">{{ $salida->categoria->tipo }}</a></td>
                 <td>{{ $salida->catalogo->sku }}</td>
                 <td>{{ str_limit($salida->catalogo->descripcion, 50) }}</td>
                 <td>
@@ -53,11 +53,9 @@
                 <td><span class="badge bg-yellow">{{ $salida->cantidad_salida }}</span> {{ $salida->catalogo->unidad_medida }}</td>
                 <td>${{ $salida->precio_venta }} {{ $salida->moneda }}</td>
                 <td class="row-copasat">
+                  <a class="btn btn-default" href="{{route('salida.show',$salida->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
                   @can ('salida.show')
-                    <a class="btn btn-default" href="{{route('salida.show',$salida->id)}}" alt="Ver mas.."><i class="fa fa-file-pdf-o"></i></a>
-                  @endcan
-                  @can ('salida.edit')
-                    <a class="btn bg-navy" href="{{route('salida.edit',$salida->id)}}"><i class="fa fa-pencil-square-o"></i></a>
+                    <a class="btn bg-navy"  data-toggle="modal" data-target="#myModal" onclick="verSalida('{{route('salida.show',$salida->id)}}');"><i class="fa fa-eye"></i></a>
                   @endcan
                   @can ('salida.destroy')
                     <a type="submit" class="btn btn-danger" onclick="destroy('{{route('salida.destroy', $salida->id)}}');"><i class="fa fa-trash-o"></i></a>
@@ -69,11 +67,11 @@
           <tfoot>
             <tr>
               <th>#</th>
-              <th>Tipo Producto</th>
+              <th>Producto</th>
               <th>SKU</th>
               <th>Descripción</th>
               <th>Stock</th>
-              <th>Fecha de Salida</th>
+              <th>Fecha salida</th>
               <th>Cantidad de Salida</th>
               <th>Precio Salida</th>
               <th>Acciones</th>
@@ -83,5 +81,31 @@
       </div>
     </div>
   </section>
+  <script type="text/javascript">
+    function verSalida(url) {
+      $.ajax({
+        url: url,
+        type: 'GET',
+        success: (res)=>{
+          $('#tipo_producto').text(res.categoria.tipo)
+          $('#sku').text(res.sku)
+          $('#numero_factura').text(res.numero_factura)
+          $('#categoria').text(res.categoria.categorias)
+          $('#unidad_medida').text(res.unidad_medida)
+          $('#proveedor').text(res.proveedor.nombre_empresa)
+          $('#descripcion').text(res.descripcion)
+          $('#fecha_salida').text(res.fecha_salida)
+          $('#stock').text(res.stock)
+          $('#cantidad_salida').text(res.cantidad_salida)
+          $('#precio_lista').text(res.precio_lista)
+          $('#costo').text(res.costo)
+          $('#precio_venta').text(res.precio_venta)
+          $('#moneda').text(res.moneda)
+        }
+      })
+    }
+  </script>
+
+  @include('admin.salidas.show')
 
 @endsection

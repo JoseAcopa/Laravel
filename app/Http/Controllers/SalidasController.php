@@ -71,7 +71,20 @@ class SalidasController extends Controller
      */
     public function show($id)
     {
-        //
+      $salida = Salida::with(['proveedor', 'categoria', 'producto'])->find($id);
+      $catalogo = Catalogo::find($salida->producto->catalogo_id);
+      $salida->letra = $salida->categoria->letra;
+      $salida->categoria = $salida->categoria->tipo;
+      $salida->proveedor = $salida->proveedor->nombre_empresa;
+      $salida->stock = $salida->producto->stock;
+      $salida->existencia = $salida->producto->stock;
+      $salida->precio_lista = $salida->producto->precio_lista;
+      $salida->costo = $salida->producto->costo;
+      $salida->descripcion = $catalogo->descripcion;
+      $salida->unidad_medida = $catalogo->unidad_medida;
+      $salida->sku = $catalogo->sku;
+
+      return $salida;
     }
 
     /**
