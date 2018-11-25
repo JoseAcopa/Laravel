@@ -127,6 +127,7 @@ Route::post('/enviar-correo-rapido', 'CorreoController@correoRapido')->name('cor
 Route::get("reporte-ingreso/{id}","PDFController@generarReporteIngreso")->name('reporte.generate');
 Route::get("reporte-general-ingreso","PDFController@reporteGeneralIngreso")->name('reporte.general');
 Route::get("reporte-salida/{id}","PDFController@generarReporteSalida")->name('reporte.salida');
+Route::get("reporte-salida-general","PDFController@generarReporteGeneralSalida")->name('reporte.salida-general');
 Route::get("descargar/{id}","PDFController@descargarPDF");
 Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
 Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");

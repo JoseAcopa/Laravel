@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{$salida->proveedor->nombre_empresa}}</title>
+    <title>Salida General</title>
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
@@ -168,50 +168,60 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">Proveedor: {{$salida->proveedor->nombre_empresa}}</h2>
-          <p class="title-bussines">Dirección: {{$salida->proveedor->direccion}}</p>
+          <h2 class="title-bussines">Rayos X y Servicios Industriales SA de CV</h2>
+          <p class="title-bussines">Salida General</p>
         </div>
         <div class="table">
           <ul class="ul-table">
-            <li class="li-active">Fecha de Salida</li>
-            <li>{{$salida->fecha_salida}}</li>
-            <li class="li-active">No. de Factura</li>
-            <li>{{$salida->numero_factura}}</li>
+            <li class="li-active">Fecha</li>
+            <li>{{ date('d/m/Y') }}</li>
+            <li class="li-active">Reportes</li>
+            <li>Reporte de Salidas</li>
           </ul>
         </div>
         <div class="usuario">
-          <h2>Tipo:</h2>
-          <p>{{$salida->categoria->tipo}}</p>
-          <h2>Categoria:</h2>
-          <p>{{$salida->categoria->categorias}}</p>
+          {{-- <h2>Reportes de ingreso General:</h2> --}}
+          {{-- <p>Tipo</p> --}}
+          <h2>Reporte General de Salida</h2>
+          {{-- <p>Categoria</p> --}}
         </div>
         <div class="container-table">
           <table>
             <thead class="default">
               <tr>
                 <th>#</th>
+                <th>PRODUCTO</th>
+                <th>SKU</th>
                 <th>DESCRIPCIÓN</th>
-                <th>SALIDA</th>
+                <th>PROVEEDOR</th>
+                <th>F.SALIDA</th>
+                <th>C.SALIDA</th>
                 <th>STOCK</th>
                 <th>U.MEDIDA</th>
-                <th>P. LISTA</th>
+                <th>P.LISTA</th>
                 <th>COSTO</th>
                 <th>VENTA</th>
               </tr>
             </thead>
             <tbody class="tbody">
-              <tr style="background: rgba(52, 73, 94, .3)">
-                <td>1</td>
-                <td class="tjustify">
-                  {{strtoupper($salida->catalogo->descripcion)}}
-                </td>
-                <td>{{$salida->cantidad_salida}}</td>
-                <td>{{$salida->producto->stock}}</td>
-                <td>{{$salida->catalogo->unidad_medida}}</td>
-                <td>${{$salida->producto->precio_lista}} {{$salida->moneda}}</td>
-                <td>${{$salida->producto->costo}} {{$salida->moneda}}</td>
-                <td>${{$salida->precio_venta}} {{$salida->moneda}}</td>
-              </tr>
+              @foreach ($salidas as $key => $salida)
+                <tr style="background: rgba(52, 73, 94, .3)">
+                  <td>{{$key + 1}}</td>
+                  <td>{{$salida->categoria->tipo}}</td>
+                  <td>{{$salida->catalogo->sku}}</td>
+                  <td class="tjustify">
+                    {{strtoupper($salida->catalogo->descripcion)}}
+                  </td>
+                  <td>{{$salida->proveedor->nombre_empresa}}</td>
+                  <td>{{$salida->fecha_salida}}</td>
+                  <td>{{$salida->cantidad_salida}}</td>
+                  <td>{{$salida->producto->stock}}</td>
+                  <td>{{$salida->catalogo->unidad_medida}}</td>
+                  <td>${{$salida->producto->precio_lista}} {{$salida->moneda}}</td>
+                  <td>${{$salida->producto->costo}} {{$salida->moneda}}</td>
+                  <td>${{$salida->precio_venta}} {{$salida->moneda}}</td>
+                </tr>
+              @endforeach
             </tbody>
           </table>
         </div>

@@ -19,6 +19,7 @@
         @can ('salida.create')
           <a href="{{route('salida.create')}}" class="btn btn-default" ><i class="fa fa-plus"></i> Nueva Salida</a>
         @endcan
+        <a href="{{route('reporte.salida-general')}}" target="_blank" class="btn btn-default pull-right"><i class="fa fa-file-pdf-o"></i> Generar PDF</a>
       </div>
 
       <div class="box-body">

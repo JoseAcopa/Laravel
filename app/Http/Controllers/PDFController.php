@@ -113,6 +113,26 @@ class PDFController extends Controller
     return $pdf->stream('Ingreso General.pdf');
   }
 
+  public function generarReporteGeneralSalida()
+  {
+    $salidas = Salida::with(['proveedor', 'categoria', 'producto'])->get();
+    for ($i=0; $i < count($salidas); $i++) {
+      $producto = Catalogo::find($salidas[$i]->producto->catalogo_id);
+      $salidas[$i]->catalogo = $producto;
+    }
+
+    // return $salidas;
+
+    $pdf = PDF::loadView('admin.PDF.salidaGeneral', compact('salidas'));
+
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+    return $pdf->stream('Salida General.pdf');
+  }
+
   // public function descargarPDF($id)
   // {
   //   $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
