@@ -250,46 +250,6 @@
       </div>
     </section>
     <script type="text/javascript">
-      function destroy(url){
-        event.preventDefault();
-        swal({
-          title: '¿Desea eliminar esta actividad?',
-          text: "¡No podra revertir esto!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3c8dbc',
-          cancelButtonColor: '#dd4b39',
-          confirmButtonText: 'Sí, eliminarlo!',
-          cancelButtonText: 'No, cancelar!'
-        }).then((res) => {
-          if (res.value) {
-            $.ajax({
-              url: url,
-              method: "POST",
-              data: {
-                  _token: "{{csrf_token()}}",
-                  _method: "DELETE"
-              },
-              success: function(data){
-                swal(
-                  '¡Eliminado!',
-                  'El registro ha sido eliminado.',
-                  'success'
-                ).then(()=>{
-                  location.reload();
-                })
-              }
-            })
-          }else if (res.dismiss === "cancel") {
-            swal(
-              '¡Cancelado!',
-              'La accion fue cancelada.',
-              'error'
-            )
-          }
-        })
-      }
-
       function edit(url){
         event.preventDefault();
         $.ajax({

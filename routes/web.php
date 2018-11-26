@@ -6,7 +6,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // ------------------Start Admin-----------------------------------------
-Route::get('/admin/admin-welcome', 'AdminControllers@index');
+Route::get('/home', 'AdminControllers@index');
 
 // ------------------Clientes--------------------------------------------
 Route::get('/clientes','ClientesController@index')->name('cliente.index')->middleware('permission:clientes.index');

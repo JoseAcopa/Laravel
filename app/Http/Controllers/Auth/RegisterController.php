@@ -32,7 +32,7 @@ class RegisterController extends Controller
      * ruta despues de registrarse
      * @var string
      */
-    protected $redirectTo = '/admin/admin-welcome';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.

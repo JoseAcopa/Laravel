@@ -42,13 +42,13 @@ class AdminControllers extends Controller
     $activity->titulo = $request->titulo;
     $activity->status = false;
     $activity->save();
-    return redirect('/admin/admin-welcome');
+    return redirect('/home');
   }
 
   public function destroy($id)
   {
     Activities::find($id)->delete();
-    return redirect('/admin/admin-welcome');
+    return redirect('/home');
   }
 
   public function edit($id)
@@ -70,7 +70,7 @@ class AdminControllers extends Controller
     $activity->titulo = $newTitulo;
     $activity->status = $newStatus;
     $activity->save();
-    return redirect('/admin/admin-welcome');
+    return redirect('/home');
   }
 
 }

@@ -5,7 +5,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/admin/admin-welcome') }}" class="logo">
+    <a href="{{ url('/home') }}" class="logo">
       <span class="logo-mini"><b>R</b>X</span>
       <span class="logo-lg"><b>SIYC</b>RayosX</span>
     </a>
