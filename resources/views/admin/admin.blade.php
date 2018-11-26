@@ -197,7 +197,7 @@
                 </div>
                 <!-- /. tools -->
               </div>
-              <form action="{{route('correo.quick')}}" method="post">
+              <form action="{{route('correo.quick')}}" method="post" onsubmit="changeButton();">
                 {{ csrf_field() }}
                 <div class="box-body">
                   <div class="form-group">
@@ -212,8 +212,8 @@
                 </div>
                 <div class="box-footer clearfix">
                   <div class="form-group">
-                    <button type="submit" class="pull-right btn btn-default">Enviar
-                    <i class="fa fa-arrow-circle-right"></i></button>
+                    <button type="submit" class="pull-right btn btn-default" id="submit">Enviar<i class="fa fa-arrow-circle-right"></i></button>
+                    <button type="button" class="btn btn-primary pull-right disabled" style="display: none;" id="loading"><i class="fa fa-spinner fa-spin"></i> Enviando</button>
                   </div>
               </div>
             </form>
@@ -260,12 +260,16 @@
               _method: "GET"
           },
           success: function(data){
-            console.log(data.status);
             $('#tituloEdit').val(data.titulo)
             $('#idActividad').val(data.id)
             document.getElementById('check').checked = data.status === "0" ? false : true
           }
         })
+      }
+
+      function changeButton() {
+        document.getElementById('submit').style.display = 'none'
+        document.getElementById('loading').style.display = 'block'
       }
     </script>
 

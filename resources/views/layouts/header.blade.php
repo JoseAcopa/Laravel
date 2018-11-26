@@ -33,7 +33,7 @@
                   {{-- mensajes nuevos --}}
                   @foreach ($users as $user)
                     <li>
-                      <a href="{{ route('employee.edit', $user->idUsuario) }}">
+                      <a href="{{ route('usuario.edit', $user->idUsuario) }}">
                         <div class="pull-left">
                           <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
                         </div>

@@ -20,9 +20,9 @@ function current_page($url = '/'){
       </div>
       <ul class="sidebar-menu" data-widget="tree"><br>
         <li class="header">MENU DE NAVEGACION</li>
-        <li <?php echo current_page('/home') ? "class='active'" : "";?>>
+        <li <?php echo current_page('home') ? "class='active'" : "";?>>
           <a href="{{ url('/home') }}"><i class="fa fa-home"></i> <span>Inicio</span>
-            <?php echo current_page('/home') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
+            <?php echo current_page('home') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
           </a>
         </li>
         @can ('clientes.index')

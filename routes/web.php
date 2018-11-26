@@ -115,12 +115,12 @@ Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClienteAjax');
 Route::get('/producto-salida/{id}', 'AjaxController@getProductoSalidaAjax');
 
 // =======================Enviando correos ==============================================
-Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
-Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
-Route::get('/admin/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
-Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
-Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
+Route::post('/set-password', 'CorreoController@recuperarContrasena')->name('password.new');
 Route::post('/enviar-correo-rapido', 'CorreoController@correoRapido')->name('correo.quick');
+Route::get('/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
+Route::get('/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
+Route::delete('/eliminar-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
+Route::post('/actualizar-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
 // =======================Enviando correos ==============================================
 
 // =======================crear PDF ==============================================
