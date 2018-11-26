@@ -131,12 +131,13 @@ Route::get("/reporte-salida/{id}","PDFController@generarReporteSalida")->name('r
 Route::get("/reporte-salida-general","PDFController@generarReporteGeneralSalida")->name('reporte.salida-general');
 Route::post("/reporte-salida-rango", "PDFController@generarReporteSalidaRango")->name('salida.buscar-rango');
 Route::get("descargar/{id}","PDFController@descargarPDF");
-Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
-Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");
+Route::get("/reporte-cotizacion/{id}","PDFController@reporteCotizacion")->name('cotizacion.reporte-cotizacion');
+Route::get("descargar-cotizacion/{id}","PDFController@descargarCotizacionPDF");
 
 // =======================buscando reportes de ingresos (pendiente en dejarlo o eliminarlo)==============================================
+Route::post('/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
 Route::post('/buscar-facturas-fecha', 'ReportesController@generarFacturas')->name('facturas.generar');
 Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
 Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
-Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
+
 // =======================buscando reportes de ingresos (pendiente en dejarlo o eliminarlo) ==============================================

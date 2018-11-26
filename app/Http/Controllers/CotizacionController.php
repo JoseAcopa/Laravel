@@ -11,7 +11,6 @@ use App\Clientes;
 use App\Cotizador;
 use App\Count;
 use App\Categoria;
-use App\Proveedor;
 use App\Catalogo;
 
 class CotizacionController extends Controller
@@ -28,7 +27,8 @@ class CotizacionController extends Controller
     public function index()
     {
       $cotizaciones = Cotizacion::with(['user', 'cliente'])->get();
-      return view('admin.cotizacion.index', compact('cotizaciones'));
+      $clientes = Clientes::all()->pluck('nombre_empresa', 'id');
+      return view('admin.cotizacion.index', compact('cotizaciones', 'clientes'));
     }
 
     /**

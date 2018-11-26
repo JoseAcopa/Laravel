@@ -1,3 +1,4 @@
+
 <?php
 function current_page($url = '/'){
   return request()->path() == $url;
@@ -127,11 +128,12 @@ function current_page($url = '/'){
           </ul>
         </li>
         @can ('cotizaciones.index')
-          <li <?php echo current_page('cotizacion') || current_page('crear-cotizacion') || isset($ver_cotizacion) ? "class='active'" : "";?>>
+          <li <?php echo current_page('cotizacion') || current_page('crear-cotizacion') || isset($ver_cotizacion) || isset($cotizaciones_pdf) ? "class='active'" : "";?>>
             <a href="{{url('/cotizacion')}}"><i class="fa fa-book"></i> <span>Cotización</span>
               <?php echo current_page('cotizacion') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
               <?php echo current_page('crear-cotizacion') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
               <?php echo isset($ver_cotizacion) ? '<small class="label pull-right bg-green">ver</small>' : "";?>
+              <?php echo isset($cotizaciones_pdf) ? '<small class="label pull-right bg-green">busqueda</small>' : "";?>
             </a>
           </li>
         @endcan

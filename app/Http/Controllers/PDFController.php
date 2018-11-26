@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
-use App\Quotations;
-use App\Quoteers;
+use App\Cotizacion;
+use App\Cotizador;
 use App\Factura;
 use App\Catalogo;
 use App\Salida;
@@ -14,49 +14,6 @@ use NumerosEnLetras;
 
 class PDFController extends Controller
 {
-  // public function cotizacionPDF($quotation)
-  // {
-  //   $id = $quotation;
-  //   $selectQuotation = Quotations::find($id);
-  //   $selectQuotation->user;
-  //   $selectQuotation->cliente;
-  //
-  //   $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
-  //   $total = intval($selectQuotation->total);
-  //   $letras = NumerosEnLetras::convertir($total);
-  //   // $letras = NumeroALetras::convertir(12345.67, 'colones', 'centimos');
-  //   $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers', 'letras'));
-  //   $pdf->output();
-  //   $dom_pdf = $pdf->getDomPDF();
-  //
-  //   $canvas = $dom_pdf->get_canvas();
-  //   $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
-  //
-  //   return $pdf->stream($selectQuotation->cotizacion.'.pdf');
-  // }
-  //
-  // public function descargarCotizacionPDF($quotation)
-  // {
-  //   $id = $quotation;
-  //   $selectQuotation = Quotations::find($id);
-  //   $selectQuotation->user;
-  //   $selectQuotation->cliente;
-  //
-  //   $quoteers = Quoteers::with(['producto'])->where('cotizacion_id', $id)->get();
-  //   $total = intval($selectQuotation->total);
-  //   $letras = NumerosEnLetras::convertir($total);
-  //
-  //   $pdf = PDF::loadView('admin.PDF.suministro', compact('selectQuotation', 'quoteers', 'letras'));
-  //
-  //   $pdf->output();
-  //   $dom_pdf = $pdf->getDomPDF();
-  //
-  //   $canvas = $dom_pdf ->get_canvas();
-  //   $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
-  //
-  //   return $pdf->download($selectQuotation->cotizacion.'.pdf');
-  // }
-
   // generando reporte de ingreso individual
   public function generarReporteIngreso($id)
   {
@@ -216,6 +173,55 @@ class PDFController extends Controller
       return $pdf->stream('Salida por Rango.pdf');
     }
   }
+
+  // generar un reporte de cotizacion
+  public function reporteCotizacion($id)
+  {
+    $cotizacion = Cotizacion::with(['user', 'cliente'])->find($id);
+
+    $produtos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
+    for ($i=0; $i < count($produtos_cotizados); $i++) {
+      $producto = Catalogo::find($produtos_cotizados[$i]->producto->catalogo_id);
+      $produtos_cotizados[$i]->catalogo = $producto;
+    }
+    $total = intval($cotizacion->total);
+    $letras = NumerosEnLetras::convertir($total);
+    // $letras = NumeroALetras::convertir(12345.67, 'colones', 'centimos');
+    $pdf = PDF::loadView('admin.PDF.cotizacion', compact('cotizacion', 'produtos_cotizados', 'letras'));
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->stream($cotizacion->numero_cotizacion.'.pdf');
+  }
+
+  // descargar reporte de cotizacion
+  public function descargarCotizacionPDF($id)
+  {
+    $cotizacion = Cotizacion::with(['user', 'cliente'])->find($id);
+
+    $produtos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
+    for ($i=0; $i < count($produtos_cotizados); $i++) {
+      $producto = Catalogo::find($produtos_cotizados[$i]->producto->catalogo_id);
+      $produtos_cotizados[$i]->catalogo = $producto;
+    }
+
+    $total = intval($cotizacion->total);
+    $letras = NumerosEnLetras::convertir($total);
+
+    $pdf = PDF::loadView('admin.PDF.cotizacion', compact('cotizacion', 'produtos_cotizados', 'letras'));
+
+    $pdf->output();
+    $dom_pdf = $pdf->getDomPDF();
+
+    $canvas = $dom_pdf ->get_canvas();
+    $canvas->page_text(525, 700, "Página {PAGE_NUM} de {PAGE_COUNT}", "bold", 8, array(0, 0, 0));
+
+    return $pdf->download($cotizacion->numero_cotizacion.'.pdf');
+  }
+
   // public function descargarPDF($id)
   // {
   //   $invoice = Invoice::with(['coin', 'category', 'supplier'])->find($id);
