@@ -2,48 +2,88 @@
 
 @section('content')
 
-    <section class="content-header">
-      <h1>
-        Cotización
-        <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
-        <li class="active">Realizar Cotización</li>
-      </ol>
-    </section>
+  <section class="content-header">
+    <h1>
+      Cotización
+      <small></small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><i class="fa fa-dashboard"></i> Se encuentra en</li>
+      <li class="active">Realizar Cotización</li>
+    </ol>
+  </section>
 
-    <section class="content container-fluid">
-      @if ($message = Session::get('success'))
-        <div class="box box-success box-solid">
-          <div class="box-header">
-            <h3 class="box-title"><i class="icon fa fa-check"></i> {{ $message }}</h3>
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
+  <section class="content container-fluid">
+    @if ($message = Session::get('success'))
+      <div class="box box-success box-solid">
+        <div class="box-header">
+          <h3 class="box-title"><i class="icon fa fa-check"></i> {{ $message }}</h3>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
         </div>
-      @endif
-
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
-        </div>
-
-        {!! Form::open(['method' => 'POST', 'route' => 'cotizacion.store']) !!}
-          {{ csrf_field() }}
-
-          @include('admin.cotizacion.form')
-
-        {!! Form::close() !!}
-
       </div>
-      @include('admin.cotizacion.formClient')
-      @include('admin.cotizacion.newProducto')
-    </section>
+    @endif
+
+    <div class="box box-primary">
+      <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-book"></i> Realizar Cotización</h3>
+      </div>
+
+      {!! Form::open(['method' => 'POST', 'route' => 'cotizacion.store']) !!}
+        {{ csrf_field() }}
+
+        @include('admin.cotizacion.form')
+
+      {!! Form::close() !!}
+
+    </div>
+    @include('admin.cotizacion.formClient')
+    @include('admin.cotizacion.newProducto')
+  </section>
 
 @endsection
 <script type="text/javascript" src="{{ asset('js/queryCotizacion.js') }}"></script>
+<script type="text/javascript">
+  var cliente = (JSON.parse(sessionStorage.getItem('cliente')) != null) ? JSON.parse(sessionStorage.getItem('cliente')) : []
+  function guardandoCliente() {
+    var clientes = {
+      numero_cotizacion: document.getElementById('numero_cotizacion').value,
+      rfc: document.getElementById('rfc').value,
+      empresa: document.getElementById('empresa').value,
+      datepicker: document.getElementById('datepicker').value,
+      telefono: document.getElementById('telefono').value,
+      nombre_cotizar: document.getElementById('nombre_cotizar').value,
+      licitacion: document.getElementById('licitacion').value,
+      correo: document.getElementById('correo').value,
+      puesto: document.getElementById('puesto').value,
+      direccion: document.getElementById('direccion').value,
+      moneda: document.getElementById('moneda').value,
+      observacion: document.getElementById('observacion').value,
+      cliente_id: document.getElementById('cliente_id').value
+    }
+    // guardando cliente en sessionStorage
+    sessionStorage.setItem('cliente',JSON.stringify(clientes))
+  }
+
+  if (cliente.length == undefined) {
+    setTimeout(function() {
+      document.getElementById('numero_cotizacion').value = cliente.numero_cotizacion
+      document.getElementById('rfc').value = cliente.rfc
+      document.getElementById('empresa').value = cliente.empresa
+      document.getElementById('datepicker').value = cliente.datepicker
+      document.getElementById('telefono').value = cliente.telefono
+      document.getElementById('nombre_cotizar').value = cliente.nombre_cotizar
+      document.getElementById('licitacion').value = cliente.licitacion
+      document.getElementById('correo').value = cliente.correo
+      document.getElementById('puesto').value = cliente.puesto
+      document.getElementById('direccion').value = cliente.direccion
+      document.getElementById('moneda').value = cliente.moneda
+      document.getElementById('observacion').value = cliente.observacion
+      document.getElementById('cliente_id').value = cliente.cliente_id
+    }, 500)
+  }
+</script>
 <script type="text/javascript">
   // funciones de modal agregar catalogo
   function getUnidad(val) {
@@ -84,6 +124,7 @@
     }
 
   }
+
   // agregando cliente con el generador de cotizacion
   function getClient(val) {
     var id = val.value

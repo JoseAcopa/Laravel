@@ -10,7 +10,7 @@
           <a href="#" data-toggle="modal" data-target=".bd-example-modal-cliente" class="pull-right"><i class="fa fa-plus"></i> Nuevo cliente</a>
           {{ Form::label('cliente_id', 'Clientes') }}
           <div class="input-group">
-            {!! Form::select('cliente_id', $selectCliente, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)']); !!}
+            {!! Form::select('cliente_id', $selectCliente, null, ['class' => 'form-control select2', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getClient(this)', 'id' => 'cliente_id']); !!}
             <span class="input-group-addon"><i class="fa fa-search"></i></span>
           </div>
         </div>
@@ -53,14 +53,14 @@
     </div>
     <div class="form-group {{ $errors->has('nombre_cotizar') ? 'has-error' : '' }}">
       {{ Form::label('nombre_cotizar', 'Nombre Completo:') }}
-      {{ Form::text('nombre_cotizar', null, ['class' => 'form-control', 'placeholder' => 'nombre completo']) }}
+      {{ Form::text('nombre_cotizar', null, ['class' => 'form-control', 'placeholder' => 'nombre completo', 'id' => 'nombre_cotizar']) }}
       {!! $errors->first('nombre_cotizar','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('licitacion') ? 'has-error' : '' }}">
       {{ Form::label('licitacion', 'Número de Licitación:') }}
-      {{ Form::text('licitacion', null, ['class' => 'form-control', 'placeholder' => 'número de licitación']) }}
+      {{ Form::text('licitacion', null, ['class' => 'form-control', 'placeholder' => 'número de licitación', 'id' => 'licitacion']) }}
       {!! $errors->first('licitacion','<span class="help-block">:message</span>')!!}
     </div>
     <div class="form-group {{ $errors->has('correo_cliente') ? 'has-error' : '' }}">
@@ -70,7 +70,7 @@
     </div>
     <div class="form-group {{ $errors->has('puesto') ? 'has-error' : '' }}">
       {{ Form::label('puesto', 'Puesto:') }}
-      {{ Form::text('puesto', null, ['class' => 'form-control', 'placeholder' => 'puesto']) }}
+      {{ Form::text('puesto', null, ['class' => 'form-control', 'placeholder' => 'puesto', 'id' => 'puesto']) }}
       {!! $errors->first('puesto','<span class="help-block">:message</span>')!!}
     </div>
   </div>
@@ -84,7 +84,7 @@
   <div class="col-md-2">
     <div class="form-group">
       {{ Form::label('moneda', 'Moneda:') }}
-      {!! Form::select('moneda', ['MXP' => 'MXP', 'USD' => 'USD'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione']); !!}
+      {!! Form::select('moneda', ['MXP' => 'MXP', 'USD' => 'USD'], null,  ['class' => 'form-control', 'placeholder' => 'Seleccione', 'id' => 'moneda']); !!}
     </div>
   </div>
   <div class="col-md-4">

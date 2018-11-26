@@ -1,6 +1,6 @@
 <div class="modal fade bd-example-modal-producto" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
-    {!! Form::open(['class' => 'modal-content', 'method' => 'POST', 'route' => 'catalogo.newProducto']) !!}
+    {!! Form::open(['class' => 'modal-content', 'method' => 'POST', 'route' => 'catalogo.newProducto', 'onsubmit' => 'guardandoCliente()']) !!}
       {{ csrf_field() }}
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
