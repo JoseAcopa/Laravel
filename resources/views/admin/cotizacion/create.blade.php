@@ -39,11 +39,51 @@
 
       </div>
       @include('admin.cotizacion.formClient')
+      @include('admin.cotizacion.newProducto')
     </section>
 
 @endsection
 <script type="text/javascript" src="{{ asset('js/queryCotizacion.js') }}"></script>
 <script type="text/javascript">
+  // funciones de modal agregar catalogo
+  function getUnidad(val) {
+    var value = val.value
+
+    if (value === 'Otros') {
+      $('#unidad_medida').val('')
+      $('#unidad_medida').removeAttr('readonly');
+    }else {
+      $('#unidad_medida').val(value)
+      $('#unidad_medida').attr('readonly', 'readonly');
+    }
+  }
+  function categoria(val){
+    var categorias = <?php echo $todas_categorias;?>;
+    var newVal = {};
+
+    categorias.map((item)=>{
+      newVal[item.id] = item
+    })
+
+    var categoria = newVal[val.value]
+    document.getElementById('letra').value = categoria.letra;
+    var hoy = moment().format('X')
+    $('#sku').val(categoria.letra+'-'+hoy)
+  }
+
+  // funcions al cambiar precios
+  function cambiarPrecio(val) {
+    var precio = val.value
+
+    if (precio == "precioVenta5") {
+      $('#precio').val(0)
+      $('#precio').removeAttr('readonly')
+    }else {
+      $('#precio').val(precio.substr(1, precio.length))
+      $('#precio').attr('readonly', 'readonly')
+    }
+
+  }
   // agregando cliente con el generador de cotizacion
   function getClient(val) {
     var id = val.value
@@ -71,11 +111,19 @@
       url: '/producto-cotizacion/'+id,
       type: 'GET',
       success: (res)=>{
-        $('#descripcion').val(res.catalogo.descripcion);
+        $('#descripcion').val(res.descripcion);
         $('#producto_cotizar').val(res.categoria.tipo);
-        $('#stock').val(+res.stock);
-        $('#precios').empty();
-        $('#precios').append('<option class="precio1">$'+res.precio_venta1+'</option><option class="precio2">$'+res.precio_venta2+'</option><option class="precio3">$'+res.precio_venta3+'</option><option class="precio4">$'+res.precio_venta4+'</option><option class="precio5">$'+res.precio_venta5+'</option>')
+        if (res.productos.length != 0) {
+          $('#precio').attr('readonly', 'readonly')
+          $('#stock').val(+res.productos[0].stock);
+          $('#precios').empty();
+          $('#precios').append('<option class="precio1">$'+res.productos[0].precio_venta1+'</option><option class="precio2">$'+res.productos[0].precio_venta2+'</option><option class="precio3">$'+res.productos[0].precio_venta3+'</option><option class="precio4">$'+res.productos[0].precio_venta4+'</option><option class="precio5" value="precioVenta5">$'+res.productos[0].precio_venta5+'</option>')
+        }else {
+          $('#precio').val("")
+          $('#precio').removeAttr('readonly')
+          $('#precios').empty();
+          $('#stock').val(0);
+        }
       }
     })
   }
@@ -102,7 +150,7 @@
   function agregarProducto() {
     var descripcion = $('#descripcion').val()
     var cantidad = Number($('#cantidad').val())
-    var precio = Number($('#precios').val().replace(/[$]/gi, ''))
+    var precio = Number($('#precio').val().replace(/[$]/gi, ''))
     var subtotal = cantidad * precio
     var productoId = Number($('#producto_id').val())
 
@@ -144,7 +192,7 @@ function total() {
   productos.map((item)=>{
     total += Number(item.subtotal)
   })
-  $('#total').val('$'+total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
+  $('#total').val(total.toFixed(2).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"))
 }
 
 // eliminar producto de la tabla de cotizacion

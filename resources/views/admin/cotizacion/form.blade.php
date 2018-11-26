@@ -107,29 +107,27 @@
       </div>
       <div class="box-body" style="">
         <div class="form-group">
-          <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
+          <a href="#"  class="pull-right"  data-toggle="modal" data-target=".bd-example-modal-producto"><i class="fa fa-plus"></i> Nuevo producto</a>
           {{ Form::label('producto', 'Productos') }}
-          <div class="input-group">
-            {!! Form::select('producto', $selectProducto, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
-            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-          </div>
+          {!! Form::select('producto', $selectProducto, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-4">
-    {{ Form::label('descripcion_producto', 'Descripción:') }}
-    {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly']); !!}
-  </div>
   <div class="col-md-3">
+    {{ Form::label('descripcion_producto', 'Descripción:') }}
+    {!! Form::text('descripcion_producto', null, ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly']); !!}
+  </div>
+  <div class="col-md-2">
     {{ Form::label('producto_cotizar', 'Producto:') }}
-    {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly']); !!}
+    {!! Form::text('producto_cotizar', null, ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly']); !!}
   </div>
   <div class="col-md-2">
     {{ Form::label('precio', 'Precio:') }}
-    <select class="form-control" id="precios">
-
-    </select>
+    {!! Form::select('precios', [], null, ['class' => 'form-control', 'id' => 'precios', 'placeholder' => 'Seleccione', 'onchange' => 'cambiarPrecio(this);']); !!}
+  </div>
+  <div class="col-md-2" style="margin-top: 25px;">
+    {!! Form::number('precio', null, ['class' => 'form-control', 'placeholder' => 'precio', 'id' => 'precio', 'readonly', 'min' => '0'])!!}
   </div>
   <div class="col-md-1">
     {{ Form::label('stock', 'Stock:') }}

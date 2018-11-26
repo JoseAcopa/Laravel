@@ -92,9 +92,7 @@ Route::put('/actualizar-cotizacion/{cotizacion}', 'CotizacionController@update')
 Route::delete('/eliminar-cotizacion/{id}','CotizacionController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
 Route::get('/ver-cotizacion/{id}','CotizacionController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
 Route::post('/guardar-cliente-cotizacion', 'CotizacionController@cliente')->name('cliente.cotizacion');
-
-// =======================guardar producto nuevo desde cotizacion==============================================
-Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
+Route::post('/guardar-producto-cotizacion', 'CotizacionController@catalogo')->name('catalogo.newProducto');
 
 // ------------------cotizaciguardar producto cotizado----------------------------------------
 Route::post('/guardar-producto-cotizado', 'ProductosCotizadosController@store')->name('producto_cotizado.store');

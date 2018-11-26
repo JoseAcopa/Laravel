@@ -12,6 +12,7 @@ use App\Cotizador;
 use App\Count;
 use App\Categoria;
 use App\Catalogo;
+use App\Proveedores;
 
 class CotizacionController extends Controller
 {
@@ -43,14 +44,18 @@ class CotizacionController extends Controller
         $clientes[$i]->select = $clientes[$i]->nombre_empresa.' | '.$clientes[$i]->correo.' | '.$clientes[$i]->telefono;
       }
 
-      $productos = Producto::with(['catalogo', 'categoria'])->get();
+      $productos = Catalogo::with(['productos', 'categoria'])->get();
+
       for ($i=0; $i < count($productos); $i++) {
-        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->catalogo->descripcion;
+        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->descripcion;
       }
+
       $selectProducto = $productos->pluck('select', 'id');
       $selectCliente = $clientes->pluck('select', 'id');
-
-      return view('admin.cotizacion.create', compact('clientes', 'selectProducto', 'selectCliente'));
+      $categorias = Categoria::all()->pluck('tipo', 'id');
+      $proveedores = Proveedores::all()->pluck('nombre_empresa', 'id');
+      $todas_categorias = Categoria::all();
+      return view('admin.cotizacion.create', compact('clientes', 'selectProducto', 'selectCliente', 'categorias', 'proveedores', 'todas_categorias'));
     }
 
     /**
@@ -163,6 +168,14 @@ class CotizacionController extends Controller
     {
       $cliente = Clientes::create($request->all());
       $cliente->save();
+
+      return redirect()->route('cotizacion.create')->with('success','Datos guardados correctamente.');
+    }
+
+    public function catalogo(Request $request)
+    {
+      $catalogo = Catalogo::create($request->all());
+      $catalogo->save();
 
       return redirect()->route('cotizacion.create')->with('success','Datos guardados correctamente.');
     }

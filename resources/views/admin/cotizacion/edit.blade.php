@@ -64,38 +64,34 @@
                 </div>
                 <div class="box-body" style="">
                   <div class="form-group">
-                    <a href="#"  class="pull-right"><i class="fa fa-plus"></i> Nuevo producto</a>
                     {{ Form::label('producto_id', 'Productos') }}
-                    <div class="input-group">
-                      {!! Form::select('producto_id', $selectProductos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
-                      <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                    </div>
+                    {!! Form::select('producto_id', $selectProductos, null, ['class' => 'form-control select2', 'id' => 'producto_id', 'placeholder' => 'Seleccione', 'style' => 'width: 100%;', 'onchange' => 'getProducto(this)']); !!}
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="col-md-4">
-              {{ Form::label('descripcion_producto', 'Descripción:') }}
-              {!! Form::text('descripcion_producto', null,  ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly', 'required']); !!}
-            </div>
             <div class="col-md-3">
+              {{ Form::label('descripcion_producto', 'Descripción:') }}
+              {!! Form::text('descripcion_producto', null, ['class' => 'form-control', 'placeholder' => 'descripción', 'id' => 'descripcion', 'readonly']); !!}
+            </div>
+            <div class="col-md-2">
               {{ Form::label('producto_cotizar', 'Producto:') }}
-              {!! Form::text('producto_cotizar', null,  ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly', 'required']); !!}
+              {!! Form::text('producto_cotizar', null, ['class' => 'form-control', 'placeholder' => 'producto_cotizar', 'id' => 'producto_cotizar', 'readonly']); !!}
             </div>
             <div class="col-md-2">
               {{ Form::label('precio', 'Precio:') }}
-              <select class="form-control" id="precios" name="precio">
-
-              </select>
+              {!! Form::select('precios', [], null, ['class' => 'form-control', 'id' => 'precios', 'placeholder' => 'Seleccione', 'onchange' => 'cambiarPrecio(this);']); !!}
+            </div>
+            <div class="col-md-2" style="margin-top: 25px;">
+              {!! Form::number('precio', null, ['class' => 'form-control', 'placeholder' => 'precio', 'id' => 'precio', 'readonly', 'min' => '0'])!!}
             </div>
             <div class="col-md-1">
               {{ Form::label('stock', 'Stock:') }}
-              {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly', 'required']); !!}
+              {!! Form::number('stock', null,  ['class' => 'form-control', 'placeholder' => 'stock', 'id' => 'stock', 'readonly']); !!}
             </div>
             <div class="col-md-1">
               {{ Form::label('cantidad', 'Cantidad:') }}
-              {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1', 'required']); !!}
+              {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1']); !!}
               {!! Form::number('cotizacion_id', $cotizacion->id,  ['class' => 'form-control invisible']); !!}
             </div>
             <div class="col-md-1">
@@ -142,6 +138,19 @@
 @endsection
 
 <script type="text/javascript">
+function cambiarPrecio(val) {
+  var precio = val.value
+
+  if (precio == "precioVenta5") {
+    $('#precio').val(0)
+    $('#precio').removeAttr('readonly')
+  }else {
+    $('#precio').val(precio.substr(1, precio.length))
+    $('#precio').attr('readonly', 'readonly')
+  }
+
+}
+
 // obteniendo producto para cotizar
 function getProducto(val) {
   var id = val.value
@@ -149,11 +158,19 @@ function getProducto(val) {
     url: '/producto-cotizacion/'+id,
     type: 'GET',
     success: (res)=>{
-      $('#descripcion').val(res.catalogo.descripcion);
+      $('#descripcion').val(res.descripcion);
       $('#producto_cotizar').val(res.categoria.tipo);
-      $('#stock').val(+res.stock);
-      $('#precios').empty();
-      $('#precios').append('<option class="precio1">$'+res.precio_venta1+'</option><option class="precio2">$'+res.precio_venta2+'</option><option class="precio3">$'+res.precio_venta3+'</option><option class="precio4">$'+res.precio_venta4+'</option><option class="precio5">$'+res.precio_venta5+'</option>')
+      if (res.productos.length != 0) {
+        $('#precio').attr('readonly', 'readonly')
+        $('#stock').val(+res.productos[0].stock);
+        $('#precios').empty();
+        $('#precios').append('<option class="precio1">$'+res.productos[0].precio_venta1+'</option><option class="precio2">$'+res.productos[0].precio_venta2+'</option><option class="precio3">$'+res.productos[0].precio_venta3+'</option><option class="precio4">$'+res.productos[0].precio_venta4+'</option><option class="precio5" value="precioVenta5">$'+res.productos[0].precio_venta5+'</option>')
+      }else {
+        $('#precio').val("")
+        $('#precio').removeAttr('readonly')
+        $('#precios').empty();
+        $('#stock').val(0);
+      }
     }
   })
 }

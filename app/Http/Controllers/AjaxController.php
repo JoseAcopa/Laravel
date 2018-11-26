@@ -20,7 +20,7 @@ class AjaxController extends Controller
 
   public function getProductoAjax($id)
   {
-    $producto = Producto::with(['catalogo', 'proveedor', 'categoria'])->find($id);
+    $producto = Catalogo::with(['productos', 'categoria'])->find($id);
     return $producto;
   }
 
