@@ -181,7 +181,7 @@ class PDFController extends Controller
 
     $produtos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
     for ($i=0; $i < count($produtos_cotizados); $i++) {
-      $producto = Catalogo::find($produtos_cotizados[$i]->producto->catalogo_id);
+      $producto = Catalogo::find($produtos_cotizados[$i]->producto_id);
       $produtos_cotizados[$i]->catalogo = $producto;
     }
     $total = intval($cotizacion->total);
@@ -204,7 +204,7 @@ class PDFController extends Controller
 
     $produtos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
     for ($i=0; $i < count($produtos_cotizados); $i++) {
-      $producto = Catalogo::find($produtos_cotizados[$i]->producto->catalogo_id);
+      $producto = Catalogo::find($produtos_cotizados[$i]->producto_id);
       $produtos_cotizados[$i]->catalogo = $producto;
     }
 

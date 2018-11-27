@@ -69,7 +69,8 @@
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
                   <td>{{$cotizacion->cliente->nombre_empresa}}</td>
-                  <td>${{round($cotizacion->total, 2)}}</td>
+                  {{-- <td>${{round($cotizacion->total, 2)}}</td> --}}
+                  <td>{{$cotizacion->total}}</td>
                   <td class="row-copasat">
                     @can ('cotizacion.show')
                       <a class="btn btn-primary" href="{{route('cotizacion.show',$cotizacion->id)}}" alt="Ver mas.."><i class="fa fa-eye"></i></a>

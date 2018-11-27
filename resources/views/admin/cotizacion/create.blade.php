@@ -203,6 +203,15 @@
       )
       return
     }
+
+    if (precio == '') {
+      swal(
+        '¡Campos requeridos!',
+        'Algunos campos son requeridos.',
+        'warning'
+      )
+      return
+    }
     var producto = {
       cantidad: cantidad,
       precio: precio,

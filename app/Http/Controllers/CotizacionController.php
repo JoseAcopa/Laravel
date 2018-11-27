@@ -105,7 +105,7 @@ class CotizacionController extends Controller
     {
       $productos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
       for ($i=0; $i < count($productos_cotizados); $i++) {
-        $catalogo = Catalogo::find($productos_cotizados[$i]->producto->catalogo_id);
+        $catalogo = Catalogo::find($productos_cotizados[$i]->producto_id);
         $productos_cotizados[$i]->catalogo = $catalogo;
       }
 
@@ -122,15 +122,15 @@ class CotizacionController extends Controller
     public function edit($id)
     {
 
-      $productos = Producto::with(['catalogo', 'categoria'])->get();
+      $productos = Catalogo::with(['productos', 'categoria'])->get();
       for ($i=0; $i < count($productos); $i++) {
-        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->catalogo->descripcion;
+        $productos[$i]->select = $productos[$i]->categoria->tipo.' | '.$productos[$i]->descripcion;
       }
       $selectProductos = $productos->pluck('select', 'id');
 
       $productos_cotizados = Cotizador::with(['producto'])->where('cotizacion_id', $id)->get();
       for ($i=0; $i < count($productos_cotizados); $i++) {
-        $catalogo = Catalogo::find($productos_cotizados[$i]->producto->catalogo_id);
+        $catalogo = Catalogo::find($productos_cotizados[$i]->producto_id);
         $productos_cotizados[$i]->catalogo = $catalogo;
       }
 
