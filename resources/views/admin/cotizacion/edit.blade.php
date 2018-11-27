@@ -29,7 +29,7 @@
         <div class="box-header with-border">
           <h3 class="box-title"><i class="fa fa-book"></i> Editar Cotización</h3>
         </div>
-        {!! Form::model($cotizacion, ['method' => 'PUT','route' => ['cotizacion.update', $cotizacion->id]]) !!}
+        {!! Form::model($editar_cotizacion, ['method' => 'PUT','route' => ['cotizacion.update', $editar_cotizacion->id]]) !!}
           {{ csrf_field() }}
 
           @include('admin.cotizacion.formEdit')
@@ -92,7 +92,7 @@
             <div class="col-md-1">
               {{ Form::label('cantidad', 'Cantidad:') }}
               {!! Form::number('cantidad', null,  ['class' => 'form-control', 'placeholder' => 'cantidad', 'id' => 'cantidad', 'min' => '1']); !!}
-              {!! Form::number('cotizacion_id', $cotizacion->id,  ['class' => 'form-control invisible']); !!}
+              {!! Form::number('cotizacion_id', $editar_cotizacion->id,  ['class' => 'form-control invisible']); !!}
             </div>
             <div class="col-md-1">
               {{ Form::label('Agregar', 'Agregar:') }}

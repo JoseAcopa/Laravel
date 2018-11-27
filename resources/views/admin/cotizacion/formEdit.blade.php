@@ -81,7 +81,7 @@
   </div>
   <div class="col-md-3 pull-right">
     {{ Form::label('total', 'Total:') }}
-    {!! Form::text('total', $cotizacion->total,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
+    {!! Form::text('total', $editar_cotizacion->total,  ['class' => 'form-control', 'placeholder' => 'total', 'id' => 'total', 'readonly']); !!}
   </div>
 </div>
 <div class="box-footer">

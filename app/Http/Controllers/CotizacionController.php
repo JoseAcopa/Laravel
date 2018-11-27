@@ -134,8 +134,8 @@ class CotizacionController extends Controller
         $productos_cotizados[$i]->catalogo = $catalogo;
       }
 
-      $cotizacion = Cotizacion::find($id);
-      return view('admin.cotizacion.edit', compact('cotizacion', 'productos_cotizados', 'selectProductos'));
+      $editar_cotizacion = Cotizacion::find($id);
+      return view('admin.cotizacion.edit', compact('editar_cotizacion', 'productos_cotizados', 'selectProductos'));
     }
 
     /**
