@@ -46,6 +46,15 @@
         $('#precio_venta2').removeAttr('readonly');
         $('#precio_venta3').removeAttr('readonly');
         $('#precio_venta4').removeAttr('readonly');
+      }else if (categoria == 'Petrolera | Industrial') {
+        $('#costo').attr('readonly', 'readonly');
+        $('#precio_lista').removeAttr('readonly');
+      }else if (categoria == 'Hidraulica') {
+        $('#costo').attr('readonly', 'readonly');
+        $('#precio_lista').removeAttr('readonly');
+      }else if (categoria == 'Otro') {
+        $('#costo').removeAttr('readonly');
+        $('#precio_lista').attr('readonly', 'readonly');
       }
     },500)
 

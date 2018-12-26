@@ -106,28 +106,28 @@
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('precio_venta1') ? 'has-error' : '' }}">
-      {{ Form::label('precio_venta1', 'Precio de venta 1:') }} {{ Form::label('pv1', '', ['id' => 'pv1']) }}
+      {{ Form::label('precio_venta1', 'Precio de venta 1:') }} {{ Form::label('pv1', ' ', ['id' => 'pv1']) }}
       {{ Form::number('precio_venta1', null, ['class' => 'form-control', 'placeholder' => 'precio venta 1', 'id' => 'precio_venta1', 'readonly']) }}
       {!! $errors->first('precio_venta1','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('precio_venta2') ? 'has-error' : '' }}">
-      {{ Form::label('precio_venta2', 'Precio de venta 2:') }} {{ Form::label('pv2', '', ['id' => 'pv2']) }}
+      {{ Form::label('precio_venta2', 'Precio de venta 2:') }} {{ Form::label('pv2', ' ', ['id' => 'pv2']) }}
       {{ Form::number('precio_venta2', null, ['class' => 'form-control', 'placeholder' => 'precio venta 2', 'id' => 'precio_venta2', 'readonly']) }}
       {!! $errors->first('precio_venta2','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('precio_venta3') ? 'has-error' : '' }}">
-      {{ Form::label('precio_venta3', 'Precio de venta 3:') }} {{ Form::label('pv3', '', ['id' => 'pv3']) }}
+      {{ Form::label('precio_venta3', 'Precio de venta 3:') }} {{ Form::label('pv3', ' ', ['id' => 'pv3']) }}
       {{ Form::number('precio_venta3', null, ['class' => 'form-control', 'placeholder' => 'precio venta 3', 'id' => 'precio_venta3', 'readonly']) }}
       {!! $errors->first('precio_venta3','<span class="help-block">:message</span>')!!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group {{ $errors->has('precio_venta4') ? 'has-error' : '' }}">
-      {{ Form::label('precio_venta4', 'Precio de venta 4:') }} {{ Form::label('pv4', '', ['id' => 'pv4']) }}
+      {{ Form::label('precio_venta4', 'Precio de venta 4:') }} {{ Form::label('pv4', ' ', ['id' => 'pv4']) }}
       {{ Form::number('precio_venta4', null, ['class' => 'form-control', 'placeholder' => 'precio venta 4', 'id' => 'precio_venta4', 'readonly']) }}
       {!! $errors->first('precio_venta4','<span class="help-block">:message</span>')!!}
     </div>
