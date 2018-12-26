@@ -31,7 +31,7 @@
           <div class="icon">
             <i class="ion ion-person-add"></i>
           </div>
-          <a href="{{ url('/admin/usuario') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/usuarios') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div class="col-lg-3 col-xs-6">
@@ -45,7 +45,7 @@
           <div class="icon">
             <i class="fa fa-list"></i>
           </div>
-          <a href="{{ url('/admin/cotizacion') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ url('/cotizaciones') }}" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <div class="col-lg-3 col-xs-6">
@@ -197,25 +197,26 @@
                 </div>
                 <!-- /. tools -->
               </div>
-              <div class="box-body">
-                <form action="#" method="post">
+              <form action="{{route('correo.quick')}}" method="post" onsubmit="changeButton();">
+                {{ csrf_field() }}
+                <div class="box-body">
                   <div class="form-group">
-                    <input type="email" class="form-control" name="emailto" placeholder="Para:">
+                    <input type="email" class="form-control" name="correo" placeholder="Para:" required>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control" name="subject" placeholder="Asunto">
+                    <input type="text" class="form-control" name="asunto" placeholder="Asunto" required>
                   </div>
                   <div>
-                    <textarea class="form-control" placeholder="Mensaje" rows="8"></textarea>
+                    <textarea class="form-control" placeholder="Mensaje" name="mensaje" rows="8" required></textarea>
                   </div>
-                </form>
+                </div>
+                <div class="box-footer clearfix">
+                  <div class="form-group">
+                    <button type="submit" class="pull-right btn btn-default" id="submit">Enviar<i class="fa fa-arrow-circle-right"></i></button>
+                    <button type="button" class="btn btn-primary pull-right disabled" style="display: none;" id="loading"><i class="fa fa-spinner fa-spin"></i> Enviando</button>
+                  </div>
               </div>
-              <div class="box-footer clearfix">
-                <div class="form-group">
-                <button type="button" class="pull-right btn btn-default" id="sendEmail">Enviar
-                  <i class="fa fa-arrow-circle-right"></i></button>
-              </div>
-            </div>
+            </form>
           </div>
 
           <!-- Modal editar actividad -->
@@ -249,46 +250,6 @@
       </div>
     </section>
     <script type="text/javascript">
-      function destroy(url){
-        event.preventDefault();
-        swal({
-          title: '¿Desea eliminar esta actividad?',
-          text: "¡No podra revertir esto!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3c8dbc',
-          cancelButtonColor: '#dd4b39',
-          confirmButtonText: 'Sí, eliminarlo!',
-          cancelButtonText: 'No, cancelar!'
-        }).then((res) => {
-          if (res.value) {
-            $.ajax({
-              url: url,
-              method: "POST",
-              data: {
-                  _token: "{{csrf_token()}}",
-                  _method: "DELETE"
-              },
-              success: function(data){
-                swal(
-                  '¡Eliminado!',
-                  'El registro ha sido eliminado.',
-                  'success'
-                ).then(()=>{
-                  location.reload();
-                })
-              }
-            })
-          }else if (res.dismiss === "cancel") {
-            swal(
-              '¡Cancelado!',
-              'La accion fue cancelada.',
-              'error'
-            )
-          }
-        })
-      }
-
       function edit(url){
         event.preventDefault();
         $.ajax({
@@ -299,12 +260,16 @@
               _method: "GET"
           },
           success: function(data){
-            console.log(data.status);
             $('#tituloEdit').val(data.titulo)
             $('#idActividad').val(data.id)
             document.getElementById('check').checked = data.status === "0" ? false : true
           }
         })
+      }
+
+      function changeButton() {
+        document.getElementById('submit').style.display = 'none'
+        document.getElementById('loading').style.display = 'block'
       }
     </script>
 

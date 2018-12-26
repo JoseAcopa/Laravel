@@ -25,14 +25,14 @@
         <table id="Jtabla" class="table table-bordered table-hover dataTable">
           <thead>
             <tr>
-              <th>#</th>
+              <th style="width: 10px;">#</th>
               <th>RFC</th>
               <th>Nombre de la Empresa</th>
               <th>Siglas</th>
               <th>Dirección</th>
               <th>Teléfono</th>
               <th>E-mail</th>
-              <th>Acciones</th>
+              <th style="width: 60px;">Acciones</th>
            </tr>
           </thead>
           <tbody>

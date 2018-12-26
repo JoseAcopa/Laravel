@@ -15,20 +15,14 @@ class CreateCheckoutsTable extends Migration
     {
         Schema::create('checkouts', function (Blueprint $table) {
           $table->increments('id');
-          $table->string('nInvoice');
-          $table->integer('category_id');
-          $table->string('initials');
-          $table->integer('supplier_id');
-          $table->string('unit');
-          $table->string('date_out');
-          $table->string('description');
-          $table->string('priceList');
-          $table->string('cost');
-          $table->integer('coin_id');
-          $table->string('stock');
-          $table->string('quantity_output');
-          $table->string('price_output');
-          $table->string('keyProduct');
+          $table->string('numero_factura');
+          $table->string('fecha_salida');
+          $table->string('cantidad_salida');
+          $table->string('precio_venta');
+          $table->string('moneda');
+          $table->integer('producto_id');
+          $table->integer('categoria_id');
+          $table->integer('proveedor_id');
           $table->timestamps();
         });
     }

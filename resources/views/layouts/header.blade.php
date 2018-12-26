@@ -5,7 +5,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ url('/admin/admin-welcome') }}" class="logo">
+    <a href="{{ url('/home') }}" class="logo">
       <span class="logo-mini"><b>R</b>X</span>
       <span class="logo-lg"><b>SIYC</b>RayosX</span>
     </a>
@@ -33,7 +33,7 @@
                   {{-- mensajes nuevos --}}
                   @foreach ($users as $user)
                     <li>
-                      <a href="{{ route('employee.edit', $user->idUsuario) }}">
+                      <a href="{{ route('usuario.edit', $user->idUsuario) }}">
                         <div class="pull-left">
                           <img src="{{ url('img/image.png')}}" class="img-circle" alt="User Image">
                         </div>

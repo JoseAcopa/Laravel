@@ -15,23 +15,23 @@ class PermissionsTableSeeder extends Seeder
       // usuarios
       Permission::create([
         'name' => 'Navegar usuarios',
-        'slug' => 'empleados.index',
-        'description' => 'Listar empleados'
+        'slug' => 'usuarios.index',
+        'description' => 'Listar usuarios'
       ]);
       Permission::create([
         'name' => 'Crear usuario',
-        'slug' => 'empleado.create',
-        'description' => 'Crear empleado'
+        'slug' => 'usuario.create',
+        'description' => 'Crear usuario'
       ]);
       Permission::create([
         'name' => 'Editar usuario',
-        'slug' => 'empleado.edit',
-        'description' => 'Editar empleado'
+        'slug' => 'usuario.edit',
+        'description' => 'Editar usuario'
       ]);
       Permission::create([
         'name' => 'Eliminar usuario',
-        'slug' => 'empleado.destroy',
-        'description' => 'Eliminar empleado'
+        'slug' => 'usuario.destroy',
+        'description' => 'Eliminar usuario'
       ]);
 
       // roles
@@ -100,19 +100,19 @@ class PermissionsTableSeeder extends Seeder
         'description' => 'Eliminar cliente'
       ]);
 
-      // tipo de producto
+      // categorias
       Permission::create([
-        'name' => 'Navegar tipo de producto',
+        'name' => 'Navegar categorias',
         'slug' => 'categorias.index',
         'description' => 'Listar los tipos de productos'
       ]);
       Permission::create([
-        'name' => 'Crear tipo de producto',
+        'name' => 'Crear categoria',
         'slug' => 'categoria.create',
         'description' => 'Crear tipo de producto'
       ]);
       Permission::create([
-        'name' => 'Eliminar tipo de producto',
+        'name' => 'Eliminar categoria',
         'slug' => 'categoria.destroy',
         'description' => 'Eliminar tipo de producto'
       ]);
@@ -142,27 +142,27 @@ class PermissionsTableSeeder extends Seeder
       // productos
       Permission::create([
         'name' => 'Navegar productos',
-        'slug' => 'inventarios.index',
+        'slug' => 'productos.index',
         'description' => 'Listar productos'
       ]);
       Permission::create([
         'name' => 'Crear producto',
-        'slug' => 'inventario.create',
+        'slug' => 'producto.create',
         'description' => 'Crear producto'
       ]);
       Permission::create([
         'name' => 'Ver producto',
-        'slug' => 'inventario.show',
+        'slug' => 'producto.show',
         'description' => 'Ver producto'
       ]);
       Permission::create([
         'name' => 'Editar producto',
-        'slug' => 'inventario.edit',
+        'slug' => 'producto.edit',
         'description' => 'Editar producto'
       ]);
       Permission::create([
         'name' => 'Eliminar producto',
-        'slug' => 'inventario.destroy',
+        'slug' => 'producto.destroy',
         'description' => 'Eliminar producto'
       ]);
 

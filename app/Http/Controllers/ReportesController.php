@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Invoice;
-use App\Quotations;
+use App\Factura;
+use App\Cotizacion;
 
 class ReportesController extends Controller
 {
@@ -13,9 +13,21 @@ class ReportesController extends Controller
       $this->middleware('auth');
     }
 
-    public function cotizacion()
+    public function generarCotizacion(Request $request)
     {
-      return view('admin.reportes.cotizacion');
+      $rango = $request->rango;
+      $inicio = substr($rango, 0, -13);
+      $fin = substr($rango, -10);
+
+      if ($request->cliente != null) {
+        $cotizaciones_pdf = Cotizacion::where('cliente_id', $request->cliente)->where('fecha', '>=' ,$inicio)->where('fecha', '<=' ,$fin)->with(['user', 'cliente'])->get();
+
+        return view('admin.reportes.cotizacion', compact('cotizaciones_pdf'));
+      }else {
+        $cotizaciones_pdf = Cotizacion::where('fecha', '>=' ,$inicio)->where('fecha', '<=' ,$fin)->with(['user', 'cliente'])->get();
+
+        return view('admin.reportes.cotizacion', compact('cotizaciones_pdf'));
+      }
     }
 
     public function factura()
@@ -26,13 +38,15 @@ class ReportesController extends Controller
     public function generarFacturas(Request $request)
     {
       $rango = $request->rango;
-      $max = substr($rango, -10);
-      $min = substr($rango, 0, -13);
-      $reportes = Invoice::where('checkin','>=',$min)->where('checkin','<=',$max)->with(['coin', 'category', 'supplier'])->paginate(10);
+      $inicio = substr($rango, 0, -13);
+      $fin = substr($rango, -10);
+
+      $reportes = Factura::where('fecha_entrada', '>=' ,$inicio)->where('fecha_entrada', '<=' ,$fin)->with(['categoria', 'proveedor'])->paginate(500);
+
       return view('admin.reportes.facturas', compact('reportes'));
     }
 
-    public function generarCotizacion(Request $request)
+    public function generarCotizaciontes(Request $request)
     {
       $rango = $request->cotizacion;
       $max = substr($rango, -10);

@@ -35,7 +35,7 @@ class ControllerCorreos extends Controller
   public function destroy($id)
   {
     Correo::find($id)->delete();
-    return redirect('admin/correos')->with('success','El correo fue eliminado correctamente de la base de datos');
+    return redirect('/correos')->with('success','El correo fue eliminado correctamente de la base de datos');
   }
 
   public function sendEmail(Request $request)
@@ -85,9 +85,9 @@ class ControllerCorreos extends Controller
       ';
 
       $mail->send();
-      return redirect('admin/correos')->with('success','El correo fue enviado correctamente');
+      return redirect('/correos')->with('success','El correo fue enviado correctamente');
     } catch (Exception $e) {
-      return redirect('/')->with('flash','Error al enviar correo, intente de nuevo por favor.');
+      return redirect('/correos')->with('flash','Error al enviar correo, intente de nuevo por favor.');
     }
   }
 }

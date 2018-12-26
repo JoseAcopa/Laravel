@@ -43,7 +43,8 @@
 
       <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Reportes encontrados</h3>
+          <h3 class="box-title">{{count($reportes)}} Reportes encontrados</h3>
+          <button type="button" class="btn btn-default"> Generar todos</button>
         </div>
 
         <div class="box-body">
@@ -52,9 +53,9 @@
               <li>
                 <span class="mailbox-attachment-icon"><i class="fa fa-file-pdf-o"></i></span>
                 <div class="mailbox-attachment-info">
-                  <a target="_blank" href="{{ url('factura',$reporte->id) }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{$reporte->category->type}}.pdf</a>
+                  <a target="_blank" href="{{ url('factura',$reporte->id) }}" class="mailbox-attachment-name"><i class="fa fa-paperclip"></i> {{$reporte->categoria->tipo}}.pdf</a>
                   <span class="mailbox-attachment-size">
-                    {{$reporte->initials}}
+                    {{$reporte->letra}}
                     <a target="_blank" href="{{ url('descargar',$reporte->id) }}" class="btn btn-default btn-xs pull-right"><i class="fa fa-cloud-download"></i></a>
                   </span>
                 </div>
@@ -67,7 +68,7 @@
         </div>
         <div class="box-footer">
           <div class="pull-right">
-            <a href="{{ route('factura.index') }}" type="button" class="btn btn-default"><i class="fa fa-reply"></i> ir a facturas</a>
+            <a href="{{ route('facturas.index') }}" type="button" class="btn btn-default"><i class="fa fa-reply"></i> Regresar</a>
           </div>
         </div>
       </div>

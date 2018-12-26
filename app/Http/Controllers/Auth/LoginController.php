@@ -26,7 +26,7 @@ class LoginController extends Controller
     ]);
 
     if (Auth::attempt($credentials)) {
-      return redirect('admin/admin-welcome');
+      return redirect('/home');
     }
     return back()->with('error','Acceso denegado (correo de usuario o contraseña no válidos).')->withInput(request(['email']));
   }

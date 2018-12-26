@@ -6,7 +6,7 @@ Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 // ------------------Start Admin-----------------------------------------
-Route::get('/admin/admin-welcome', 'AdminControllers@index');
+Route::get('/home', 'AdminControllers@index');
 
 // ------------------Clientes--------------------------------------------
 Route::get('/clientes','ClientesController@index')->name('cliente.index')->middleware('permission:clientes.index');
@@ -34,78 +34,70 @@ Route::delete('admin/delete-rol/{id}','RolesController@destroy')->name('roles.de
 // ------------------End Roles------------------------------------
 
 // ------------------Usuarios-----------------------------------------
-Route::get('admin/usuario','EmployeeController@index')->name('employee.index')->middleware('permission:empleados.index');
-Route::get('/admin/create-usuario', 'EmployeeController@create')->name('employee.create')->middleware('permission:empleado.create');
-Route::post('admin/store-usuario','EmployeeController@store')->name('employee.store')->middleware('permission:empleado.create');
-Route::get('/admin/edit-usuario/{id}', 'EmployeeController@edit')->name('employee.edit')->middleware('permission:empleado.edit');
-Route::post('/admin/update-user/{id}', 'EmployeeController@update')->name('employee.update')->middleware('permission:empleado.edit');
-Route::delete('admin/delete-usuario/{id}','EmployeeController@destroy')->name('employee.destroy')->middleware('permission:empleado.destroy');
+Route::get('/usuarios','UsuariosController@index')->name('usuarios.index')->middleware('permission:usuarios.index');
+Route::get('/crear-usuario', 'UsuariosController@create')->name('usuario.create')->middleware('permission:usuario.create');
+Route::post('/guardar-usuario','UsuariosController@store')->name('usuario.store')->middleware('permission:usuario.create');
+Route::get('/editar-usuario/{id}', 'UsuariosController@edit')->name('usuario.edit')->middleware('permission:usuario.edit');
+Route::put('/actualizar-usuario/{usuario}', 'UsuariosController@update')->name('usuario.update')->middleware('permission:usuario.edit');
+Route::delete('/eliminar-usuario/{id}','UsuariosController@destroy')->name('usuario.destroy')->middleware('permission:usuario.destroy');
 // ------------------End Usuarios------------------------------------
 
 // ------------------categorias---------------------------------------
-Route::get('admin/categoria','CategoriesController@index')->name('categoria.index')->middleware('permission:categorias.index');
-Route::get('/admin/create-categoria', 'CategoriesController@create')->name('categoria.create')->middleware('permission:categoria.create');
-Route::post('admin/store-categoria','CategoriesController@store')->name('categoria.store')->middleware('permission:categoria.create');
-Route::delete('admin/delete-categoria/{id}','CategoriesController@destroy')->name('categoria.destroy')->middleware('permission:categoria.destroy');
-// ------------------End clasificationProduct----------------------------------------
+Route::get('/categorias','CategoriasController@index')->name('categoria.index')->middleware('permission:categorias.index');
+Route::post('/crear-categoria', 'CategoriasController@store')->name('categoria.store')->middleware('permission:categoria.create');
+Route::delete('/eliminar-categoria/{id}','CategoriasController@destroy')->name('categoria.destroy')->middleware('permission:categoria.destroy');
+// ------------------categorias----------------------------------------
 
-// ------------------Alta de Catalogo----------------------------------------
-Route::get('/admin/catalogo','CatalogsController@index')->name('catalogo.index')->middleware('permission:catalogos.index');
-Route::get('/admin/create-producto-catalogo', 'CatalogsController@create')->name('catalogo.create')->middleware('permission:catalogo.create');
-Route::post('admin/store-producto-catalogo','CatalogsController@store')->name('catalogo.store')->middleware('permission:catalogo.create');
-Route::get('/admin/editar-producto-catalogo/{producto}', 'CatalogsController@edit')->name('catalogo.edit')->middleware('permission:catalogo.edit');
-Route::post('/admin/producto-catalogo/{producto}', 'CatalogsController@update')->name('catalogo.update')->middleware('permission:catalogo.edit');
-Route::delete('admin/delete-producto-catalogo/{id}','CatalogsController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
-// ------------------End Alta de Catalogo----------------------------------------
+// ------------------------Catalogo----------------------------------------
+Route::get('/catalogos','CatalogosController@index')->name('catalogo.index')->middleware('permission:catalogos.index');
+Route::get('/crear-producto-catalogo', 'CatalogosController@create')->name('catalogo.create')->middleware('permission:catalogo.create');
+Route::post('/guardar-producto-catalogo','CatalogosController@store')->name('catalogo.store')->middleware('permission:catalogo.create');
+Route::get('/editar-producto-catalogo/{id}', 'CatalogosController@edit')->name('catalogo.edit')->middleware('permission:catalogo.edit');
+Route::put('/actualizar-producto-catalogo/{producto}', 'CatalogosController@update')->name('catalogo.update')->middleware('permission:catalogo.edit');
+Route::delete('/eliminar-producto-catalogo/{id}','CatalogosController@destroy')->name('catalogo.destroy')->middleware('permission:catalogo.destroy');
+// -------------------------Catalogo----------------------------------------
 
-// ------------------inventary----------------------------------------
-Route::get('/admin/productos','ProductsControllers@index')->name('producto.index')->middleware('permission:inventarios.index');
-Route::get('/admin/crear-producto', 'ProductsControllers@create')->name('producto.create')->middleware('permission:inventario.create');
-Route::post('admin/store-producto','ProductsControllers@store')->name('producto.store')->middleware('permission:inventario.create');
-Route::get('/admin/edita-producto/{producto}', 'ProductsControllers@edit')->name('producto.edit')->middleware('permission:inventario.edit');
-Route::post('/admin/producto/{producto}', 'ProductsControllers@update')->name('producto.update')->middleware('permission:inventario.edit');
-Route::delete('admin/delete-producto/{id}','ProductsControllers@destroy')->name('producto.destroy')->middleware('permission:inventario.destroy');
-Route::get('admin/ver-producto/{id}','ProductsControllers@show')->name('producto.show')->middleware('permission:inventario.show');
-// ------------------End inventary----------------------------------------
+// ------------------productos----------------------------------------
+Route::get('/entrada-productos','ProductosController@index')->name('productos.index')->middleware('permission:productos.index');
+Route::get('/crear-producto', 'ProductosController@create')->name('producto.create')->middleware('permission:producto.create');
+Route::post('guardar-producto','ProductosController@store')->name('producto.store')->middleware('permission:producto.create');
+Route::get('/editar-producto/{id}', 'ProductosController@edit')->name('producto.edit')->middleware('permission:producto.edit');
+Route::post('/actualizar-producto/{producto}', 'ProductosController@update')->name('producto.update')->middleware('permission:producto.edit');
+Route::delete('/eliminar-producto/{id}','ProductosController@destroy')->name('producto.destroy')->middleware('permission:producto.destroy');
+Route::get('/ver-producto/{id}','ProductosController@show')->name('producto.show')->middleware('permission:producto.show');
+// ------------------productos----------------------------------------
 
-// ------------------checkout----------------------------------------
-Route::get('/admin/salidas','CheckoutsController@index')->name('salida.index')->middleware('permission:salidas.index');
-Route::get('/admin/crear-salida', 'CheckoutsController@create')->name('salida.create')->middleware('permission:salida.create');
-Route::post('admin/store-salida','CheckoutsController@store')->name('salida.store')->middleware('permission:salida.create');
-Route::get('/admin/editar-salida/{salida}', 'CheckoutsController@edit')->name('salida.edit')->middleware('permission:salida.edit');
-Route::post('/admin/salida/{salida}', 'CheckoutsController@update')->name('salida.update')->middleware('permission:salida.edit');
-Route::delete('admin/delete-salida/{id}','CheckoutsController@destroy')->name('salida.destroy')->middleware('permission:salida.destroy');
-Route::get('admin/ver-salida/{id}','CheckoutsController@show')->name('salida.show')->middleware('permission:salida.show');
-// ------------------End checkout----------------------------------------
+// ------------------facturas de ingreso----------------------------------------
+Route::get('/facturas-ingresos','FacturasIngresoController@index')->name('facturas.index')->middleware('permission:facturas.index');
+Route::delete('/eliminar-factura/{id}','FacturasIngresoController@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
+Route::get('admin/ver-factura/{id}','FacturasIngresoController@show')->name('factura.show')->middleware('permission:factura.show');
+// ------------------facturas de ingreso----------------------------------------
 
-// ------------------cotizacion----------------------------------------
-Route::get('/admin/cotizacion','QuotationsController@index')->name('cotizacion.index')->middleware('permission:cotizaciones.index');
-Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
-Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
-Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
-Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
-Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
-Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
+// ------------------salida----------------------------------------
+Route::get('/salida-producto','SalidasController@index')->name('salida.index')->middleware('permission:salidas.index');
+Route::get('/crear-salida-producto', 'SalidasController@create')->name('salida.create')->middleware('permission:salida.create');
+Route::post('guardar-salida-producto','SalidasController@store')->name('salida.store')->middleware('permission:salida.create');
+Route::get('/editar-salida-producto/{id}', 'SalidasController@edit')->name('salida.edit')->middleware('permission:salida.edit');
+Route::put('/actualizar-salida-producto/{salida}', 'SalidasController@update')->name('salida.update')->middleware('permission:salida.edit');
+Route::delete('/eliminar-salida-producto/{id}','SalidasController@destroy')->name('salida.destroy')->middleware('permission:salida.destroy');
+Route::get('/ver-salida-producto/{id}','SalidasController@show')->name('salida.show')->middleware('permission:salida.show');
+// ------------------salida----------------------------------------
 
 // ------------------cotizacion----------------------------------------
+Route::get('/cotizacion','CotizacionController@index')->name('cotizacion.index')->middleware('permission:cotizaciones.index');
+Route::get('/crear-cotizacion', 'CotizacionController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
+Route::post('/guardar-cotizacion','CotizacionController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
+Route::get('/editar-cotizacion/{id}', 'CotizacionController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
+Route::put('/actualizar-cotizacion/{cotizacion}', 'CotizacionController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
+Route::delete('/eliminar-cotizacion/{id}','CotizacionController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
+Route::get('/ver-cotizacion/{id}','CotizacionController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
+Route::post('/guardar-cliente-cotizacion', 'CotizacionController@cliente')->name('cliente.cotizacion');
+Route::post('/guardar-producto-cotizacion', 'CotizacionController@catalogo')->name('catalogo.newProducto');
+
+// ------------------cotizaciguardar producto cotizado----------------------------------------
 Route::post('/guardar-producto-cotizado', 'ProductosCotizadosController@store')->name('producto_cotizado.store');
 Route::delete('/eliminar-producto-cotizado/{id}','ProductosCotizadosController@destroy')->name('producto_cotizado.destroy');
-// Route::post('/guardar-producto-cotizado/{producto}','ProductosCotizados@store')->name('producto_cotizado.store');
-// Route::get('/admin/crear-cotizacion', 'QuotationsController@create')->name('cotizacion.create')->middleware('permission:cotizacion.create');
-// Route::post('admin/store-cotizacion','QuotationsController@store')->name('cotizacion.store')->middleware('permission:cotizacion.create');
-// Route::get('/editar-cotizacion/{id}', 'QuotationsController@edit')->name('cotizacion.edit')->middleware('permission:cotizacion.edit');
-// Route::post('/actualizar-cotizacion/{cotizacion}', 'QuotationsController@update')->name('cotizacion.update')->middleware('permission:cotizacion.edit');
-// Route::delete('/admin/delete-cotizacion/{id}','QuotationsController@destroy')->name('cotizacion.destroy')->middleware('permission:cotizacion.destroy');
-// Route::get('/admin/ver-cotizacion/{id}','QuotationsController@show')->name('cotizacion.show')->middleware('permission:cotizacion.show');
-// Route::post('/guardar-cliente-cotizacion', 'QuotationsController@cliente')->name('cliente.cotizacion');
 
-
-// ------------------facturas----------------------------------------
-Route::get('/admin/facturas','ControllerInvoices@index')->name('factura.index')->middleware('permission:facturas.index');
-Route::delete('admin/delete-factura/{id}','ControllerInvoices@destroy')->name('factura.destroy')->middleware('permission:factura.destroy');
-Route::get('admin/ver-factura/{id}','ControllerInvoices@show')->name('factura.show')->middleware('permission:factura.show');
-// ------------------End facturas----------------------------------------
 
 // =======================actividades ==============================================
 Route::post('/crear-actividad', 'AdminControllers@store')->name('actividad.store');
@@ -114,34 +106,36 @@ Route::get('/edit-actividad/{id}', 'AdminControllers@edit')->name('actividad.edi
 Route::post('/update-actividad', 'AdminControllers@update')->name('actividad.update');
 // =======================actividades ==============================================
 
-// =======================reportes ==============================================
-Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
-Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
-Route::post('admin/generar-facturas', 'ReportesController@generarFacturas')->name('facturas.generar');
-Route::post('admin/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
-// =======================reportes ==============================================
+// =======================peticiones con ajax ==============================================
+Route::get('/producto-catalogo/{id}', 'AjaxController@getCatalogoAjax');
+Route::get('/producto-cotizacion/{id}', 'AjaxController@getProductoAjax');
+Route::get('/cliente-cotizacion/{id}', 'AjaxController@getClienteAjax');
+Route::get('/producto-salida/{id}', 'AjaxController@getProductoSalidaAjax');
 
-// =======================metodos ajax ==============================================
-Route::get('/producto-catalogo/{id}', 'ControllersAjax@getCatalogtAjax');
-Route::get('/producto/{id}', 'ControllersAjax@getProductAjax');
-Route::get('/cliente-cotizacion/{id}', 'ControllersAjax@getClientAjax');
-Route::get('/productos', 'ControllersAjax@getProductsAjax');
-
-// =======================recuperar contrasena ==============================================
-Route::post('/set-password', 'ControllerResetPass@setPassword')->name('password.new');
-Route::get('/admin/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
-Route::get('/admin/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
-Route::delete('/admin/delete-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
-Route::post('/admin/update-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
-// =======================recuperar contrasena ==============================================
-
-// =======================guardar producto nuevo desde cotizacion==============================================
-Route::post('/guardar-producto-cotizacion', 'ControllerNewProductQuotation@saveNewProduct')->name('producto.newProducto');
-
-// =======================guardar producto nuevo desde cotizacion==============================================
+// =======================Enviando correos ==============================================
+Route::post('/set-password', 'CorreoController@recuperarContrasena')->name('password.new');
+Route::post('/enviar-correo-rapido', 'CorreoController@correoRapido')->name('correo.quick');
+Route::get('/correos', 'ControllerCorreos@index')->name('correo.index')->middleware('permission:correos.index');
+Route::get('/enviar-correo/{idUser}/{id}', 'ControllerCorreos@send')->name('correo.send');
+Route::delete('/eliminar-correo/{id}', 'ControllerCorreos@destroy')->name('correo.destroy')->middleware('permission:correo.destroy');
+Route::post('/actualizar-correo', 'ControllerCorreos@sendEmail')->name('correo.update')->middleware('permission:correo.edit');
+// =======================Enviando correos ==============================================
 
 // =======================crear PDF ==============================================
-Route::get("factura/{id}","PDFController@downloadPDF");
+Route::get("/reporte-ingreso/{id}","PDFController@generarReporteIngreso")->name('reporte.generate');
+Route::get("/reporte-general-ingreso","PDFController@reporteGeneralIngreso")->name('reporte.general');
+Route::post("/reporte-ingreso-rango", "PDFController@generarReporteIngresoRango")->name('reporte.buscar-rango');
+Route::get("/reporte-salida/{id}","PDFController@generarReporteSalida")->name('reporte.salida');
+Route::get("/reporte-salida-general","PDFController@generarReporteGeneralSalida")->name('reporte.salida-general');
+Route::post("/reporte-salida-rango", "PDFController@generarReporteSalidaRango")->name('salida.buscar-rango');
 Route::get("descargar/{id}","PDFController@descargarPDF");
-Route::get("/cotizacion/{quotation}","PDFController@cotizacionPDF");
-Route::get("descargar-cotizacion/{cotizacion}","PDFController@descargarCotizacionPDF");
+Route::get("/reporte-cotizacion/{id}","PDFController@reporteCotizacion")->name('cotizacion.reporte-cotizacion');
+Route::get("descargar-cotizacion/{id}","PDFController@descargarCotizacionPDF");
+
+// =======================buscando reportes de ingresos (pendiente en dejarlo o eliminarlo)==============================================
+Route::post('/generar-cotizacion', 'ReportesController@generarCotizacion')->name('cotizaciones.generar');
+Route::post('/buscar-facturas-fecha', 'ReportesController@generarFacturas')->name('facturas.generar');
+Route::get('admin/reporte-cotizacion', 'ReportesController@cotizacion')->name('cotizaciones.show');
+Route::get('admin/reporte-facturas', 'ReportesController@factura')->name('facturas.show');
+
+// =======================buscando reportes de ingresos (pendiente en dejarlo o eliminarlo) ==============================================
