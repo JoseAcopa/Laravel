@@ -30,7 +30,7 @@
           <h3 class="box-title"><i class="fa fa-edit"></i> Editar Producto</h3>
         </div>
       </div>
-      {!! Form::model($producto, ['method' => 'POST','route' => ['producto.update', $producto->id], 'role' => 'form']) !!}
+      {!! Form::model($productoEdit, ['method' => 'POST','route' => ['producto.update', $productoEdit->id], 'role' => 'form']) !!}
         {{ csrf_field() }}
 
         @include('admin.productos.form')

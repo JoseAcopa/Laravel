@@ -65,7 +65,7 @@ function current_page($url = '/'){
         @endcan
         <li class="header">INVENTARIO Y COTIZACIONES</li>
         <li class="treeview <?php echo current_page('catalogos') || current_page('categorias') || current_page('crear-producto-catalogo') || isset($categoriasLetra) || current_page('entrada-productos') || current_page('crear-producto')
-                                  || strpos(request()->path(), 'editar-producto') || strpos(request()->path(), 'ver-producto') || current_page('salida-producto') || current_page('crear-salida-producto') || isset($precios) || strpos(request()->path(), 'ver-salida')
+                                  || isset($productoEdit) || current_page('salida-producto') || current_page('crear-salida-producto') || isset($precios) || strpos(request()->path(), 'ver-salida')
                                   || strpos(request()->path(), 'show-product-output') ? "active" : "";?>">
           <a href="#"><i class="fa fa-pencil-square"></i> <span>Inventario</span>
             <span class="pull-right-container">
@@ -98,15 +98,14 @@ function current_page($url = '/'){
               </li>
             @endcan
             @can ('inventarios.index')
-              <li <?php echo current_page('entrada-productos') || current_page('crear-producto') || strpos(request()->path(), 'edita-producto') || strpos(request()->path(), 'ver-producto') ? "class='active'" : "";?>>
+              <li <?php echo current_page('entrada-productos') || current_page('crear-producto') || isset($productoEdit) ? "class='active'" : "";?>>
                 <a href="{{url('/entrada-productos')}}">
-                  <i class="fa fa-circle-o <?php echo current_page('entrada-productos') || current_page('crear-producto') || strpos(request()->path(), 'edita-producto') || strpos(request()->path(), 'ver-producto') ? "text-aqua" : "";?>"></i>
+                  <i class="fa fa-circle-o <?php echo current_page('entrada-productos') || current_page('crear-producto') || isset($productoEdit) ? "text-aqua" : "";?>"></i>
                   <span>Productos</span>
                   <span class="pull-right-container">
                     <?php echo current_page('productos') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
                     <?php echo current_page('crear-producto') ? '<small class="label pull-right bg-green">nuevo</small>' : "";?>
-                    <?php echo strpos(request()->path(), 'edita-producto') ? '<small class="label pull-right bg-green">editar</small>' : "";?>
-                    <?php echo strpos(request()->path(), 'ver-producto') ? '<small class="label pull-right bg-green">ver</small>' : "";?>
+                    <?php echo isset($productoEdit) ? '<small class="label pull-right bg-green">editar</small>' : "";?>
                   </span>
                 </a>
               </li>

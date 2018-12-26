@@ -124,20 +124,20 @@ class ProductosController extends Controller
      */
     public function edit($id)
     {
-      $producto = Producto::find($id);
-      $catalogo = Catalogo::find($producto->catalogo_id);
+      $productoEdit = Producto::find($id);
+      $catalogo = Catalogo::find($productoEdit->catalogo_id);
       $catalogo->categoria;
       $catalogo->proveedor;
 
-      $producto->descripcion = $catalogo->descripcion;
-      $producto->unidad_medida = $catalogo->unidad_medida;
-      $producto->proveedor = $catalogo->proveedor->nombre_empresa;
-      $producto->letra = $catalogo->categoria->letra;
-      $producto->tipo_producto = $catalogo->categoria->tipo;
-      $producto->categoria = $catalogo->categoria->categorias;
-      $producto->cantidad_entrada = $producto->stock;
+      $productoEdit->descripcion = $catalogo->descripcion;
+      $productoEdit->unidad_medida = $catalogo->unidad_medida;
+      $productoEdit->proveedor = $catalogo->proveedor->nombre_empresa;
+      $productoEdit->letra = $catalogo->categoria->letra;
+      $productoEdit->tipo_producto = $catalogo->categoria->tipo;
+      $productoEdit->categoria = $catalogo->categoria->categorias;
+      $productoEdit->cantidad_entrada = $productoEdit->stock;
 
-      return view('admin.productos.edit', compact('producto'));
+      return view('admin.productos.edit', compact('productoEdit'));
     }
 
     /**

@@ -74,6 +74,7 @@ class CatalogosController extends Controller
       $proveedores = Proveedores::all()->pluck('nombre_empresa', 'id');
       $todas_categorias = Categoria::all();
       $categoriasLetra = Categoria::find($catalogo->categoria_id);
+      $catalogo['unidad'] = $catalogo->unidad_medida;
       return view('admin.catalogos.edit', compact('proveedores', 'categorias', 'todas_categorias', 'catalogo', 'categoriasLetra'));
     }
 
