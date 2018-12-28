@@ -112,7 +112,7 @@
 
         <div class="row no-print">
           <div class="col-xs-12">
-            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-plus fa-lg"></i> Nueva Cotización</button>
+            <a class="btn btn-primary pull-right"><i class="fa fa-copy"></i> Copiar Cotización</a>
             <a href="{{ url('/cotizacion') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
           </div>
         </div>
