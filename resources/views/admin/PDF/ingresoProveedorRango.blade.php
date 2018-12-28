@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{$facturas[0]->proveedor->nombre_empresa}}</title>
+    @if (count($facturas) != 0)
+      <title>{{$facturas[0]->proveedor->nombre_empresa}}</title>
+    @else
+      <title>Reportes no encontrados</title>
+    @endif
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
@@ -168,8 +172,13 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">{{$facturas[0]->proveedor->nombre_empresa}}</h2>
-          <p class="title-bussines">{{$facturas[0]->proveedor->direccion}}</p>
+          @if (count($facturas) != 0)
+            <h2 class="title-bussines">{{$facturas[0]->proveedor->nombre_empresa}}</h2>
+            <p class="title-bussines">{{$facturas[0]->proveedor->direccion}}</p>
+          @else
+            <h2 class="title-bussines">Reportes no encontrados</h2>
+            <p class="title-bussines">Reportes no encontrados</p>
+          @endif
         </div>
         <div class="table">
           <ul class="ul-table">
@@ -204,7 +213,9 @@
               @foreach ($facturas as $key => $factura)
                 <tr style="background: rgba(52, 73, 94, .3)">
                   <td>{{$key+1}}</td>
-                  <td>{{$factura->categoria->tipo}}</td>
+                  @if ($factura->categoria)
+                    <td>{{$factura->categoria->tipo}}</td>
+                  @endif
                   <td class="tjustify">
                     @if ($factura->catalogo)
                       {{strtoupper($factura->catalogo->descripcion)}}
@@ -218,7 +229,9 @@
                   </td>
                   <td>${{$factura->precio_lista}} {{$factura->moneda}}</td>
                   <td>${{$factura->costo}} {{$factura->moneda}}</td>
-                  <td>{{$factura->proveedor->nombre_empresa}}</td>
+                  @if ($factura->proveedor)
+                    <td>{{$factura->proveedor->nombre_empresa}}</td>
+                  @endif
                   <td>{{$factura->fecha_entrada}}</td>
                 </tr>
               @endforeach
