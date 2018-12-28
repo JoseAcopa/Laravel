@@ -70,7 +70,7 @@ class PDFController extends Controller
           $facturas[$i]->catalogo = $producto;
         }
       }
-      
+
       $pdf = PDF::loadView('admin.PDF.ingresoProveedorRango', compact('facturas', 'rango'));
 
       $pdf->output();
@@ -146,9 +146,11 @@ class PDFController extends Controller
     if ($request->proveedor != null) {
       $salidas = Salida::where('proveedor_id', $request->proveedor)->where('fecha_salida', '>=' ,$inicio)->where('fecha_salida', '<=' ,$fin)->with(['proveedor', 'categoria', 'producto'])->get();
 
-      for ($i=0; $i < count($salidas); $i++) {
-        $producto = Catalogo::find($salidas[$i]->producto->catalogo_id);
-        $salidas[$i]->catalogo = $producto;
+      if (count($salidas) != 0) {
+        for ($i=0; $i < count($salidas); $i++) {
+          $producto = Catalogo::find($salidas[$i]->producto->catalogo_id);
+          $salidas[$i]->catalogo = $producto;
+        }
       }
 
       $pdf = PDF::loadView('admin.PDF.salidaProveedorRango', compact('salidas', 'rango'));
@@ -162,9 +164,11 @@ class PDFController extends Controller
     }else {
       $salidas = Salida::where('fecha_salida', '>=' ,$inicio)->where('fecha_salida', '<=' ,$fin)->with(['proveedor', 'categoria', 'producto'])->get();
 
-      for ($i=0; $i < count($salidas); $i++) {
-        $producto = Catalogo::find($salidas[$i]->producto->catalogo_id);
-        $salidas[$i]->catalogo = $producto;
+      if (count($salidas) != 0) {
+        for ($i=0; $i < count($salidas); $i++) {
+          $producto = Catalogo::find($salidas[$i]->producto->catalogo_id);
+          $salidas[$i]->catalogo = $producto;
+        }
       }
 
       $pdf = PDF::loadView('admin.PDF.salidaRango', compact('salidas', 'rango'));

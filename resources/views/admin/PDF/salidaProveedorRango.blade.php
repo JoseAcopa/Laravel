@@ -3,7 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{$salidas[0]->proveedor->nombre_empresa}}</title>
+    @if (count($salidas) != 0)
+      <title>{{$salidas[0]->proveedor->nombre_empresa}}</title>
+    @else
+      <title>Reportes no encontrados</title>
+    @endif
     <link rel="icon" type="image/png" href="/img/icono1.png"/>
     <style>
       @page {
@@ -168,8 +172,13 @@
     <main>
       <div class="row">
         <div class="bussines">
-          <h2 class="title-bussines">{{$salidas[0]->proveedor->nombre_empresa}}</h2>
-          <p class="title-bussines">{{$salidas[0]->proveedor->direccion}}</p>
+          @if (count($salidas) != 0)
+            <h2 class="title-bussines">{{$salidas[0]->proveedor->nombre_empresa}}</h2>
+            <p class="title-bussines">{{$salidas[0]->proveedor->direccion}}</p>
+          @else
+            <h2 class="title-bussines">Reportes no encontrados</h2>
+            <p class="title-bussines">Reportes no encontrados</p>
+          @endif
         </div>
         <div class="table">
           <ul class="ul-table">
