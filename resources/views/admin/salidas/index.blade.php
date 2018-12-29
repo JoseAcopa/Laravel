@@ -69,7 +69,12 @@
             @foreach ($salidas as $i => $salida)
               <tr>
                 <td>{{ $i+1 }}</td>
-                <td><a href="{{route('salida.edit',$salida->id)}}">{{ $salida->categoria->tipo }}</a></td>
+                @can ('salida.edit')
+                  <td><a href="{{route('salida.edit',$salida->id)}}">{{ $salida->categoria->tipo }}</a></td>
+                @endcan
+                @cannot ('salida.edit')
+                  <td>{{ $salida->categoria->tipo }}</td>
+                @endcannot
                 <td>{{ $salida->catalogo->sku }}</td>
                 <td>{{ str_limit($salida->catalogo->descripcion, 50) }}</td>
                 <td>

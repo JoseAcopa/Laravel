@@ -38,7 +38,12 @@
             @foreach ($usuarios as $i => $usuario)
               <tr>
                 <td>{{ $i+1}}</td>
-                <td><a href="{{ route('usuario.edit',$usuario->id) }}">{{ $usuario->name }}</a></td>
+                @can ('usuario.edit')
+                  <td><a href="{{ route('usuario.edit',$usuario->id) }}">{{ $usuario->name }}</a></td>
+                @endcan
+                @cannot ('usuario.edit')
+                  <td>{{ $usuario->name }}</td>
+                @endcannot
                 <td>{{ $usuario->email }}</td>
                 <td>{{ $usuario->phone }}</td>
                 <td>{{ $usuario->user }}</td>

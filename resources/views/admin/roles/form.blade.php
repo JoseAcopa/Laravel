@@ -33,6 +33,6 @@
   </div>
 </div>
 <div class="box-footer">
-  <button type="submit" class="btn btn-primary"><i class="fa fa-save fa-lg"></i> Guardar</button>
-  <a href="{{url('admin/roles')}}" class="btn btn-default"><i class="fa fa-reply fa-lg"></i> Regresar</a>
+  <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save fa-lg"></i> Guardar</button>
+  <a href="{{ url('admin/roles') }}" class="btn btn-default pull-left"><i class="fa fa-reply fa-lg"></i> Regresar</a>
 </div>

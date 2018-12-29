@@ -65,11 +65,15 @@
               @foreach ($cotizaciones as $key => $cotizacion)
                 <tr>
                   <td>{{$key + 1}}</td>
-                  <td><a href="{{route('cotizacion.edit', $cotizacion->id)}}">{{$cotizacion->numero_cotizacion}}</a></td>
+                  @can ('cotizacion.edit')
+                    <td><a href="{{route('cotizacion.edit', $cotizacion->id)}}">{{$cotizacion->numero_cotizacion}}</a></td>
+                  @endcan
+                  @cannot ('cotizacion.edit')
+                    <td>{{$cotizacion->numero_cotizacion}}</td>
+                  @endcannot
                   <td>{{$cotizacion->user->name}}</td>
                   <td>{{$cotizacion->fecha}}</td>
                   <td>{{$cotizacion->cliente->nombre_empresa}}</td>
-                  {{-- <td>${{round($cotizacion->total, 2)}}</td> --}}
                   <td>{{$cotizacion->total}}</td>
                   <td class="row-copasat">
                     @can ('cotizacion.show')

@@ -97,7 +97,7 @@ function current_page($url = '/'){
                 </a>
               </li>
             @endcan
-            @can ('inventarios.index')
+            @can ('productos.index')
               <li <?php echo current_page('entrada-productos') || current_page('crear-producto') || isset($productoEdit) ? "class='active'" : "";?>>
                 <a href="{{url('/entrada-productos')}}">
                   <i class="fa fa-circle-o <?php echo current_page('entrada-productos') || current_page('crear-producto') || isset($productoEdit) ? "text-aqua" : "";?>"></i>
@@ -145,6 +145,13 @@ function current_page($url = '/'){
             <a href="/facturas-ingresos"><i class="fa fa-clipboard"></i> <span>Reportes de ingreso</span>
               <?php echo current_page('facturas-ingresos') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
               <?php echo current_page('buscar-facturas-fecha') ? '<small class="label pull-right bg-green">buscar</small>' : "";?>
+            </a>
+          </li>
+        @endcan
+        @can ('correos.index')
+          <li <?php echo current_page('correos') ? "class='active'" : "";?>>
+            <a href="/correos"><i class="fa fa-envelope-o"></i> <span>Correos</span>
+              <?php echo current_page('correos') ? '<small class="label pull-right bg-green">activo</small>' : "";?>
             </a>
           </li>
         @endcan

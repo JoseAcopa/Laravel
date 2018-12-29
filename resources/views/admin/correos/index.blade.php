@@ -46,11 +46,20 @@
                 @foreach ($correos as $correo)
                   <tr>
                     <td class="mailbox-star"><?php echo $correo->status == "activo" ? '<i class="fa fa-star text-yellow"></i>' : '<i class="fa fa-star-o text-yellow"></i>'; ?></td>
-                    <td class="mailbox-name">
-                      <?php
-                        $url = json_encode(route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]));
-                        echo $correo->status == "activo" ? "<a data-toggle='modal' data-target='#myModalEdit' onclick='edit($url);' style='cursor: pointer;'>$correo->nombre</a>" : $correo->nombre;?>
-                    </td>
+                    @can ('correo.edit')
+                      <td class="mailbox-name">
+                        <?php
+                          $url = json_encode(route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]));
+                          echo $correo->status == "activo" ? "<a data-toggle='modal' data-target='#myModalEdit' onclick='edit($url);' style='cursor: pointer;'>$correo->nombre</a>" : $correo->nombre;?>
+                      </td>
+                    @endcan
+                    @cannot ('correo.edit')
+                      <td class="mailbox-name">
+                        <?php
+                          $url = json_encode(route('correo.send', ['idUser' => $correo->idUsuario, 'id' => $correo->id]));
+                          echo $correo->status == "activo" ? $correo->nombre : $correo->nombre;?>
+                      </td>
+                    @endcannot
                     <td class="mailbox-subject">
                       <?php echo $correo->status == "activo" ? '<b>Restablecer Contraseña</b>' : 'Restablecer Contraseña'; ?>
                     </td>
