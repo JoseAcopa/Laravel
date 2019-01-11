@@ -29,10 +29,10 @@
     </div>
   </div>
   <div class="col-md-12">
-    <div class="form-group {{ $errors->has('address') ? 'has-error' : '' }}">
+    <div class="form-group {{ $errors->has('direccion') ? 'has-error' : '' }}">
       {{ Form::label('direccion', 'Dirección:') }}
       {{ Form::textarea('direccion', null, ['class' => 'form-control', 'placeholder' => 'dirección', 'rows' => '6']) }}
-      {!! $errors->first('address','<span class="help-block">:message</span>')!!}
+      {!! $errors->first('direccion','<span class="help-block">:message</span>')!!}
     </div>
   </div>
 </div>

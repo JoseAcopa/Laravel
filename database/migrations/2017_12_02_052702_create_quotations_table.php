@@ -18,8 +18,8 @@ class CreateQuotationsTable extends Migration
             $table->string('numero_cotizacion');
             $table->string('fecha');
             $table->string('licitacion');
-            $table->string('rfc_cliente');
-            $table->string('telefono_cliente');
+            $table->string('rfc_cliente')->nullable();
+            $table->string('telefono_cliente')->nullable();
             $table->string('correo_cliente');
             $table->string('nombre_empresa');
             $table->string('direccion');

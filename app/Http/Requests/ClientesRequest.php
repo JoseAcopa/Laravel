@@ -25,7 +25,6 @@ class ClientesRequest extends FormRequest
     {
         return [
           'nombre_empresa' => 'max:255|required|unique:clients',
-          'rfc' => 'max:255|required',
           'direccion' => 'max:255|required',
           'siglas' => 'max:255|required',
         ];
