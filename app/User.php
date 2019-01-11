@@ -38,10 +38,10 @@ class User extends Authenticatable
       return $this->belongsTo('App\Roles');
     }
 
-    public function setPasswordAttribute($value)
-    {
-      if (!empty($value)) {
-        $this->attributes['password'] = bcrypt($value);
-      }
-    }
+    // public function setPasswordAttribute($value)
+    // {
+    //   if (!empty($value)) {
+    //     $this->attributes['password'] = bcrypt($value);
+    //   }
+    // }
 }
