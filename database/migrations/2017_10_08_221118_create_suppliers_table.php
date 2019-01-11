@@ -18,7 +18,7 @@ class CreateSuppliersTable extends Migration
             $table->string('nombre_empresa');
             $table->string('rfc')->nullable();
             $table->string('telefono')->nullable();
-            $table->string('correo'->nullable());
+            $table->string('correo')->nullable();
             $table->string('direccion');
             $table->timestamps();
         });
